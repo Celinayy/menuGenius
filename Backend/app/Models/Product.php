@@ -21,7 +21,7 @@ class Product extends Model
         return $this->hasOne(Image::class);
     }
 
-    public function ingredients()
+    public function ingredients():BelongsToMany
     {
         return $this->belongsToMany(Ingredient::class, 'product_ingredient', 'productId', 'ingredientId');
     }
