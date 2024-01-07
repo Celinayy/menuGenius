@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id('id');
-            $table->string('name1')->unique();
-            $table->numeric('inStock');
+            $table->string('name')->unique();
             $table->string('qUnit');
             //$table->timestamps();
         });

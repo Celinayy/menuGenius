@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id('id');
             $table->string('name')->unique();
             $table->string('descripton');
-            $table->integer('categoryId');
+            $table->unsignedBigInteger('category_id');
             $table->string('packing');
             $table->integer('price');
             $table->boolean('isFood');
-            $table->integer('imageId');
+            $table->unsignedBigInteger('image_id');
             //$table->timestamps();
 
-            $table->foreign('categoryId')->references("id")->on("user");
-            $table->foreign('imageId')->references("imageId")->on("image");
+            $table->foreign('category_id')->references("id")->on("categories");
+            $table->foreign('image_id')->references("id")->on("images");
         });
     }
 
