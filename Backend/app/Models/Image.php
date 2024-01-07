@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory;
-    public $table = "image";
     public $timestamps = false;
 
     public function product():BelongsTo

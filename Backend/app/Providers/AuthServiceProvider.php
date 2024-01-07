@@ -16,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
         Product::class => ProductPolicy::class,
         Category::class => CategoryPolicy::class,
         Image::class => ImagePolicy::class,
+        Ingredient::class => IngredientPolicy::class,
     ];
 
     /**

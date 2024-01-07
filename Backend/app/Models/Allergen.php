@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Allergen extends Model
 {
     use HasFactory;
-    public $table = "allergen";
     public $timestamps = false;
 
-    public function ingredient_allergen():BelongsToMany
+    public function ingredients():BelongsToMany
     {
-        return $this->belongsToMany(Ingredient::class, 'ingredient_allergen', 'allergenId', 'ingredientId');
+        return $this->belongsToMany(Ingredient::class);
     }
 
 }

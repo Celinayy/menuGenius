@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('allergens', function (Blueprint $table) {
+        Schema::create('ingredients', function (Blueprint $table) {
             $table->id('id');
-            $table->numeric('code')->unique();
-            $table->string('name')->unique();
+            $table->string('name1')->unique();
+            $table->numeric('inStock');
+            $table->string('qUnit');
             //$table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('allergens');
+        Schema::dropIfExists('ingredients');
     }
 };

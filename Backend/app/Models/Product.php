@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    public $table = "product";
     public $timestamps = false;
 
     public function category():HasOne
@@ -23,6 +22,6 @@ class Product extends Model
 
     public function ingredients():BelongsToMany
     {
-        return $this->belongsToMany(Ingredient::class, 'product_ingredient', 'productId', 'ingredientId');
+        return $this->belongsToMany(Ingredient::class);
     }
 }
