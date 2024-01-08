@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('status',['ordered', 'cooked', 'served']);
             $table->boolean('paid');
             $table->unsignedbiginteger('user_id');
-            $table->unsignecbiginteger('desk_id');
+            $table->unsignedbiginteger('desk_id');
             //$table->timestamps();
 
             $table->foreign('user_id')->references("id")->on("users");

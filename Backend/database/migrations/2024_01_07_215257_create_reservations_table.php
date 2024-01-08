@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id('id');
             $table->integer('number_of_guests');
-            $table->dateTime('checkin_date');
-            $table->dateTime('checkout_date');
+            $table->datetime('checkin_date');
+            $table->datetime('checkout_date');
             $table->string('name');
             $table->string('phone');
-            $table->integer('desk_id');
+            $table->unsignedbiginteger('desk_id');
             //$table->timestamps();
 
             $table->foreign('desk_id')->references("id")->on("desks");
