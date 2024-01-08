@@ -13,6 +13,8 @@ import { HeaderComponent } from './header/header.component';
 import { ContactWindowComponent } from './contact-window/contact-window.component';
 import { FormsModule } from '@angular/forms';
 import { ProductsWindowComponent } from './products-window/products-window.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { ProductsWindowComponent } from './products-window/products-window.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
