@@ -43,13 +43,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function purchase():BelongsTo
+    public function purchases():BelongsToMany
     {
-        return $this->belongsTo(Purchase::class);
+        return $this->belongsToMany(Purchase::class);
     }
 
-    public function event_log():BelongsTo
+    public function event_log():BelongsToMany
     {
-        return $this->belongsTo(EvenetLog::class);
+        return $this->belongsToMany(EvenetLog::class);
     }
 }

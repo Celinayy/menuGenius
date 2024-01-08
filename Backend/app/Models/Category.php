@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
     public $timestamps = false;
 
-    public function product():BelongsToMany
+    public function products():BelongsToMany
     {
         return $this->belongsToMany(Product::class);
     }
