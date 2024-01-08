@@ -10,22 +10,21 @@ class Product extends Model
     use HasFactory;
     public $timestamps = false;
 
-    public function category():HasOne
+    public function category()
     {
         return $this->hasOne(Category::class);
     }
-    
-    public function image():HasOne
+
+    public function image()
     {
-        return $this->hasOne(Image::class);
+        return $this->belongsTo(Image::class);
     }
 
-    public function ingredients():BelongsToMany
-    {
+    public function ingredients() {
         return $this->belongsToMany(Ingredient::class);
     }
 
-    public function purchases():BelongsToMany
+    public function purchases()
     {
         return $this->belongsToMany(Ingredient::class);
     }

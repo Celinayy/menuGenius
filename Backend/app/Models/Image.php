@@ -10,8 +10,14 @@ class Image extends Model
     use HasFactory;
     public $timestamps = false;
 
-    public function product():BelongsTo
+    public $hidden = ["img_data"];
+    public $appends = ["data"];
+
+    public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+    public function getDataAttribute() {
+        return base64_encode($this -> img_data);
     }
 }

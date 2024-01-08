@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::get();
+        return Product::with("image")->get();
     }
 
     /**
@@ -41,7 +41,7 @@ class ProductController extends Controller
         $product->save();
 
         return response()->json(['message' => 'A termék létrehozva!', 'data' => $product], 201);
-        
+
         //$this->authorize('store-product', $product);
     }
 
@@ -53,7 +53,7 @@ class ProductController extends Controller
         if (!$product) {
             return response()->json(['error' => 'A terméket nem találtam!'], 404);
         }
-    
+
         return response()->json($product);
     }
 
@@ -70,7 +70,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //$this->authorize('update-product', $product);    
+        //$this->authorize('update-product', $product);
     }
 
     /**
