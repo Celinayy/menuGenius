@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Product::class);
+        $this->authorize('create-product', $product);
     }
 
     /**
@@ -29,7 +29,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $this->authorize('store', Product::class);
+        $this->authorize('store-product', $product);
     }
 
     /**
@@ -45,7 +45,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $this->authorize('edit', Product::class);
+        $this->authorize('edit-product', $product);
     }
 
     /**
@@ -53,14 +53,12 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $this->authorize('update', Product::class);
-    }
+        $this->authorize('update-product', $product);    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Product $product)
     {
-        $this->authorize('destroy', Product::class);
-    }
+        $this->authorize('update-product', $product);    }
 }
