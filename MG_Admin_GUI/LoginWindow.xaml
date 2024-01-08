@@ -1,0 +1,20 @@
+﻿<Window x:Class="MG_Admin_GUI.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MG_Admin_GUI"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="300" Width="400" FontSize="16">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Felhasználónév:"/>
+            <TextBox Name="tbUserName" Margin="0,0,0,10"/>
+            <TextBlock Text="Jelszó:"/>
+            <PasswordBox Name="pbUserPassword" Margin="0,0,0,10"/>
+            <Button Name="btnLogin" Content="Bejelentkezés" Click="btnLogin_Click"/>
+            <Button Name="btnLoginClose" Content="Bezárás" Click="btnLoginClose_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
+

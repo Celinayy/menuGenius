@@ -1,0 +1,7 @@
+C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI.csproj.AssemblyReference.cache
+C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI\obj\Debug\net7.0-windows\LoginWindow.g.cs
+C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI\obj\Debug\net7.0-windows\MainWindow.g.cs
+C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI\obj\Debug\net7.0-windows\App.g.cs
+C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI_MarkupCompile.cache
+C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI_MarkupCompile.lref
