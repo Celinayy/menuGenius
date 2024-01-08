@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reservations', function (Blueprint $table) {
-            $table->id('id');
+            $table->id();
             $table->integer('number_of_guests');
             $table->datetime('checkin_date');
             $table->datetime('checkout_date');
             $table->string('name');
             $table->string('phone');
-            $table->unsignedbiginteger('desk_id');
+            $table->unsignedBigInteger('desk_id');
             //$table->timestamps();
 
             $table->foreign('desk_id')->references("id")->on("desks");

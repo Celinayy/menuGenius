@@ -13,7 +13,20 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+        $images = Image::all();
+
+        $encodedImages = $images->map(function ($image) {
+            $base64 = base64_encode($image->img_data);
+
+            return [
+                'id' => $image->id,
+                'img_name' => $image->img_name,
+                'img_data' => $base64,
+            ];
+        });
+
+        //return response()->json($encodedImages);
+        return view('images.index', ['images' => $encodedImages]);
     }
 
     /**
@@ -21,7 +34,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-        $this->authorize('create-image', Image::class);
+        //$this->authorize('create-image', Image::class);
     }
 
     /**
@@ -29,7 +42,13 @@ class ImageController extends Controller
      */
     public function store(StoreImageRequest $request)
     {
-        $this->authorize('store-image', Image::class);
+        $image = new Image();
+        $image->img_name = $request->input('img_name');
+        $image->img_data = $request->input('img_data');
+
+        $image->save();
+
+        return response()->json(['message' => 'Az asztal létrehozva!', 'data' => $image], 201);
     }
 
     /**
@@ -37,7 +56,11 @@ class ImageController extends Controller
      */
     public function show(Image $image)
     {
-        //
+        if (!$image) {
+            return response()->json(['error' => 'Nincs ilyen kép!'], 404);
+        }
+    
+        return response()->json($image);
     }
 
     /**
@@ -45,7 +68,7 @@ class ImageController extends Controller
      */
     public function edit(Image $image)
     {
-        $this->authorize('edit-image', Image::class);
+        //$this->authorize('edit-image', Image::class);
     }
 
     /**
@@ -53,7 +76,7 @@ class ImageController extends Controller
      */
     public function update(UpdateImageRequest $request, Image $image)
     {
-        $this->authorize('update-image', $image);
+        //$this->authorize('update-image', $image);
     }
 
     /**
@@ -61,6 +84,6 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        $this->authorize('destroy-image', $image);
+        //$this->authorize('destroy-image', $image);
     }
 }

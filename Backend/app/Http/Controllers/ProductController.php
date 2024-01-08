@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $this->authorize('create-product', $product);
+        //$this->authorize('create-product', $product);
     }
 
     /**
@@ -29,7 +29,20 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $this->authorize('store-product', $product);
+        $product = new Product();
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->packing = $request->input('packing');
+        $product->price = $request->input('price');
+        $product->is_food = $request->input('is_food');
+        $product->category_id = $request->input('category_id');
+        $product->image_id = $request->input('image_id');
+
+        $product->save();
+
+        return response()->json(['message' => 'A termék létrehozva!', 'data' => $product], 201);
+        
+        //$this->authorize('store-product', $product);
     }
 
     /**
@@ -37,7 +50,11 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        if (!$product) {
+            return response()->json(['error' => 'A terméket nem találtam!'], 404);
+        }
+    
+        return response()->json($product);
     }
 
     /**
@@ -45,7 +62,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $this->authorize('edit-product', $product);
+        //$this->authorize('edit-product', $product);
     }
 
     /**
@@ -53,12 +70,14 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $this->authorize('update-product', $product);    }
+        //$this->authorize('update-product', $product);    
+    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Product $product)
     {
-        $this->authorize('update-product', $product);    }
+        //$this->authorize('update-product', $product);
+    }
 }

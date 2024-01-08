@@ -13,7 +13,7 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        //
+        return Purchase::get();
     }
 
     /**
@@ -29,7 +29,17 @@ class PurchaseController extends Controller
      */
     public function store(StorePurchaseRequest $request)
     {
-        //
+        $purchase = new Purchase();
+        $purchase->date_time = $request->input('date_time');
+        $purchase->total_pay = $request->input('total_pay');
+        $purchase->status = $request->input('status');
+        $purchase->paid = $request->input('paid');
+        $purchase->user_id = $request->input('user_id');
+        $purchase->desk_id = $request->input('desk_id');
+
+        $purchase->save();
+
+        return response()->json(['message' => 'A vásárlás létrehozva!', 'data' => $purchase], 201);
     }
 
     /**
@@ -37,7 +47,11 @@ class PurchaseController extends Controller
      */
     public function show(Purchase $purchase)
     {
-        //
+        if (!$purchase) {
+            return response()->json(['error' => 'Nincs ilyen vásrálás!'], 404);
+        }
+    
+        return response()->json($purchase);
     }
 
     /**

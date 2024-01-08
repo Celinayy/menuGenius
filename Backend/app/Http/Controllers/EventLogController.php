@@ -13,7 +13,7 @@ class EventLogController extends Controller
      */
     public function index()
     {
-        //
+        return EventLog::get();
     }
 
     /**
@@ -21,7 +21,7 @@ class EventLogController extends Controller
      */
     public function create()
     {
-        $this->authorize('create-eventlog', $eventlog);
+        //$this->authorize('create-eventlog', $eventlog);
     }
 
     /**
@@ -29,7 +29,7 @@ class EventLogController extends Controller
      */
     public function store(StoreEventLogRequest $request)
     {
-        $this->authorize('store-eventlog', $eventlog);
+        //$this->authorize('store-eventlog', $eventlog);
     }
 
     /**
@@ -37,7 +37,11 @@ class EventLogController extends Controller
      */
     public function show(EventLog $eventLog)
     {
-        //
+        if (!$eventLog) {
+            return response()->json(['error' => 'Nincs ilyen esemény!'], 404);
+        }
+    
+        return response()->json($eventLog);
     }
 
     /**
@@ -45,7 +49,7 @@ class EventLogController extends Controller
      */
     public function edit(EventLog $eventLog)
     {
-        $this->authorize('edit-eventlog', $eventlog);
+        //$this->authorize('edit-eventlog', $eventlog);
     }
 
     /**
@@ -53,7 +57,7 @@ class EventLogController extends Controller
      */
     public function update(UpdateEventLogRequest $request, EventLog $eventLog)
     {
-        $this->authorize('update-eventlog', $eventlog);
+        //$this->authorize('update-eventlog', $eventlog);
     }
 
     /**
@@ -61,6 +65,6 @@ class EventLogController extends Controller
      */
     public function destroy(EventLog $eventLog)
     {
-        $this->authorize('destroy-eventlog', $eventlog);
+        //$this->authorize('destroy-eventlog', $eventlog);
     }
 }

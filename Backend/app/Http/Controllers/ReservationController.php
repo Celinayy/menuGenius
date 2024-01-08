@@ -13,7 +13,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $this->authorize('index-reservation', $reservation);
+        return Reservation::get();
+        //$this->authorize('index-reservation', $reservation);
     }
 
     /**
@@ -29,7 +30,17 @@ class ReservationController extends Controller
      */
     public function store(StoreReservationRequest $request)
     {
-        $this->authorize('store-reservation', $reservation);
+        $reservation = new Reservation();
+        $reservation->number_of_guests = $request->input('number_of_guests');
+        $reservation->checkin_date = $request->input('checkin_date');
+        $reservation->checkout_date = $request->input('checkout_date');
+        $reservation->name = $request->input('name');
+        $reservation->phone = $request->input('phone');
+        $reservation->desk_id = $request->input('desk_id');
+
+        $reservation->save();
+
+        return response()->json(['message' => 'A foglalás létrehozva!', 'data' => $reservation], 201);
     }
 
     /**
@@ -37,7 +48,13 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        $this->authorize('show-reservation', $reservation);
+        if (!$reservation) {
+            return response()->json(['error' => 'Nincs ilyen foglalás!'], 404);
+        }
+    
+        return response()->json($reservation);
+
+        //$this->authorize('show-reservation', $reservation);
     }
 
     /**
@@ -45,7 +62,7 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        $this->authorize('update-reservation', $reservation);
+        //$this->authorize('update-reservation', $reservation);
     }
 
     /**
@@ -53,7 +70,7 @@ class ReservationController extends Controller
      */
     public function update(UpdateReservationRequest $request, Reservation $reservation)
     {
-        $this->authorize('update-reservation', $reservation);
+        //$this->authorize('update-reservation', $reservation);
     }
 
     /**
@@ -61,6 +78,7 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        $this->authorize('delete-reservation', $reservation);
-        $reservation->delete();    }
+        //$this->authorize('delete-reservation', $reservation);
+        //$reservation->delete();    }
+    }
 }
