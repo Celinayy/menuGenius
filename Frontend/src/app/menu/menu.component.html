@@ -1,0 +1,61 @@
+<div class="row mx-auto pt-3 text-center">
+  <div class="col-4 d-flex justify-content-center align-items-center">
+    <button
+      class="btn btn-gray"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasBottom"
+      aria-controls="offcanvasBottom"
+    >
+      <img src="/assets/profile.svg" alt="profile" />
+    </button>
+    <div
+      class="offcanvas offcanvas-bottom h-75 background-waves-bottom background-waves-top"
+      tabindex="-1"
+      id="offcanvasBottom"
+      aria-labelledby="offcanvasBottomLabel"
+    >
+      <div class="offcanvas-header">
+        <h3
+          class="offcanvas-title mx-auto"
+          style="padding-left: 32px"
+          id="offcanvasBottomLabel"
+        >
+          Regisztrálj vagy jelentkezz be!
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <hr class="mx-auto w-75" />
+      <div
+        class="offcanvas-body small w-75 mx-auto d-flex align-items-center justify-content-center"
+      >
+        <div *ngIf="!(showLogin || showRegister)">
+          <button class="btn btn-warning m-1" routerLink="tableRes"
+          data-bs-dismiss="offcanvas">Folytatás vendégként</button>
+          <br />
+          <button class="btn btn-warning m-1" (click)="Login()">
+            Bejelentkezés
+          </button>
+          <br />
+          <button class="btn btn-dark m-1" (click)="Register()">
+            Regisztráció
+          </button>
+        </div>
+        <app-login-window *ngIf="showLogin" />
+        <app-register-window *ngIf="showRegister" />
+      </div>
+      <app-contact-window />
+    </div>
+  </div>
+  <div class="col-4 d-flex justify-content-center align-items-center">
+    <a routerLink=""><img src="/assets/default-monochrome-white.svg" alt="logo"/></a>
+  </div>
+  <div class="col-4 d-flex justify-content-center align-items-center">
+    <a routerLink="settings"><img src="/assets/settings.svg" alt="settings" id="settings"  /></a>
+  </div>
+</div>
