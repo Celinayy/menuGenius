@@ -13,7 +13,7 @@ class AllergenController extends Controller
      */
     public function index()
     {
-        //
+        return Allergen::get();
     }
 
     /**
@@ -21,7 +21,7 @@ class AllergenController extends Controller
      */
     public function create()
     {
-        $this->authorize('create-allergen', $allergen);
+        //$this->authorize('create-allergen', $allergen);
     }
 
     /**
@@ -29,7 +29,13 @@ class AllergenController extends Controller
      */
     public function store(StoreAllergenRequest $request)
     {
-        $this->authorize('store-allergen', $allergen);
+        $allergen = new Allergen();
+        $allergen->code = $request->input('code');
+        $allergen->name = $request->input('name');
+
+        $allergen->save();
+
+        return response()->json(['message' => 'Az allergén létrehozva!', 'data' => $allergen], 201);
     }
 
     /**
@@ -37,7 +43,11 @@ class AllergenController extends Controller
      */
     public function show(Allergen $allergen)
     {
-        $this->authorize('show-allergen', $allergen);
+        if (!$allergen) {
+            return response()->json(['error' => 'Nincs ilyen allergén!'], 404);
+        }
+    
+        return response()->json($allergen);
     }
 
     /**
@@ -45,7 +55,7 @@ class AllergenController extends Controller
      */
     public function edit(Allergen $allergen)
     {
-        $this->authorize('edit-allergen', $allergen);
+        //$this->authorize('edit-allergen', $allergen);
     }
 
     /**
@@ -53,7 +63,7 @@ class AllergenController extends Controller
      */
     public function update(UpdateAllergenRequest $request, Allergen $allergen)
     {
-        $this->authorize('update-allergen', $allergen);
+        //$this->authorize('update-allergen', $allergen);
     }
 
     /**
@@ -61,6 +71,6 @@ class AllergenController extends Controller
      */
     public function destroy(Allergen $allergen)
     {
-        $this->authorize('destroy-allergen', $allergen);
+        //$this->authorize('destroy-allergen', $allergen);
     }
 }

@@ -13,7 +13,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        //
+        return Ingredient::get();
     }
 
     /**
@@ -21,7 +21,7 @@ class IngredientController extends Controller
      */
     public function create()
     {
-        $this->authorize('create-ingredient', $ingredient);
+        //$this->authorize('create-ingredient', $ingredient);
     }
 
     /**
@@ -29,7 +29,12 @@ class IngredientController extends Controller
      */
     public function store(StoreIngredientRequest $request)
     {
-        $this->authorize('store-ingredient', $ingredient);
+        $ingredient = new Ingredient();
+        $ingredient->name = $request->input('name');
+
+        $ingredient->save();
+
+        return response()->json(['message' => 'A hozzávaló létrehozva!', 'data' => $ingredient], 201);
     }
 
     /**
@@ -37,7 +42,11 @@ class IngredientController extends Controller
      */
     public function show(Ingredient $ingredient)
     {
-        //
+        if (!$ingredient) {
+            return response()->json(['error' => 'Nincs ilyen hozzávaló!'], 404);
+        }
+    
+        return response()->json($ingredient);
     }
 
     /**
@@ -45,7 +54,7 @@ class IngredientController extends Controller
      */
     public function edit(Ingredient $ingredient)
     {
-        $this->authorize('edit-ingredient', $ingredient);
+        //$this->authorize('edit-ingredient', $ingredient);
     }
 
     /**
@@ -53,7 +62,7 @@ class IngredientController extends Controller
      */
     public function update(UpdateIngredientRequest $request, Ingredient $ingredient)
     {
-        $this->authorize('update-ingredient', $ingredient);
+        //$this->authorize('update-ingredient', $ingredient);
     }
 
     /**
@@ -61,6 +70,6 @@ class IngredientController extends Controller
      */
     public function destroy(Ingredient $ingredient)
     {
-        $this->authorize('destroy-ingredient', $ingredient);
+        //$this->authorize('destroy-ingredient', $ingredient);
     }
 }
