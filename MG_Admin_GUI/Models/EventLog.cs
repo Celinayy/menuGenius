@@ -3,6 +3,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Xml.Linq;
 
 namespace MG_Admin_GUI.Models
 {
@@ -108,7 +109,13 @@ namespace MG_Admin_GUI.Models
 
         public EventLog(MySqlDataReader reader)
         {
-
+            id = reader.GetInt32("id");
+            event_type = reader.GetString("event_type");
+            affected_table = reader.GetString("affected_table");
+            affected_id = reader.GetInt32("affected_id");
+            event_description = reader.GetString("event");
+            date = reader.GetDateTime("date");
+            eventlog_user = reader.GetInt32("user_id");
         }
 
         public static ObservableCollection<EventLog> GetEventLogs()
