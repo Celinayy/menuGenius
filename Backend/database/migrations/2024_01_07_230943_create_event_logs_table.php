@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('event_logs', function (Blueprint $table) {
             $table->id('id');
-            $table->string('eventType');
-            $table->string('affectedTable');
+            $table->string('event_type');
+            $table->string('affected_table');
             $table->integer('affected_id');
             $table->string('event');
             $table->datetime('date');

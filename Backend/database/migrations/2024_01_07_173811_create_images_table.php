@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id('id');
-            $table->string('imgName')->unique();
-            $table->binary('imgData');
+            $table->string('img_name')->unique();
+            $table->binary('img_data');
             //$table->timestamps();
         });
     }

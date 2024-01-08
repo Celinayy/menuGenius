@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('packing');
             $table->integer('price');
-            $table->boolean('isFood');
+            $table->boolean('is_food');
             $table->unsignedBigInteger('image_id');
             //$table->timestamps();
 

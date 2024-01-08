@@ -42,4 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function purchase():BelongsTo
+    {
+        return $this->belongsTo(Purchase::class);
+    }
+
+    public function event_log():BelongsTo
+    {
+        return $this->belongsTo(EvenetLog::class);
+    }
 }
