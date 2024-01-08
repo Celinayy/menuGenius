@@ -21,7 +21,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Image::class);
+        $this->authorize('create-image', Image::class);
     }
 
     /**
@@ -29,7 +29,7 @@ class ImageController extends Controller
      */
     public function store(StoreImageRequest $request)
     {
-        $this->authorize('store', Image::class);
+        $this->authorize('store-image', Image::class);
     }
 
     /**
@@ -45,7 +45,7 @@ class ImageController extends Controller
      */
     public function edit(Image $image)
     {
-        $this->authorize('edit', Image::class);
+        $this->authorize('edit-image', Image::class);
     }
 
     /**
@@ -53,7 +53,7 @@ class ImageController extends Controller
      */
     public function update(UpdateImageRequest $request, Image $image)
     {
-        $this->authorize('update', Image::class);
+        $this->authorize('update-image', $image);
     }
 
     /**
@@ -61,6 +61,6 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        $this->authorize('destroy', Image::class);
+        $this->authorize('destroy-image', $image);
     }
 }

@@ -21,7 +21,7 @@ class IngredientController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Ingredient::class);
+        $this->authorize('create-ingredient', $ingredient);
     }
 
     /**
@@ -29,7 +29,7 @@ class IngredientController extends Controller
      */
     public function store(StoreIngredientRequest $request)
     {
-        $this->authorize('store', Ingredient::class);
+        $this->authorize('store-ingredient', $ingredient);
     }
 
     /**
@@ -45,7 +45,7 @@ class IngredientController extends Controller
      */
     public function edit(Ingredient $ingredient)
     {
-        $this->authorize('edit', Ingredient::class);
+        $this->authorize('edit-ingredient', $ingredient);
     }
 
     /**
@@ -53,7 +53,7 @@ class IngredientController extends Controller
      */
     public function update(UpdateIngredientRequest $request, Ingredient $ingredient)
     {
-        $this->authorize('update', Ingredient::class);
+        $this->authorize('update-ingredient', $ingredient);
     }
 
     /**
@@ -61,6 +61,6 @@ class IngredientController extends Controller
      */
     public function destroy(Ingredient $ingredient)
     {
-        $this->authorize('destroy', Ingredient::class);
+        $this->authorize('destroy-ingredient', $ingredient);
     }
 }

@@ -21,7 +21,7 @@ class AllergenController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Allergen::class);
+        $this->authorize('create-allergen', $allergen);
     }
 
     /**
@@ -29,7 +29,7 @@ class AllergenController extends Controller
      */
     public function store(StoreAllergenRequest $request)
     {
-        $this->authorize('store', Allergen::class);
+        $this->authorize('store-allergen', $allergen);
     }
 
     /**
@@ -37,7 +37,7 @@ class AllergenController extends Controller
      */
     public function show(Allergen $allergen)
     {
-        $this->authorize('show', Allergen::class);
+        $this->authorize('show-allergen', $allergen);
     }
 
     /**
@@ -45,7 +45,7 @@ class AllergenController extends Controller
      */
     public function edit(Allergen $allergen)
     {
-        $this->authorize('edit', Allergen::class);
+        $this->authorize('edit-allergen', $allergen);
     }
 
     /**
@@ -53,7 +53,7 @@ class AllergenController extends Controller
      */
     public function update(UpdateAllergenRequest $request, Allergen $allergen)
     {
-        $this->authorize('update', Allergen::class);
+        $this->authorize('update-allergen', $allergen);
     }
 
     /**
@@ -61,6 +61,6 @@ class AllergenController extends Controller
      */
     public function destroy(Allergen $allergen)
     {
-        $this->authorize('destroy', Allergen::class);
+        $this->authorize('destroy-allergen', $allergen);
     }
 }

@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Category::class);
+        $this->authorize('create-category', $category);
     }
 
     /**
@@ -29,7 +29,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $this->authorize('store', Category::class);
+        $this->authorize('store-category', $category);
     }
 
     /**
@@ -45,7 +45,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $this->authorize('edit', Category::class);
+        $this->authorize('edit-category', $category);
     }
 
     /**
@@ -53,7 +53,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $this->authorize('update', Category::class);
+        $this->authorize('update-category', $category);
     }
 
     /**
@@ -61,6 +61,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $this->authorize('destroy', Category::class);
+        $this->authorize('destroy-category', $category);
     }
 }
