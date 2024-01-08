@@ -1,10 +1,10 @@
-DROP DATABASE IF EXISTS menu_genius;
+DROP DATABASE IF EXISTS menugenius;
 
-CREATE DATABASE menu_genius
+CREATE DATABASE menugenius
 	CHARACTER SET utf8mb4
 	COLLATE utf8mb4_hungarian_ci;
 
-USE menu_genius;
+USE menugenius;
 
 -- tables
 -- Table: allergen
@@ -98,7 +98,7 @@ CREATE TABLE users (
 CREATE TABLE purchases (
     id bigint  NOT NULL AUTO_INCREMENT,
     date_time datetime  NOT NULL,
-    totalPay int  NOT NULL,
+    total_pay int  NOT NULL,
     status enum('ordered', 'cooked', 'served')  NOT NULL,
     paid bool  NOT NULL,
     user_id int  NULL,
@@ -131,6 +131,6 @@ CREATE TABLE event_logs (
 CREATE TABLE images (
     id bigint NOT NULL AUTO_INCREMENT,
     img_name varchar(50) NOT NULL,
-    img_Data longblob NOT NULL,
+    img_data longblob NOT NULL,
     CONSTRAINT PRIMARY KEY (id)
 );

@@ -763,5 +763,6 @@ INSERT INTO desks (id, number_of_seats) VALUES
 (20, 10);
 
 INSERT INTO users (id, name, email, password, phone, admin) VALUES
-(1, 'admin', 'menugenius@gmail.com', 'admin1234', '+36301234567', 1);
+(1, 'admin', 'menugenius@gmail.com', 'admin1234', '+36301234567', 1),
+(2, 'user', 'useremail.com', 'user1234', '+36709876543', 0);
 
