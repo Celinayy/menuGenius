@@ -1,0 +1,31 @@
+Felső navbar: 
+https://uiverse.io/akshat-patel28/brown-panther-60
+
+logo: 
+https://www.namecheap.com/logo-maker/
+
+input:
+https://uiverse.io/alexruix/slippery-snail-18
+
+telefon_logo:
+https://www.svgrepo.com/svg/11815/smartphone-with-email
+
+
+.content hatterkep
+https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-03/plant-based-food-mc-220323-02-273c7b.jpg
+https://unsplash.com/photos/TnXMvJsCTpA
+
+button:
+https://uiverse.io/e-coders/new-shrimp-32
+
+checkbox:
+https://uiverse.io/SelfMadeSystem/green-bobcat-29
+
+előugró rész animációs része:
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal
+
+
+
+php artisan serve
+
+npm run dev (nemjoiU)

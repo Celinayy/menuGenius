@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: norwester
+font link: http://jamiewilson.io/norwester/
+font author: Jamie Wilson
+font author site: http://jamiewilson.io/
+
+
+icon designer: Luis Prado
+icon designer link: /Luis
+        
+{"bg":"#161C60","icon":"#25BDD6","font":"#25BDD6","slogan":"#39d1ea"}
+      
