@@ -12,10 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('images', function (Blueprint $table) {
-            $table->id('id');
+            $table->unsingedbiginteger('id');
             $table->string('img_name')->unique();
-            $table->binary('img_data');
+            //$table->binary('img_data');
             //$table->timestamps();
+
+            DB::statement("ALTER TABLE images ADD img_data LONGBLOB");
         });
     }
 
