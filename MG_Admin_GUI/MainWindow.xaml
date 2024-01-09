@@ -9,7 +9,7 @@
         Title="MenuGenius Admin GUI" Height="1200" Width="1600"
         WindowState="Maximized" FontSize="16">
     <Window.Resources>
-        <!--<local:DateTimeFormatConverter x:Key="DateTimeFormatConverter" />-->
+        <local:DateTimeFormatConverter x:Key="DateTimeFormatConverter" />
         <Style x:Key="TitleLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -82,7 +82,7 @@
                                 <GridViewColumn Header="Dátum">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding date, Converter={StaticResource DateTimeFormatConverter}}"/>
+                                            <TextBlock Text="{Binding date_time, Converter={StaticResource DateTimeFormatConverter}}"/>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -123,7 +123,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Végösszeg" DisplayMemberBinding="{Binding totalPay}"></GridViewColumn>
+                                <GridViewColumn Header="Végösszeg" DisplayMemberBinding="{Binding total_pay}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -135,7 +135,7 @@
                     <ListView Name="lvCooked" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Dátum" DisplayMemberBinding="{Binding date, Converter={StaticResource DateTimeFormatConverter}}"/>
+                                <GridViewColumn Header="Dátum" DisplayMemberBinding="{Binding date_time, Converter={StaticResource DateTimeFormatConverter}}"/>
                                 <GridViewColumn Header="Étel">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
@@ -173,7 +173,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Végösszeg" DisplayMemberBinding="{Binding totalPay}"/>
+                                <GridViewColumn Header="Végösszeg" DisplayMemberBinding="{Binding total_pay}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -185,7 +185,7 @@
                     <ListView Name="lvServed" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Dátum" DisplayMemberBinding="{Binding date, Converter={StaticResource DateTimeFormatConverter}}"/>
+                                <GridViewColumn Header="Dátum" DisplayMemberBinding="{Binding date_time, Converter={StaticResource DateTimeFormatConverter}}"/>
                                 <GridViewColumn Header="Étel">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
@@ -223,7 +223,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Végösszeg" DisplayMemberBinding="{Binding totalPay}"/>
+                                <GridViewColumn Header="Végösszeg" DisplayMemberBinding="{Binding total_pay}"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -234,8 +234,8 @@
                               IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding}" CanUserAddRows="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding id, UpdateSourceTrigger=PropertyChanged}" Width="0.3*"/>
-                            <DataGridTextColumn Header="Dátum" Binding="{Binding date, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DateTimeFormatConverter}}" Width="*"/>
-                            <DataGridTextColumn Header="Végösszeg" Binding="{Binding totalPay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding date_time, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DateTimeFormatConverter}}" Width="*"/>
+                            <DataGridTextColumn Header="Végösszeg" Binding="{Binding total_pay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                             <DataGridTemplateColumn Header="Tételek" Width="4*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -253,7 +253,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Státusz" Binding="{Binding StatusAsString, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                            <DataGridTextColumn Header="Státusz" Binding="{Binding status, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                             <DataGridCheckBoxColumn Header="Fizetve" Binding="{Binding paid, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Width="*"/>
                             <DataGridTextColumn Header="Felhasználó" Binding="{Binding purchaseUser.name, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                             <DataGridTextColumn Header="Asztal" Binding="{Binding purchaseDesk, UpdateSourceTrigger=PropertyChanged}" Width="1.5*"/>
@@ -275,16 +275,16 @@
                     <Label Content="ID:" VerticalAlignment="Center"/>
                     <TextBox Name="tbReservationId" Text="{Binding id}"/>
                     <Label Content="Vendégek száma:"/>
-                    <TextBox Name="tbReservationGuestNo" Text="{Binding numberOfGuests, Mode=TwoWay}"/>
+                    <TextBox Name="tbReservationGuestNo" Text="{Binding number_of_guests, Mode=TwoWay}"/>
                     <Label Content="Érkezés:"/>
                     <UniformGrid Columns="1" Rows="1">
                         <!--<TextBox Name="tbReservationArrivalTime" Text="{Binding arrivalTime, Converter={StaticResource DateTimeFormatConverter}}"/>-->
-                        <xctk:DateTimePicker x:Name="dtpReservationArrivalTime" Value="{Binding arrivalTime}" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" />
+                        <xctk:DateTimePicker x:Name="dtpReservationArrivalTime" Value="{Binding checkin_date}" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" />
                     </UniformGrid>
                     <Label Content="Távozás:"/>
                     <UniformGrid Columns="1" Rows="1">
                         <!--<TextBox Name="tbReservationGetawayTime" Text="{Binding getawayTime, Converter={StaticResource DateTimeFormatConverter}}"/>-->
-                        <xctk:DateTimePicker x:Name="dtpReservationGetawayTime" Value="{Binding getawayTime}" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" />
+                        <xctk:DateTimePicker x:Name="dtpReservationGetawayTime" Value="{Binding checkout_date}" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" />
                     </UniformGrid>
                     <Label Content="Név:"/>
                     <TextBox Name="tbReservationName" Text="{Binding name}"/>
@@ -305,9 +305,9 @@
                         <DataGridTextColumn Header="Név" Binding="{Binding name}" Width="1.5*"/>
                         <DataGridTextColumn Header="Telefon" Binding="{Binding phone}" Width="1.5*"/>
                         <DataGridTextColumn Header="Asztal" Binding="{Binding reservationDesk}" Width="1.5*"/>
-                        <DataGridTextColumn Header="Érkezés" Binding="{Binding arrivalTime, Converter={StaticResource DateTimeFormatConverter}}" Width="1.5*"/>
-                        <DataGridTextColumn Header="Távozás" Binding="{Binding getawayTime, Converter={StaticResource DateTimeFormatConverter}}" Width="1.5*"/>
-                        <DataGridTextColumn Header="Vendégek száma" Binding="{Binding numberOfGuests}" Width="1.5*"/>
+                        <DataGridTextColumn Header="Érkezés" Binding="{Binding checkin_date, Converter={StaticResource DateTimeFormatConverter}}" Width="1.5*"/>
+                        <DataGridTextColumn Header="Távozás" Binding="{Binding checkout_date, Converter={StaticResource DateTimeFormatConverter}}" Width="1.5*"/>
+                        <DataGridTextColumn Header="Vendégek száma" Binding="{Binding number_of_guests}" Width="1.5*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -342,7 +342,7 @@
                         <Label Content="Ár:"/>
                         <TextBox Name="tbProductPrice" Text="{Binding price}"/>
                         <Label Content="Étel-e:"/>
-                        <CheckBox  Name="cbProductIsFood" IsChecked="{Binding isFood}" VerticalAlignment="Center"/>
+                        <CheckBox  Name="cbProductIsFood" IsChecked="{Binding is_food}" VerticalAlignment="Center"/>
                     </UniformGrid>
                     <StackPanel>
                         <StackPanel>
@@ -418,7 +418,7 @@
                         <DataGridTextColumn Header="Kategória" Binding="{Binding productCategory.name}" Width="0.6*"/>
                         <DataGridTextColumn Header="Kiszerelés" Binding="{Binding packing}" Width="0.6*"/>
                         <DataGridTextColumn Header="Ár" Binding="{Binding price}" Width="0.6*"/>
-                        <DataGridCheckBoxColumn Header="Étel-e" Binding="{Binding isFood}" Width="0.3*"/>
+                        <DataGridCheckBoxColumn Header="Étel-e" Binding="{Binding is_food}" Width="0.3*"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -445,10 +445,6 @@
                             <TextBox Name="tbIngredientId" Text="{Binding id}"/>
                             <Label Content="Név:"/>
                             <TextBox Name="tbIngredientName" Text="{Binding name}"/>
-                            <Label Content="Raktáron:"/>
-                            <TextBox Name="tbIngredientInStock" Text="{Binding inStock}"/>
-                            <Label Content="Mennyiségi egység:"/>
-                            <TextBox Name="tbIngredientQUnit" Text="{Binding qUnit}"/>
                         </UniformGrid>
                         <StackPanel>
                             <UniformGrid >
@@ -478,8 +474,6 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="id" Binding="{Binding id}"/>
                             <DataGridTextColumn Header="Név" Binding="{Binding name}"/>
-                            <DataGridTextColumn Header="Raktáron" Binding="{Binding inStock}"/>
-                            <DataGridTextColumn Header="M.egység" Binding="{Binding qUnit}"/>
                             <DataGridTemplateColumn Header="Allergenek" Width="3*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -556,7 +550,7 @@
                             <Label Content="ID:"/>
                             <TextBox Name="tbDeskId" Text="{Binding id}"/>
                             <Label Content="Ülőhelyek:"/>
-                            <TextBox Name="tbDeskNumberOfSeats" Text="{Binding numberOfSeats}"/>
+                            <TextBox Name="tbDeskNumberOfSeats" Text="{Binding number_of_seats}"/>
                         </UniformGrid>
                     </StackPanel>
                     <WrapPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center">
@@ -623,15 +617,17 @@
                     <Label Content="ID:"/>
                     <TextBlock Name="tbEventLogId" Text="{Binding id}"/>
                     <Label Content="Esemény típusa:"/>
-                    <TextBlock Name="tbEventLogEventType" Text="{Binding eventType}"/>
+                    <TextBlock Name="tbEventLogEventType" Text="{Binding event_type}"/>
                     <Label Content="Érintett tábla:"/>
-                    <TextBlock Name="tbEventLogAffectedTable" Text="{Binding affectedTable}"/>
+                    <TextBlock Name="tbEventLogAffectedTable" Text="{Binding affected_table}"/>
                     <Label Content="Érintett ID:"/>
-                    <TextBlock Name="tbEventLogAffectedId" Text="{Binding affectedId}"/>
+                    <TextBlock Name="tbEventLogAffectedId" Text="{Binding affected_id}"/>
                     <Label Content="Eseményleírás:"/>
-                    <TextBlock Name="tbEventLogEventDescription" Text="{Binding eventDescription}"/>
+                    <TextBlock Name="tbEventLogEventDescription" Text="{Binding event_description}"/>
                     <Label Content="Dátum:"/>
                     <TextBlock Name="tbEventLogDate" Text="{Binding date, Converter={StaticResource DateTimeFormatConverter}}"/>
+                    <Label Content="Felhasználó:"/>
+                    <TextBlock Name="tbEventLogUser" Text="{Binding eventlog_user, Converter={StaticResource DateTimeFormatConverter}}"/>
                 </UniformGrid>
                 <!--<WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">
                     <Button Name="btnEventLogSave" Content="Mentés" Click="btnDataSave_Click"/>
@@ -643,11 +639,11 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"/>
                         <DataGridTextColumn Header="Dátum" Binding="{Binding date, Converter={StaticResource DateTimeFormatConverter}}" Width="2*"/>
-                        <DataGridTextColumn Header="Felhasználó" Binding="{Binding userId}" Width="2*"/>
-                        <DataGridTextColumn Header="Esemény típus" Binding="{Binding eventType}" Width="2*"/>
-                        <DataGridTextColumn Header="Érintett tábla" Binding="{Binding affectedTable}" Width="2*"/>
-                        <DataGridTextColumn Header="Érintett ID" Binding="{Binding affectedId}" Width="*"/>
-                        <DataGridTextColumn Header="Esemény leírása" Binding="{Binding eventDescription}" Width="2*"/>
+                        <DataGridTextColumn Header="Esemény típus" Binding="{Binding event_type}" Width="2*"/>
+                        <DataGridTextColumn Header="Érintett tábla" Binding="{Binding affected_table}" Width="2*"/>
+                        <DataGridTextColumn Header="Érintett ID" Binding="{Binding affected_id}" Width="*"/>
+                        <DataGridTextColumn Header="Esemény leírása" Binding="{Binding event_description}" Width="2*"/>
+                        <DataGridTextColumn Header="Felhasználó" Binding="{Binding eventlog_user}" Width="2*"/>
                     </DataGrid.Columns>
 
                 </DataGrid>

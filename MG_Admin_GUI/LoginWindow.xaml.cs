@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MG_Admin_GUI.Models;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace MG_Admin_GUI
 {
@@ -19,9 +12,40 @@ namespace MG_Admin_GUI
     /// </summary>
     public partial class LoginWindow : Window
     {
-        public LoginWindow()
+        private ObservableCollection<User> users;
+        private User loggedInUser;
+
+        public LoginWindow(ObservableCollection<User> users)
         {
             InitializeComponent();
+            this.users = users;
+        }
+
+        public User GetLoggedInUser()
+        {
+            return loggedInUser;
+        }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            loggedInUser = users.FirstOrDefault(u => u.name == tbUserName.Text && u.password == pbUserPassword.Password && u.admin);
+
+            if (loggedInUser != null)
+            {
+                MessageBox.Show($"Sikeres bejelentkezés! Üdv, {loggedInUser.name}!");
+                DialogResult = true;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Hibás név, jelszó vagy nincs admin jog!");
+            }
+        }
+
+        private void btnLoginClose_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            this.Close();
         }
     }
 }

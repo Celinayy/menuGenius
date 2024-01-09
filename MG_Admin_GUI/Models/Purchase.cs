@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Runtime.CompilerServices;
-using MG_Admin_GUI.ViewModels;
 using System.Collections.ObjectModel;
 
 namespace MG_Admin_GUI.Models
@@ -54,8 +52,8 @@ namespace MG_Admin_GUI.Models
             }
         }
 
-        private OrderStatus _status;
-        public OrderStatus status
+        private string _status;
+        public string status
         {
             get { return _status; }
             set
@@ -64,7 +62,7 @@ namespace MG_Admin_GUI.Models
                 {
                     _status = value;
                     OnPropertyChanged(nameof(status));
-                    OnPropertyChanged(nameof(StatusAsString));
+                    //OnPropertyChanged(nameof(StatusAsString));
                 }
             }
         }
@@ -131,7 +129,8 @@ namespace MG_Admin_GUI.Models
             date_time = reader.GetDateTime("date_time");
             total_pay = reader.GetInt32("total_pay");
             purchaseProducts = GetPurchasedProducts(reader.GetInt32("id"));
-            status = Enum.TryParse(reader.GetString("status"), out OrderStatus parsedStatus) ? parsedStatus : OrderStatus.ordered;
+            //status = Enum.TryParse(reader.GetString("status"), out OrderStatus parsedStatus) ? parsedStatus : OrderStatus.ordered;
+            status = reader.GetString("status");
             paid = reader.GetBoolean("paid");
             purchaseUser = GetUserForPurchase(reader.GetInt32("user_id"));
             purchaseDesk = GetDeskForPurchase(reader.GetInt32("desk_id"));
@@ -236,12 +235,12 @@ namespace MG_Admin_GUI.Models
         //    get { return OrderStatusLocalization.GetLocalizedStatus(status); }
         //}
 
-        public enum OrderStatus
-        {
-            ordered,
-            cooked,
-            served
-        }
+        //public enum OrderStatus
+        //{
+        //    ordered,
+        //    cooked,
+        //    served
+        //}
 
         //public class OrderStatusLocalization
         //{

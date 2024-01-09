@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.IO;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
@@ -153,7 +151,7 @@ namespace MG_Admin_GUI.Models
 
         public Product() { }
 
-        public CategoryViewModel CategoryVM => new CategoryViewModel();  // Ezt módosítsd a saját igényeidnek megfelelően
+        public CategoryViewModel CategoryVM => new CategoryViewModel();
 
         public static ObservableCollection<Product> GetProducts()
         {

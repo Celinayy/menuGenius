@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using MG_Admin_GUI.Models;
 
 namespace MG_Admin_GUI.ViewModels
@@ -20,7 +16,7 @@ namespace MG_Admin_GUI.ViewModels
             {
                 if (_Purchases != value)
                 {
-                    _Purchases = new ObservableCollection<Purchase>(value.OrderBy(purchase => purchase.date));
+                    _Purchases = new ObservableCollection<Purchase>(value.OrderBy(purchase => purchase.date_time));
                     OnPropertyChanged(nameof(Purchases));
                 }
             }

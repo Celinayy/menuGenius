@@ -1,5 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MG_Admin_GUI.ViewModels;
+using MySql.Data.MySqlClient;
 using System;
+using System.Linq;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -110,13 +112,16 @@ namespace MG_Admin_GUI.Models
         public EventLog(MySqlDataReader reader)
         {
             id = reader.GetInt32("id");
+            date = reader.GetDateTime("date");
             event_type = reader.GetString("event_type");
             affected_table = reader.GetString("affected_table");
             affected_id = reader.GetInt32("affected_id");
             event_description = reader.GetString("event");
-            date = reader.GetDateTime("date");
-            eventlog_user = reader.GetInt32("user_id");
+            eventlog_user = GetUserForEventlog(reader.GetInt32("user_id"));
         }
+
+        public UserViewModel UserVM => new UserViewModel();
+
 
         public static ObservableCollection<EventLog> GetEventLogs()
         {
@@ -138,6 +143,12 @@ namespace MG_Admin_GUI.Models
             }
             return EventLogs;
         }
+
+        public User GetUserForEventlog(int userId)
+        {
+            return UserVM.Users.FirstOrDefault(user => user.id == userId);
+        }
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;
