@@ -64,7 +64,7 @@ namespace MG_Admin_GUI.Models
 
         public override string ToString()
         {
-            return name; // vagy az a tulajdonság, amit meg szeretnél jeleníteni
+            return name;
         }
 
 

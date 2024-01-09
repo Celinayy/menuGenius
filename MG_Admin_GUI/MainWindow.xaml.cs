@@ -28,6 +28,8 @@ namespace MG_Admin_GUI
         public DeskViewModel DeskVM { get; set; }
         public UserViewModel UserVM { get; set; }
         public EventLogViewModel EventLogVM { get; set; }
+        public ImageViewModel ImageVM { get; set; }
+
 
         private string openedFilePath;
         private bool isImageModified = false;
@@ -52,11 +54,12 @@ namespace MG_Admin_GUI
             DeskVM = new DeskViewModel();
             UserVM = new UserViewModel();
             EventLogVM = new EventLogViewModel();
+            ImageVM = new ImageViewModel();
 
             UpdateClassesFromDatabase();
             SetDatacontexts();
             RefreshListViews();
-            ShowLoginWindow();
+            //ShowLoginWindow();
 
         }
 
@@ -101,6 +104,7 @@ namespace MG_Admin_GUI
         public void UpdateClassesFromDatabase()
         {
             AllergenVM.Allergens = Allergen.GetAllergens();
+            ImageVM.Images = Image.GetImages();
             IngredientVM.Ingredients = Ingredient.GetIngredients();
             CategoryVM.Categories = Category.GetCategories();
             ProductVM.Products = Product.GetProducts();
@@ -205,52 +209,15 @@ namespace MG_Admin_GUI
             if (dgProducts.SelectedItem != null)
             {
                 ProductVM.selectedProduct = (Product)dgProducts.SelectedItem;
-
-                //string newImagePath = ProductVM.selectedProduct.FullImagePath;
-
-                //BitmapImage bi = new BitmapImage();
-                //bi.BeginInit();
-                //bi.CacheOption = BitmapCacheOption.OnLoad;
-                //bi.CreateOptions = BitmapCreateOptions.IgnoreImageCache;
-                //bi.UriSource = new Uri(newImagePath);
-                //bi.EndInit();
-                //imgProductImage.Source = bi;
-                //cobCategories.SelectedItem = ProductVM.selectedProduct.productCategory;
-
-                //Category selectedCategory = (Category)CategoryVM.Categories.FirstOrDefault(category => category.id == ProductVM.selectedProduct.productCategory.id);
-                //cobCategories.SelectedValue = selectedCategory;
+                Category selectedCategory = CategoryVM.Categories.FirstOrDefault(category => category.id == ProductVM.selectedProduct.productCategory.id);
+                cobCategories.SelectedItem = selectedCategory;
             }
-
-            //if (dgProducts.SelectedItem != null)
-            //{
-            //    ProductVM.selectedProduct = (Product)dgProducts.SelectedItem;
-            //    string newImagePath = ProductVM.selectedProduct.FullImagePath;
-
-            //    imgProductImage.Source = new BitmapImage(new Uri(newImagePath));
-            //    Category selectedCategory = CategoryVM.Categories.FirstOrDefault(category => category.id == ProductVM.selectedProduct.productCategory.id);
-            //    cobCategories.SelectedItem = selectedCategory;
-            //}
         }
 
         private void btnAddIngredient_Click(object sender, RoutedEventArgs e)
         {
             lvProductIngredient.ItemsSource = null;
             lvProductIngredient.Items.Add(cobIngredients.SelectedItem);
-
-            //if (ProductVM.selectedProduct == null)
-            //{
-            //    ProductVM.selectedProduct = new Product();
-            //}
-
-            //if (ProductVM.selectedProduct.productIngredients == null)
-            //{
-            //    ProductVM.selectedProduct.productIngredients = new ObservableCollection<Ingredient>();
-            //}
-
-            //ProductVM.selectedProduct.productIngredients.Add(cobIngredients.SelectedItem as Ingredient);
-
-            // Frissítsd az ItemsSource-t, ha kell
-            //lvProductIngredient.ItemsSource = ProductVM.selectedProduct.productIngredients;
         }
 
         public static BitmapImage LoadBitmapImage(string fileName)
@@ -288,46 +255,49 @@ namespace MG_Admin_GUI
 
         private void btnImageOpen_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Képfájlok (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
-                if (openFileDialog.ShowDialog() == true)
-                {
+            ImageHandler imageHandlerWindow = new ImageHandler();
 
-                    imgProductImage.Source = LoadBitmapImage(openFileDialog.FileName);
-                    tbProductImage.Text = Path.GetFileName(openFileDialog.FileName);
-                    openedFilePath = openFileDialog.FileName;
-                    isImageModified = true;
+            imageHandlerWindow.Show();
+            //try
+            //{
+            //    OpenFileDialog openFileDialog = new OpenFileDialog();
+            //    openFileDialog.Filter = "Képfájlok (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+            //    if (openFileDialog.ShowDialog() == true)
+            //    {
 
-                }
+            //        imgProductImage.Source = LoadBitmapImage(openFileDialog.FileName);
+            //        tbProductImage.Text = Path.GetFileName(openFileDialog.FileName);
+            //        openedFilePath = openFileDialog.FileName;
+            //        isImageModified = true;
 
-                //VAGY
+            //    }
 
-                //OpenFileDialog openFileDialog = new OpenFileDialog();
-                //openFileDialog.Filter = "Képfájlok (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+            //    //VAGY
 
-                //if (openFileDialog.ShowDialog() == true)
-                //{
+            //    //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //    //openFileDialog.Filter = "Képfájlok (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
 
-                //    using (FileStream stream = File.OpenRead(openFileDialog.FileName))
-                //    {
-                //        byte[] imageData = new byte[stream.Length];
-                //        stream.Read(imageData, 0, imageData.Length);
-                //        imgProductImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
-                //        tbProductImage.Text = Path.GetFileName(openFileDialog.FileName);
-                //        openedFilePath = openFileDialog.FileName;
-                //        isImageModified = true;
+            //    //if (openFileDialog.ShowDialog() == true)
+            //    //{
 
-                //        stream.Close();
-                //    }
-                //}
+            //    //    using (FileStream stream = File.OpenRead(openFileDialog.FileName))
+            //    //    {
+            //    //        byte[] imageData = new byte[stream.Length];
+            //    //        stream.Read(imageData, 0, imageData.Length);
+            //    //        imgProductImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
+            //    //        tbProductImage.Text = Path.GetFileName(openFileDialog.FileName);
+            //    //        openedFilePath = openFileDialog.FileName;
+            //    //        isImageModified = true;
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Hiba történt a fájl megnyitása közben: {ex.Message}");
-            }
+            //    //        stream.Close();
+            //    //    }
+            //    //}
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Hiba történt a fájl megnyitása közben: {ex.Message}");
+            //}
         }
 
         private void btnAddAllergen_Click(object sender, RoutedEventArgs e)
@@ -402,37 +372,37 @@ namespace MG_Admin_GUI
                     switch (buttonName)
                     {
                         case "btnReservationSave":
-                            tableName = "reservation";
-                            saveQuery = $"INSERT INTO {tableName}(id, numberOfGuests, arrivalTime, getawayTime, name, phone, deskId) VALUES(@id, @numberOfGuests, @arrivalTime, @getawayTime, @name, @phone, @deskId)";
+                            tableName = "reservations";
+                            saveQuery = $"INSERT INTO {tableName}(id, number_of_guests, checkin_dat, checkout_date, name, phone, desk_id) VALUES(@id, @number_of_guests, @checkin_date, @checkout_date, @name, @phone, @desk_id)";
 
                             parameters.Add("@id", int.Parse(tbReservationId.Text));
-                            parameters.Add("@numberOfGuests", int.Parse(tbReservationGuestNo.Text));
-                            parameters.Add("@arrivalTime", DateTime.Parse(dtpReservationArrivalTime.Text));
-                            parameters.Add("@getawayTime", DateTime.Parse(dtpReservationGetawayTime.Text));
+                            parameters.Add("@number_of_guests", int.Parse(tbReservationGuestNo.Text));
+                            parameters.Add("@checkin_date", DateTime.Parse(dtpReservationArrivalTime.Text));
+                            parameters.Add("@checkout_date", DateTime.Parse(dtpReservationGetawayTime.Text));
                             parameters.Add("@name", tbReservationName.Text);
                             parameters.Add("@phone", tbReservationPhone.Text);
-                            parameters.Add("@deskId", cobReservationDesks.SelectedValue);
+                            parameters.Add("@desk_id", cobReservationDesks.SelectedValue);
                             break;
 
                         case "btnProductSave":
-                            tableName = "product";
+                            tableName = "products";
                             tableName2 = "product_ingredient";
-                            saveQuery = $"INSERT INTO {tableName} (id, name, description, categoryId, packing, price, isFood, image) VALUES (@id, @name, @description, @categoryId, @packing, @price, @isFood, @image);";
+                            saveQuery = $"INSERT INTO {tableName} (id, name, description, category_id, packing, price, is_food, image_id) VALUES (@id, @name, @description, @category_id, @packing, @price, @is_food, @image_id);";
 
                             parameters.Add("@id", int.Parse(tbProductId.Text));
                             parameters.Add("@name", tbProductName.Text);
                             parameters.Add("@description", tbProductDescription.Text);
-                            parameters.Add("@categoryId", cobCategories.SelectedValue);
+                            parameters.Add("@category_id", cobCategories.SelectedValue);
                             parameters.Add("@packing", tbProductPacking.Text);
                             parameters.Add("@price", int.Parse(tbProductPrice.Text));
-                            parameters.Add("@isFood", cbProductIsFood.IsChecked.HasValue && cbProductIsFood.IsChecked.Value);
-                            parameters.Add("@image", tbProductImage.Text);
+                            parameters.Add("@is_food", cbProductIsFood.IsChecked.HasValue && cbProductIsFood.IsChecked.Value);
+                            parameters.Add("@image_id", tbProductImage.Text);
 
                             List<string> ingredientInsertCommands = new List<string>();
                             foreach (var ingredient in lvProductIngredient.Items)
                             {
                                 int ingredientId = ((Ingredient)ingredient).id;
-                                string ingredientInsertCommand = $"INSERT INTO {tableName2} (productId, ingredientId) VALUES (@id, {ingredientId});";
+                                string ingredientInsertCommand = $"INSERT INTO {tableName2} (product_id, ingredient_id) VALUES (@id, {ingredientId});";
                                 ingredientInsertCommands.Add(ingredientInsertCommand);
                             }
 
@@ -443,9 +413,9 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnIngredientSave":
-                            tableName = "ingredient";
+                            tableName = "ingredients";
                             tableName2 = "ingredient_allergen";
-                            saveQuery = $"INSERT INTO {tableName} (id, name, inStock, qUnit) VALUES (@id, @name);";
+                            saveQuery = $"INSERT INTO {tableName} (id, name) VALUES (@id, @name);";
 
                             parameters.Add("@id", int.Parse(tbIngredientId.Text));
                             parameters.Add("@name", tbIngredientName.Text);
@@ -454,7 +424,7 @@ namespace MG_Admin_GUI
                             foreach (var allergen in lvIngredientAllergens.Items)
                             {
                                 int allergenId = ((Allergen)allergen).id;
-                                string allergenInsertCommand = $"INSERT INTO {tableName2} (ingredientId, allergenId) VALUES (@id, {allergenId});";
+                                string allergenInsertCommand = $"INSERT INTO {tableName2} (ingredient_id, allergen_id) VALUES (@id, {allergenId});";
                                 allergenInsertCommands.Add(allergenInsertCommand);
                             }
 
@@ -463,7 +433,7 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnCategorySave":
-                            tableName = "category";
+                            tableName = "categories";
                             saveQuery = $"INSERT INTO {tableName} (id, name) VALUES (@id, @name)";
 
                             parameters.Add("@id", int.Parse(tbCategoryId.Text));
@@ -471,7 +441,7 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnAllergenSave":
-                            tableName = "allergen";
+                            tableName = "allergens";
                             saveQuery = $"INSERT INTO {tableName} (id, code, name) VALUES (@id, @code, @name)";
 
                             parameters.Add("@id", int.Parse(tbAllergenId.Text));
@@ -480,15 +450,15 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnDeskSave":
-                            tableName = "desk";
-                            saveQuery = $"INSERT INTO {tableName} (id, numberOfSeats) VALUES (@id, @numberOfSeats)";
+                            tableName = "desks";
+                            saveQuery = $"INSERT INTO {tableName} (id, number_of_seats) VALUES (@id, @number_of_seats)";
 
                             parameters.Add("@id", int.Parse(tbDeskId.Text));
-                            parameters.Add("@numberOfSeats", int.Parse(tbDeskNumberOfSeats.Text));
+                            parameters.Add("@number_of_seats", int.Parse(tbDeskNumberOfSeats.Text));
                             break;
 
                         case "btnUserSave":
-                            tableName = "user";
+                            tableName = "users";
                             saveQuery = $"INSERT INTO {tableName} (id, name, email, password, phone, admin) VALUES (@id, @name, @email, @password, @phone, @admin)";
 
                             parameters.Add("@id", int.Parse(tbUserId.Text));
@@ -536,33 +506,33 @@ namespace MG_Admin_GUI
                     switch (buttonName)
                     {
                         case "btnReservationUpdate":
-                            tableName = "reservation";
-                            updateQuery = $"UPDATE {tableName} SET id = @id, numberOfGuests = @numberOfGuests, arrivalTime = @arrivalTime, getawayTime = @getawayTime, name = @name, phone = @phone, deskId = @deskId WHERE id = @id";
+                            tableName = "reservations";
+                            updateQuery = $"UPDATE {tableName} SET id = @id, number_of_guests = @number_of_guests, checkin_date = @checkin_date, checkout_date = @checkout_date, name = @name, phone = @phone, desk_id = @deskId WHERE id = @id";
 
                             parameters.Add("@id", int.Parse(tbReservationId.Text));
-                            parameters.Add("@numberOfGuests", int.Parse(tbReservationGuestNo.Text));
-                            parameters.Add("@arrivalTime", DateTime.Parse(dtpReservationArrivalTime.Text));
-                            parameters.Add("@getawayTime", DateTime.Parse(dtpReservationGetawayTime.Text));
+                            parameters.Add("@number_of_guests", int.Parse(tbReservationGuestNo.Text));
+                            parameters.Add("@checkin_date", DateTime.Parse(dtpReservationArrivalTime.Text));
+                            parameters.Add("@checkout_date", DateTime.Parse(dtpReservationGetawayTime.Text));
                             parameters.Add("@name", tbReservationName.Text);
                             parameters.Add("@phone", tbReservationPhone.Text);
-                            parameters.Add("@deskId", cobReservationDesks.SelectedValue);
+                            parameters.Add("@desk_id", cobReservationDesks.SelectedValue);
                             break;
 
                         case "btnProductUpdate":
-                            tableName = "product";
+                            tableName = "products";
                             tableName2 = "product_ingredient";
-                            updateQuery = $"UPDATE {tableName} SET name = @name, description = @description, categoryId = @categoryId, packing = @packing, price = @price, isFood = @isFood, image = @image WHERE id = @id;";
+                            updateQuery = $"UPDATE {tableName} SET name = @name, description = @description, category_id = @category_id, packing = @packing, price = @price, is_food = @is_food, image_id = @image_id WHERE id = @id;";
 
                             parameters.Add("@id", int.Parse(tbProductId.Text));
                             parameters.Add("@name", tbProductName.Text);
                             parameters.Add("@description", tbProductDescription.Text);
-                            parameters.Add("@categoryId", cobCategories.SelectedValue);
+                            parameters.Add("@category_id", cobCategories.SelectedValue);
                             parameters.Add("@packing", tbProductPacking.Text);
                             parameters.Add("@price", int.Parse(tbProductPrice.Text));
-                            parameters.Add("@isFood", cbProductIsFood.IsChecked.HasValue && cbProductIsFood.IsChecked.Value);
-                            parameters.Add("@image", tbProductImage.Text);
+                            parameters.Add("@is_food", cbProductIsFood.IsChecked.HasValue && cbProductIsFood.IsChecked.Value);
+                            parameters.Add("@image_id", tbProductImage.Text);
 
-                            deleteQuery = $"DELETE FROM {tableName2} WHERE productId = @id";
+                            deleteQuery = $"DELETE FROM {tableName2} WHERE product_id = @id";
                             using (var connection = DatabaseHandler.OpenConnection())
                             {
                                 using (MySqlCommand command = new MySqlCommand(deleteQuery, connection))
@@ -578,7 +548,7 @@ namespace MG_Admin_GUI
                             foreach (var ingredient in lvProductIngredient.Items)
                             {
                                 int ingredientId = ((Ingredient)ingredient).id;
-                                string ingredientInsertCommand = $"INSERT INTO {tableName2} (productId, ingredientId) VALUES (@id, {ingredientId});";
+                                string ingredientInsertCommand = $"INSERT INTO {tableName2} (product_id, ingredient_id) VALUES (@id, {ingredientId});";
                                 ingredientInsertCommands.Add(ingredientInsertCommand);
                             }
 
@@ -592,14 +562,14 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnIngredientUpdate":
-                            tableName = "ingredient";
+                            tableName = "ingredients";
                             tableName2 = "ingredient_allergen";
                             updateQuery = $"UPDATE {tableName} SET name = @name, WHERE id = @id";
 
                             parameters.Add("@id", int.Parse(tbIngredientId.Text));
                             parameters.Add("@name", tbIngredientName.Text);
 
-                            deleteQuery = $"DELETE FROM {tableName2} WHERE ingredientId = @id";
+                            deleteQuery = $"DELETE FROM {tableName2} WHERE ingredient_id = @id";
                             using (var connection = DatabaseHandler.OpenConnection())
                             {
                                 using (MySqlCommand command = new MySqlCommand(deleteQuery, connection))
@@ -615,7 +585,7 @@ namespace MG_Admin_GUI
                             foreach (var allergen in lvIngredientAllergens.Items)
                             {
                                 int allergenId = ((Allergen)allergen).id;
-                                string allergenInsertCommand = $"INSERT INTO {tableName2} (ingredientId, allergenId) VALUES (@id, {allergenId});";
+                                string allergenInsertCommand = $"INSERT INTO {tableName2} (ingredient_id, allergen_id) VALUES (@id, {allergenId});";
                                 allergenInsertCommands.Add(allergenInsertCommand);
                             }
 
@@ -624,7 +594,7 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnCategoryUpdate":
-                            tableName = "category";
+                            tableName = "categories";
                             updateQuery = $"UPDATE {tableName} SET name = @name WHERE id = @id";
 
                             parameters.Add("@id", int.Parse(tbCategoryId.Text));
@@ -632,7 +602,7 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnAllergenUpdate":
-                            tableName = "allergen";
+                            tableName = "allergens";
                             updateQuery = $"UPDATE {tableName} SET code = @code, name = @name WHERE id = @id";
 
                             parameters.Add("@id", int.Parse(tbAllergenId.Text));
@@ -641,15 +611,15 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnDeskUpdate":
-                            tableName = "desk";
-                            updateQuery = $"UPDATE {tableName} SET numberOfSeats = @numberOfSeats WHERE id = @id";
+                            tableName = "desks";
+                            updateQuery = $"UPDATE {tableName} SET number_of_seats = @number_of_seats WHERE id = @id";
 
                             parameters.Add("@id", int.Parse(tbDeskId.Text));
-                            parameters.Add("@numberOfSeats", int.Parse(tbDeskNumberOfSeats.Text));
+                            parameters.Add("@number_of_seats", int.Parse(tbDeskNumberOfSeats.Text));
                             break;
 
                         case "btnUserUpdate":
-                            tableName = "user";
+                            tableName = "users";
                             updateQuery = $"UPDATE {tableName} SET name = @name, email = @email, password = @password, phone = @phone, admin = @admin WHERE id = @id";
 
                             parameters.Add("@id", int.Parse(tbUserId.Text));
@@ -696,7 +666,7 @@ namespace MG_Admin_GUI
                     switch (buttonName)
                     {
                         case "btnReservationDelete":
-                            tableName = "reservation";
+                            tableName = "reservations";
                             deleteQuery = $"DELETE FROM {tableName} WHERE id = @id";
 
                             parameters.Add("@id", int.Parse(tbReservationId.Text));
@@ -704,32 +674,32 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnProductDelete":
-                            tableName = "product";
+                            tableName = "products";
                             tableName2 = "product_ingredient";
-                            deleteQuery = $"DELETE FROM {tableName2} WHERE productId = @id";
+                            deleteQuery = $"DELETE FROM {tableName2} WHERE product_id = @id";
                             deleteQuery += $"DELETE FROM {tableName} WHERE id = @id";
 
 
                             parameters.Add("@id", int.Parse(tbProductId.Text));
 
-                            try
-                            {
-                                //int searchedId = int.Parse(tbProductId.Text);
-                                //Product selectedProduct = ProductVM.Products.FirstOrDefault(p => p.id == searchedId);
-                                //imgProductImage.Source = null;
-                                //GC.Collect();
-                                //GC.WaitForPendingFinalizers();
-                                //File.Delete(ProductVM.selectedProduct.FullImagePath);
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                            }
+                            //try
+                            //{
+                            //    int searchedId = int.Parse(tbProductId.Text);
+                            //    Product selectedProduct = ProductVM.Products.FirstOrDefault(p => p.id == searchedId);
+                            //    imgProductImage.Source = null;
+                            //    GC.Collect();
+                            //    GC.WaitForPendingFinalizers();
+                            //    File.Delete(ProductVM.selectedProduct.FullImagePath);
+                            //}
+                            //catch (Exception ex)
+                            //{
+                            //    MessageBox.Show(ex.Message);
+                            //}
 
                             break;
 
                         case "btnIngredientDelete":
-                            tableName = "ingredient";
+                            tableName = "ingredients";
                             deleteQuery = $"DELETE FROM {tableName} WHERE id = @id";
 
                             parameters.Add("@id", int.Parse(tbIngredientId.Text));
@@ -737,7 +707,7 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnCategoryDelete":
-                            tableName = "category";
+                            tableName = "categories";
                             deleteQuery = $"DELETE FROM {tableName} WHERE id = @id";
 
                             parameters.Add("@id", int.Parse(tbCategoryId.Text));
@@ -745,7 +715,7 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnAllergenDelete":
-                            tableName = "allergen";
+                            tableName = "allergens";
                             deleteQuery = $"DELETE FROM {tableName} WHERE id = @id";
 
                             parameters.Add("@id", int.Parse(tbAllergenId.Text));
@@ -753,7 +723,7 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnDeskDelete":
-                            tableName = "desk";
+                            tableName = "desks";
                             deleteQuery = $"DELETE FROM {tableName} WHERE id = @id";
 
                             parameters.Add("@id", int.Parse(tbDeskId.Text));
@@ -761,7 +731,7 @@ namespace MG_Admin_GUI
                             break;
 
                         case "btnUserDelete":
-                            tableName = "user";
+                            tableName = "users";
                             deleteQuery = $"DELETE FROM {tableName} WHERE id = @id";
 
                             parameters.Add("@id", int.Parse(tbUserId.Text));
