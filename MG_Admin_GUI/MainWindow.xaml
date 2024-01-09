@@ -332,8 +332,9 @@
                         <Label Content="Név:"/>
                         <TextBox Name="tbProductName" Text="{Binding name}"/>
                         <Label Content="Kategória:"/>
+                        <!--ItemsSource="{Binding Path=Datacontext.Categories, RelativeSource={RelativeSource AncestorType={x:Type TabItem}}}"--> 
                         <ComboBox Name="cobCategories" 
-                                  ItemsSource="{Binding Categories}" 
+                                  ItemsSource="{Binding Categories}"
                                   DisplayMemberPath="name" 
                                   SelectedValuePath="id" 
                                   SelectedItem="{Binding selectedProduct.productCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
@@ -367,16 +368,16 @@
                     </StackPanel>
                     <UniformGrid Rows="1" Columns="1">
                         <GroupBox Header="Kép:" Grid.Column="2">
-                            <UniformGrid Rows="1" Columns="2">
-                                <StackPanel>
+                            <StackPanel>
+                                <UniformGrid Rows="1" Columns="2">
                                     <TextBox Name="tbProductImage" Text="{Binding image}"/>
-                                    <Button Name="btnImageOpen" Content="Megnyitás" Click="btnImageOpen_Click"/>
-                                    <Button Name="btnImageCancel" Content="Mégsem" Click="btnImageCancel_Click"/>
-                                </StackPanel>
-                                <StackPanel>
-                                    <Image Name="imgProductImage" Source="{Binding FullImagePath, Mode=TwoWay}" Width="400" Stretch="Uniform"/>
-                                </StackPanel>
-                            </UniformGrid>
+                                    <Button Name="btnImageOpen" Content="Kép feltöltése/Cseréje" Click="btnImageOpen_Click"/>
+                                    <!--<Button Name="btnImageCancel" Content="Mégsem" Click="btnImageCancel_Click"/>-->
+                                </UniformGrid>
+                                <UniformGrid>
+                                    <Image Name="imgProductImage" Source="{Binding productImage.img_data, Mode=TwoWay}" Width="400" Stretch="Uniform"/>
+                                </UniformGrid>
+                            </StackPanel>
                         </GroupBox>
                     </UniformGrid>
                 </UniformGrid>
@@ -395,7 +396,7 @@
                         <DataGridTemplateColumn Header="Kép" Width="0.8*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image x:Name="dgProductsDatagridImage" Source="{Binding FullImagePath}" Height="50"/>
+                                    <Image x:Name="dgProductsDatagridImage" Source="{Binding productImage}" Height="50"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

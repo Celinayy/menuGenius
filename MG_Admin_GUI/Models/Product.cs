@@ -107,16 +107,16 @@ namespace MG_Admin_GUI.Models
             }
         }
 
-        private string _image_id;
-        public string image_id
+        private Image _productImage;
+        public Image productImage
         {
-            get { return _image_id; }
+            get { return _productImage; }
             set
             {
-                if (_image_id != value)
+                if (_productImage != value)
                 {
-                    _image_id = value;
-                    OnPropertyChanged(nameof(image_id));
+                    _productImage = value;
+                    OnPropertyChanged(nameof(productImage));
                 }
             }
         }
@@ -145,13 +145,15 @@ namespace MG_Admin_GUI.Models
             packing = reader.GetString("packing");
             price = reader.GetInt32("price");
             is_food = reader.GetBoolean("is_food");
-            image_id = reader.GetString("image_id");
+            productImage = GetImageForProduct(reader.GetInt32("image_id"));
             productIngredients = GetIngredientForProduct(reader.GetInt32("id"));
         }
 
         public Product() { }
 
         public CategoryViewModel CategoryVM => new CategoryViewModel();
+        public ImageViewModel ImageVM => new ImageViewModel();
+
 
         public static ObservableCollection<Product> GetProducts()
         {
@@ -178,6 +180,12 @@ namespace MG_Admin_GUI.Models
         {
             return CategoryVM.Categories.FirstOrDefault(category => category.id == categoryId);
         }
+
+        public Image GetImageForProduct(int imageId)
+        {
+            return ImageVM.Images.FirstOrDefault(image => image.id == imageId);
+        }
+
 
         public static ObservableCollection<Ingredient> GetIngredientForProduct(int productId)
         {
