@@ -332,12 +332,11 @@
                         <Label Content="Név:"/>
                         <TextBox Name="tbProductName" Text="{Binding name}"/>
                         <Label Content="Kategória:"/>
-                        <!--ItemsSource="{Binding Path=Datacontext.Categories, RelativeSource={RelativeSource AncestorType={x:Type TabItem}}}"--> 
                         <ComboBox Name="cobCategories" 
                                   ItemsSource="{Binding Categories}"
                                   DisplayMemberPath="name" 
                                   SelectedValuePath="id" 
-                                  SelectedItem="{Binding selectedProduct.productCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                  SelectedItem="{Binding productCategory, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         <Label Content="Kiszerelés:"/>
                         <TextBox Name="tbProductPacking" Text="{Binding packing}"/>
                         <Label Content="Ár:"/>
@@ -370,12 +369,12 @@
                         <GroupBox Header="Kép:" Grid.Column="2">
                             <StackPanel>
                                 <UniformGrid Rows="1" Columns="2">
-                                    <TextBox Name="tbProductImage" Text="{Binding image}"/>
+                                    <TextBox Name="tbProductImage" Text="{Binding productImage.img_name}"/>
                                     <Button Name="btnImageOpen" Content="Kép feltöltése/Cseréje" Click="btnImageOpen_Click"/>
                                     <!--<Button Name="btnImageCancel" Content="Mégsem" Click="btnImageCancel_Click"/>-->
                                 </UniformGrid>
                                 <UniformGrid>
-                                    <Image Name="imgProductImage" Source="{Binding productImage.img_data, Mode=TwoWay}" Width="400" Stretch="Uniform"/>
+                                    <Image Name="imgProductImage" Source="{Binding productImage.img_data}" Width="400" Stretch="Uniform"/>
                                 </UniformGrid>
                             </StackPanel>
                         </GroupBox>
@@ -387,7 +386,6 @@
                     <Button Name="btnProductDelete" Content="Törlés" Click="btnDataDelete_Click"/>
                     <Button Name="btnProductCancel" Content="Mégsem" Click="btnDataCancel_Click"/>
                 </WrapPanel>
-                <!--<GridSplitter Grid.Column="0" Width="5" VerticalAlignment="Stretch"/>-->
                 <DataGrid Name="dgProducts" Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="2" 
                           AutoGenerateColumns="False"
                           SelectionChanged="dgProducts_SelectionChanged"
@@ -396,7 +394,7 @@
                         <DataGridTemplateColumn Header="Kép" Width="0.8*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image x:Name="dgProductsDatagridImage" Source="{Binding productImage}" Height="50"/>
+                                    <Image x:Name="dgProductsDatagridImage" Source="{Binding productImage.img_data}" Height="50"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -435,43 +433,45 @@
                 </Grid.ColumnDefinitions>
                 <Grid Name="grdIngredients" Grid.Column="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="0.3*"/>
                         <RowDefinition Height="2.8*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Name="spIngredient" Grid.Column="0" DataContext="{Binding selectedIngredient}">
                         <Label Content="Alapanyagok:" Style="{StaticResource TitleLabelStyle}"/>
-                        <UniformGrid Columns="2" Rows="4">
+                        <UniformGrid Rows="2" Columns="2">
                             <Label Content="ID:"/>
                             <TextBox Name="tbIngredientId" Text="{Binding id}"/>
                             <Label Content="Név:"/>
                             <TextBox Name="tbIngredientName" Text="{Binding name}"/>
                         </UniformGrid>
-                        <StackPanel>
-                            <UniformGrid >
-                                <StackPanel>
-                                    <Label Content="Allergének:" HorizontalAlignment="Left"/>
-                                    <StackPanel>
-                                        <ScrollViewer VerticalScrollBarVisibility="Visible">
-                                            <ListView Name="lvIngredientAllergens" ItemsSource="{Binding ingredientAllergens}" DisplayMemberPath="name"/>
-                                        </ScrollViewer>
-                                    </StackPanel>
-                                </StackPanel>
-                                <StackPanel>
-                                    <Label Content="Összes alapanyag:"/>
-                                    <ComboBox Name="cobIngredientAllergen" ItemsSource="{Binding Allergens}" DisplayMemberPath="name"/>
-                                    <Button Name="btnAddAllergen" Content="Hozzáad" Click="btnAddAllergen_Click"/>
-                                </StackPanel>
-                            </UniformGrid>
-                        </StackPanel>
                     </StackPanel>
-                    <WrapPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel Grid.Row="1">
+                        <UniformGrid >
+                            <StackPanel>
+                                <Label Content="Allergének:" HorizontalAlignment="Left"/>
+                                <StackPanel>
+                                    <ScrollViewer VerticalScrollBarVisibility="Visible">
+                                        <ListView Name="lvIngredientAllergens" ItemsSource="{Binding ingredientAllergens}" DisplayMemberPath="name"/>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel>
+                                <Label Content="Összes alapanyag:"/>
+                                <ComboBox Name="cobIngredientAllergen" ItemsSource="{Binding Allergens}" DisplayMemberPath="name"/>
+                                <Button Name="btnAddAllergen" Content="Hozzáad" Click="btnAddAllergen_Click"/>
+                                <Button Name="btnAddallergenDelete" Content=">>Töröl" Click="btnAddallergenDelete_Click"/>
+                            </StackPanel>
+                        </UniformGrid>
+                    </StackPanel>
+                    <WrapPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button Name="btnIngredientSave" Content="Mentés" Click="btnDataSave_Click"/>
                         <Button Name="btnIngredientUpdate" Content="Módosít" Click="btnDataUpdate_Click"/>
                         <Button Name="btnIngredientDelete" Content="Törlés" Click="btnDataDelete_Click"/>
                         <Button Name="btnIngredientCancel" Content="Mégsem" Click="btnDataCancel_Click"/>
                     </WrapPanel>
-                    <DataGrid Name="dgIngredients" Grid.Row="2" ItemsSource="{Binding Ingredients}" SelectionChanged="dgIngredients_SelectionChanged" CanUserAddRows="False" AutoGenerateColumns="False">
+                    <DataGrid Name="dgIngredients" Grid.Row="3" ItemsSource="{Binding Ingredients}" SelectionChanged="dgIngredients_SelectionChanged" CanUserAddRows="False" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="id" Binding="{Binding id}"/>
                             <DataGridTextColumn Header="Név" Binding="{Binding name}"/>

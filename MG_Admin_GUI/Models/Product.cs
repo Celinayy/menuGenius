@@ -151,10 +151,6 @@ namespace MG_Admin_GUI.Models
 
         public Product() { }
 
-        public CategoryViewModel CategoryVM => new CategoryViewModel();
-        public ImageViewModel ImageVM => new ImageViewModel();
-
-
         public static ObservableCollection<Product> GetProducts()
         {
             ObservableCollection<Product> Products = new ObservableCollection<Product>();
@@ -178,12 +174,46 @@ namespace MG_Admin_GUI.Models
 
         public Category GetCategoryForProduct(int categoryId)
         {
-            return CategoryVM.Categories.FirstOrDefault(category => category.id == categoryId);
+            Category category = null;
+            using (var connection = DatabaseHandler.OpenConnection())
+            {
+                var query = "SELECT * FROM categories WHERE id = @categoryId";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@categoryId", categoryId);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            category = new Category(reader);
+                        }
+                    }
+                }
+            }
+            return category;
         }
 
         public Image GetImageForProduct(int imageId)
         {
-            return ImageVM.Images.FirstOrDefault(image => image.id == imageId);
+            Image image = null;
+            using (var connection = DatabaseHandler.OpenConnection())
+            {
+                var query = "SELECT * FROM images WHERE id = @imageId";
+
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@imageId", imageId);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            image = new Image(reader);
+                        }
+                    }
+                }
+            }
+            return image;
         }
 
 
@@ -225,7 +255,10 @@ namespace MG_Admin_GUI.Models
             }
         }
 
-        //string imageFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
+        public override bool Equals(object? obj)
+        {
+            return obj is Product product && id == product.id;
+        }
 
 
         private void UpdateIngredientsAsString()

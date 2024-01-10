@@ -209,8 +209,6 @@ namespace MG_Admin_GUI
             if (dgProducts.SelectedItem != null)
             {
                 ProductVM.selectedProduct = (Product)dgProducts.SelectedItem;
-                Category selectedCategory = CategoryVM.Categories.FirstOrDefault(category => category.id == ProductVM.selectedProduct.productCategory.id);
-                cobCategories.SelectedItem = selectedCategory;
             }
         }
 
@@ -869,6 +867,11 @@ namespace MG_Admin_GUI
         private void btnImageCancel_Click(object sender, RoutedEventArgs e)
         {
             imgProductImage.Source = null;
+        }
+
+        private void btnAddallergenDelete_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

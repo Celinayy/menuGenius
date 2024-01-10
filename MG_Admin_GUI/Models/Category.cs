@@ -67,6 +67,12 @@ namespace MG_Admin_GUI.Models
             return name;
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Category category && id == category.id;
+        }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

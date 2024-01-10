@@ -127,6 +127,12 @@ namespace MG_Admin_GUI.Models
             return Users;
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is User user && id == user.id;
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
