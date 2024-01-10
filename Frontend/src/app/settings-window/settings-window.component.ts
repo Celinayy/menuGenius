@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class SettingsWindowComponent {
 
+  public showSavedToast: boolean = false;
+
+  constructor(){}
+
+  public saveSettings() {
+    this.showSavedToast = true;
+    setTimeout(() =>{
+      this.showSavedToast = false;
+    }, 2000)
+
+  }
+
 }

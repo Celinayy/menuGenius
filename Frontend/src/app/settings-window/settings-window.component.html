@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row mt-3">
     <h4 class="fw-light text-center">BEÁLLÍTÁSOK</h4>
     <hr class="mx-auto w-75" />
@@ -21,7 +22,19 @@
       <input type="text" id="text" class="form-control mb-1" />
     </div>
     <div class="text-center mt-3">
-      <button class="btn btn-warning fs-5 fw-light">Beállítások mentése</button>
+      <button class="btn btn-warning fs-5 fw-light" (click)="saveSettings()">Beállítások mentése</button>
     </div>
+      <div class="toast-container position-fixed bottom-0 end-0 p-3 text-center">
+        <div  [class.opacity-100] = "showSavedToast" [class.opacity-0] = "!showSavedToast" class="toast fade show"  role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <strong class="mx-auto">Üzenet</strong>
+          </div>
+          <div class="toast-body">
+            Sikeres mentés!
+          </div>
+        </div>
+      </div>
   </div>
 </div>
+
+
