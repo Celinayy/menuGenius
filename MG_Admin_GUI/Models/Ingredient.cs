@@ -125,6 +125,11 @@ namespace MG_Admin_GUI.Models
             OnPropertyChanged(nameof(allergensAsString));
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Ingredient ingredient && id == ingredient.id;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

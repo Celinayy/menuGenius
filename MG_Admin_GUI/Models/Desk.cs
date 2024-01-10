@@ -68,6 +68,12 @@ namespace MG_Admin_GUI.Models
             return $"Asztalszám: {id}, Ülőhely: {number_of_seats}";
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Desk desk && id == desk.id;
+        }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

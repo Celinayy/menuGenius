@@ -94,6 +94,12 @@ namespace MG_Admin_GUI
             return Images;
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is Image image && id == image.id;
+        }
+
+
         public event EventHandler ImageSourceUpdated;
         public virtual void OnImageSourceUpdated()
         {
