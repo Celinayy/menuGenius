@@ -24,10 +24,12 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $this->faker->addProvider(new HungarianPerson($this->faker));
         $this->faker->locale('hu_HU');
 
+
         return [
-            'name' => fake()->name(),
+            'name' => $this->faker->unique()->name,
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
