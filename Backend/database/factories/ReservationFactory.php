@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
+use App\Models\Desk;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Reservation>
@@ -16,8 +18,17 @@ class ReservationFactory extends Factory
      */
     public function definition(): array
     {
+        $this->faker->locale('hu_HU');
+        $user = User::inRandomOrder()->first();
+        $desk = Desk::inRandomOrder()->first();
+
         return [
-            //
+            'number_of_guests' => $this -> faker -> numberBetween(1, 20),
+            'checkin_date' => $this -> faker -> dateTime(),
+            'checkout_date' => $this -> faker -> dateTime(),
+            'name' => $this -> faker -> name,
+            'phone' => $this -> faker -> regexify('\+36 \d{2} \d{3} \d{4}'),
+            'desk_id' => $desk -> id,
         ];
     }
 }
