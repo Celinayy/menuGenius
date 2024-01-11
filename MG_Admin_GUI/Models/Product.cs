@@ -255,17 +255,17 @@ namespace MG_Admin_GUI.Models
             }
         }
 
-        public override bool Equals(object? obj)
-        {
-            return obj is Product product && id == product.id;
-        }
-
-
         private void UpdateIngredientsAsString()
         {
             productIngredientsAsString = string.Join(", ", productIngredients?.Select(ingredient => ingredient.name) ?? Enumerable.Empty<string>());
             OnPropertyChanged(nameof(productIngredientsAsString));
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Product product && id == product.id;
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
