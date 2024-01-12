@@ -46,6 +46,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected $attributes = [
+        'phone' => null,
+        'admin' => 0,
+    ];
+
     public function purchases():BelongsToMany
     {
         return $this->belongsToMany(Purchase::class);
