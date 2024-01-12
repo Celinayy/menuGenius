@@ -1,40 +1,86 @@
 <div class="container">
-
   <div class="row mt-3">
     <h4 class="fw-light text-center">BEÁLLÍTÁSOK</h4>
     <hr class="mx-auto w-75" />
-    <div class="col-xs-12 col-md-4">
-      <label for="email" class="fw-light">E-mail cím megváltozatása</label>
-      <input type="email" id="email" class="form-control mb-1" />
-      <label for="email" class="fw-light">E-mail újra</label>
-      <input type="email" id="email" class="form-control mb-1" />
-    </div>
-    <div class="col-xs-12 col-md-4">
-      <label for="password" class="fw-light">Jelszó megváltozatása</label>
-      <input type="password" id="password" class="form-control mb-1" />
-      <label for="password" class="fw-light">Jelszó újra</label>
-      <input type="password" id="password" class="form-control mb-1" />
-    </div>
-    <div class="col-xs-12 col-md-4">
-      <label for="text" class="fw-light">Telefonszám megváltozatása</label>
-      <input type="text" id="text" class="form-control mb-1" />
-      <label for="text" class="fw-light">Telefonszám újra</label>
-      <input type="text" id="text" class="form-control mb-1" />
-    </div>
-    <div class="text-center mt-3">
-      <button class="btn btn-warning fs-5 fw-light" (click)="saveSettings()">Beállítások mentése</button>
-    </div>
-      <div class="toast-container position-fixed bottom-0 end-0 p-3 text-center">
-        <div  [class.opacity-100] = "showSavedToast" [class.opacity-0] = "!showSavedToast" class="toast fade show"  role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <strong class="mx-auto">Üzenet</strong>
-          </div>
-          <div class="toast-body">
-            Sikeres mentés!
+    <div class="col-xs-12 col-md-4 pb-2">
+      <div class="card">
+        <div class="card-body">
+          <label for="email" class="fw-light">Jelenlegi e-amail cím</label>
+          <input type="email" id="email" class="form-control mb-1" disabled />
+          <label for="email" class="fw-light">Új e-mail</label>
+          <input type="email" id="email" class="form-control mb-1" />
+          <label for="email" class="fw-light">Új e-mail megerősítése</label>
+          <input type="email" id="email" class="form-control mb-1" />
+          <div class="text-center mt-3">
+            <button
+              class="btn btn-warning fs-5 fw-light"
+              (click)="saveSettings()"
+            >
+              Új e-mail cím mentése
+            </button>
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-xs-12 col-md-4 pb-2">
+      <div class="card">
+        <div class="card-body">
+          <label for="email" class="fw-light">Jelenlegi telefonszám</label>
+          <input type="email" id="email" class="form-control mb-1" disabled />
+          <label for="email" class="fw-light">Új telefonszám</label>
+          <input type="email" id="email" class="form-control mb-1" />
+          <label for="email" class="fw-light"
+            >Új telefonszám megerősítése</label
+          >
+          <input type="email" id="email" class="form-control mb-1" />
+          <div class="text-center mt-3">
+            <button
+              class="btn btn-warning fs-5 fw-light"
+              (click)="saveSettings()"
+            >
+              Új telefonszám mentése
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4 pb-2">
+      <div class="card">
+        <div class="card-body">
+          <label for="password" class="fw-light"
+            >Adja meg a jelenlegi jelszavát!</label
+          >
+          <input type="password" id="password" class="form-control mb-1" />
+          <label for="password" class="fw-light">Új jelszó</label>
+          <input type="password" id="password" class="form-control mb-1" />
+          <label for="password" class="fw-light">Új jelszó megerősítése</label>
+          <input type="password" id="password" class="form-control mb-1" />
+          <div class="text-center mt-3">
+            <button
+              class="btn btn-warning fs-5 fw-light"
+              (click)="saveSettings()"
+            >
+              Új jelszó mentése
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3 text-center">
+      <div
+        [class.opacity-100]="showSavedToast"
+        [class.opacity-0]="!showSavedToast"
+        class="toast fade show"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <strong class="mx-auto">Üzenet</strong>
+        </div>
+        <div class="toast-body">Sikeres mentés!</div>
+      </div>
+    </div>
   </div>
 </div>
-
-
