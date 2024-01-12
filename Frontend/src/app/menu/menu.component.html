@@ -34,20 +34,20 @@
       <div
         class="offcanvas-body small w-75 mx-auto d-flex align-items-center justify-content-center"
       >
-        <div *ngIf="!(showLogin || showRegister)">
+        <div *ngIf="show === null">
           <button class="btn btn-warning m-1" routerLink="tableRes"
           data-bs-dismiss="offcanvas">Folytatás vendégként</button>
           <br />
-          <button class="btn btn-warning m-1" (click)="Login()">
+          <button class="btn btn-warning m-1" (click)="showLogin()">
             Bejelentkezés
           </button>
           <br />
-          <button class="btn btn-dark m-1" (click)="Register()">
+          <button class="btn btn-dark m-1" (click)="showRegister()">
             Regisztráció
           </button>
         </div>
-        <app-login-window *ngIf="showLogin" />
-        <app-register-window *ngIf="showRegister" />
+        <app-login-window *ngIf="show === 'login'" />
+        <app-register-window *ngIf="show === 'register'" />
       </div>
       <app-contact-window />
     </div>
