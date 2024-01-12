@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuComponent } from '../menu/menu.component';
+import { AuthService } from '../services/auth.service';
+import { LoginWindowComponent } from '../login-window/login-window.component';
 
 @Component({
   selector: 'app-register-window',
@@ -7,7 +9,17 @@ import { MenuComponent } from '../menu/menu.component';
   styleUrls: ['./register-window.component.css']
 })
 export class RegisterWindowComponent {
+  public name: string = "";
+  public email: string = "";
+  public password: string = "";
+  public passwordAgain: string = "";
 
-  constructor(public menu: MenuComponent) {}
+  constructor(public menu: MenuComponent, private authService: AuthService) {}
+
+  public register() {
+    this.authService.register(this.name, this.email, this.password, this.passwordAgain).subscribe((result) => {
+      this.menu.showLogin();
+    });
+  }
 
 }

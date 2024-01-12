@@ -6,20 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
+  public show: "login" | "register" | null = null;
 
-  public showRegister: boolean = false
-  public showLogin: boolean = false;
-
-  Login() {
-    this.showLogin = true;
+  showLogin() {
+    this.show = "login";
   }
 
-  Register() {
-    this.showRegister = true;
+  showRegister() {
+    this.show = "register";
   }
 
-  BackToSomewhere() {
-    this.showLogin = false
-    this.showRegister = false
+  back() {
+    this.show = null;
   }
 }
