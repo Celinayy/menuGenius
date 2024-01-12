@@ -14,7 +14,8 @@ import { ContactWindowComponent } from './contact-window/contact-window.componen
 import { FormsModule } from '@angular/forms';
 import { ProductsWindowComponent } from './products-window/products-window.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,11 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: "toast-top-center",
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
