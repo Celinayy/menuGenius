@@ -38,7 +38,7 @@ namespace MG_Admin_GUI.Models
         public Desk(MySqlDataReader reader)
         {
             id = reader.GetInt32("Id");
-            number_of_seats = reader.GetInt32(number_of_seats);
+            number_of_seats = reader.GetInt32("number_of_seats");
         }
 
         public static ObservableCollection<Desk> GetDesks()

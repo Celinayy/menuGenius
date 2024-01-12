@@ -78,6 +78,11 @@ namespace MG_Admin_GUI.Models
             return Allergens;
         }
 
+        public override string ToString()
+        {
+            return name;
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is Allergen allergen && id == allergen.id;

@@ -433,37 +433,39 @@
                 </Grid.ColumnDefinitions>
                 <Grid Name="grdIngredients" Grid.Column="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.5*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.6*"/>
+                        <RowDefinition Height="0.9*"/>
                         <RowDefinition Height="0.3*"/>
                         <RowDefinition Height="2.8*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Name="spIngredient" Grid.Column="0" DataContext="{Binding selectedIngredient}">
-                        <Label Content="Alapanyagok:" Style="{StaticResource TitleLabelStyle}"/>
-                        <UniformGrid Rows="2" Columns="2">
-                            <Label Content="ID:"/>
-                            <TextBox Name="tbIngredientId" Text="{Binding id}"/>
-                            <Label Content="Név:"/>
-                            <TextBox Name="tbIngredientName" Text="{Binding name}"/>
-                        </UniformGrid>
-                    </StackPanel>
-                    <StackPanel Grid.Row="1">
-                        <UniformGrid >
-                            <StackPanel>
-                                <Label Content="Allergének:" HorizontalAlignment="Left"/>
+                    <StackPanel Grid.RowSpan="2" DataContext="{Binding selectedIngredient}">
+                        <StackPanel Name="spIngredient">
+                            <Label Content="Alapanyagok:" Style="{StaticResource TitleLabelStyle}"/>
+                            <UniformGrid Rows="2" Columns="2">
+                                <Label Content="ID:"/>
+                                <TextBox Name="tbIngredientId" Text="{Binding id}"/>
+                                <Label Content="Név:"/>
+                                <TextBox Name="tbIngredientName" Text="{Binding name}"/>
+                            </UniformGrid>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1">
+                            <UniformGrid >
                                 <StackPanel>
-                                    <ScrollViewer VerticalScrollBarVisibility="Visible">
-                                        <ListView Name="lvIngredientAllergens" ItemsSource="{Binding ingredientAllergens}" DisplayMemberPath="name"/>
-                                    </ScrollViewer>
+                                    <Label Content="Allergének:" HorizontalAlignment="Left"/>
+                                    <StackPanel>
+                                        <ScrollViewer VerticalScrollBarVisibility="Visible">
+                                            <ListView Name="lvIngredientAllergens" ItemsSource="{Binding ingredientAllergens}" DisplayMemberPath="name"/>
+                                        </ScrollViewer>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                            <StackPanel>
-                                <Label Content="Összes alapanyag:"/>
-                                <ComboBox Name="cobIngredientAllergen" ItemsSource="{Binding Allergens}" DisplayMemberPath="name"/>
-                                <Button Name="btnAddAllergen" Content="Hozzáad" Click="btnAddAllergen_Click"/>
-                                <Button Name="btnAddallergenDelete" Content=">>Töröl" Click="btnAddallergenDelete_Click"/>
-                            </StackPanel>
-                        </UniformGrid>
+                                <StackPanel>
+                                    <Label Content="Összes alapanyag:"/>
+                                    <ComboBox Name="cobIngredientAllergen" ItemsSource="{Binding Allergens}" DisplayMemberPath="name"/>
+                                    <Button Name="btnAddAllergen" Content="Hozzáad" Click="btnAddAllergen_Click"/>
+                                    <Button Name="btnAddallergenDelete" Content=">>Töröl" Click="btnAddallergenDelete_Click"/>
+                                </StackPanel>
+                            </UniformGrid>
+                        </StackPanel>
                     </StackPanel>
                     <WrapPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button Name="btnIngredientSave" Content="Mentés" Click="btnDataSave_Click"/>

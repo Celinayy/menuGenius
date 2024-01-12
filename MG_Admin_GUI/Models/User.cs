@@ -127,6 +127,11 @@ namespace MG_Admin_GUI.Models
             return Users;
         }
 
+        public override string ToString()
+        {
+            return name;
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is User user && id == user.id;
