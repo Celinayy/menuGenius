@@ -1,0 +1,127 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "menugenius",
+    "dateExported": "2024-01-12T05:52:10.990Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "9e0dc072-0f10-4509-b445-7667eb074613",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET all product",
+            "url": "127.0.0.1:8000/api/product",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-01-08T03:18:17.684Z",
+            "modified": "2024-01-12T04:45:53.693Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "76582744-5e5c-4e4b-96be-79775c74550e",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "POST login user",
+            "url": "127.0.0.1:8000/api/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-01-12T03:05:22.766Z",
+            "modified": "2024-01-12T04:45:35.736Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "email",
+                        "value": "menugenius@gmail.com"
+                    },
+                    {
+                        "name": "password",
+                        "value": "password"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "875f7ff9-7ea0-4655-8a1e-cab18b271e79",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET logged in user",
+            "url": "127.0.0.1:8000/api/user",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-01-12T03:24:14.824Z",
+            "modified": "2024-01-12T04:11:22.614Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "10|Xn0mPBBL8COw5QpxCDF5N9GDh4t1r9TLxaIuNMno62cb84e6"
+            },
+            "tests": []
+        },
+        {
+            "_id": "6a3ef14d-6ceb-478f-9b92-93ad7a3c7085",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "POST register user",
+            "url": "127.0.0.1:8000/api/",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-01-12T04:13:36.855Z",
+            "modified": "2024-01-12T04:20:22.885Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "name",
+                        "value": "valaki"
+                    },
+                    {
+                        "name": "email",
+                        "value": "valaki@gmail.com"
+                    },
+                    {
+                        "name": "password",
+                        "value": "password"
+                    },
+                    {
+                        "name": "admin",
+                        "value": "0"
+                    },
+                    {
+                        "name": "password_confirmation",
+                        "value": "password"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "8a17e815-4223-4752-8758-bbae2433758c",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "POST logout user",
+            "url": "127.0.0.1:8000/api/logout",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-01-12T05:33:43.526Z",
+            "modified": "2024-01-12T05:40:32.284Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "15|70woNbztfJC9IlcJVCOeyi5oUsj6lkAH3vozabNa50a2c8c0"
+            },
+            "tests": []
+        }
+    ]
+}
