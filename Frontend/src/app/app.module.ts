@@ -11,9 +11,10 @@ import { MainWindowComponent } from './main-window/main-window.component';
 import { LoginWindowComponent } from './login-window/login-window.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactWindowComponent } from './contact-window/contact-window.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsWindowComponent } from './products-window/products-window.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -28,12 +29,14 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     ContactWindowComponent,
     ProductsWindowComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,16 +9,25 @@ import { ProductService } from '../services/product.service';
 })
 export class ProductsWindowComponent {
 
-  public products: ProductModel[] = []
+  public products: ProductModel[] = [];
+  searchKey: string = "";
+  public searchTerm: string = '';
+
 
   constructor(private productService: ProductService) {
     this.loadProducts()
-  }
+    this.productService.search.subscribe((val: any) =>{
+      this.searchKey = val;
+    })
+  };
 
   private loadProducts() {
     this.productService.listProducts().subscribe((products) => {
       this.products = products
     })
-  }
+  };
 
+  search() {
+    this.productService.search.next(this.searchTerm);
+  }
 }
