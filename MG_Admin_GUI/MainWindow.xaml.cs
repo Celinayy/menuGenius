@@ -37,6 +37,7 @@ namespace MG_Admin_GUI
         //string imageFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
 
         private User loggedInUser;
+        private Image returnImage;
 
         OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -125,16 +126,24 @@ namespace MG_Admin_GUI
 
         private void UpdatePurchaseStatus(int purchaseId, string newStatus)
         {
-            using (var connection = DatabaseHandler.OpenConnection())
+            try
             {
-                string query = "UPDATE purchases SET status = @status WHERE id = @id";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (var connection = DatabaseHandler.OpenConnection())
                 {
-                    command.Parameters.AddWithValue("@status", newStatus.ToString());
-                    command.Parameters.AddWithValue("@id", purchaseId);
-                    command.ExecuteNonQuery();
+                    string query = "UPDATE purchases SET status = @status WHERE id = @id";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@status", newStatus.ToString());
+                        command.Parameters.AddWithValue("@id", purchaseId);
+                        command.ExecuteNonQuery();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Nem lehet kapcsolódni az adatbázishoz!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -158,7 +167,6 @@ namespace MG_Admin_GUI
                 UpdatePurchaseStatus(selectedPurchase.id, "served");
                 RefreshListViews();
             }
-
         }
 
         private void chkPurchased_Checked(object sender, RoutedEventArgs e)
@@ -179,18 +187,25 @@ namespace MG_Admin_GUI
 
         private void UpdatePaidStatus(Purchase purchase, bool isPaid)
         {
-            int id = purchase.id;
-            using (var connection = DatabaseHandler.OpenConnection())
+            try
             {
-                connection.Open();
-                string query = "UPDATE purchase SET paid = @isPaid WHERE id = @id";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                int id = purchase.id;
+                using (var connection = DatabaseHandler.OpenConnection())
                 {
-                    command.Parameters.AddWithValue("@ispaid", isPaid);
-                    command.Parameters.AddWithValue("@id", id);
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string query = "UPDATE purchase SET paid = @isPaid WHERE id = @id";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ispaid", isPaid);
+                        command.Parameters.AddWithValue("@id", id);
+                        command.ExecuteNonQuery();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nem lehet kapcsolódni az adatbázishoz!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             RefreshListViews();
         }
@@ -200,7 +215,7 @@ namespace MG_Admin_GUI
             if (dgReservations.SelectedItem != null)
             {
                 ReservationVM.selectedReservation = (Reservation)dgReservations.SelectedItem;
-                cobReservationDesks.SelectedIndex = dgReservations.SelectedIndex;
+                //cobReservationDesks.SelectedIndex = dgReservations.SelectedIndex;
             }
         }
 
@@ -218,84 +233,61 @@ namespace MG_Admin_GUI
             lvProductIngredient.Items.Add(cobIngredients.SelectedItem);
         }
 
-        public static BitmapImage LoadBitmapImage(string fileName)
-        {
-            BitmapImage bitmapImage = new BitmapImage();
+        //public static BitmapImage LoadBitmapImage(string fileName)
+        //{
+        //    BitmapImage bitmapImage = new BitmapImage();
 
-            // UI szálra való visszatérés Dispatcher.Invoke segítségével.
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-                {
-                    bitmapImage = new BitmapImage();
-                    bitmapImage.BeginInit();
-                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                    bitmapImage.StreamSource = stream;
-                    bitmapImage.EndInit();
-                    bitmapImage.Freeze();
-                }
-            });
+        //    Application.Current.Dispatcher.Invoke(() =>
+        //    {
+        //        using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+        //        {
+        //            bitmapImage = new BitmapImage();
+        //            bitmapImage.BeginInit();
+        //            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+        //            bitmapImage.StreamSource = stream;
+        //            bitmapImage.EndInit();
+        //            bitmapImage.Freeze();
+        //        }
+        //    });
 
-            return bitmapImage;
+        //    return bitmapImage;
 
 
-            //using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-            //{
-            //    var bitmapImage = new BitmapImage();
-            //    bitmapImage.BeginInit();
-            //    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-            //    bitmapImage.StreamSource = stream;
-            //    bitmapImage.EndInit();
-            //    bitmapImage.Freeze();
-            //    return bitmapImage;
-            //}
-        }
+        //    //using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+        //    //{
+        //    //    var bitmapImage = new BitmapImage();
+        //    //    bitmapImage.BeginInit();
+        //    //    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+        //    //    bitmapImage.StreamSource = stream;
+        //    //    bitmapImage.EndInit();
+        //    //    bitmapImage.Freeze();
+        //    //    return bitmapImage;
+        //    //}
+        //}
 
         private void btnImageOpen_Click(object sender, RoutedEventArgs e)
         {
             ImageHandler imageHandlerWindow = new ImageHandler();
+            bool? result = imageHandlerWindow.ShowDialog();
 
-            imageHandlerWindow.Show();
-            //try
-            //{
-            //    OpenFileDialog openFileDialog = new OpenFileDialog();
-            //    openFileDialog.Filter = "Képfájlok (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
-            //    if (openFileDialog.ShowDialog() == true)
-            //    {
+            if (result == true)
+            {
+                returnImage = imageHandlerWindow.GetReturnImage();
+            }
 
-            //        imgProductImage.Source = LoadBitmapImage(openFileDialog.FileName);
-            //        tbProductImage.Text = Path.GetFileName(openFileDialog.FileName);
-            //        openedFilePath = openFileDialog.FileName;
-            //        isImageModified = true;
+            if (ProductVM.selectedProduct != null)
+            {
+                ProductVM.selectedProduct.productImage = returnImage;
+            }
+            else
+            {
+                ProductVM.selectedProduct = new Product();
+                ProductVM.selectedProduct.productImage = returnImage;
 
-            //    }
+            }
+            //ImageHandler imageHandlerWindow = new ImageHandler();
 
-            //    //VAGY
-
-            //    //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //    //openFileDialog.Filter = "Képfájlok (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
-
-            //    //if (openFileDialog.ShowDialog() == true)
-            //    //{
-
-            //    //    using (FileStream stream = File.OpenRead(openFileDialog.FileName))
-            //    //    {
-            //    //        byte[] imageData = new byte[stream.Length];
-            //    //        stream.Read(imageData, 0, imageData.Length);
-            //    //        imgProductImage.Source = new BitmapImage(new Uri(openFileDialog.FileName));
-            //    //        tbProductImage.Text = Path.GetFileName(openFileDialog.FileName);
-            //    //        openedFilePath = openFileDialog.FileName;
-            //    //        isImageModified = true;
-
-            //    //        stream.Close();
-            //    //    }
-            //    //}
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Hiba történt a fájl megnyitása közben: {ex.Message}");
-            //}
+            //imageHandlerWindow.Show();
         }
 
         private void btnAddAllergen_Click(object sender, RoutedEventArgs e)
@@ -394,7 +386,7 @@ namespace MG_Admin_GUI
                             parameters.Add("@packing", tbProductPacking.Text);
                             parameters.Add("@price", int.Parse(tbProductPrice.Text));
                             parameters.Add("@is_food", cbProductIsFood.IsChecked.HasValue && cbProductIsFood.IsChecked.Value);
-                            parameters.Add("@image_id", tbProductImage.Text);
+                            parameters.Add("@image_id", ProductVM.selectedProduct.productImage.id);
 
                             List<string> ingredientInsertCommands = new List<string>();
                             foreach (var ingredient in lvProductIngredient.Items)
@@ -871,7 +863,7 @@ namespace MG_Admin_GUI
 
         private void btnAddallergenDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            lvIngredientAllergens.Items.Remove(lvIngredientAllergens.SelectedValue);
         }
     }
 }

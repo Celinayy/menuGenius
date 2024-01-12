@@ -108,6 +108,20 @@ namespace MG_Admin_GUI.Models
             }
         }
 
+        private bool _reservationClosed;
+        public bool reservationClosed
+        {
+            get => _reservationClosed;
+            set
+            {
+                if (_reservationClosed != value)
+                {
+                    _reservationClosed = value;
+                    OnPropertyChanged(nameof(reservationClosed));
+                }
+            }
+        }
+
         public Reservation(MySqlDataReader reader)
         {
             id = reader.GetInt32("Id");
@@ -117,6 +131,7 @@ namespace MG_Admin_GUI.Models
             name = reader.GetString("name");
             phone = reader.GetString("phone");
             reservationDesk = Purchase.GetDeskForPurchase(reader.GetInt32("desk_id"));
+            reservationClosed = reader.GetBoolean("close");
         }
 
         public static ObservableCollection<Reservation> GetReservations()
