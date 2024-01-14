@@ -17,7 +17,13 @@ class ReservationController extends Controller
     {
         $user = Auth::user();
 
-        if($user)
+        if($user -> admin == true)
+        {
+            $reservations = Reservation::with(['desk', 'user'])->get();
+            return $reservations;
+
+        }
+        if($user ->admin == false)
         {
             return Reservation::where('user_id', $user->id)->with(['desk'])->get();;
         }
@@ -63,8 +69,6 @@ class ReservationController extends Controller
         }
     
         return response()->json($reservation);
-
-        //$this->authorize('show-reservation', $reservation);
     }
 
     /**
@@ -72,7 +76,7 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        //$this->authorize('update-reservation', $reservation);
+        //
     }
 
     /**
@@ -80,7 +84,7 @@ class ReservationController extends Controller
      */
     public function update(UpdateReservationRequest $request, Reservation $reservation)
     {
-        //$this->authorize('update-reservation', $reservation);
+        //
     }
 
     /**
@@ -88,7 +92,6 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //$this->authorize('delete-reservation', $reservation);
-        //$reservation->delete();    }
+        //
     }
 }

@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //$this->authorize('create-category', $category);
+        //
     }
 
     /**
@@ -29,12 +29,12 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $category = new Category();
-        $category->name = $request->input('name');
+        // $category = new Category();
+        // $category->name = $request->input('name');
 
-        $category->save();
+        // $category->save();
 
-        return response()->json(['message' => 'A termékkategória létrehozva!', 'data' => $category], 201);
+        // return response()->json(['message' => 'A termékkategória létrehozva!', 'data' => $category], 201);
     }
 
     /**
@@ -54,7 +54,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //$this->authorize('edit-category', $category);
+        //
     }
 
     /**
@@ -62,7 +62,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //$this->authorize('update-category', $category);
+        //
     }
 
     /**
@@ -70,6 +70,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //$this->authorize('destroy-category', $category);
+        //
     }
 }

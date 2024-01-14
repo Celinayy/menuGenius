@@ -6,6 +6,7 @@ use App\Models\Purchase;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PurchaseController extends Controller
 {
@@ -14,19 +15,28 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        // $purchase = Purchase::with(['user', 'desk', 'products'])->get();
-        // //$purchase->load('product_purchase', 'quantity');
-        // $formattedPurchases = $purchase->map(function ($purchase) {
-        //     return [
-        //         'purchase' => $purchase,
-        //         'products' => $purchase->products,
-        //     ];
-        // });
         $user = Auth::user();
 
-        if($user)
+
+        if($user -> admin == true)
         {
-            return Purchase::where('user_id', $user->id)->with(['user', 'desk', 'products'])->get();;
+            $purchases = Purchase::with(['user', 'desk', 'products' => function ($query) {
+                $query->withPivot('quantity');
+            }])->get();
+            return $purchases;
+
+        }
+        if($user -> admin == false)
+        {
+            $purchases = $user->purchases()->with
+            ([
+                'user', 'desk', 'products' => function ($query) 
+                {
+                    $query->withPivot('quantity');
+                }
+            ])->get();
+            return $purchases;
+
         }
         else
         {
@@ -69,9 +79,8 @@ class PurchaseController extends Controller
     public function show(Purchase $purchase)
     {
         if (!$purchase) {
-            return response()->json(['error' => 'Nincs ilyen vásrálás!'], 404);
+            return response()->json(['error' => 'Nincs ilyen vásárlás!'], 404);
         }
-    
         return response()->json($purchase);
     }
 

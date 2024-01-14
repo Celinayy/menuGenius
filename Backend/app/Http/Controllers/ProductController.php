@@ -13,7 +13,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::with(['image', 'category', 'ingredients'])->get();
+        return Product::with([
+            'image', 
+            'category', 
+            'ingredients' => function($query) {
+                $query->with('allergens');
+            }
+            ])->get();
     }
 
     /**
@@ -21,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //$this->authorize('create-product', $product);
+        //
     }
 
     /**
@@ -42,7 +48,7 @@ class ProductController extends Controller
 
         return response()->json(['message' => 'A termék létrehozva!', 'data' => $product], 201);
 
-        //$this->authorize('store-product', $product);
+        //
     }
 
     /**
@@ -62,7 +68,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //$this->authorize('edit-product', $product);
+        //
     }
 
     /**
@@ -70,7 +76,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //$this->authorize('update-product', $product);
+        //
     }
 
     /**
@@ -78,6 +84,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //$this->authorize('update-product', $product);
+        //
     }
 }

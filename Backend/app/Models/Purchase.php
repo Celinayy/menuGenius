@@ -19,7 +19,7 @@ class Purchase extends Model
 
     public function user():BelongsTo
     {
-        return $this->belongsTo(User::class)->whereNotNull('user_id');
+        return $this->belongsTo(User::class)->whereNotNull('id');
     }
 
     public function products():BelongsToMany
