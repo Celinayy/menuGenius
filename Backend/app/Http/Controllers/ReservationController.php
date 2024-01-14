@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
+use Illuminate\Support\Facades\Auth;
+
 
 class ReservationController extends Controller
 {
@@ -13,8 +15,16 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return Reservation::get();
-        //$this->authorize('index-reservation', $reservation);
+        $user = Auth::user();
+
+        if($user)
+        {
+            return Reservation::where('user_id', $user->id)->with(['desk'])->get();;
+        }
+        else
+        {
+            return response()->json(['error' => 'Ismeretlen felhasználó!'], 401);
+        }
     }
 
     /**

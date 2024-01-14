@@ -13,7 +13,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        return Ingredient::get();
+        return Ingredient::with(['allergens'])->get();
     }
 
     /**

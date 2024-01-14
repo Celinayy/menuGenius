@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Image extends Model
 {
@@ -13,9 +15,9 @@ class Image extends Model
     public $hidden = ["img_data"];
     public $appends = ["data"];
 
-    public function product()
+    public function product():HasOne
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasOne(Product::class);
     }
     public function getDataAttribute() {
         return base64_encode($this -> img_data);

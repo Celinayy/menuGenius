@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Purchase;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PurchaseController extends Controller
 {
@@ -13,7 +14,27 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        return Purchase::get();
+        // $purchase = Purchase::with(['user', 'desk', 'products'])->get();
+        // //$purchase->load('product_purchase', 'quantity');
+        // $formattedPurchases = $purchase->map(function ($purchase) {
+        //     return [
+        //         'purchase' => $purchase,
+        //         'products' => $purchase->products,
+        //     ];
+        // });
+        $user = Auth::user();
+
+        if($user)
+        {
+            return Purchase::where('user_id', $user->id)->with(['user', 'desk', 'products'])->get();;
+        }
+        else
+        {
+            return response()->json(['error' => 'Ismeretlen felhasználó!'], 401);
+        }
+    
+
+        //return Purchase::with(['users', 'desks', 'products'])->get();
     }
 
     /**

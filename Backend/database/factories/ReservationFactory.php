@@ -22,7 +22,7 @@ class ReservationFactory extends Factory
     {
         $this->faker->addProvider(new HungarianPerson($this->faker));
         $this->faker->locale('hu_HU');
-        $user = User::inRandomOrder()->first();
+        $user = $this->faker->boolean ? User::inRandomOrder()->first() : null;
         $desk = Desk::inRandomOrder()->first();
 
         return [
@@ -32,6 +32,9 @@ class ReservationFactory extends Factory
             'name' => $this->faker->name,
             'phone' => $this -> faker -> regexify('\+36 \d{2} \d{3} \d{4}'),
             'desk_id' => $desk -> id,
+            'user_id' => $user ? $user -> id : null,
+            'closed' => $this -> faker -> boolean,
+
         ];
     }
 }

@@ -36,23 +36,20 @@ Route::controller(AuthController::class)->group(function () {
 Route::post('/login/callback', [SocialiteController::class, 'handleProviderCallback']);
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
-Route::resource("allergen", AllergenController::class)->except(["edit", "create"]);
-Route::resource("category", CategoryController::class)->except(["edit", "create"]);
-Route::middleware('auth:sanctum')->resource("desk", DeskController::class)->except(["edit", "create"]);
+//Route::resource("allergen", AllergenController::class)->except(["edit", "create"]);
+//Route::resource("category", CategoryController::class)->except(["edit", "create"]);
+//Route::middleware('auth:sanctum')->resource("desk", DeskController::class)->except(["edit", "create"]);
 Route::middleware([
     'auth:sanctum',
     'permission:admin',
     ])->resource("eventlog", EventLogController::class)->except(["edit", "create"]);
-Route::resource("image", ImageController::class)->except(["edit", "create"]);
-Route::resource("ingredient", IngredientController::class)->except(["edit", "create"]);
+//Route::resource("image", ImageController::class)->except(["edit", "create"]);
+//Route::resource("ingredient", IngredientController::class)->except(["edit", "create"]);
 Route::resource("product", ProductController::class)->except(["edit", "create"]);
-Route::resource("purchase", PurchaseController::class)->except(["edit", "create"]);
-Route::resource("reservation", ReservationController::class)->except(["edit", "create"]);
-//Route::resource("user", UserController::class)->except(["edit", "create"]);
-
-
-Route::resource("ingredient", ProductController::class)->except(["edit", "create"]);
+Route::middleware('auth:sanctum')->resource("purchase", PurchaseController::class)->except(["edit", "create"]);
+Route::middleware('auth:sanctum')->resource("reservation", ReservationController::class);
+Route::middleware('auth:sanctum')->get("user", [UserController::class, 'getUserData']);
