@@ -65,8 +65,8 @@ Route::middleware(['auth:sanctum', 'permission:guest'])->group(function () {
 
 
 Route::middleware('auth:sanctum')->resource("user", UserController::class)->except(["edit", "create"]);
-//Route::resource("allergen", AllergenController::class)->except(["edit", "create"]);
-//Route::resource("category", CategoryController::class)->except(["edit", "create"]);
+Route::resource("allergen", AllergenController::class)->except(["edit", "create"]);
+Route::resource("category", CategoryController::class)->except(["edit", "create"]);
 //Route::middleware('auth:sanctum')->resource("desk", DeskController::class)->except(["edit", "create"]);
 //Route::resource("image", ImageController::class)->except(["edit", "create"]);
-//Route::resource("ingredient", IngredientController::class)->except(["edit", "create"]);
+Route::resource("ingredient", IngredientController::class)->except(["edit", "create"]);
