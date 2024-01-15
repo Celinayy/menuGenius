@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MG_Admin_GUI"
         mc:Ignorable="d"
-        Title="ImageHandler" Height="1200" Width="1600" WindowState="Maximized">
+        Title="ImageHandler" Height="1200" Width="1600" WindowState="Maximized" Background="Goldenrod" Foreground="Black">
+    <Window.Icon>
+        <BitmapImage UriSource="/Logos/menu_genius_icon.ico"/>
+    </Window.Icon>
+
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"/>

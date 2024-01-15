@@ -131,7 +131,7 @@ namespace MG_Admin_GUI.Models
             name = reader.GetString("name");
             phone = reader.GetString("phone");
             reservationDesk = Purchase.GetDeskForPurchase(reader.GetInt32("desk_id"));
-            reservationClosed = reader.GetBoolean("close");
+            reservationClosed = reader.GetBoolean("closed");
         }
 
         public static ObservableCollection<Reservation> GetReservations()
