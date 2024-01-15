@@ -60,7 +60,16 @@ class ProductController extends Controller
             return response()->json(['error' => 'A terméket nem találtam!'], 404);
         }
 
-        return response()->json($product);
+        if($product){
+            $product = Product::with([
+                'image', 
+                'category', 
+                'ingredients' => function($query) {
+                    $query->with('allergens');
+                }
+            ])->findOrFail($product->id);
+            return response()->json($product);
+        }
     }
 
     /**

@@ -20,10 +20,11 @@ class PurchaseFactory extends Factory
      */
     public function definition(): array
     {
-        $this->faker->locale('hu_HU');
+        $this->faker->local('hu_HU');
         $statuses = ['ordered', 'cooked', 'served'];
 
-        $user = $this->faker->boolean ? User::inRandomOrder()->first() : null;
+        //$user = $this->faker->boolean ? User::inRandomOrder()->first() : null;
+        $user = User::inRandomOrder()->first();
         $desk = Desk::inRandomOrder()->first();
 
         return [
@@ -31,7 +32,7 @@ class PurchaseFactory extends Factory
             'total_pay' => $this -> faker -> numberBetween(10000, 50000),
             'status' => Arr::random($statuses),
             'paid' => $this -> faker -> boolean,
-            'user_id' => $user ? $user -> id : null,
+            'user_id' => $user -> id,
             'desk_id' => $desk -> id,
         ];
     }

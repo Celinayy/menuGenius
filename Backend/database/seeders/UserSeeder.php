@@ -42,6 +42,9 @@ class UserSeeder extends Seeder
         \App\Models\User::create([
             'id' => 3,
             'name' => 'guest',
+            'email' => 'guest@guest.com',
+            'password' => static::$password ??= Hash::make('password'),
+            'phone' => '+00 00 000 0000',
             'admin' => false,
         ]);
 
