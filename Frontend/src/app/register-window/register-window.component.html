@@ -1,5 +1,6 @@
-<input type="email" id="email" class="form-control mx-auto m-1" placeholder="E-mail">
-<input type="password" id="password" class="form-control mx-auto m-1" placeholder="Jelszó">
-<input type="password" id="passwordAgain" class="form-control mx-auto m-1" placeholder="Jelszó újra">
-<button class="btn btn-danger m-1" (click)="menu.BackToSomewhere()">Vissza</button>
-<button class="btn btn-primary m-1">Regisztráció</button>
+<input type="text" id="name" class="form-control mx-auto m-1" placeholder="Teljes név" [(ngModel)]="name">
+<input type="email" id="email" class="form-control mx-auto m-1" placeholder="E-mail" [(ngModel)]="email">
+<input type="password" id="password" class="form-control mx-auto m-1" placeholder="Jelszó" [(ngModel)]="password">
+<input type="password" id="passwordAgain" class="form-control mx-auto m-1" placeholder="Jelszó újra" [(ngModel)]="passwordAgain">
+<button class="btn btn-danger m-1" (click)="menu.back()">Vissza</button>
+<button class="btn btn-primary m-1" (click)="register()">Regisztráció</button>

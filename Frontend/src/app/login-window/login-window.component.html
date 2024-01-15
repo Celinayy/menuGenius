@@ -1,13 +1,31 @@
 <div class="mx-auto text-center">
 
-  <input type="email" id="email" class="form-control m-1" placeholder="E-mail">
-  <input type="password" id="password" class="form-control m-1" placeholder="Jelszó">
-  <button class="btn btn-danger m-1" (click)="menu.BackToSomewhere()">Vissza</button>
-  <button class="btn btn-primary m-1">Bejelentkezés</button>
+  <input type="email" id="email" class="form-control m-1" placeholder="E-mail" [(ngModel)]="email">
+  <input type="password" id="password" class="form-control m-1" placeholder="Jelszó" [(ngModel)]="password">
+  <button class="btn btn-danger m-1" (click)="menu.back()">Vissza</button>
+  <button class="btn btn-primary m-1" (click)="login()">Bejelentkezés</button>
   <div class="form-check text-start">
     <input class="form-check-input" type="checkbox" id="flexCheckDefault">
     <label class="form-check-label" for="flexCheckDefault">
       Bejelentkezve szeretnék maradni!
     </label>
+  </div>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3 text-center">
+    <div [class.opacity-100] = "showSuccessfulLoginToast" [class.opacity-0] = "!showSuccessfulLoginToast" class="toast fade show"  role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="mx-auto">Üzenet</strong>
+      </div>
+      <div class="toast-body">
+        Sikeres bejelentkezés!
+      </div>
+    </div>
+    <div [class.opacity-100] = "showSuccessfulRegisterToast" [class.opacity-0] = "!showSuccessfulRegisterToast" class="toast fade show"  role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="mx-auto">Üzenet</strong>
+      </div>
+      <div class="toast-body">
+        Sikeres regisztráció!
+      </div>
+    </div>
   </div>
 </div>

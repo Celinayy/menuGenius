@@ -76,8 +76,11 @@ CREATE TABLE reservations (
     checkout_date datetime  NULL,
     name varchar(50)  NOT NULL,
     phone varchar(20)  NOT NULL,
-    desk_id int  NOT NULL,
+    desk_id bigint  NOT NULL,
+    user_id bigint NULL,
+    closed bool DEFAULT 0,
     FOREIGN KEY (desk_id) REFERENCES desks(id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
     CONSTRAINT PRIMARY KEY (id)
 );
 

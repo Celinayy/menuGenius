@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 
 
-class IngredientAllergen extends Seeder
+class IngredientAllergenSeeder extends Seeder
 {
     /**
      * Run the database seeds.

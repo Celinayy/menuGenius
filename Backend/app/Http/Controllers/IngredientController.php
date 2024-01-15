@@ -13,7 +13,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        return Ingredient::get();
+        return Ingredient::with(['allergens'])->get();
     }
 
     /**
@@ -21,7 +21,7 @@ class IngredientController extends Controller
      */
     public function create()
     {
-        //$this->authorize('create-ingredient', $ingredient);
+        //
     }
 
     /**
@@ -54,7 +54,7 @@ class IngredientController extends Controller
      */
     public function edit(Ingredient $ingredient)
     {
-        //$this->authorize('edit-ingredient', $ingredient);
+        //
     }
 
     /**
@@ -62,7 +62,7 @@ class IngredientController extends Controller
      */
     public function update(UpdateIngredientRequest $request, Ingredient $ingredient)
     {
-        //$this->authorize('update-ingredient', $ingredient);
+        //
     }
 
     /**
@@ -70,6 +70,6 @@ class IngredientController extends Controller
      */
     public function destroy(Ingredient $ingredient)
     {
-        //$this->authorize('destroy-ingredient', $ingredient);
+        //
     }
 }

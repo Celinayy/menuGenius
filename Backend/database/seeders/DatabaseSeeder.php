@@ -33,10 +33,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call(AllergenSeeder::class);
         $this->call(IngredientSeeder::class);
-        $this->call(IngredientAllergen::class);
+        $this->call(IngredientAllergenSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(ProductSeeder::class);
-        $this->call(ProductIngredient::class);
+        $this->call(ProductIngredientSeeder::class);
         $this->call(DeskSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PurchaseSeeder::class);

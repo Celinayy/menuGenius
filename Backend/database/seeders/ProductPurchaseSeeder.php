@@ -17,13 +17,21 @@ class ProductPurchaseSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 100; $i++) {
-            $productId = DB::table('products')->inRandomOrder()->value('id');
-            DB::table('product_purchase')->insert([
-                'quantity' => \Faker\Factory::create()->numberBetween(1, 3),
-                'product_id' => $productId,
-                'purchase_id' => Purchase::factory()->create()->id,
-            ]);
+        $products = DB::table('products')->inRandomOrder()->get();
+        $purchases = DB::table('purchases')->get();
+
+        foreach ($purchases as $purchase) {
+            $productCount = rand(1, 5);
+
+            $selectedProducts = $products->random($productCount);
+
+            foreach ($selectedProducts as $product) {
+                DB::table('product_purchase')->insert([
+                    'quantity' => \Faker\Factory::create()->numberBetween(1, 3),
+                    'product_id' => $product->id,
+                    'purchase_id' => $purchase->id,
+                ]);
+            }
         }
     }
 }
