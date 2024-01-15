@@ -19,9 +19,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone');
             $table->unsignedBigInteger('desk_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->boolean('closed')->default(0);
             //$table->timestamps();
 
             $table->foreign('desk_id')->references("id")->on("desks");
+            $table->foreign('user_id')->references("id")->on("users");
 
         });
     }

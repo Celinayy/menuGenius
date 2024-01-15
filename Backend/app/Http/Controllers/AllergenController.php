@@ -21,7 +21,7 @@ class AllergenController extends Controller
      */
     public function create()
     {
-        //$this->authorize('create-allergen', $allergen);
+        //
     }
 
     /**
@@ -29,13 +29,13 @@ class AllergenController extends Controller
      */
     public function store(StoreAllergenRequest $request)
     {
-        $allergen = new Allergen();
-        $allergen->code = $request->input('code');
-        $allergen->name = $request->input('name');
+        // $allergen = new Allergen();
+        // $allergen->code = $request->input('code');
+        // $allergen->name = $request->input('name');
 
-        $allergen->save();
+        // $allergen->save();
 
-        return response()->json(['message' => 'Az allergén létrehozva!', 'data' => $allergen], 201);
+        // return response()->json(['message' => 'Az allergén létrehozva!', 'data' => $allergen], 201);
     }
 
     /**
@@ -55,7 +55,7 @@ class AllergenController extends Controller
      */
     public function edit(Allergen $allergen)
     {
-        //$this->authorize('edit-allergen', $allergen);
+        //
     }
 
     /**
@@ -63,7 +63,7 @@ class AllergenController extends Controller
      */
     public function update(UpdateAllergenRequest $request, Allergen $allergen)
     {
-        //$this->authorize('update-allergen', $allergen);
+        //
     }
 
     /**
@@ -71,6 +71,6 @@ class AllergenController extends Controller
      */
     public function destroy(Allergen $allergen)
     {
-        //$this->authorize('destroy-allergen', $allergen);
+        //
     }
 }
