@@ -61,7 +61,7 @@ namespace MG_Admin_GUI
 
             if (BCrypt.Net.BCrypt.Verify(enteredPassword, storedHashedPasswordFromDatabase))
             {
-                MessageBox.Show($"Sikeres bejelentkezés! Üdv, {loggedInUser.name}!");
+                //MessageBox.Show($"Sikeres bejelentkezés! Üdv, {loggedInUser.name}!");
                 DialogResult = true;
                 this.Close();
             }

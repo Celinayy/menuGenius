@@ -7,13 +7,19 @@
         xmlns:local="clr-namespace:MG_Admin_GUI"
         mc:Ignorable="d"
         Title="MenuGenius Admin GUI" Height="1200" Width="1600"
-        WindowState="Maximized" FontSize="16">
+        WindowState="Maximized" FontSize="16" Background="SlateGray" Foreground="Black">
+    <Window.Icon>
+        <BitmapImage UriSource="/Logos/menu_genius_icon.ico"/>
+    </Window.Icon>
+
     <Window.Resources>
         <local:DateTimeFormatConverter x:Key="DateTimeFormatConverter" />
         <Style x:Key="TitleLabelStyle" TargetType="Label">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Background" Value="Bisque"/>
+            <Setter Property="Background" Value="SlateGray"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Wheat"/>
         </Style>
         <Style TargetType="UniformGrid">
             <Setter Property="Margin" Value="5"/>
@@ -27,7 +33,7 @@
         </Style>
         <Style TargetType="DataGrid">
             <Setter Property="Margin" Value="10"/>
-            <Setter Property="AlternatingRowBackground" Value="Bisque"/>
+            <Setter Property="AlternatingRowBackground" Value="Silver"/>
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="5"/>
@@ -47,15 +53,15 @@
             <Setter Property="Padding" Value="15"/>
         </Style>
         <Style TargetType="ListViewItem">
-            <Setter Property="Background" Value="Bisque"/>
+            <Setter Property="Background" Value="Silver"/>
             <Style.Triggers>
                 <Trigger Property="ItemsControl.AlternationIndex" Value="1">
-                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Background" Value="Lavender"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <TabControl Name="tabcMain">
+    <TabControl Name="tabcMain" Background="Goldenrod">
         <TabItem Name="tabControl" Header="Rendelések" >
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -66,8 +72,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.3*"/>
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="2*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <UniformGrid Rows="1" Columns="3" Grid.ColumnSpan="5">
@@ -325,8 +331,8 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1.5*"/>
-                    <RowDefinition Height="0.3*"/>
-                    <RowDefinition Height="2.8*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="2.6*"/>
                 </Grid.RowDefinitions>
                 <UniformGrid Name="ugProducts" Grid.ColumnSpan="3" Rows="1" Columns="3" DataContext="{Binding selectedProduct}">
                     <UniformGrid Rows="6" Columns="2">
@@ -353,7 +359,7 @@
                             <TextBox Name="tbProductDescription" Text="{Binding description}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
                         </StackPanel>
                         <StackPanel>
-                            <UniformGrid >
+                            <UniformGrid Columns="2" >
                                 <StackPanel>
                                     <Label Content="Alapanyagok:" HorizontalAlignment="Left"/>
                                     <UniformGrid>
@@ -369,7 +375,7 @@
                         </StackPanel>
                     </StackPanel>
                     <UniformGrid Rows="1" Columns="1">
-                        <GroupBox Header="Kép:" Grid.Column="2">
+                        <GroupBox Header="Termék képe:" Grid.Column="2" Foreground="White">
                             <StackPanel>
                                 <UniformGrid Rows="1" Columns="2">
                                     <TextBox Name="tbProductImage" Text="{Binding productImage.img_name}"/>
@@ -377,7 +383,7 @@
                                     <!--<Button Name="btnImageCancel" Content="Mégsem" Click="btnImageCancel_Click"/>-->
                                 </UniformGrid>
                                 <UniformGrid>
-                                    <Image Name="imgProductImage" Source="{Binding productImage.img_data, UpdateSourceTrigger=PropertyChanged}" Width="400" Stretch="Uniform"/>
+                                    <Image Name="imgProductImage" Source="{Binding productImage.img_data, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" />
                                 </UniformGrid>
                             </StackPanel>
                         </GroupBox>
@@ -442,7 +448,7 @@
                         <RowDefinition Height="2.8*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.RowSpan="2" DataContext="{Binding selectedIngredient}">
-                        <StackPanel Name="spIngredient">
+                        <StackPanel Name="spIngredient" Margin="0">
                             <Label Content="Alapanyagok:" Style="{StaticResource TitleLabelStyle}"/>
                             <UniformGrid Rows="2" Columns="2">
                                 <Label Content="ID:"/>
@@ -621,19 +627,19 @@
                 </Grid.RowDefinitions>
                 <UniformGrid Columns="2" Rows="6" Width="800" DataContext="{Binding selectedEvent}">
                     <Label Content="ID:"/>
-                    <TextBlock Name="tbEventLogId" Text="{Binding id}"/>
+                    <TextBlock Name="tbEventLogId" Text="{Binding id}" Foreground="White"/>
                     <Label Content="Esemény típusa:"/>
-                    <TextBlock Name="tbEventLogEventType" Text="{Binding event_type}"/>
+                    <TextBlock Name="tbEventLogEventType" Text="{Binding event_type}" Foreground="White"/>
                     <Label Content="Érintett tábla:"/>
-                    <TextBlock Name="tbEventLogAffectedTable" Text="{Binding affected_table}"/>
+                    <TextBlock Name="tbEventLogAffectedTable" Text="{Binding affected_table}" Foreground="White"/>
                     <Label Content="Érintett ID:"/>
-                    <TextBlock Name="tbEventLogAffectedId" Text="{Binding affected_id}"/>
+                    <TextBlock Name="tbEventLogAffectedId" Text="{Binding affected_id}" Foreground="White"/>
                     <Label Content="Eseményleírás:"/>
-                    <TextBlock Name="tbEventLogEventDescription" Text="{Binding event_description}"/>
+                    <TextBlock Name="tbEventLogEventDescription" Text="{Binding event_description}" Foreground="White"/>
                     <Label Content="Dátum:"/>
-                    <TextBlock Name="tbEventLogDate" Text="{Binding date, Converter={StaticResource DateTimeFormatConverter}}"/>
+                    <TextBlock Name="tbEventLogDate" Text="{Binding date, Converter={StaticResource DateTimeFormatConverter}}" Foreground="White"/>
                     <Label Content="Felhasználó:"/>
-                    <TextBlock Name="tbEventLogUser" Text="{Binding eventlog_user, Converter={StaticResource DateTimeFormatConverter}}"/>
+                    <TextBlock Name="tbEventLogUser" Text="{Binding eventlog_user, Converter={StaticResource DateTimeFormatConverter}}" Foreground="White"/>
                 </UniformGrid>
                 <!--<WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">
                     <Button Name="btnEventLogSave" Content="Mentés" Click="btnDataSave_Click"/>
@@ -655,5 +661,17 @@
                 </DataGrid>
             </Grid>
         </TabItem>
+        <TabControl.ItemContainerStyle>
+            <Style TargetType="TabItem">
+                <Setter Property="Background" Value="Silver"/>
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="Goldenrod"/>
+                        <Setter Property="Padding" Value="10"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </TabControl.ItemContainerStyle>
+
     </TabControl>
 </Window>
