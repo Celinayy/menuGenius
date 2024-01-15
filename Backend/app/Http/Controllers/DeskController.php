@@ -21,7 +21,7 @@ class DeskController extends Controller
      */
     public function create()
     {
-        //$this->authorize('create-desk', $desk);
+        //
     }
 
     /**
@@ -29,12 +29,12 @@ class DeskController extends Controller
      */
     public function store(StoreDeskRequest $request)
     {
-        $desk = new Desk();
-        $desk->number_of_guests = $request->input('number_of_guests');
+        // $desk = new Desk();
+        // $desk->number_of_guests = $request->input('number_of_guests');
 
-        $desk->save();
+        // $desk->save();
 
-        return response()->json(['message' => 'Az asztal létrehozva!', 'data' => $desk], 201);
+        // return response()->json(['message' => 'Az asztal létrehozva!', 'data' => $desk], 201);
     }
 
     /**
@@ -54,7 +54,7 @@ class DeskController extends Controller
      */
     public function edit(Desk $desk)
     {
-        //$this->authorize('edit-desk', $desk);
+        //
     }
 
     /**
@@ -62,7 +62,7 @@ class DeskController extends Controller
      */
     public function update(UpdateDeskRequest $request, Desk $desk)
     {
-        //$this->authorize('update-desk', $desk);
+        //
     }
 
     /**
@@ -70,6 +70,6 @@ class DeskController extends Controller
      */
     public function destroy(Desk $desk)
     {
-        //$this->authorize('destroy-desk', $desk);
+        //
     }
 }

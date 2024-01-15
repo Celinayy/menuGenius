@@ -10,6 +10,7 @@
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Padding" Value="10 5 10 5"/>
+            <Setter Property="Width" Value="200"/>
         </Style>
         <Style TargetType="StackPanel">
             <Setter Property="Margin" Value="10 5 10 5"/>
@@ -37,8 +38,9 @@
             </StackPanel>
             <StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Name="btnOpen" Content="Open"/>
-                    <Button Name="btnInsert" Content="Insert"/>
+                    <Button Name="btnOpen" Content="Megnyitás" Click="btnOpen_Click"/>
+                    <Button Name="btnInsert" Content="Mentés az adatbázisba" Click="btnInsert_Click"/>
+                    <Button Name="btnCancel" Content="Mégsem" Click="btnCancel_Click"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel>
@@ -47,7 +49,11 @@
                 </Canvas>
             </StackPanel>
         </StackPanel>
-        <UniformGrid Grid.Column="1">
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             <DataGrid Name="dgImages" ItemsSource="{Binding Images}" 
                     AutoGenerateColumns="False" 
                     SelectionChanged="dgImages_SelectionChanged"
@@ -65,7 +71,11 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-        </UniformGrid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Name="btnImageSelect" Content="Kiválaszt" Click="btnImageSelect_Click"/>
+                <Button Name="btnImageDelete" Content="Törlés" Click="btnImageDelete_Click"/>
+            </StackPanel>
+        </Grid>
 
     </Grid>
 </Window>

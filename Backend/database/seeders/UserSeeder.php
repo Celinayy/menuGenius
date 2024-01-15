@@ -39,6 +39,13 @@ class UserSeeder extends Seeder
             'remember_token' => \Illuminate\Support\Str::random(10),
         ]);
 
+        \App\Models\User::create([
+            'id' => 3,
+            'name' => 'guest',
+            'admin' => false,
+        ]);
+
+
         User::factory(10)->create();
     }
 }

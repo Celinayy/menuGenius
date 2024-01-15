@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/toast.css",
               "src/styles.css"
             ],
             "scripts": []

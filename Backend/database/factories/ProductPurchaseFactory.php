@@ -18,13 +18,14 @@ class ProductPurchaseFactory extends Factory
      */
     public function definition(): array
     {
-        $this->faker->locale('hu_HU');
-        $productId = DB::table('products') -> inRandomOrder() -> value('id');
+        // $this->faker->locale('hu_HU');
+        // $productId = DB::table('products') -> inRandomOrder() -> value('id');
+        // $purchaseId = DB::table('purchases') -> inRandomOrder() -> value('id');
 
-        return [
-            'quantity' => $this -> faker -> numberBetween(1, 3),
-            'product_id' =>  $productId,
-            'purchase_id' =>  Purchase::factory(),
-        ];
+        // return [
+        //     'quantity' => $this -> faker -> numberBetween(1, 3),
+        //     'product_id' =>  $productId,
+        //     'purchase_id' =>  $purchaseId,
+        // ];
     }
 }

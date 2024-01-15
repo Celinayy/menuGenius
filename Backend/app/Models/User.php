@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class User extends Authenticatable
 {
@@ -51,13 +54,23 @@ class User extends Authenticatable
         'admin' => 0,
     ];
 
-    public function purchases():BelongsToMany
+    public function purchases():HasMany
     {
-        return $this->belongsToMany(Purchase::class);
+        return $this->hasMany(Purchase::class);
     }
 
-    public function event_log():BelongsToMany
+    public function reservations():HasMany
     {
-        return $this->belongsToMany(EvenetLog::class);
+        return $this->hasMany(Purchase::class);
+    }
+
+    public function event_log():HasMany
+    {
+        return $this->hasMany(EventLog::class);
+    }
+
+    public function user():BelongsTo
+    {
+        return $this->belongsTo(User::class)->withDefault(['name' => 'guest']);
     }
 }

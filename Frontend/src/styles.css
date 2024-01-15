@@ -44,4 +44,9 @@ input[type="color"]:focus,
   background: rgba(255,255,255, 0.5);
 }
 
-
+.toast {
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%, -100%);
+  z-index: 9999;
+}

@@ -21,7 +21,7 @@ class EventLogController extends Controller
      */
     public function create()
     {
-        //$this->authorize('create-eventlog', $eventlog);
+        //
     }
 
     /**
@@ -29,7 +29,7 @@ class EventLogController extends Controller
      */
     public function store(StoreEventLogRequest $request)
     {
-        //$this->authorize('store-eventlog', $eventlog);
+        //
     }
 
     /**
@@ -49,7 +49,7 @@ class EventLogController extends Controller
      */
     public function edit(EventLog $eventLog)
     {
-        //$this->authorize('edit-eventlog', $eventlog);
+        //
     }
 
     /**
@@ -57,7 +57,7 @@ class EventLogController extends Controller
      */
     public function update(UpdateEventLogRequest $request, EventLog $eventLog)
     {
-        //$this->authorize('update-eventlog', $eventlog);
+        //
     }
 
     /**
@@ -65,6 +65,6 @@ class EventLogController extends Controller
      */
     public function destroy(EventLog $eventLog)
     {
-        //$this->authorize('destroy-eventlog', $eventlog);
+        //
     }
 }

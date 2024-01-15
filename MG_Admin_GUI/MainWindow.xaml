@@ -128,9 +128,11 @@
                         </ListView.View>
                     </ListView>
                 </UniformGrid>
+                
                 <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
                     <Button Name="btnOrderedToCooked" Content="->" Width="30" Height="200" Click="btnOrderedToCooked_Click"/>
                 </StackPanel>
+                
                 <UniformGrid Grid.Column="2" Grid.Row="1">
                     <ListView Name="lvCooked" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2">
                         <ListView.View>
@@ -178,9 +180,11 @@
                         </ListView.View>
                     </ListView>
                 </UniformGrid>
+                
                 <StackPanel Grid.Column="3" Grid.Row="1" VerticalAlignment="Center">
                     <Button Name="btnCookedToServed" Content="->" Width="30" Height="200" Click="btnCookedToServed_Click"/>
                 </StackPanel>
+                
                 <UniformGrid Grid.Column="4" Grid.Row="1">
                     <ListView Name="lvServed" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2">
                         <ListView.View>
@@ -228,6 +232,7 @@
                         </ListView.View>
                     </ListView>
                 </UniformGrid>
+                
                 <WrapPanel Grid.ColumnSpan="5" Grid.Row="2">
                     <DataGrid Name="dgPurchases" 
                               AutoGenerateColumns="False"
@@ -258,7 +263,6 @@
                             <DataGridTextColumn Header="Felhasználó" Binding="{Binding purchaseUser.name, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                             <DataGridTextColumn Header="Asztal" Binding="{Binding purchaseDesk, UpdateSourceTrigger=PropertyChanged}" Width="1.5*"/>
                         </DataGrid.Columns>
-
                     </DataGrid>
                 </WrapPanel>
             </Grid>
@@ -278,12 +282,10 @@
                     <TextBox Name="tbReservationGuestNo" Text="{Binding number_of_guests, Mode=TwoWay}"/>
                     <Label Content="Érkezés:"/>
                     <UniformGrid Columns="1" Rows="1">
-                        <!--<TextBox Name="tbReservationArrivalTime" Text="{Binding arrivalTime, Converter={StaticResource DateTimeFormatConverter}}"/>-->
                         <xctk:DateTimePicker x:Name="dtpReservationArrivalTime" Value="{Binding checkin_date}" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" />
                     </UniformGrid>
                     <Label Content="Távozás:"/>
                     <UniformGrid Columns="1" Rows="1">
-                        <!--<TextBox Name="tbReservationGetawayTime" Text="{Binding getawayTime, Converter={StaticResource DateTimeFormatConverter}}"/>-->
                         <xctk:DateTimePicker x:Name="dtpReservationGetawayTime" Value="{Binding checkout_date}" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" />
                     </UniformGrid>
                     <Label Content="Név:"/>
@@ -291,7 +293,8 @@
                     <Label Content="Telefon:"/>
                     <TextBox Name="tbReservationPhone" Text="{Binding phone}"/>
                     <Label Content="Asztal:"/>
-                    <ComboBox Name="cobReservationDesks" ItemsSource="{Binding Desks}" SelectedValuePath="id"/>
+                    <ComboBox Name="cobReservationDesks" ItemsSource="{Binding Desks}" SelectedValuePath="id"
+                              SelectedItem="{Binding reservationDesk, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                 </UniformGrid>
                 <WrapPanel Orientation="Horizontal" Margin="10" Grid.Row="1" HorizontalAlignment="Center">
                     <Button Name="btnReservationSave" Content="Mentés" Click="btnDataSave_Click"/>
@@ -374,7 +377,7 @@
                                     <!--<Button Name="btnImageCancel" Content="Mégsem" Click="btnImageCancel_Click"/>-->
                                 </UniformGrid>
                                 <UniformGrid>
-                                    <Image Name="imgProductImage" Source="{Binding productImage.img_data}" Width="400" Stretch="Uniform"/>
+                                    <Image Name="imgProductImage" Source="{Binding productImage.img_data, UpdateSourceTrigger=PropertyChanged}" Width="400" Stretch="Uniform"/>
                                 </UniformGrid>
                             </StackPanel>
                         </GroupBox>
@@ -454,7 +457,7 @@
                                     <Label Content="Allergének:" HorizontalAlignment="Left"/>
                                     <StackPanel>
                                         <ScrollViewer VerticalScrollBarVisibility="Visible">
-                                            <ListView Name="lvIngredientAllergens" ItemsSource="{Binding ingredientAllergens}" DisplayMemberPath="name"/>
+                                            <ListView Name="lvIngredientAllergens" ItemsSource="{Binding ingredientAllergens, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="name"/>
                                         </ScrollViewer>
                                     </StackPanel>
                                 </StackPanel>

@@ -1,6 +1,0 @@
-.toast {
-    left: 50%;
-    position: fixed;
-    transform: translate(-50%, -100%);
-    z-index: 9999;
-}

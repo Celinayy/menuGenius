@@ -3,16 +3,15 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StorePurchaseRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -23,10 +22,7 @@ class StorePurchaseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date_time' => ['required', 'datetime'],
-            'total_pay' => ['required', 'integer'],
-            'status' => ['required', 'string', Rule::in(['ordered', 'cooked', 'served'])],
-            'paid' => ['required', 'booleand'],
+            //
         ];
     }
 }

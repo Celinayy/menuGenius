@@ -63,8 +63,8 @@ namespace MG_Admin_GUI.Models
             }
         }
 
-        private string _phone;
-        public string phone
+        private string? _phone;
+        public string? phone
         {
             get { return _phone; }
             set
@@ -97,7 +97,11 @@ namespace MG_Admin_GUI.Models
             name = reader.GetString("name");
             email = reader.GetString("email");
             password = reader.GetString("password");
-            phone = reader.GetString("phone");
+            //phone = reader.GetString("phone");
+            if (!reader.IsDBNull(reader.GetOrdinal("phone")))
+            {
+                phone = reader.GetString("phone");
+            }
             admin = reader.GetBoolean("admin");
         }
 

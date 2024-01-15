@@ -23,7 +23,7 @@ class PurchaseFactory extends Factory
         $this->faker->locale('hu_HU');
         $statuses = ['ordered', 'cooked', 'served'];
 
-        $user = User::inRandomOrder()->first();
+        $user = $this->faker->boolean ? User::inRandomOrder()->first() : null;
         $desk = Desk::inRandomOrder()->first();
 
         return [
@@ -31,7 +31,7 @@ class PurchaseFactory extends Factory
             'total_pay' => $this -> faker -> numberBetween(10000, 50000),
             'status' => Arr::random($statuses),
             'paid' => $this -> faker -> boolean,
-            'user_id' => $user -> id,
+            'user_id' => $user ? $user -> id : null,
             'desk_id' => $desk -> id,
         ];
     }
