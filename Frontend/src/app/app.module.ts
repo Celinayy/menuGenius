@@ -11,9 +11,10 @@ import { MainWindowComponent } from './main-window/main-window.component';
 import { LoginWindowComponent } from './login-window/login-window.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactWindowComponent } from './contact-window/contact-window.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsWindowComponent } from './products-window/products-window.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -29,12 +30,14 @@ import { ToastrModule } from 'ngx-toastr';
     HeaderComponent,
     ContactWindowComponent,
     ProductsWindowComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: "toast-top-center",
