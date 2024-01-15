@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using MG_Admin_GUI.Models;
+using Microsoft.Win32;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -51,9 +52,9 @@ namespace MG_Admin_GUI
 
         }
 
-        private void btnOpen_Click(object sender, RoutedEventArgs e)
+        public Image GetReturnImage()
         {
-            OpenImage();
+            return ImageVM.selectedImage;
         }
 
         public void OpenImage()
@@ -122,5 +123,104 @@ namespace MG_Admin_GUI
             //spSelectedImage.DataContext = ImageVM.selectedImage;
         }
 
+        private void btnOpen_Click(object sender, RoutedEventArgs e)
+        {
+            OpenImage();
+        }
+
+        private void btnInsert_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string saveQuery = null;
+                string tableName = "images";
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+
+                saveQuery = "SET GLOBAL max_allowed_packet = 16777216;";
+                saveQuery += $"INSERT INTO {tableName}(id, img_name, img_data) VALUES (@id, @img_name, @img_data)";
+
+                parameters.Add("@id", tbImageId.Text);
+                parameters.Add("@img_name", ImageVM.selectedImage.img_name);
+                parameters.Add("@img_data", ImageVM.selectedImage.img_data);
+
+                ExecuteQuery(saveQuery, parameters);
+                ImageVM.selectedImage = null;
+                spSelectedImage = null;
+                ImageVM.Images = Image.GetImages();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba történt az adatbázisba mentés közben!" + ex.Message, "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        public void ExecuteQuery(string query, Dictionary<string, object> parameters = null)
+        {
+            using (var connection = DatabaseHandler.OpenConnection())
+            {
+                MySqlTransaction transaction = connection.BeginTransaction();
+                try
+                {
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        if (parameters != null)
+                        {
+                            AddParametersToCommand(command, parameters);
+                        }
+                        command.ExecuteNonQuery();
+                    }
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hiba történt az adatbázisba írás során!" + ex.Message, "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    transaction.Rollback();
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        private void AddParametersToCommand(MySqlCommand command, Dictionary<string, object> parameters)
+        {
+            foreach (var parameter in parameters)
+            {
+                command.Parameters.AddWithValue(parameter.Key, parameter.Value);
+            }
+        }
+
+        private void btnImageSelect_Click(object sender, RoutedEventArgs e)
+        {
+            ImageVM.selectedImage = (Image)dgImages.SelectedItem;
+            DialogResult = true;
+            this.Close();
+        }
+
+        private void btnImageDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Dictionary<string, object> parameters = new Dictionary<string, object>();
+                string deleteQuery = $"DELETE FROM images WHERE id = @id";
+
+                parameters.Add("@id", ImageVM.selectedImage.id);
+
+                ExecuteQuery(deleteQuery, parameters);
+                ImageVM.selectedImage = null;
+                spSelectedImage = null;
+                ImageVM.Images = Image.GetImages();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba történt a törlés közben!" + ex.Message, "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
