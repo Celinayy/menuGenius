@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ProductModel } from '../models/product-model';
 import { ProductService } from '../services/product.service';
+import { CategoryModel } from '../models/category-model';
+import { CategoriesService } from '../services/categories.service';
 
 @Component({
   selector: 'app-products-window',
@@ -10,24 +12,43 @@ import { ProductService } from '../services/product.service';
 export class ProductsWindowComponent {
 
   public products: ProductModel[] = [];
+  public categories: CategoryModel[] = [];
+
   searchKey: string = "";
   public searchTerm: string = '';
+  public category_id : number | null = null;
 
-
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private categoryService: CategoriesService) {
     this.loadProducts()
+    this.loadCategories();
+
     this.productService.search.subscribe((val: any) =>{
       this.searchKey = val;
     })
+
   };
 
   private loadProducts() {
     this.productService.listProducts().subscribe((products) => {
-      this.products = products
+      this.products = products;
     })
   };
 
+  private loadCategories() {
+    this.categoryService.getAllCategory().subscribe((categories) => {
+      this.categories = categories;
+    })
+  }
+
+
   search() {
     this.productService.search.next(this.searchTerm);
+  }
+
+  public get filterCategory() {
+    return this.products.filter((p) => {
+      if(!this.category_id) return true;
+      return p.category_id === this.category_id;
+    })
   }
 }
