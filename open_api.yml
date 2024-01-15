@@ -1,0 +1,190 @@
+openapi: '3.0.2'
+info:
+  title: 'MenuGenius API'
+  version: '1.0'
+  description: 'A MenuGenius digitális étlap és foglalási rendszer API-ja.'
+  termsOfService: http://menugenius.com/terms-of-use
+  contact:
+    name: MenuGenius Support
+    url: https://www.menugenius.com/contact-us/
+    email: menugenius@gmail.com
+  license:
+    name: MenuGenius Licence
+    url: http://licence.foo.com
+servers:
+  - url: http://127.0.0.1:8000/api
+    description: Dev Server
+paths:
+  /product:
+    get:
+      description: 'Az összes termék adatainak lekérése az adatbázisból.'
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/product'
+
+  /login:
+    post:
+      description: Felhasználó bejelentkezés
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+        required: true
+
+      parameters: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+        '401':
+          description: Ismeretlen felhasználó!
+          content:
+            application/json:
+    
+
+components:
+  schemas:
+    product:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'Töltött tojás'
+        description:
+          type: string
+          example: 'Tejfölös-mustáros krémmel töltött főtt tojás.'
+        category_id:
+          type: integer
+          example: 1
+        packing:
+          type: string
+          example: '1 adag'
+        price:
+          type: integer
+          example: 3000
+        is_food:
+          type: boolean
+          example: 1
+        image_id:
+          type: integer
+          example: 69
+        image:
+          $ref: '#/components/schemas/image'
+        category:
+          $ref: '#/components/schemas/category'
+        ingredients:
+          type: array
+          items: 
+            $ref: '#/components/schemas/ingredient'
+
+    category:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: 'előétel'
+    
+    image:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 69
+        img_name:
+          type: string
+          example: 'toltott_tojas.png'
+        img_data:
+          type: string
+          example: 'iVBORw0KGgoAAAANSUhEUgAA…Nym8wAAAABJRU5ErkJggg==..'
+    
+    ingredient:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: 'tojás'
+        allergens:
+          type: array
+          items: 
+            $ref: '#/components/schemas/allergen'
+
+    allergen:
+      type: object
+      properties:
+        id: 
+          type: integer
+          example: 9
+        code:
+          type: number
+          example: 3.00
+        name:
+          type: string
+          example: 'tojás'
+
+    user:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: admin
+        email:
+          type: string
+          example: menugenius@gmail.com
+          format: email
+        password:
+          type: string
+          example: $2y$12$FSsfwJkLeSn9pVK.CMKmF.Untr.d8aqxQQanOrpEtVTHDCvbqd8yW
+        phone:
+          type: string
+          format: phone
+          example: +36 30 123 4567
+        admin:
+          type: boolean
+          example: 1
+        rememberToken:
+          type: string
+          example: q52pArs96Y
+    
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
