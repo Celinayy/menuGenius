@@ -35,41 +35,48 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $product = new Product();
-        $product->name = $request->input('name');
-        $product->description = $request->input('description');
-        $product->packing = $request->input('packing');
-        $product->price = $request->input('price');
-        $product->is_food = $request->input('is_food');
-        $product->category_id = $request->input('category_id');
-        $product->image_id = $request->input('image_id');
+        // $product = new Product();
+        // $product->name = $request->input('name');
+        // $product->description = $request->input('description');
+        // $product->packing = $request->input('packing');
+        // $product->price = $request->input('price');
+        // $product->is_food = $request->input('is_food');
+        // $product->category_id = $request->input('category_id');
+        // $product->image_id = $request->input('image_id');
 
-        $product->save();
+        // $product->save();
 
-        return response()->json(['message' => 'A termék létrehozva!', 'data' => $product], 201);
-
-        //
+        // return response()->json(['message' => 'A termék létrehozva!', 'data' => $product], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        if (!$product) {
-            return response()->json(['error' => 'A terméket nem találtam!'], 404);
-        }
+        return Product::with([
+            'image', 
+            'category', 
+            'ingredients' => function($query) {
+                $query->with('allergens');
+            }
+            ])->findOrFail($id);
 
-        if($product){
-            $product = Product::with([
-                'image', 
-                'category', 
-                'ingredients' => function($query) {
-                    $query->with('allergens');
-                }
-            ])->findOrFail($product->id);
-            return response()->json($product);
-        }
+        // if (!$product) {
+        //     return response()->json(['error' => 'A terméket nem találtam!'], 404);
+        // }
+
+        // if($product){
+        //     $product = Product::with([
+        //         'image', 
+        //         'category', 
+        //         'ingredients' => function($query) {
+        //             $query->with('allergens');
+        //         }
+        //     ])->findOrFail($product->id);
+        //     return response()->json($product);
+        // }
+        //return response()->json($product);
     }
 
     /**

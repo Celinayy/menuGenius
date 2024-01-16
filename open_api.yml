@@ -15,31 +15,129 @@ servers:
   - url: http://127.0.0.1:8000/api
     description: Dev Server
 paths:
-  /product:
-    get:
-      description: 'Az összes termék adatainak lekérése az adatbázisból.'
-      parameters: []
+
+  /register:
+    post: 
+      tags: ['Felhasználókezelés']
+      summary: Felhasználó regisztráció
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 2
+                  maxLength: 50
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  minLength: 6
+                  maxLength: 255
+                password_confirmation:
+                  type: string
+                  minLength: 6
+                  maxLength: 255
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/product'
-
+                type: object
+                properties:
+                  token:
+                    type: string
+                  user:
+                    $ref: '#/components/schemas/user'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Az érvénytelen adatok miatti hibaüzenet
   /login:
     post:
-      description: Felhasználó bejelentkezés
+      tags: ['Felhasználókezelés']
+      summary: Felhasználó bejelentkezés
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/user'
-        required: true
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  minLength: 6
+                  maxLength: 255
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  user:
+                    $ref: '#/components/schemas/user'
 
-      parameters: []
+        '401':
+          description: Ismeretlen felhasználó!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Az érvénytelen adatok miatti hibaüzenet
+ 
+  /logout:
+    post:
+      tags: ['Felhasználókezelés']
+      summary: Felhasználó kijelentkezés
+      security:
+        - bearerAuth: ['admin', 'user']
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Sikeresen kijelentkeztetve
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Az érvénytelen hitelesítő adatok miatti hibaüzenet
+  /user:
+    get:
+      tags: ['Felhasználókezelés']
+      summary: 'Bejelentkezett felhasználó adatainak lekérése'
+      security:
+        - bearerAuth: []
       responses:
         '200':
           description: OK
@@ -52,7 +150,226 @@ paths:
           description: Ismeretlen felhasználó!
           content:
             application/json:
-    
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unknown_user:
+                  summary: Ismeretlen felhasználó!
+                  value: 
+                    error: Ismeretlen felhasználó!
+
+  /purchase:
+    get:
+      tags: ['Vásárlások kezelése']
+      summary: 'Admin/User : összes/saját vásárlás lekérése tokennel'
+      security:
+        - bearerAuth: ['admin', 'user']
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/adminPurchaseList'
+                    - $ref: '#/components/schemas/userPurchaseList'
+        '401':
+          description: Ismeretlen felhasználó!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                error: Ismeretlen felhasználó!
+    post:
+      tags: ['Vásárlások kezelése']
+      summary: Létrehoz egy új vásárlást
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date_time: 
+                  type: string
+                  example: "2022-01-14T12:30:00"
+                total_pay:
+                  type: integer
+                  example: 10000
+                status:
+                  type: string
+                  example: ordered
+                paid:
+                  type: boolean
+                  example: true
+                desk_id:
+                  type: integer
+                  example: 2
+                user_id:
+                  type: integer
+                  example: 4
+                products:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      quantity:
+                        type: integer
+                        example: 1
+      responses:
+        '201':
+          description: A vásárlás létrehozva!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    $ref: '#/components/schemas/purchase'
+        '400':
+          description: Helytelen kérési formátum
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Helytelen kérési formátum
+
+  /reservation:
+    get:
+      tags: ['Foglalások kezelése']
+      summary: 'Admin/User : összes/saját foglalás lekérése tokennel'
+      security:
+        - bearerAuth: ['admin', 'user']
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/adminReservationList'
+                    - $ref: '#/components/schemas/userReservationList'
+        '401':
+          description: Ismeretlen felhasználó!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                error: Ismeretlen felhasználó!
+
+    post:
+      tags: ['Foglalások kezelése']
+      summary: Létrehoz egy új foglalást
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                number_of_guests: 
+                  type: integer
+                  example: 6
+                checkin_date:
+                  type: string
+                  example: "2022-01-14T12:30:00"
+                checkout_date:
+                  type: string
+                  example: "2022-01-14T12:30:00"
+                name:
+                  type: string
+                  example: Tóth Ottó
+                phone:
+                  type: string
+                  example: +36 30 281 1288
+                desk_id:
+                  type: integer
+                  example: 2
+                user_id:
+                  type: integer
+                  example: 4
+                closed:
+                  type: boolean
+                  example: false
+      responses:
+        '201':
+          description: A foglalás létrehozva!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    $ref: '#/components/schemas/reservation'
+        '400':
+          description: Helytelen kérési formátum
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Helytelen kérési formátum
+
+  /product:
+    get:
+      tags: ['Termékekkel kapcsolatos lekérések']
+      summary: 'Az összes termék adatainak lekérése az adatbázisból.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/product'
+
+  /product/{id}:
+    get:
+      tags: ['Termékekkel kapcsolatos lekérések']
+      summary: 'Egy termék adatainak lekérése id alapján'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/product'
+
+  /category:
+    get:
+      tags: ['Termékekkel kapcsolatos lekérések']
+      summary: 'Termékkategóriák lekérése'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/category'
 
 components:
   schemas:
@@ -101,6 +418,10 @@ components:
         name:
           type: string
           example: 'előétel'
+        allergens:
+          type: array
+          items:
+            $ref: '#/components/schemas/allergen'
     
     image:
       type: object
@@ -141,6 +462,82 @@ components:
         name:
           type: string
           example: 'tojás'
+    
+    purchase:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        date_time:
+          type: string
+          example: "1993-12-07 02:42:15"
+        total_pay:
+          type: integer
+          example: 40199
+        status:
+          type: string
+          example: "ordered"
+        paid:
+          type: boolean
+          example: true
+        user_id:
+          type: integer
+          example: 6
+        desk_id:
+          type: integer
+          example: 5
+      required:
+        - date_time
+        - total_pay
+        - status
+        - paid
+        - products
+
+
+    reservation:
+      type: object
+      properties:
+        "id":
+          type: integer
+          example: 1
+        "number_of_guests":
+          type: integer
+          example: 5
+        "checkin_date":
+          type: string
+          example: "1993-12-07 02:42:15"
+        "checkout_date":
+          type: string
+          example: "1993-12-07 04:42:15"
+        "name":
+          type: string
+          example: "Lakatos-Fülöp Judit"
+        "phone":
+          type: string
+          example: "+36 27 257 0914"
+        "desk_id":
+          type: integer
+          example: 13
+        "user_id":
+          type: integer
+          example: 2
+        "closed":
+          type: boolean
+          example: 0
+        "desk":
+          type: object
+          $ref: "#/components/schemas/desk"
+        
+    desk:
+      type: object
+      properties:
+        "id":
+          type: integer
+          example: 1
+        "number_of_seats":
+          type: integer
+          example: 8
 
     user:
       type: object
@@ -171,8 +568,39 @@ components:
         rememberToken:
           type: string
           example: q52pArs96Y
-    
-    Error:
+        purchases:
+          type: array
+          items:
+            type: object
+            $ref: "#/components/schemas/purchase"
+        reservations:
+          type: array
+          items:
+            type: object
+            $ref: "#/components/schemas/reservation"
+
+    adminPurchaseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/purchase'
+
+    userPurchaseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/purchase'
+
+    adminReservationList:
+      type: array
+      items:
+        $ref: '#/components/schemas/reservation'
+        
+    userReservationList:
+      type: array
+      items:
+        $ref: '#/components/schemas/reservation'
+
+
+    error:
       type: object
       required:
         - code
@@ -188,3 +616,4 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
+      bearerFormat: JWT
