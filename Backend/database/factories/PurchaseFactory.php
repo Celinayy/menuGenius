@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 use App\Models\Desk;
+use App\Models\Purchase;
 use Illuminate\Support\Arr;
 
 
@@ -20,7 +21,6 @@ class PurchaseFactory extends Factory
      */
     public function definition(): array
     {
-        $this->faker->locale('hu_HU');
         $statuses = ['ordered', 'cooked', 'served'];
 
         //$user = $this->faker->boolean ? User::inRandomOrder()->first() : null;
@@ -28,7 +28,7 @@ class PurchaseFactory extends Factory
         $desk = Desk::inRandomOrder()->first();
 
         return [
-            'date_time' => $this -> faker -> dateTime(),
+            'date_time' => $this -> faker -> dateTimeBetween('-2 week', 'now'),
             'total_pay' => $this -> faker -> numberBetween(10000, 50000),
             'status' => Arr::random($statuses),
             'paid' => $this -> faker -> boolean,
@@ -36,4 +36,18 @@ class PurchaseFactory extends Factory
             'desk_id' => $desk -> id,
         ];
     }
+
+    public function configure(): Factory
+    {
+        return $this->afterCreating(function (Purchase $purchase) {
+            $twentyFourHoursAgo = now()->subHours(24);
+
+            if ($purchase->date_time < $twentyFourHoursAgo) {
+                $purchase->paid = true;
+                $purchase->status = 'served';
+                $purchase->save();
+            }
+        });
+    }
+
 }
