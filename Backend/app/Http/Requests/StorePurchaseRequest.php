@@ -23,10 +23,12 @@ class StorePurchaseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date_time' => ['required', 'datetime'],
+            'date_time' => ['required', 'date'],
             'total_pay' => ['required', 'integer'],
             'status' => ['required', 'string', Rule::in(['ordered', 'cooked', 'served'])],
-            'paid' => ['required', 'booleand'],
+            'paid' => ['required', 'boolean'],
+            'desk_id' => ['required'],
+            'user_id' => ['required']
         ];
     }
 }

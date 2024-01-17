@@ -15,28 +15,31 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-
-
-        if($user -> admin == true)
+        if(auth()->check()) 
         {
-            $purchases = Purchase::with(['user', 'desk', 'products' => function ($query) {
-                $query->withPivot('quantity');
-            }])->get();
-            return $purchases;
+            $user = auth()->user();
 
-        }
-        if($user -> admin == false)
-        {
-            $purchases = $user->purchases()->with
-            ([
-                'user', 'desk', 'products' => function ($query) 
+            if ($user->admin == true)
+            {
+                $purchases = Purchase::with(['user', 'desk', 'products' => function ($query) 
                 {
                     $query->withPivot('quantity');
-                }
-            ])->get();
-            return $purchases;
+                }])->get();
 
+                return response()->json($purchases, 200);
+            }
+            else
+            {
+                $purchases = $user->purchases()->with
+                ([
+                    'user', 'desk', 'products' => function ($query) 
+                    {
+                        $query->withPivot('quantity');
+                    }
+                ])->get();
+        
+                return response()->json($purchases, 200);
+            }
         }
         else
         {
@@ -60,15 +63,20 @@ class PurchaseController extends Controller
      */
     public function store(StorePurchaseRequest $request)
     {
-        $purchase = new Purchase();
-        $purchase->date_time = $request->input('date_time');
-        $purchase->total_pay = $request->input('total_pay');
-        $purchase->status = $request->input('status');
-        $purchase->paid = $request->input('paid');
-        $purchase->user_id = $request->input('user_id');
-        $purchase->desk_id = $request->input('desk_id');
-
-        $purchase->save();
+        $purchase = Purchase::create([
+            'date_time' => $request->input('date_time', now()),
+            'total_pay' => $request->input('total_pay'),
+            'status' => $request->input('status', 'ordered'),
+            'paid' => $request->input('paid', false),
+            'desk_id' => $request->input('desk_id'),
+            'user_id' => $request->input('user_id')
+            //'user_id' => auth()->id(),
+        ]);
+    
+        $products = $request->input('products');
+        foreach ($products as $product) {
+            $purchase->products()->attach($product['id'], ['quantity' => $product['quantity']]);
+        }
 
         return response()->json(['message' => 'A vásárlás létrehozva!', 'data' => $purchase], 201);
     }
@@ -76,12 +84,12 @@ class PurchaseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Purchase $purchase)
+    public function show($id)
     {
-        if (!$purchase) {
+        if (!$id) {
             return response()->json(['error' => 'Nincs ilyen vásárlás!'], 404);
         }
-        return response()->json($purchase);
+        return response()->json($id);
     }
 
     /**

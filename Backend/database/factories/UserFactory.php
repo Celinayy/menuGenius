@@ -25,7 +25,6 @@ class UserFactory extends Factory
     public function definition(): array
     {
         $this->faker->addProvider(new HungarianPerson($this->faker));
-        $this->faker->locale('hu_HU');
 
 
         return [

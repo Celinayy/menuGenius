@@ -20,7 +20,7 @@ class UserController extends Controller
 
         if($user)
         {
-            return User::where('id', $user->id)->with(['purchases'])->get();;
+            return User::where('id', $user->id)->with(['purchases', 'reservations'])->get();;
         }
         else
         {

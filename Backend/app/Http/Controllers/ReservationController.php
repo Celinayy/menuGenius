@@ -46,29 +46,29 @@ class ReservationController extends Controller
      */
     public function store(StoreReservationRequest $request)
     {
-        $reservation = new Reservation();
-        $reservation->number_of_guests = $request->input('number_of_guests');
-        $reservation->checkin_date = $request->input('checkin_date');
-        $reservation->checkout_date = $request->input('checkout_date');
-        $reservation->name = $request->input('name');
-        $reservation->phone = $request->input('phone');
-        $reservation->desk_id = $request->input('desk_id');
-
-        $reservation->save();
-
+        $reservation = Reservation::create([
+            'number_of_guests' => $request->input('number_of_guests'),
+            'checkin_date' => $request->input('checkin_date'),
+            'checkout_date' => $request->input('checkout_date'),
+            'name' => $request->input('name'),
+            'phone'=> $request->input('phone'),
+            'desk_id' => $request->input('desk_id'),
+            'user_id' => $request->input('user_id'),
+            'closed' => $request->input('closed')
+        ]);
         return response()->json(['message' => 'A foglalás létrehozva!', 'data' => $reservation], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Reservation $reservation)
+    public function show($id)
     {
-        if (!$reservation) {
+        if (!$id) {
             return response()->json(['error' => 'Nincs ilyen foglalás!'], 404);
         }
     
-        return response()->json($reservation);
+        return response()->json($id);
     }
 
     /**

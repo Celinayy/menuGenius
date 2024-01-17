@@ -10,6 +10,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Purchase extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'date_time',
+        'total_pay',
+        'status',
+        'paid',
+        'user_id',
+        'desk_id',
+    ];
     public $timestamps = false;
 
     public function desk():BelongsTo
