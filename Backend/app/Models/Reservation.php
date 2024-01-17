@@ -12,6 +12,18 @@ class Reservation extends Model
     use HasFactory;
     public $timestamps = false;
 
+    protected $fillable = [
+        'number_of_guests',
+        'checkin_date',
+        'checkout_date',
+        'name',
+        'phone',
+        'user_id',
+        'desk_id',
+        'closed'
+    ];
+
+
     public function desk():BelongsTo
     {
         return $this->belongsTo(Desk::class);
