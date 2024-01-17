@@ -14,11 +14,13 @@ export class RegisterWindowComponent {
   public email: string = "";
   public password: string = "";
   public passwordAgain: string = "";
+  public phone: string = "";
+
 
   constructor(public menu: MenuComponent, private authService: AuthService, private toastr: ToastrService) {}
 
   public register() {
-    this.authService.register(this.name, this.email, this.password, this.passwordAgain).subscribe((result) => {
+    this.authService.register(this.name, this.email, this.phone, this.password, this.passwordAgain).subscribe((result) => {
       this.menu.showLogin();
       this.toastr.success("Sikeres regisztráció!", undefined, {
         timeOut: 3000,
