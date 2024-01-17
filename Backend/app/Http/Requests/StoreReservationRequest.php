@@ -22,12 +22,13 @@ class StoreReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'numberOfGuests' => ['required', 'integer'],
-            'checkInDate' => ['required', 'datetime', 'after_or_equal:today'],
-            'checkOutDate' => ['required', 'datetime'],
-            'name' => ['required', 'string'],
-            'phone' => ['required', 'string'],
-            'desk_id' => ['required', 'exsist:desks,id']
+            // 'number_of_guests' => ['required', 'integer'],
+            // 'checkin_date' => ['required', 'datetime', 'after_or_equal:today'],
+            // 'checkout_date' => ['required', 'datetime'],
+            // 'name' => ['required', 'string'],
+            // 'phone' => ['required', 'string'],
+            // 'desk_id' => ['required', 'exists:desks,id'],
+            // 'user_id' => ['required', 'exists:users,id']
         ];
     }
 }
