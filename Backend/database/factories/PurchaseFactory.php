@@ -20,7 +20,7 @@ class PurchaseFactory extends Factory
      */
     public function definition(): array
     {
-        $this->faker->local('hu_HU');
+        $this->faker->locale('hu_HU');
         $statuses = ['ordered', 'cooked', 'served'];
 
         //$user = $this->faker->boolean ? User::inRandomOrder()->first() : null;
