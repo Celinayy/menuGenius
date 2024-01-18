@@ -55,6 +55,7 @@ Route::middleware('auth:sanctum')->resource("user", UserController::class)->exce
 Route::get("allergen", [AllergenController::class, 'index']);
 Route::get("category", [CategoryController::class, 'index']);
 Route::get("ingredient", [IngredientController::class, 'index']);
+Route::get("desk", [DeskController::class, 'index']);
 
 //Route::post('/login/callback', [SocialiteController::class, 'handleProviderCallback']);
 //Route::middleware(['auth:sanctum', 'permission:admin'])->resource("eventlog", EventLogController::class)->except(["edit", "create"]);
