@@ -16,10 +16,11 @@ export class AuthService {
     });
   }
 
-  public register(name: string, email: string, password: string, passwordAgain: string) {
+  public register(name: string, email: string, phone: string, password: string, passwordAgain: string) {
     return this.connection.post<{ token: string }>(`${this.url}/register`, {
       name,
       email,
+      phone,
       password,
       password_confirmation: passwordAgain,
     });

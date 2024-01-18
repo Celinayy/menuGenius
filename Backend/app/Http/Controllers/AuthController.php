@@ -13,8 +13,9 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $validator = Validator::make($request->only('name', 'email', 'password', 'password_confirmation'), [
+        $validator = Validator::make($request->only('name', 'email', 'phone', 'password', 'password_confirmation'), [
             'name' => ['required', 'min:2', 'max:50', 'string'],
+            'phone' => ['required', 'min:2', 'max:50', 'string'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:6', 'max:255', 'confirmed', 'string'],
         ]);
@@ -22,7 +23,7 @@ class AuthController extends Controller
         if ($validator->fails())
             return response()->json($validator->errors(), 400);
 
-        $input = $request->only('name', 'email', 'password');
+        $input = $request->only('name', 'email', 'password', "phone");
         $input['password'] = Hash::make($request['password']);
         $user = User::create($input);
         $data =  [
@@ -41,7 +42,7 @@ class AuthController extends Controller
 
         if ($validator->fails())
             return response()->json($validator->errors(), 400);
-        
+
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = $request->user();
             $data =  [
@@ -60,7 +61,7 @@ class AuthController extends Controller
             $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
         }
         return response()->json(['message' => 'Successfully logged out']);
-    
+
         //$request->user()->currentAccessToken()->delete();
     }
 }
