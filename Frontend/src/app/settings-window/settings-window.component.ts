@@ -15,7 +15,7 @@ export class SettingsWindowComponent {
     this.showSavedToast = true;
     setTimeout(() =>{
       this.showSavedToast = false;
-    }, 2000)
+    }, 2500)
 
   }
 
