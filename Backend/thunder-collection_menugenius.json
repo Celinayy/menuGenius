@@ -1,70 +1,10 @@
 {
     "client": "Thunder Client",
     "collectionName": "menugenius",
-    "dateExported": "2024-01-12T05:52:10.990Z",
+    "dateExported": "2024-01-19T23:08:13.201Z",
     "version": "1.1",
     "folders": [],
     "requests": [
-        {
-            "_id": "9e0dc072-0f10-4509-b445-7667eb074613",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "GET all product",
-            "url": "127.0.0.1:8000/api/product",
-            "method": "GET",
-            "sortNum": 10000,
-            "created": "2024-01-08T03:18:17.684Z",
-            "modified": "2024-01-12T04:45:53.693Z",
-            "headers": [],
-            "params": [],
-            "tests": []
-        },
-        {
-            "_id": "76582744-5e5c-4e4b-96be-79775c74550e",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "POST login user",
-            "url": "127.0.0.1:8000/api/login",
-            "method": "POST",
-            "sortNum": 20000,
-            "created": "2024-01-12T03:05:22.766Z",
-            "modified": "2024-01-12T04:45:35.736Z",
-            "headers": [],
-            "params": [],
-            "body": {
-                "type": "formdata",
-                "raw": "",
-                "form": [
-                    {
-                        "name": "email",
-                        "value": "menugenius@gmail.com"
-                    },
-                    {
-                        "name": "password",
-                        "value": "password"
-                    }
-                ]
-            },
-            "tests": []
-        },
-        {
-            "_id": "875f7ff9-7ea0-4655-8a1e-cab18b271e79",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "GET logged in user",
-            "url": "127.0.0.1:8000/api/user",
-            "method": "GET",
-            "sortNum": 40000,
-            "created": "2024-01-12T03:24:14.824Z",
-            "modified": "2024-01-12T04:11:22.614Z",
-            "headers": [],
-            "params": [],
-            "auth": {
-                "type": "bearer",
-                "bearer": "10|Xn0mPBBL8COw5QpxCDF5N9GDh4t1r9TLxaIuNMno62cb84e6"
-            },
-            "tests": []
-        },
         {
             "_id": "6a3ef14d-6ceb-478f-9b92-93ad7a3c7085",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
@@ -72,7 +12,7 @@
             "name": "POST register user",
             "url": "127.0.0.1:8000/api/",
             "method": "POST",
-            "sortNum": 50000,
+            "sortNum": 5000,
             "created": "2024-01-12T04:13:36.855Z",
             "modified": "2024-01-12T04:20:22.885Z",
             "headers": [],
@@ -106,20 +46,363 @@
             "tests": []
         },
         {
+            "_id": "76582744-5e5c-4e4b-96be-79775c74550e",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "POST login user",
+            "url": "127.0.0.1:8000/api/login",
+            "method": "POST",
+            "sortNum": 7500,
+            "created": "2024-01-12T03:05:22.766Z",
+            "modified": "2024-01-19T14:37:17.380Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "email",
+                        "value": "user@gmail.com"
+                    },
+                    {
+                        "name": "password",
+                        "value": "password"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
             "_id": "8a17e815-4223-4752-8758-bbae2433758c",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
             "containerId": "",
             "name": "POST logout user",
             "url": "127.0.0.1:8000/api/logout",
             "method": "POST",
-            "sortNum": 60000,
+            "sortNum": 8125,
             "created": "2024-01-12T05:33:43.526Z",
-            "modified": "2024-01-12T05:40:32.284Z",
+            "modified": "2024-01-19T18:05:39.711Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "15|70woNbztfJC9IlcJVCOeyi5oUsj6lkAH3vozabNa50a2c8c0"
+                "bearer": "43|hIYl5aLieRWv4dVl2qqYfuvDnj0C01lnXJwKAnj1c8c5c3cd"
+            },
+            "tests": []
+        },
+        {
+            "_id": "875f7ff9-7ea0-4655-8a1e-cab18b271e79",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET logged in user",
+            "url": "127.0.0.1:8000/api/user",
+            "method": "GET",
+            "sortNum": 8750,
+            "created": "2024-01-12T03:24:14.824Z",
+            "modified": "2024-01-19T14:52:48.402Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "41|AdGSplpv7DFCL68p2egqCmt5LetNz0stQiuP9nWt8d44c01d"
+            },
+            "tests": []
+        },
+        {
+            "_id": "fae1000b-d98d-405f-bc67-de94cc7fb07d",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "PUT update user",
+            "url": "127.0.0.1:8000/api/user/2",
+            "method": "PUT",
+            "sortNum": 16875,
+            "created": "2024-01-18T11:23:44.667Z",
+            "modified": "2024-01-19T14:53:36.144Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"phone\": \"+96 10 987 6543\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "41|AdGSplpv7DFCL68p2egqCmt5LetNz0stQiuP9nWt8d44c01d"
+            },
+            "tests": []
+        },
+        {
+            "_id": "7dc98f91-719a-4dfd-a4ff-1763b793bee4",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET allergen",
+            "url": "127.0.0.1:8000/api/allergen",
+            "method": "GET",
+            "sortNum": 53125,
+            "created": "2024-01-19T13:59:36.932Z",
+            "modified": "2024-01-19T13:59:55.957Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d10f4f7f-bd3c-4c75-aeca-c8a207654958",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET categories",
+            "url": "127.0.0.1:8000/api/category/",
+            "method": "GET",
+            "sortNum": 58750,
+            "created": "2024-01-14T07:48:11.839Z",
+            "modified": "2024-01-16T21:42:20.693Z",
+            "headers": [
+                {
+                    "name": "id",
+                    "value": "2"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5068db43-4b2b-4098-9b20-47e4c78bbc2a",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET desk",
+            "url": "127.0.0.1:8000/api/desk",
+            "method": "GET",
+            "sortNum": 64375,
+            "created": "2024-01-19T14:00:28.832Z",
+            "modified": "2024-01-19T14:00:38.161Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "1dbbb51d-2718-43fa-8fbd-7a90b3e9ff0a",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET ingredient",
+            "url": "127.0.0.1:8000/api/ingredient",
+            "method": "GET",
+            "sortNum": 67187.5,
+            "created": "2024-01-19T14:00:54.045Z",
+            "modified": "2024-01-19T14:01:03.996Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9e0dc072-0f10-4509-b445-7667eb074613",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET all product",
+            "url": "127.0.0.1:8000/api/product/",
+            "method": "GET",
+            "sortNum": 68593.8,
+            "created": "2024-01-08T03:18:17.684Z",
+            "modified": "2024-01-19T14:01:37.919Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "78306dc0-cd53-468e-9f34-528d9dc185bb",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET product by id",
+            "url": "127.0.0.1:8000/api/product/202",
+            "method": "GET",
+            "sortNum": 69296.9,
+            "created": "2024-01-19T14:01:53.022Z",
+            "modified": "2024-01-19T22:45:10.593Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e3b18d5b-9470-4dc3-b2e2-ef4b4350d14b",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET all own purchase",
+            "url": "127.0.0.1:8000/api/purchase",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-01-12T07:11:38.782Z",
+            "modified": "2024-01-19T14:02:35.085Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "39|LHg712CcASqTYAD2fjZPgl3e5aBEbJ6smOsRecsF8f90da29"
+            },
+            "tests": []
+        },
+        {
+            "_id": "50321c3f-1539-415b-811d-eb6ef8e340e7",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET purchase by id",
+            "url": "127.0.0.1:8000/api/purchase/202",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-01-19T14:04:17.012Z",
+            "modified": "2024-01-19T22:03:23.447Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "47|fYSvcmrOiC11d6yuoxxzkVZwttUcPxzlBC0u72hJ81e80e7a"
+            },
+            "tests": []
+        },
+        {
+            "_id": "27a39341-45ea-4f28-8d2f-ae3f55e18775",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "POST purchase",
+            "url": "127.0.0.1:8000/api/purchase",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2024-01-16T19:09:53.441Z",
+            "modified": "2024-01-19T14:03:37.896Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"date_time\": \"2024-01-14T12:30:00\",\n  \"total_pay\": 20000,\n  \"status\": \"ordered\",\n  \"paid\": false,\n  \"desk_id\": 4,\n  \"user_id\": 2,\n  \"products\": [\n    {\"id\": 3, \"quantity\": 1},\n    {\"id\": 22, \"quantity\": 2}\n  ]\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "35f78613-6bd4-4f9b-ae4a-16f77defd584",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "PUT purchase",
+            "url": "127.0.0.1:8000/api/purchase/202",
+            "method": "PUT",
+            "sortNum": 93750,
+            "created": "2024-01-19T14:20:22.305Z",
+            "modified": "2024-01-19T22:06:36.717Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"date_time\": \"2024-01-14 12:30:00\",\n  \"total_pay\": 21000,\n  \"status\": \"ordered\",\n  \"paid\": 1,\n  \"user_id\": 2,\n  \"desk_id\": 4\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "39afc188-6d62-4fc6-b38d-7367bae9d373",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "DELETE purchase",
+            "url": "",
+            "method": "DELETE",
+            "sortNum": 94375,
+            "created": "2024-01-19T22:40:01.754Z",
+            "modified": "2024-01-19T22:45:06.432Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "868d74bc-beae-4835-8a7e-8552e64510c9",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET all own reservation",
+            "url": "127.0.0.1:8000/api/reservation",
+            "method": "GET",
+            "sortNum": 95000,
+            "created": "2024-01-16T19:57:27.588Z",
+            "modified": "2024-01-19T22:20:42.590Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "47|fYSvcmrOiC11d6yuoxxzkVZwttUcPxzlBC0u72hJ81e80e7a"
+            },
+            "tests": []
+        },
+        {
+            "_id": "ab341e3e-e8ae-44b6-9c01-8f22b63df776",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET reservation by id",
+            "url": "127.0.0.1:8000/api/reservation/22",
+            "method": "GET",
+            "sortNum": 97500,
+            "created": "2024-01-19T22:41:11.651Z",
+            "modified": "2024-01-19T22:45:04.594Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "98efd61c-cdf2-4c22-9a6c-ff54049fa433",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "POST reservation",
+            "url": "127.0.0.1:8000/api/reservation",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2024-01-16T19:55:46.420Z",
+            "modified": "2024-01-17T13:54:22.625Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"number_of_guests\": 3,\n  \"checkin_date\": \"2024-01-18T18:00\",\n  \"checkout_date\": \"2024-01-18T20:00\",\n  \"name\": \"Teszt Elek\",\n  \"phone\": \"3634287\",\n  \"desk_id\": 3,\n  \"user_id\": 2,\n  \"closed\": false\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "3d9b3e95-53ff-463f-9193-1183b1ee0777",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "PUT reservation",
+            "url": "127.0.0.1:8000/api/reservation/22",
+            "method": "PUT",
+            "sortNum": 180000,
+            "created": "2024-01-19T22:21:09.497Z",
+            "modified": "2024-01-19T22:36:43.481Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"phone\": \"+36 11 351 2229\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "47|fYSvcmrOiC11d6yuoxxzkVZwttUcPxzlBC0u72hJ81e80e7a"
+            },
+            "tests": []
+        },
+        {
+            "_id": "4c61d4c1-ffd1-4c64-9a32-05b6f0134699",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "DELETE reservation",
+            "url": "127.0.0.1:8000/api/reservation/22",
+            "method": "DELETE",
+            "sortNum": 220000,
+            "created": "2024-01-19T22:42:43.262Z",
+            "modified": "2024-01-19T22:44:39.648Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "47|fYSvcmrOiC11d6yuoxxzkVZwttUcPxzlBC0u72hJ81e80e7a"
             },
             "tests": []
         }

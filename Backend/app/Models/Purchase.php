@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\DB;
+
 
 class Purchase extends Model
 {
@@ -18,6 +20,7 @@ class Purchase extends Model
         'paid',
         'user_id',
         'desk_id',
+        'product_id'
     ];
     public $timestamps = false;
 
@@ -36,5 +39,11 @@ class Purchase extends Model
         return $this->belongsToMany(Product::class, 'product_purchase')->as('product_purchase')->withPivot('quantity');
     }
 
+    public function recalculateTotalPay()
+    {
+        $totalPay = $this->products()->sum(DB::raw('price * quantity'));
 
+        $this->total_pay = $totalPay;
+        $this->save();
+    }
 }
