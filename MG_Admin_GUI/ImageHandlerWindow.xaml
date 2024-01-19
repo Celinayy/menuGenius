@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MG_Admin_GUI"
         mc:Ignorable="d"
-        Title="ImageHandler" Height="1200" Width="1600" WindowState="Maximized" Background="Goldenrod" Foreground="Black">
+        Title="ImageHandler" Height="1200" Width="1600" FontSize="16" WindowState="Maximized" Background="Goldenrod" Foreground="Black">
     <Window.Icon>
         <BitmapImage UriSource="/Logos/menu_genius_icon.ico"/>
     </Window.Icon>
@@ -28,11 +28,11 @@
         <StackPanel Name="spSelectedImage" DataContext="{Binding selectedImage}">
             <StackPanel >
                 <UniformGrid>
-                    <Label Content="ID:"/>
+                    <Label Content="ID:" HorizontalAlignment="Right"/>
                     <TextBox Name="tbImageId" Text="{Binding id}"/>
                 </UniformGrid>
                 <UniformGrid>
-                    <Label Content="Name:"/>
+                    <Label Content="Name:" HorizontalAlignment="Right"/>
                     <TextBox Name="tbImageName" Text="{Binding img_name}"/>
                 </UniformGrid>
                 <!--<UniformGrid>
@@ -41,17 +41,17 @@
             </UniformGrid>-->
             </StackPanel>
             <StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel HorizontalAlignment="Right">
                     <Button Name="btnOpen" Content="Megnyitás" Click="btnOpen_Click"/>
                     <Button Name="btnInsert" Content="Mentés az adatbázisba" Click="btnInsert_Click"/>
                     <Button Name="btnCancel" Content="Mégsem" Click="btnCancel_Click"/>
                 </StackPanel>
             </StackPanel>
-            <StackPanel>
+            <GroupBox Header="Kép:">
                 <Canvas Name="cvImage" Width="800" Height="600">
                     <Image Width="800" Height="600" Name="imgImage" Source="{Binding img_data}" Stretch="UniformToFill"/>
                 </Canvas>
-            </StackPanel>
+            </GroupBox>
         </StackPanel>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -63,9 +63,9 @@
                     SelectionChanged="dgImages_SelectionChanged"
                     CanUserAddRows="False" VerticalScrollBarVisibility="Visible">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding id}"/>
-                    <DataGridTextColumn Header="Name" Binding="{Binding img_name}"/>
-                    <DataGridTemplateColumn Header="Image">
+                    <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding img_name}" Width="5*"/>
+                    <DataGridTemplateColumn Header="Image" Width="5*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <!--<TextBlock Text="{Binding imgData}" TextWrapping="WrapWithOverflow"/>-->
