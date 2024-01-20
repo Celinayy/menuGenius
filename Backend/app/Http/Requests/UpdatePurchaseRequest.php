@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdatePurchaseRequest extends FormRequest
 {
@@ -22,10 +23,15 @@ class UpdatePurchaseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date_time' => ['required', 'datetime'],
-            'total_pay' => ['required', 'integer'],
-            'satus' => ['required', 'string', Rule::in(['ordered', 'cooked', 'served'])],
-            'paid' => ['required', 'booleand'],
+            'total_pay' => ['integer'],
+            'status' => ['string', Rule::in(['ordered', 'cooked', 'served'])],
+            'paid' => ['boolean'],
+            'user_id' => ['exists:users,id'],
+            'desk_id' => ['exists:desks,id'],
+
+            'products' => ['array'],
+            'products.*.id' => ['exists:product_purchase,id'],
+            'products.*.quantity' => ['integer', 'min:1'],
         ];
     }
 }

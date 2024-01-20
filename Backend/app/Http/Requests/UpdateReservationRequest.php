@@ -22,12 +22,12 @@ class UpdateReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'numberOfGuests' => ['required', 'integer'],
-            'checkInDate' => ['required', 'datetime', 'after_or_equal:today'],
-            'checkOutDate' => ['required', 'datetime'],
-            'name' => ['required', 'string'],
-            'phone' => ['required', 'string'],
-            'desk_id' => ['required', 'exsist:desks,id']
+            'numberOfGuests' => ['integer'],
+            'checkInDate' => ['datetime', 'after_or_equal:today'],
+            'checkOutDate' => ['datetime'],
+            'name' => ['string'],
+            'phone' => ['string'],
+            'desk_id' => ['exsist:desks,id']
         ];
     }
 }

@@ -48,10 +48,19 @@ Route::controller(ReservationController::class)->group(function () {
     Route::middleware('auth:sanctum')->get('reservation', 'index');
     Route::middleware('auth:sanctum')->get('reservation/{id}', 'show');
     Route::middleware('auth:sanctum')->put('reservation/{id}', 'update');
+    Route::middleware('auth:sanctum')->delete('reservation/{id}', 'destroy');
     Route::post('reservation', 'store');
 });
 
-Route::middleware('auth:sanctum')->resource("user", UserController::class)->except(["edit", "create"]);
+Route::controller(UserController::class)->group(function (){
+    Route::middleware('auth:sanctum')->get('user', 'index');
+    Route::middleware('auth:sanctum')->get('user/{id}', 'show');
+    Route::middleware('auth:sanctum')->put('user/{id}', 'update');
+    Route::middleware('auth:sanctum')->delete('user/{id}', 'destroy');
+    Route::post('user', 'store');
+});
+
+//Route::middleware('auth:sanctum')->resource("user", UserController::class)->except(["edit", "create"]);
 Route::get("allergen", [AllergenController::class, 'index']);
 Route::get("category", [CategoryController::class, 'index']);
 Route::get("ingredient", [IngredientController::class, 'index']);

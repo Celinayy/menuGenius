@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -41,7 +42,17 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        // $input = $request->validated();
+        // $input['password'] = Hash::make($input['password']);
+        
+        // $user = User::create($input);
+    
+        // $data = [
+        //     'token' => $user->createToken('Sanctom+Socialite')->plainTextToken,
+        //     'user' => $user,
+        // ];
+    
+        // return response()->json($data, 200);
     }
 
     /**
@@ -66,16 +77,35 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, $id)
     {
-        //
-    }
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'Felhasználó nem található.'], 404);
+        }
+    
+        if (auth()->user()->id !== $user->id) {
+            return response()->json(['error' => 'Nincs jogosultság a módosításra.'], 403);
+        }
+    
+        $data = $request->json()->all();
+    
+        $user->update($data);
+    
+        return response()->json(['message' => 'Az adatok sikeresen frissítve lettek.']);
+        }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)
     {
-        //
+        if (auth()->user()->id === $user->id) {
+            $user->delete();
+            return response()->json(['message' => 'A profil sikeresen törölve lett.']);
+        } else {
+            return response()->json(['error' => 'Nincs engedélyed a profil törléséhez.'], 403);
+        }
     }
 }

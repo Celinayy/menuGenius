@@ -157,6 +157,30 @@ paths:
                   summary: Ismeretlen felhasználó!
                   value: 
                     error: Ismeretlen felhasználó!
+    put:
+      tags: ['Felhasználókezelés']
+      summary: 'Felhasználó saját adatainak módosítása'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+        '401':
+          description: Ismeretlen felhasználó!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                unknown_user:
+                  summary: Ismeretlen felhasználó!
+                  value: 
+                    error: Ismeretlen felhasználó!
 
   /purchase:
     get:
@@ -245,6 +269,42 @@ paths:
                   error:
                     type: string
                     example: Helytelen kérési formátum
+    put:
+      tags: ['Vásárlások kezelése']
+      summary: 'Admin/User : bármelyik/saját vásárlás módosítása tokennel'
+      security:
+        - bearerAuth: ['admin', 'user']
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/purchase'
+  /purchase/{id}:
+    get:
+      tags: ['Vásárlások kezelése']
+      summary: 'Egy vásárlás lekérése id alapján'
+      security:
+        - bearerAuth: ['admin', 'user']
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/purchase'
+        '401':
+          description: Ismeretlen felhasználó!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                error: Ismeretlen felhasználó!
 
   /reservation:
     get:
@@ -329,6 +389,64 @@ paths:
                   error:
                     type: string
                     example: Helytelen kérési formátum
+    put:
+      tags: ['Foglalások kezelése']
+      summary: 'Admin/User : bármelyik/saját foglalás módosítása tokennel'
+      security:
+        - bearerAuth: ['admin', 'user']
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/reservation'
+        '401':
+          description: Ismeretlen felhasználó!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                error: Ismeretlen felhasználó!
+  /reservation/{id}:
+    get:
+      tags: ['Foglalások kezelése']
+      summary: 'Egy foglalás lekérése id alapján'
+      security:
+        - bearerAuth: ['admin', 'user']
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reservation'
+        '401':
+          description: Ismeretlen felhasználó!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                error: Ismeretlen felhasználó!
+
+  /desk:
+    get:
+      tags: ['Foglalások kezelése']
+      summary: 'Az összes asztal lekérése az adatbázisból.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/desk'
 
   /product:
     get:
@@ -357,10 +475,24 @@ paths:
                 type: object
                 $ref: '#/components/schemas/product'
 
+  /allergen:
+    get:
+      tags: ['Termékekkel kapcsolatos lekérések']
+      summary: 'Az összes allergén lekérése az adatbázisból.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/allergen'
+
   /category:
     get:
       tags: ['Termékekkel kapcsolatos lekérések']
-      summary: 'Termékkategóriák lekérése'
+      summary: 'Az összes kategória lekérése az adatbázisból.'
       responses:
         '200':
           description: OK
@@ -370,6 +502,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/category'
+            
+  /ingredient:
+    get:
+      tags: ['Termékekkel kapcsolatos lekérések']
+      summary: 'Az összes alapanyag lekérése az adatbázisból.'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ingredient'
+
+
+
 
 components:
   schemas:
