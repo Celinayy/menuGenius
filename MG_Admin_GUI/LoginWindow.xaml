@@ -31,8 +31,8 @@
                 <PasswordBox Name="pbUserPassword"/>
             </UniformGrid>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button Name="btnLogin" Content="Bejelentkezés" Click="btnLogin_Click"/>
                 <Button Name="btnLoginClose" Content="Bezárás" Click="btnLoginClose_Click"/>
+                <Button Name="btnLogin" Content="Bejelentkezés" Click="btnLogin_Click"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">

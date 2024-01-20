@@ -10,6 +10,8 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using MG_Admin_GUI.ViewModels;
 using MG_Admin_GUI.Models;
+using System.Collections;
+using System.Configuration;
 
 
 namespace MG_Admin_GUI
@@ -57,10 +59,12 @@ namespace MG_Admin_GUI
             EventLogVM = new EventLogViewModel();
             ImageVM = new ImageViewModel();
 
+            dgReservations.CurrentCellChanged += DgReservations_CurrentCellChanged;
+
             UpdateClassesFromDatabase();
             SetDatacontexts();
             RefreshListViews();
-            //ShowLoginWindow();
+            ShowLoginWindow();
 
         }
 
@@ -90,6 +94,7 @@ namespace MG_Admin_GUI
             cobIngredientAllergen.ItemsSource = AllergenVM.Allergens;
             cobIngredients.ItemsSource = IngredientVM.Ingredients;
             cobReservationDesks.ItemsSource = DeskVM.Desks;
+            cobReservationUsers.ItemsSource = UserVM.Users;
 
             tabControl.DataContext = PurchaseVM;
             tabReservation.DataContext = ReservationVM;
@@ -192,12 +197,11 @@ namespace MG_Admin_GUI
                 int id = purchase.id;
                 using (var connection = DatabaseHandler.OpenConnection())
                 {
-                    connection.Open();
-                    string query = "UPDATE purchase SET paid = @isPaid WHERE id = @id";
+                    string query = "UPDATE purchases SET paid = @paid WHERE id = @id";
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@ispaid", isPaid);
+                        command.Parameters.AddWithValue("@paid", isPaid);
                         command.Parameters.AddWithValue("@id", id);
                         command.ExecuteNonQuery();
                     }
@@ -363,23 +367,25 @@ namespace MG_Admin_GUI
                     {
                         case "btnReservationSave":
                             tableName = "reservations";
-                            saveQuery = $"INSERT INTO {tableName}(id, number_of_guests, checkin_dat, checkout_date, name, phone, desk_id) VALUES(@id, @number_of_guests, @checkin_date, @checkout_date, @name, @phone, @desk_id)";
+                            saveQuery = $"INSERT INTO {tableName}(number_of_guests, checkin_date, checkout_date, name, phone, desk_id, user_id) VALUES (@number_of_guests, @checkin_date, @checkout_date, @name, @phone, @desk_id, @user_id)";
 
-                            parameters.Add("@id", int.Parse(tbReservationId.Text));
+                            //parameters.Add("@id", int.Parse(tbReservationId.Text));
                             parameters.Add("@number_of_guests", int.Parse(tbReservationGuestNo.Text));
                             parameters.Add("@checkin_date", DateTime.Parse(dtpReservationArrivalTime.Text));
                             parameters.Add("@checkout_date", DateTime.Parse(dtpReservationGetawayTime.Text));
                             parameters.Add("@name", tbReservationName.Text);
                             parameters.Add("@phone", tbReservationPhone.Text);
                             parameters.Add("@desk_id", cobReservationDesks.SelectedValue);
+                            parameters.Add("@user_id", cobReservationUsers.SelectedValue);
                             break;
 
                         case "btnProductSave":
                             tableName = "products";
                             tableName2 = "product_ingredient";
-                            saveQuery = $"INSERT INTO {tableName} (id, name, description, category_id, packing, price, is_food, image_id) VALUES (@id, @name, @description, @category_id, @packing, @price, @is_food, @image_id);";
+                            int productId = NextIdQuery(tableName);
+                            saveQuery = $"INSERT INTO {tableName} (name, description, category_id, packing, price, is_food, image_id) VALUES (@name, @description, @category_id, @packing, @price, @is_food, @image_id);";
 
-                            parameters.Add("@id", int.Parse(tbProductId.Text));
+                            //parameters.Add("@id", int.Parse(tbProductId.Text));
                             parameters.Add("@name", tbProductName.Text);
                             parameters.Add("@description", tbProductDescription.Text);
                             parameters.Add("@category_id", cobCategories.SelectedValue);
@@ -391,8 +397,8 @@ namespace MG_Admin_GUI
                             List<string> ingredientInsertCommands = new List<string>();
                             foreach (var ingredient in lvProductIngredient.Items)
                             {
-                                int ingredientId = ((Ingredient)ingredient).id;
-                                string ingredientInsertCommand = $"INSERT INTO {tableName2} (product_id, ingredient_id) VALUES (@id, {ingredientId});";
+                                int currentId = ((Ingredient)ingredient).id;
+                                string ingredientInsertCommand = $"INSERT INTO {tableName2} (product_id, ingredient_id) VALUES ({productId}, {currentId});";
                                 ingredientInsertCommands.Add(ingredientInsertCommand);
                             }
 
@@ -405,16 +411,17 @@ namespace MG_Admin_GUI
                         case "btnIngredientSave":
                             tableName = "ingredients";
                             tableName2 = "ingredient_allergen";
-                            saveQuery = $"INSERT INTO {tableName} (id, name) VALUES (@id, @name);";
+                            int ingredientId = NextIdQuery(tableName);
+                            saveQuery = $"INSERT INTO {tableName} (name) VALUES (@name);";
 
-                            parameters.Add("@id", int.Parse(tbIngredientId.Text));
+                            //parameters.Add("@id", int.Parse(tbIngredientId.Text));
                             parameters.Add("@name", tbIngredientName.Text);
 
                             List<string> allergenInsertCommands = new List<string>();
                             foreach (var allergen in lvIngredientAllergens.Items)
                             {
                                 int allergenId = ((Allergen)allergen).id;
-                                string allergenInsertCommand = $"INSERT INTO {tableName2} (ingredient_id, allergen_id) VALUES (@id, {allergenId});";
+                                string allergenInsertCommand = $"INSERT INTO {tableName2} (ingredient_id, allergen_id) VALUES ({ingredientId}, {allergenId});";
                                 allergenInsertCommands.Add(allergenInsertCommand);
                             }
 
@@ -424,34 +431,34 @@ namespace MG_Admin_GUI
 
                         case "btnCategorySave":
                             tableName = "categories";
-                            saveQuery = $"INSERT INTO {tableName} (id, name) VALUES (@id, @name)";
+                            saveQuery = $"INSERT INTO {tableName} (name) VALUES (@name)";
 
-                            parameters.Add("@id", int.Parse(tbCategoryId.Text));
+                            //parameters.Add("@id", int.Parse(tbCategoryId.Text));
                             parameters.Add("@name", tbCategoryName.Text);
                             break;
 
                         case "btnAllergenSave":
                             tableName = "allergens";
-                            saveQuery = $"INSERT INTO {tableName} (id, code, name) VALUES (@id, @code, @name)";
+                            saveQuery = $"INSERT INTO {tableName} (code, name) VALUES (@code, @name)";
 
-                            parameters.Add("@id", int.Parse(tbAllergenId.Text));
+                            //parameters.Add("@id", int.Parse(tbAllergenId.Text));
                             parameters.Add("@code", decimal.Parse(tbAllergenCode.Text.Replace('.', ',')));
                             parameters.Add("@name", tbAllergenName.Text);
                             break;
 
                         case "btnDeskSave":
                             tableName = "desks";
-                            saveQuery = $"INSERT INTO {tableName} (id, number_of_seats) VALUES (@id, @number_of_seats)";
+                            saveQuery = $"INSERT INTO {tableName} (number_of_seats) VALUES (@number_of_seats)";
 
-                            parameters.Add("@id", int.Parse(tbDeskId.Text));
+                            //parameters.Add("@id", int.Parse(tbDeskId.Text));
                             parameters.Add("@number_of_seats", int.Parse(tbDeskNumberOfSeats.Text));
                             break;
 
                         case "btnUserSave":
                             tableName = "users";
-                            saveQuery = $"INSERT INTO {tableName} (id, name, email, password, phone, admin) VALUES (@id, @name, @email, @password, @phone, @admin)";
+                            saveQuery = $"INSERT INTO {tableName} (name, email, password, phone, admin) VALUES (@name, @email, @password, @phone, @admin)";
 
-                            parameters.Add("@id", int.Parse(tbUserId.Text));
+                            //parameters.Add("@id", int.Parse(tbUserId.Text));
                             parameters.Add("@name", tbUserName.Text);
                             parameters.Add("@email", tbUserEmail.Text);
                             parameters.Add("@password", tbUserPassword.Text);
@@ -497,15 +504,16 @@ namespace MG_Admin_GUI
                     {
                         case "btnReservationUpdate":
                             tableName = "reservations";
-                            updateQuery = $"UPDATE {tableName} SET id = @id, number_of_guests = @number_of_guests, checkin_date = @checkin_date, checkout_date = @checkout_date, name = @name, phone = @phone, desk_id = @deskId WHERE id = @id";
+                            updateQuery = $"UPDATE {tableName} SET number_of_guests = @number_of_guests, checkin_date = @checkin_date, checkout_date = @checkout_date, name = @name, phone = @phone, desk_id = @deskId, user_id = @user_id WHERE id = @id";
 
-                            parameters.Add("@id", int.Parse(tbReservationId.Text));
+                            parameters.Add("@id", ReservationVM.selectedReservation.id);
                             parameters.Add("@number_of_guests", int.Parse(tbReservationGuestNo.Text));
                             parameters.Add("@checkin_date", DateTime.Parse(dtpReservationArrivalTime.Text));
                             parameters.Add("@checkout_date", DateTime.Parse(dtpReservationGetawayTime.Text));
                             parameters.Add("@name", tbReservationName.Text);
                             parameters.Add("@phone", tbReservationPhone.Text);
                             parameters.Add("@desk_id", cobReservationDesks.SelectedValue);
+                            parameters.Add("@user_id", cobReservationUsers.SelectedValue);
                             break;
 
                         case "btnProductUpdate":
@@ -513,7 +521,7 @@ namespace MG_Admin_GUI
                             tableName2 = "product_ingredient";
                             updateQuery = $"UPDATE {tableName} SET name = @name, description = @description, category_id = @category_id, packing = @packing, price = @price, is_food = @is_food, image_id = @image_id WHERE id = @id;";
 
-                            parameters.Add("@id", int.Parse(tbProductId.Text));
+                            parameters.Add("@id", ProductVM.selectedProduct.id);
                             parameters.Add("@name", tbProductName.Text);
                             parameters.Add("@description", tbProductDescription.Text);
                             parameters.Add("@category_id", cobCategories.SelectedValue);
@@ -527,7 +535,7 @@ namespace MG_Admin_GUI
                             {
                                 using (MySqlCommand command = new MySqlCommand(deleteQuery, connection))
                                 {
-                                    command.Parameters.AddWithValue("@id", int.Parse(tbProductId.Text));
+                                    command.Parameters.AddWithValue("@id", ProductVM.selectedProduct.id);
                                     command.ExecuteNonQuery();
                                 }
 
@@ -556,7 +564,7 @@ namespace MG_Admin_GUI
                             tableName2 = "ingredient_allergen";
                             updateQuery = $"UPDATE {tableName} SET name = @name, WHERE id = @id";
 
-                            parameters.Add("@id", int.Parse(tbIngredientId.Text));
+                            parameters.Add("@id", IngredientVM.selectedIngredient.id);
                             parameters.Add("@name", tbIngredientName.Text);
 
                             deleteQuery = $"DELETE FROM {tableName2} WHERE ingredient_id = @id";
@@ -564,7 +572,7 @@ namespace MG_Admin_GUI
                             {
                                 using (MySqlCommand command = new MySqlCommand(deleteQuery, connection))
                                 {
-                                    command.Parameters.AddWithValue("@id", int.Parse(tbIngredientId.Text));
+                                    command.Parameters.AddWithValue("@id", IngredientVM.selectedIngredient.id);
                                     command.ExecuteNonQuery();
                                 }
 
@@ -587,7 +595,7 @@ namespace MG_Admin_GUI
                             tableName = "categories";
                             updateQuery = $"UPDATE {tableName} SET name = @name WHERE id = @id";
 
-                            parameters.Add("@id", int.Parse(tbCategoryId.Text));
+                            parameters.Add("@id", CategoryVM.selectedCategory.id);
                             parameters.Add("@name", tbCategoryName.Text);
                             break;
 
@@ -595,7 +603,7 @@ namespace MG_Admin_GUI
                             tableName = "allergens";
                             updateQuery = $"UPDATE {tableName} SET code = @code, name = @name WHERE id = @id";
 
-                            parameters.Add("@id", int.Parse(tbAllergenId.Text));
+                            parameters.Add("@id", AllergenVM.selectedAllergen.id);
                             parameters.Add("@code", decimal.Parse(tbAllergenCode.Text.Replace('.', ',')));
                             parameters.Add("@name", tbAllergenName.Text);
                             break;
@@ -604,7 +612,7 @@ namespace MG_Admin_GUI
                             tableName = "desks";
                             updateQuery = $"UPDATE {tableName} SET number_of_seats = @number_of_seats WHERE id = @id";
 
-                            parameters.Add("@id", int.Parse(tbDeskId.Text));
+                            parameters.Add("@id", DeskVM.selectedDesk.id);
                             parameters.Add("@number_of_seats", int.Parse(tbDeskNumberOfSeats.Text));
                             break;
 
@@ -612,7 +620,7 @@ namespace MG_Admin_GUI
                             tableName = "users";
                             updateQuery = $"UPDATE {tableName} SET name = @name, email = @email, password = @password, phone = @phone, admin = @admin WHERE id = @id";
 
-                            parameters.Add("@id", int.Parse(tbUserId.Text));
+                            parameters.Add("@id", UserVM.selectedUser.id);
                             parameters.Add("@name", tbUserName.Text);
                             parameters.Add("@email", tbUserEmail.Text);
                             parameters.Add("@password", tbUserPassword.Text);
@@ -659,7 +667,7 @@ namespace MG_Admin_GUI
                             tableName = "reservations";
                             deleteQuery = $"DELETE FROM {tableName} WHERE id = @id";
 
-                            parameters.Add("@id", int.Parse(tbReservationId.Text));
+                            parameters.Add("@id", ReservationVM.selectedReservation.id);
 
                             break;
 
@@ -669,8 +677,7 @@ namespace MG_Admin_GUI
                             deleteQuery = $"DELETE FROM {tableName2} WHERE product_id = @id";
                             deleteQuery += $"DELETE FROM {tableName} WHERE id = @id";
 
-
-                            parameters.Add("@id", int.Parse(tbProductId.Text));
+                            parameters.Add("@id", ProductVM.selectedProduct.id);
 
                             //try
                             //{
@@ -692,7 +699,7 @@ namespace MG_Admin_GUI
                             tableName = "ingredients";
                             deleteQuery = $"DELETE FROM {tableName} WHERE id = @id";
 
-                            parameters.Add("@id", int.Parse(tbIngredientId.Text));
+                            parameters.Add("@id", IngredientVM.selectedIngredient.id);
 
                             break;
 
@@ -700,7 +707,7 @@ namespace MG_Admin_GUI
                             tableName = "categories";
                             deleteQuery = $"DELETE FROM {tableName} WHERE id = @id";
 
-                            parameters.Add("@id", int.Parse(tbCategoryId.Text));
+                            parameters.Add("@id", CategoryVM.selectedCategory.id);
 
                             break;
 
@@ -708,7 +715,7 @@ namespace MG_Admin_GUI
                             tableName = "allergens";
                             deleteQuery = $"DELETE FROM {tableName} WHERE id = @id";
 
-                            parameters.Add("@id", int.Parse(tbAllergenId.Text));
+                            parameters.Add("@id", AllergenVM.selectedAllergen.id);
 
                             break;
 
@@ -716,7 +723,7 @@ namespace MG_Admin_GUI
                             tableName = "desks";
                             deleteQuery = $"DELETE FROM {tableName} WHERE id = @id";
 
-                            parameters.Add("@id", int.Parse(tbDeskId.Text));
+                            parameters.Add("@id", DeskVM.selectedDesk.id);
 
                             break;
 
@@ -724,7 +731,7 @@ namespace MG_Admin_GUI
                             tableName = "users";
                             deleteQuery = $"DELETE FROM {tableName} WHERE id = @id";
 
-                            parameters.Add("@id", int.Parse(tbUserId.Text));
+                            parameters.Add("@id", UserVM.selectedUser.id);
 
                             break;
 
@@ -782,6 +789,39 @@ namespace MG_Admin_GUI
             }
         }
 
+        private int NextIdQuery(string tableName)
+        {
+            string databaseName = new MySqlConnectionStringBuilder(connectionString).Database;
+            string nextProductIdQuery = $"SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = '{databaseName}' AND TABLE_NAME = '{tableName}';";
+            //string nextProductIdQuery = $"SELECT IDENT_CURRENT('{tableName}') + 1 AS NextProductId;";
+
+            int nextProductId = 0;
+
+            using (var connection = DatabaseHandler.OpenConnection())
+            {
+                {
+                    MySqlTransaction transaction = connection.BeginTransaction();
+                    try
+                    {
+                        using (MySqlCommand command = new MySqlCommand(nextProductIdQuery, connection))
+                        {
+                            nextProductId = Convert.ToInt32(command.ExecuteScalar());
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Hiba történt az adat lekérése során!" + ex.Message, "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        transaction.Rollback();
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+                return nextProductId;
+            }
+        }
+
 
         private void btnDataCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -790,7 +830,7 @@ namespace MG_Admin_GUI
 
         private void ClearPropertyFields()
         {
-            tbReservationId.Text = string.Empty;
+            //tbReservationId.Text = string.Empty;
             tbReservationGuestNo.Text = string.Empty;
             dtpReservationArrivalTime.Text = string.Empty;
             dtpReservationGetawayTime.Text = string.Empty;
@@ -864,6 +904,73 @@ namespace MG_Admin_GUI
         private void btnAddallergenDelete_Click(object sender, RoutedEventArgs e)
         {
             lvIngredientAllergens.Items.Remove(lvIngredientAllergens.SelectedValue);
+        }
+
+        private void dgReservationsCBK_Checked(object sender, RoutedEventArgs e)
+        {
+            var checkBox = (CheckBox)sender;
+            var reservation = (Reservation)checkBox.DataContext;
+            reservation.reservationClosed = true;
+            UpdateReservationClosedStatus(reservation, true);
+        }
+
+        private void dgReservationsCBK_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var checkBox = (CheckBox)sender;
+            var reservation = (Reservation)checkBox.DataContext;
+            reservation.reservationClosed = false;
+            UpdateReservationClosedStatus(reservation, false);
+        }
+
+        private void UpdateReservationClosedStatus(Reservation reservation, bool reservationClosed)
+        {
+            try
+            {
+                int id = reservation.id;
+                using (var connection = DatabaseHandler.OpenConnection())
+                {
+                    string query = "UPDATE reservations SET closed = @closed WHERE id = @id";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@closed", reservationClosed);
+                        command.Parameters.AddWithValue("@id", id);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nem lehet kapcsolódni az adatbázishoz!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void DgReservations_CurrentCellChanged(object sender, EventArgs e)
+        {
+            ReservationVM.selectedReservation = (Reservation)dgReservations.CurrentItem;
+
+            if (dgReservations.CurrentCell.Column is DataGridCheckBoxColumn checkBoxColumn)
+            {
+                var checkBox = checkBoxColumn.GetCellContent(dgReservations.CurrentItem) as CheckBox;
+
+                if (checkBox != null)
+                {
+                    bool isChecked = checkBox.IsChecked ?? false;
+
+                    //Reservation reservation = (Reservation)dgReservations.SelectedValue;
+                    //Reservation reservation = (Reservation)checkBox.DataContext;
+
+                    if (isChecked)
+                    {
+                        UpdateReservationClosedStatus(ReservationVM.selectedReservation, false);
+                    }
+                    else
+                    {
+                        UpdateReservationClosedStatus(ReservationVM.selectedReservation, true);
+                    }
+                }
+            }
+
         }
     }
 }

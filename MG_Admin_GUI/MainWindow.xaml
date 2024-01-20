@@ -54,6 +54,7 @@
         </Style>
         <Style TargetType="ListViewItem">
             <Setter Property="Background" Value="Silver"/>
+            <Setter Property="FontSize" Value="13"/>
             <Style.Triggers>
                 <Trigger Property="ItemsControl.AlternationIndex" Value="1">
                     <Setter Property="Background" Value="Lavender"/>
@@ -82,7 +83,7 @@
                     <Label Content="Felszolgált rendelések:" Style="{StaticResource TitleLabelStyle}" HorizontalContentAlignment="Center"/>
                 </UniformGrid>
                 <UniformGrid Grid.Row="1">
-                    <ListView Name="lvPurchased" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2">
+                    <ListView Name="lvPurchased" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Dátum">
@@ -130,6 +131,14 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Végösszeg" DisplayMemberBinding="{Binding total_pay}"></GridViewColumn>
+                                <GridViewColumn Header="Asztal">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding purchaseDesk.id}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -140,7 +149,7 @@
                 </StackPanel>
                 
                 <UniformGrid Grid.Column="2" Grid.Row="1">
-                    <ListView Name="lvCooked" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2">
+                    <ListView Name="lvCooked" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Dátum" DisplayMemberBinding="{Binding date_time, Converter={StaticResource DateTimeFormatConverter}}"/>
@@ -182,6 +191,14 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Végösszeg" DisplayMemberBinding="{Binding total_pay}"/>
+                                <GridViewColumn Header="Asztal">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding purchaseDesk.id}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -192,7 +209,7 @@
                 </StackPanel>
                 
                 <UniformGrid Grid.Column="4" Grid.Row="1">
-                    <ListView Name="lvServed" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible" AlternationCount="2">
+                    <ListView Name="lvServed" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Visible">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Dátum" DisplayMemberBinding="{Binding date_time, Converter={StaticResource DateTimeFormatConverter}}"/>
@@ -234,6 +251,14 @@
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="Végösszeg" DisplayMemberBinding="{Binding total_pay}"/>
+                                <GridViewColumn Header="Asztal">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding purchaseDesk.id}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -247,7 +272,7 @@
                             <DataGridTextColumn Header="ID" Binding="{Binding id, UpdateSourceTrigger=PropertyChanged}" Width="0.3*"/>
                             <DataGridTextColumn Header="Dátum" Binding="{Binding date_time, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DateTimeFormatConverter}}" Width="*"/>
                             <DataGridTextColumn Header="Végösszeg" Binding="{Binding total_pay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
-                            <DataGridTemplateColumn Header="Tételek" Width="4*">
+                            <DataGridTemplateColumn Header="Tételek" Width="2*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <ItemsControl ItemsSource="{Binding purchaseProducts, UpdateSourceTrigger=PropertyChanged}">
@@ -268,6 +293,7 @@
                             <DataGridCheckBoxColumn Header="Fizetve" Binding="{Binding paid, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Width="*"/>
                             <DataGridTextColumn Header="Felhasználó" Binding="{Binding purchaseUser.name, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                             <DataGridTextColumn Header="Asztal" Binding="{Binding purchaseDesk, UpdateSourceTrigger=PropertyChanged}" Width="1.5*"/>
+                            <DataGridTextColumn Header="Vendég" Binding="{Binding purchaseUser, UpdateSourceTrigger=PropertyChanged}" Width="2*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </WrapPanel>
@@ -281,26 +307,33 @@
                     <RowDefinition Height="0.3*"/>
                     <RowDefinition Height="2.8*"/>
                 </Grid.RowDefinitions>
-                <UniformGrid Name="ugReservations" Grid.Row="0" Rows="7" Columns="2" DataContext="{Binding selectedReservation}" HorizontalAlignment="Center" Width="800">
-                    <Label Content="ID:" VerticalAlignment="Center"/>
-                    <TextBox Name="tbReservationId" Text="{Binding id}"/>
-                    <Label Content="Vendégek száma:"/>
+                <UniformGrid Name="ugReservations" Grid.Row="0" Rows="7" Columns="5" DataContext="{Binding selectedReservation}">
+                    <Label Content="ID:" VerticalAlignment="Center" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
+                    <TextBox Name="tbReservationId" Text="{Binding id}" IsReadOnly="True"/>
+                    <Label Content="Vendégek száma:" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
                     <TextBox Name="tbReservationGuestNo" Text="{Binding number_of_guests, Mode=TwoWay}"/>
-                    <Label Content="Érkezés:"/>
+                    <Label Width="200"/>
+                    <Label Content="Érkezés:" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
                     <UniformGrid Columns="1" Rows="1">
-                        <xctk:DateTimePicker x:Name="dtpReservationArrivalTime" Value="{Binding checkin_date}" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" />
+                        <xctk:DateTimePicker x:Name="dtpReservationArrivalTime" Value="{Binding checkin_date}" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss"/>
                     </UniformGrid>
-                    <Label Content="Távozás:"/>
+                    <Label Content="Távozás:" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
                     <UniformGrid Columns="1" Rows="1">
-                        <xctk:DateTimePicker x:Name="dtpReservationGetawayTime" Value="{Binding checkout_date}" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss" />
+                        <xctk:DateTimePicker x:Name="dtpReservationGetawayTime" Value="{Binding checkout_date}" Format="Custom" FormatString="yyyy.MM.dd HH:mm:ss"/>
                     </UniformGrid>
-                    <Label Content="Név:"/>
+                    <Label Width="200"/>
+                    <Label Content="Név:" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
                     <TextBox Name="tbReservationName" Text="{Binding name}"/>
-                    <Label Content="Telefon:"/>
+                    <Label Content="Telefon:" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
                     <TextBox Name="tbReservationPhone" Text="{Binding phone}"/>
-                    <Label Content="Asztal:"/>
+                    <Label Width="200"/>
+                    <Label Content="Asztal:" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
                     <ComboBox Name="cobReservationDesks" ItemsSource="{Binding Desks}" SelectedValuePath="id"
                               SelectedItem="{Binding reservationDesk, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <Label Content="Felhasználó:" HorizontalAlignment="Right" VerticalContentAlignment="Center"/>
+                    <ComboBox Name="cobReservationUsers" ItemsSource="{Binding Users}" SelectedValuePath="id" 
+                              SelectedItem="{Binding reservationUser, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                    </ComboBox>
                 </UniformGrid>
                 <WrapPanel Orientation="Horizontal" Margin="10" Grid.Row="1" HorizontalAlignment="Center">
                     <Button Name="btnReservationSave" Content="Mentés" Click="btnDataSave_Click"/>
@@ -308,15 +341,22 @@
                     <Button Name="btnReservationDelete" Content="Törlés" Click="btnDataDelete_Click"/>
                     <Button Name="btnReservationCancel" Content="Mégsem" Click="btnDataCancel_Click"/>
                 </WrapPanel>
-                <DataGrid Name="dgReservations" Grid.Row="2" ItemsSource="{Binding Reservations}" SelectionChanged="dgReservations_SelectionChanged" CanUserAddRows="False" AutoGenerateColumns="False">
+                <DataGrid Name="dgReservations" Grid.Row="2" 
+                          ItemsSource="{Binding Reservations, UpdateSourceTrigger=PropertyChanged}" 
+                          SelectionChanged="dgReservations_SelectionChanged" 
+                          CanUserAddRows="False" 
+                          AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="0.5*"/>
-                        <DataGridTextColumn Header="Név" Binding="{Binding name}" Width="1.5*"/>
-                        <DataGridTextColumn Header="Telefon" Binding="{Binding phone}" Width="1.5*"/>
-                        <DataGridTextColumn Header="Asztal" Binding="{Binding reservationDesk}" Width="1.5*"/>
-                        <DataGridTextColumn Header="Érkezés" Binding="{Binding checkin_date, Converter={StaticResource DateTimeFormatConverter}}" Width="1.5*"/>
-                        <DataGridTextColumn Header="Távozás" Binding="{Binding checkout_date, Converter={StaticResource DateTimeFormatConverter}}" Width="1.5*"/>
-                        <DataGridTextColumn Header="Vendégek száma" Binding="{Binding number_of_guests}" Width="1.5*"/>
+                        <DataGridTextColumn Header="Név" Binding="{Binding name}" Width="1.3*"/>
+                        <DataGridTextColumn Header="Telefon" Binding="{Binding phone}" Width="1.3*"/>
+                        <DataGridTextColumn Header="Asztal" Binding="{Binding reservationDesk}" Width="1.3*"/>
+                        <DataGridTextColumn Header="Érkezés" Binding="{Binding checkin_date, Converter={StaticResource DateTimeFormatConverter}}" Width="1.3*"/>
+                        <DataGridTextColumn Header="Távozás" Binding="{Binding checkout_date, Converter={StaticResource DateTimeFormatConverter}}" Width="1.3*"/>
+                        <DataGridTextColumn Header="Vendégek száma" Binding="{Binding number_of_guests}" Width="0.4*"/>
+                        <DataGridTextColumn Header="Felhasználó" Binding="{Binding reservationUser}" Width="2*"/>
+                        <DataGridCheckBoxColumn x:Name="dgReservationsCBK" Header="Lezárva" Binding="{Binding reservationClosed, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="*"/>
+
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -336,8 +376,8 @@
                 </Grid.RowDefinitions>
                 <UniformGrid Name="ugProducts" Grid.ColumnSpan="3" Rows="1" Columns="3" DataContext="{Binding selectedProduct}">
                     <UniformGrid Rows="6" Columns="2">
-                        <Label Content="id:"/>
-                        <TextBox Name="tbProductId" Text="{Binding id}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                        <Label Content="ID:"/>
+                        <TextBox Name="tbProductId" Text="{Binding id}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True"/>
                         <Label Content="Név:"/>
                         <TextBox Name="tbProductName" Text="{Binding name}"/>
                         <Label Content="Kategória:"/>
@@ -452,7 +492,7 @@
                             <Label Content="Alapanyagok:" Style="{StaticResource TitleLabelStyle}"/>
                             <UniformGrid Rows="2" Columns="2">
                                 <Label Content="ID:"/>
-                                <TextBox Name="tbIngredientId" Text="{Binding id}"/>
+                                <TextBox Name="tbIngredientId" Text="{Binding id}" IsReadOnly="True"/>
                                 <Label Content="Név:"/>
                                 <TextBox Name="tbIngredientName" Text="{Binding name}"/>
                             </UniformGrid>
@@ -484,8 +524,8 @@
                     </WrapPanel>
                     <DataGrid Name="dgIngredients" Grid.Row="3" ItemsSource="{Binding Ingredients}" SelectionChanged="dgIngredients_SelectionChanged" CanUserAddRows="False" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="id" Binding="{Binding id}"/>
-                            <DataGridTextColumn Header="Név" Binding="{Binding name}"/>
+                            <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"/>
+                            <DataGridTextColumn Header="Név" Binding="{Binding name}" Width="3*"/>
                             <DataGridTemplateColumn Header="Allergenek" Width="3*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -507,7 +547,7 @@
                         <Label Content="Étel kategóriák:" Style="{StaticResource TitleLabelStyle}"/>
                         <UniformGrid Columns="2" Rows="2">
                             <Label Content="ID:"/>
-                            <TextBox Name="tbCategoryId" Text="{Binding id}"/>
+                            <TextBox Name="tbCategoryId" Text="{Binding id}" IsReadOnly="True"/>
                             <Label Content="Név:"/>
                             <TextBox Name="tbCategoryName" Text="{Binding name}"/>
                         </UniformGrid>
@@ -518,8 +558,11 @@
                         <Button Name="btnCategoryDelete" Content="Törlés" Click="btnDataDelete_Click"/>
                         <Button Name="btnCategoryCancel" Content="Mégsem" Click="btnDataCancel_Click"/>
                     </WrapPanel>
-                    <DataGrid Name="dgCategories" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Categories}" SelectionChanged="dgCategories_SelectionChanged" CanUserAddRows="False">
-
+                    <DataGrid Name="dgCategories" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Categories}" SelectionChanged="dgCategories_SelectionChanged" CanUserAddRows="False" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"/>
+                            <DataGridTextColumn Header="Név" Binding="{Binding name}" Width="3*"/>
+                        </DataGrid.Columns>
                     </DataGrid>
 
                 </Grid>
@@ -533,7 +576,7 @@
                         <Label Content="Allergének:" Style="{StaticResource TitleLabelStyle}"/>
                         <UniformGrid Columns="2" Rows="3">
                             <Label Content="ID:"/>
-                            <TextBox Name="tbAllergenId" Text="{Binding id}"/>
+                            <TextBox Name="tbAllergenId" Text="{Binding id}" IsReadOnly="True"/>
                             <Label Content="Kód:"/>
                             <TextBox Name="tbAllergenCode" Text="{Binding code}"/>
                             <Label Content="Név:"/>
@@ -546,8 +589,12 @@
                         <Button Name="btnAllergenDelete" Content="Törlés" Click="btnDataDelete_Click"/>
                         <Button Name="btnAllergenCancel" Content="Mégsem" Click="btnDataCancel_Click"/>
                     </WrapPanel>
-                    <DataGrid Name="dgAllergens" Grid.Row="2" ItemsSource="{Binding Allergens}" SelectionChanged="dgAllergens_SelectionChanged" CanUserAddRows="False">
-
+                    <DataGrid Name="dgAllergens" Grid.Row="2" ItemsSource="{Binding Allergens}" SelectionChanged="dgAllergens_SelectionChanged" CanUserAddRows="False" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"/>
+                            <DataGridTextColumn Header="Kód" Binding="{Binding code}" Width="*"/>
+                            <DataGridTextColumn Header="Név" Binding="{Binding name}" Width="3*"/>
+                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
                 <Grid Name="grdDesks" Grid.Column="3">
@@ -560,7 +607,7 @@
                         <Label Content="Asztalok:" Style="{StaticResource TitleLabelStyle}"/>
                         <UniformGrid Columns="2" Rows="2">
                             <Label Content="ID:"/>
-                            <TextBox Name="tbDeskId" Text="{Binding id}"/>
+                            <TextBox Name="tbDeskId" Text="{Binding id}" IsReadOnly="True"/>
                             <Label Content="Ülőhelyek:"/>
                             <TextBox Name="tbDeskNumberOfSeats" Text="{Binding number_of_seats}"/>
                         </UniformGrid>
@@ -571,8 +618,11 @@
                         <Button Name="btnDeskDelete" Content="Törlés" Click="btnDataDelete_Click"/>
                         <Button Name="btnDeskCancel" Content="Mégsem" Click="btnDataCancel_Click"/>
                     </WrapPanel>
-                    <DataGrid Name="dgDesks" Grid.Column="3" Grid.Row="2" ItemsSource="{Binding Desks}" SelectionChanged="dgDesks_SelectionChanged" CanUserAddRows="False">
-
+                    <DataGrid Name="dgDesks" Grid.Column="3" Grid.Row="2" ItemsSource="{Binding Desks}" SelectionChanged="dgDesks_SelectionChanged" CanUserAddRows="False" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"/>
+                            <DataGridTextColumn Header="Ülőhelyek száma" Binding="{Binding number_of_seats}" Width="3*"/>
+                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </Grid>
@@ -587,7 +637,7 @@
                 </Grid.RowDefinitions>
                 <UniformGrid Columns="2" Rows="6" Width="800" DataContext="{Binding selectedUser}">
                     <Label Content="ID:"/>
-                    <TextBox Name="tbUserId" Text="{Binding id}"/>
+                    <TextBox Name="tbUserId" Text="{Binding id}" IsReadOnly="True"/>
                     <Label Content="Név:"/>
                     <TextBox Name="tbUserName" Text="{Binding name}"/>
                     <Label Content="E-mail:"/>

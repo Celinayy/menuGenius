@@ -183,7 +183,7 @@ namespace MG_Admin_GUI.Models
             return productList;
         }
 
-        public User GetUserForPurchase(int userId)
+        public static User GetUserForPurchase(int userId)
         {
             User user = null;
             using (var connection = DatabaseHandler.OpenConnection())

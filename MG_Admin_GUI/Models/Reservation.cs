@@ -108,6 +108,21 @@ namespace MG_Admin_GUI.Models
             }
         }
 
+        private User _reservationUser;
+        public User reservationUser
+        {
+            get { return _reservationUser; }
+            set
+            {
+                if (_reservationUser != value)
+                {
+                    _reservationUser = value;
+                    OnPropertyChanged(nameof(reservationUser));
+                }
+            }
+        }
+
+
         private bool _reservationClosed;
         public bool reservationClosed
         {
@@ -131,6 +146,7 @@ namespace MG_Admin_GUI.Models
             name = reader.GetString("name");
             phone = reader.GetString("phone");
             reservationDesk = Purchase.GetDeskForPurchase(reader.GetInt32("desk_id"));
+            reservationUser = Purchase.GetUserForPurchase(reader.GetInt32("user_id"));
             reservationClosed = reader.GetBoolean("closed");
         }
 

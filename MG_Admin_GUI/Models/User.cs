@@ -133,7 +133,7 @@ namespace MG_Admin_GUI.Models
 
         public override string ToString()
         {
-            return name;
+            return $"{id} - {name} - {phone}";
         }
 
         public override bool Equals(object? obj)
