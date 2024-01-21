@@ -6,9 +6,6 @@ use App\Models\Purchase;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
 use \Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use App\Models\Product;
 
 class PurchaseController extends Controller
 {
@@ -47,9 +44,6 @@ class PurchaseController extends Controller
         {
             return response()->json(['error' => 'Ismeretlen felhasználó!'], 401);
         }
-    
-
-        //return Purchase::with(['users', 'desks', 'products'])->get();
     }
 
     /**

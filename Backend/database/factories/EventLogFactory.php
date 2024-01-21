@@ -19,7 +19,7 @@ class EventLogFactory extends Factory
      */
     public function definition(): array
     {
-        $this->faker->locale('hu_HU');
+        $this->faker->locale();
         $events = ['beszúrás', 'módosítás', 'törlés'];
 
         $user = User::inRandomOrder()->first();

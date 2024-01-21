@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
 
-        \App\Models\User::create([
+        User::create([
             'id' => 1,
             'name' => 'admin',
             'email' => 'menugenius@gmail.com',
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             'remember_token' => \Illuminate\Support\Str::random(10),
         ]);
 
-        \App\Models\User::create([
+        User::create([
             'id' => 2,
             'name' => 'user',
             'email' => 'user@gmail.com',
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
             'remember_token' => \Illuminate\Support\Str::random(10),
         ]);
 
-        \App\Models\User::create([
+        User::create([
             'id' => 3,
             'name' => 'guest',
             'email' => 'guest@guest.com',

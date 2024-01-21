@@ -516,9 +516,52 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ingredient'
-
-
-
+  
+  /reservation/checkAvailabeTable:
+    get:
+      tags: [Foglalások kezelése]
+      summary: 'Rendelkezésre álló asztalok ellenőrzése.'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                checkin_date: 
+                  type: string
+                  example: "2024-02-20 10:00:00"
+                checkout_date:
+                  type: string
+                  example: "2024-02-20 11:00:00"
+                number_of_guests:
+                  type: integer
+                  example: 20
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+                    example: 'Elérhető asztal'
+                  desk:
+                    $ref: '#/components/schemas/desk'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                error: 'A foglalás időpontja a jelenlegi időpontnál korábbi.'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              example:
+                error: 'Ebben az időpontban nem áll rendelkezésre asztal ennyi főre.'
 
 components:
   schemas:
