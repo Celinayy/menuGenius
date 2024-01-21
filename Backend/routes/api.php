@@ -44,7 +44,10 @@ Route::controller(PurchaseController::class)->group(function () {
     Route::post('purchase', 'store');
 });
 
+//Route::get('/reservation/checkAvailableDesk', [ReservationController::class, 'checkAvailableDesk']);
+
 Route::controller(ReservationController::class)->group(function () {
+    Route::get('reservation/checkAvailableDesk', 'checkAvailableDesk');
     Route::middleware('auth:sanctum')->get('reservation', 'index');
     Route::middleware('auth:sanctum')->get('reservation/{id}', 'show');
     Route::middleware('auth:sanctum')->put('reservation/{id}', 'update');

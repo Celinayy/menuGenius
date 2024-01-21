@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "menugenius",
-    "dateExported": "2024-01-19T23:08:13.201Z",
+    "dateExported": "2024-01-21T16:06:21.919Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -54,7 +54,7 @@
             "method": "POST",
             "sortNum": 7500,
             "created": "2024-01-12T03:05:22.766Z",
-            "modified": "2024-01-19T14:37:17.380Z",
+            "modified": "2024-01-20T22:25:16.015Z",
             "headers": [],
             "params": [],
             "body": {
@@ -63,7 +63,7 @@
                 "form": [
                     {
                         "name": "email",
-                        "value": "user@gmail.com"
+                        "value": "menugenius@gmail.com"
                     },
                     {
                         "name": "password",
@@ -82,12 +82,12 @@
             "method": "POST",
             "sortNum": 8125,
             "created": "2024-01-12T05:33:43.526Z",
-            "modified": "2024-01-19T18:05:39.711Z",
+            "modified": "2024-01-20T22:25:04.982Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "43|hIYl5aLieRWv4dVl2qqYfuvDnj0C01lnXJwKAnj1c8c5c3cd"
+                "bearer": "51|WPbTrJnYTepO56LCVrEVSm9Z24JFFmJOyhZa2uZdbbd62235"
             },
             "tests": []
         },
@@ -212,11 +212,11 @@
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
             "containerId": "",
             "name": "GET product by id",
-            "url": "127.0.0.1:8000/api/product/202",
+            "url": "127.0.0.1:8000/api/product/2",
             "method": "GET",
             "sortNum": 69296.9,
             "created": "2024-01-19T14:01:53.022Z",
-            "modified": "2024-01-19T22:45:10.593Z",
+            "modified": "2024-01-20T14:27:57.336Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -318,7 +318,7 @@
             "method": "GET",
             "sortNum": 95000,
             "created": "2024-01-16T19:57:27.588Z",
-            "modified": "2024-01-19T22:20:42.590Z",
+            "modified": "2024-01-20T22:24:40.713Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -328,7 +328,7 @@
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "47|fYSvcmrOiC11d6yuoxxzkVZwttUcPxzlBC0u72hJ81e80e7a"
+                "bearer": "51|WPbTrJnYTepO56LCVrEVSm9Z24JFFmJOyhZa2uZdbbd62235"
             },
             "tests": []
         },
@@ -337,13 +337,17 @@
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
             "containerId": "",
             "name": "GET reservation by id",
-            "url": "127.0.0.1:8000/api/reservation/22",
+            "url": "127.0.0.1:8000/api/reservation/15",
             "method": "GET",
             "sortNum": 97500,
             "created": "2024-01-19T22:41:11.651Z",
-            "modified": "2024-01-19T22:45:04.594Z",
+            "modified": "2024-01-20T23:22:34.915Z",
             "headers": [],
             "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "52|eMqEENAMn0o3VzABJGMvGJpOIMOaIGuwAu20aV7Cfe8d6923"
+            },
             "tests": []
         },
         {
@@ -403,6 +407,63 @@
             "auth": {
                 "type": "bearer",
                 "bearer": "47|fYSvcmrOiC11d6yuoxxzkVZwttUcPxzlBC0u72hJ81e80e7a"
+            },
+            "tests": []
+        },
+        {
+            "_id": "fefec944-989f-4bb1-99d3-decedd72a628",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET available table",
+            "url": "127.0.0.1:8000/api/reservation/checktable",
+            "method": "GET",
+            "sortNum": 230000,
+            "created": "2024-01-20T14:23:09.188Z",
+            "modified": "2024-01-20T18:39:48.461Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"date_time\": \"2024-02-14 6:00:00\",\n  \"number_of_guests\": 20\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "2c58226c-a367-4a88-a617-e124dc716c70",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET check tables",
+            "url": "127.0.0.1:8000/api/reservation/checktable",
+            "method": "GET",
+            "sortNum": 240000,
+            "created": "2024-01-20T21:38:06.497Z",
+            "modified": "2024-01-20T21:39:09.311Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"date_time\": \"2024-01-14T12:30:00\",\n  \"number_of_guests\": 20\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f25c8c3a-7050-4000-be78-f0d75773b3e7",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET check tables",
+            "url": "127.0.0.1:8000/api/reservation/checkAvailableDesk",
+            "method": "GET",
+            "sortNum": 250000,
+            "created": "2024-01-20T22:29:35.370Z",
+            "modified": "2024-01-21T15:21:44.630Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"checkin_date\": \"2024-02-20 15:00:00\",\n  \"checkout_date\": \"2024-02-20 16:00:00\",\n  \"number_of_guests\": 20\n}",
+                "form": []
             },
             "tests": []
         }

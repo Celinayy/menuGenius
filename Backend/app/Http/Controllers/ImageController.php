@@ -25,7 +25,6 @@ class ImageController extends Controller
             ];
         });
 
-        //return response()->json($encodedImages);
         return view('images.index', ['images' => $encodedImages]);
     }
 

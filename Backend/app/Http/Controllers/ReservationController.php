@@ -8,6 +8,9 @@ use App\Http\Requests\UpdateReservationRequest;
 use \Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Http\Request;
+use App\Models\Desk;
+
 
 
 class ReservationController extends Controller
@@ -66,11 +69,36 @@ class ReservationController extends Controller
      */
     public function show($id)
     {
-        if (!$id) {
-            return response()->json(['error' => 'Nincs ilyen foglalás!'], 404);
-        }
+        if(auth()->check()) 
+        {
+            $user = auth()->user();
     
-        return response()->json($id);
+            if ($user->admin) 
+            {
+                $reservation = Reservation::with(['user', 'desk'])->find($id);
+    
+                if ($reservation) {
+                    return response()->json($reservation, 200);
+                } else {
+                    return response()->json(['error' => 'Nincs ilyen vásárlás!'], 404);
+                }
+            } 
+            else 
+            {
+                $reservation = $user->purchases()->with
+                (['user', 'desk'])->find($id);
+    
+                if ($reservation) {
+                    return response()->json($reservation, 200);
+                } else {
+                    return response()->json(['error' => 'Nincs jogosultságod ehhez a vásárláshoz.'], 403);
+                }
+            }
+        } 
+        else 
+        {
+            return response()->json(['error' => 'Ismeretlen felhasználó!'], 401);
+        }
     }
 
     /**
@@ -131,5 +159,43 @@ class ReservationController extends Controller
         $reservation->delete();
     
         return response()->json(['message' => 'A foglalás sikeresen törölve.']);
+    }
+    public function checkAvailableDesk(Request $request)
+    {
+        $now = now();
+        $request->validate([
+            'checkin_date' => 'required|date_format:Y-m-d H:i:s',
+            'checkout_date' => 'required|date_format:Y-m-d H:i:s|after:checkin_date',
+            'number_of_guests' => 'required|integer|min:1',
+        ]);
+    
+        $checkinDateTime = Carbon::parse($request->input('checkin_date'));
+        $checkoutDateTime = Carbon::parse($request->input('checkout_date'));
+        $number_of_guests = $request->input('number_of_guests');
+
+        if ($checkinDateTime < $now) {
+            return response()->json(['error' => 'A foglalás időpontja a jelenlegi időpontnál korábbi.'], 400);
         }
+    
+        $availableTable = Desk::where('number_of_seats', '>=', $number_of_guests)
+        ->whereDoesntHave('reservation', function ($query) use ($checkinDateTime, $checkoutDateTime) {
+            $query->where('closed', '=', 0) // Csak nem lezárt foglalásokat vegyük figyelembe
+                ->where(function ($query) use ($checkinDateTime, $checkoutDateTime) {
+                    $query->whereBetween('checkin_date', [$checkinDateTime, $checkoutDateTime])
+                        ->orWhereBetween('checkout_date', [$checkinDateTime, $checkoutDateTime])
+                        ->orWhere(function ($query) use ($checkinDateTime, $checkoutDateTime) {
+                            $query->where('checkout_date', '>=', $checkinDateTime);
+                        });
+                });
+        })
+        ->orderBy('number_of_seats')
+        ->first();
+            
+        if ($availableTable) {
+            return response()->json(['message' => 'Elérhető asztal.', 'desk' => $availableTable], 200);
+        } else {
+            return response()->json(['error' => 'Ebben az időpontban nem áll rendelkezésre asztal ennyi főre.'], 404);
+        }
+    }
+    
 }
