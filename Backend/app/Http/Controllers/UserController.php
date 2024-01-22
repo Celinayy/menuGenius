@@ -15,7 +15,7 @@ class UserController extends Controller
 
         if($user)
         {
-            return User::where('id', $user->id)->with(['purchases', 'reservations'])->get();;
+            return User::with(['purchases', 'reservations'])->find($user->id);;
         }
         else
         {
@@ -38,14 +38,14 @@ class UserController extends Controller
     {
         // $input = $request->validated();
         // $input['password'] = Hash::make($input['password']);
-        
+
         // $user = User::create($input);
-    
+
         // $data = [
         //     'token' => $user->createToken('Sanctom+Socialite')->plainTextToken,
         //     'user' => $user,
         // ];
-    
+
         // return response()->json($data, 200);
     }
 
@@ -78,15 +78,15 @@ class UserController extends Controller
         if (!$user) {
             return response()->json(['error' => 'Felhasználó nem található.'], 404);
         }
-    
+
         if (auth()->user()->id !== $user->id) {
             return response()->json(['error' => 'Nincs jogosultság a módosításra.'], 403);
         }
-    
+
         $data = $request->json()->all();
-    
+
         $user->update($data);
-    
+
         return response()->json(['message' => 'Az adatok sikeresen frissítve lettek.']);
         }
 

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserModel } from '../models/user-model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,11 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private url = "http://localhost:8000/api";
 
-  constructor(private connection: HttpClient) { }
+  public user?: UserModel;
+
+  constructor(private connection: HttpClient) {
+    this.loadUser()
+   }
 
   public login(email: string, password: string) {
     return this.connection.post<{ token: string }>(`${this.url}/login`, {
@@ -24,5 +29,16 @@ export class AuthService {
       password,
       password_confirmation: passwordAgain,
     });
+  }
+
+  private loadUser() {
+    this.getUser().subscribe((result) => {
+      this.user = result;
+    })
+  }
+
+  public getUser() {
+    return this.connection.get<UserModel>("http://localhost:8000/api/user",
+    {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}})
   }
 }

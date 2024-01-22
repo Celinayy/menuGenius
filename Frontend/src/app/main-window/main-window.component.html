@@ -1,28 +1,45 @@
 <div class="container mx-auto text-center pt-3">
   <h1>Az oldal rövid ismertetője</h1>
-<hr>
+  <hr />
   <div class="row">
     <div class="col-lg-6">
       <div class="card blur">
         <div class="card-body">
-          <h2 class="card-title">Menu Genius</h2>
-          <p style="font-size: 18px; text-align: justify;" class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate laborum amet voluptatum Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta voluptatibus vero eius illo asperiores dolore sunt quisquam minima earum ipsum optio nobis harum molestiae iste, ratione deserunt quo eaque. Est?</p>
-          <button class="btn btn-warning" routerLink="tableReservation">Foglalj asztalt</button><br>
-          <label class="p-1">vagy</label><br>
-          <button class="btn btn-dark" routerLink="products">nézd meg a kínálatunk!</button>
-    </div>
-  </div>
+          <h2 class="card-title">Szia, {{ authService.user ? authService.user.name : "vendég" }}!</h2>
+          <p style="font-size: 18px; text-align: justify" class="card-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate
+            laborum amet voluptatum Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit. Dicta voluptatibus vero eius illo asperiores
+            dolore sunt quisquam minima earum ipsum optio nobis harum molestiae
+            iste, ratione deserunt quo eaque. Est?
+          </p>
+          <button class="btn btn-warning" routerLink="tableReservation">
+            Foglalj asztalt</button
+          ><br />
+          <label class="p-1">vagy</label><br />
+          <button class="btn btn-dark" routerLink="products">
+            nézd meg a kínálatunk!
+          </button>
+        </div>
+      </div>
     </div>
     <div class="col-lg-6 d-none d-lg-block">
       <div class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item" [class.active]="i == initialCarouselItem" *ngFor="let product of products; index as i">
+          <div
+            class="carousel-item"
+            [class.active]="i == initialCarouselItem"
+            *ngFor="let product of products; index as i"
+          >
             <div class="card">
-              <img src="data:image/png;base64, {{product.image.data}}" class="card-img">
-          </div>
+              <img
+                src="data:image/png;base64, {{ product.image.data }}"
+                class="card-img"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
+</div>

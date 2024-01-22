@@ -1,16 +1,27 @@
 <div class="container">
   <div class="row mt-3">
     <h4 class="fw-light text-center">ASZTALFOGLALÁS</h4>
-    <hr class="mx-auto w-75">
+    <hr class="mx-auto w-75" />
     <div class="col-xs-12 col-md-6">
       <label for="phonenumberReservation" class="fw-light">Telefonszám</label>
-      <input type="text" id="phonenumberReservation" class="form-control mb-2" />
+      <input
+        type="text"
+        id="phonenumberReservation"
+        class="form-control mb-2"
+        [(ngModel)]="phone"
+      />
       <label for="emailReservation" class="fw-light">E-mail</label>
-      <input type="email" id="emailReservation" class="form-control mb-2" />
+      <input type="email" id="emailReservation" class="form-control mb-2"
+      [(ngModel)]="email"
+      />
       <label for="personsNumberReservation" class="fw-light"
         >Hány főre szeretnél foglalni?</label
       >
-      <select id="personsNumberReservation" type="number" class="form-control mb-2">
+      <select
+        id="personsNumberReservation"
+        type="number"
+        class="form-control mb-2"
+      >
         <option selected>1</option>
         <option>2</option>
         <option>3</option>
@@ -23,7 +34,12 @@
         <option>10</option>
       </select>
       <label for="dateReservation" class="fw-light">Dátum</label>
-      <input type="date" id="dateReservation" class="form-control mb-2" value="date" />
+      <input
+        type="date"
+        id="dateReservation"
+        class="form-control mb-2"
+        value="date"
+      />
     </div>
     <div class="col-xs-12 col-md-6">
       <label for="textareaReservation" class="fw-light">Megjegyzés</label>

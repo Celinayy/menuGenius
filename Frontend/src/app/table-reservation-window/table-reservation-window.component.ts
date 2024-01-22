@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-table-reservation-window',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class TableReservationWindowComponent {
 
+  public phone: string = "";
+  public email: string = "";
+
+
+  constructor(public authService: AuthService) {
+    this.authService.getUser().subscribe((user) => {
+      this.phone = user.phone;
+      this.email = user.email;
+    })
+  }
 }
