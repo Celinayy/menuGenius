@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="authService.user">
   <div class="row mt-3">
     <h4 class="fw-light text-center">BEÁLLÍTÁSOK</h4>
     <hr class="mx-auto w-75" />
@@ -6,7 +6,7 @@
       <div class="card">
         <div class="card-body">
           <label for="emailCurrentSettings" class="fw-light">Jelenlegi e-amail cím</label>
-          <input type="email" id="emailCurrentSettings" class="form-control mb-1" disabled />
+          <input type="email" id="emailCurrentSettings" class="form-control mb-1" disabled [(ngModel)]="authService.user.email"/>
           <label for="emailNewSettings" class="fw-light">Új e-mail</label>
           <input type="email" id="emailNewSettings" class="form-control mb-1" />
           <label for="emailAgainSettings" class="fw-light">Új e-mail megerősítése</label>
@@ -26,7 +26,7 @@
       <div class="card">
         <div class="card-body">
           <label for="phonenumberCurrentSettings" class="fw-light">Jelenlegi telefonszám</label>
-          <input type="email" id="phonenumberCurrentSettings" class="form-control mb-1" disabled />
+          <input type="email" id="phonenumberCurrentSettings" class="form-control mb-1" disabled  [(ngModel)]="authService.user.phone"/>
           <label for="phonenumberNewSettings" class="fw-light">Új telefonszám</label>
           <input type="email" id="phonenumberNewSettings" class="form-control mb-1" />
           <label for="phonenumberAgainSettings" class="fw-light"

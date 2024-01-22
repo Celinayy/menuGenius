@@ -1,23 +1,20 @@
 import { Component } from '@angular/core';
 import { ProductModel } from '../models/product-model';
 import { ProductService } from '../services/product.service';
-import { UserModel } from '../models/user-model';
 import { AuthService } from '../services/auth.service';
 
-
 @Component({
-  selector: 'app-main-window',
-  templateUrl: './main-window.component.html',
-  styleUrls: ['./main-window.component.css']
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.css']
 })
-export class MainWindowComponent {
-  public products: ProductModel[] = []
+export class UserProfileComponent {
   public initialCarouselItem = 0;
+  public products: ProductModel[] = []
 
   constructor(private productService: ProductService, public authService: AuthService) {
     this.loadProducts()
   }
-
 
   private loadProducts() {
     this.productService.listProducts().subscribe((products) => {
@@ -25,5 +22,4 @@ export class MainWindowComponent {
       this.initialCarouselItem = Math.floor(Math.random() * products.length);
     })
   }
-
 }

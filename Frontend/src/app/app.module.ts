@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FilterPipe } from './filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { HistoryWindowComponent } from './history-window/history-window.component';
+import { FavouriteFoodWindowComponent } from './favourite-food-window/favourite-food-window.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { ToastrModule } from 'ngx-toastr';
     ContactWindowComponent,
     ProductsWindowComponent,
     FilterPipe,
+    UserProfileComponent,
+    HistoryWindowComponent,
+    FavouriteFoodWindowComponent,
   ],
   imports: [
     BrowserModule,
