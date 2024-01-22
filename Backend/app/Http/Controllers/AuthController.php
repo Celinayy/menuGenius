@@ -13,12 +13,34 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $validator = Validator::make($request->only('name', 'email', 'phone', 'password', 'password_confirmation'), [
-            'name' => ['required', 'min:2', 'max:50', 'string'],
-            'phone' => ['required', 'min:2', 'max:50', 'string'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:6', 'max:255', 'confirmed', 'string'],
-        ]);
+        $validator = Validator::make(
+            $request->only('name', 'email', 'phone', 'password', 'password_confirmation'),
+            [
+                'name' => ['required', 'min:2', 'max:50', 'string'],
+                'phone' => ['required', 'min:2', 'max:50', 'string'],
+                'email' => ['required', 'email', 'unique:users,email'],
+                'password' => ['required', 'min:6', 'max:255', 'confirmed', 'string'],
+
+            ],
+            [
+                "name.required" => "Az név megadása kötelező!",
+                "name.min" => "Túl rövid név!",
+                "name.max" => "Túl hosszú név!",
+
+                "phone.required" => "A telefonszám megadása kötelező!",
+                "phone.min" => "Túl rövid telefonszám!",
+                "phone.max" => "Túl hossszú telefonszám!",
+
+                "email.required" => "Az email megadása kötelező!",
+                "email.email" => "Az email formátuma nem megfelelő!",
+                "email.unique" => "Az email már foglalt!",
+
+                "password.required" => "A jelszó kitöltése kötelező!",
+                "password.min" => "A jelszó túl rövid!",
+                "password.max" => "A jelszó túl hosszú!",
+                "password.confirmed" => "A két jelszó nem egyezik meg!",
+            ]
+        );
 
         if ($validator->fails())
             return response()->json($validator->errors(), 400);
@@ -38,7 +60,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->only('email', 'password'), [
             'email' => ['required', 'email', 'exists:users,email'],
             'password' => ['required', 'min:6', 'max:255', 'string'],
-        ],[
+        ], [
             "email.required" => "Az email megadása kötelező!",
             "email.email" => "Az email formátuma nem megfelelő!",
             "email.exists" => "Az emailhez nem tartozik felhasználó!",
