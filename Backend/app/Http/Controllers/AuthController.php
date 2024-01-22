@@ -38,6 +38,15 @@ class AuthController extends Controller
         $validator = Validator::make($request->only('email', 'password'), [
             'email' => ['required', 'email', 'exists:users,email'],
             'password' => ['required', 'min:6', 'max:255', 'string'],
+        ],[
+            "email.required" => "Az email megadása kötelező!",
+            "email.email" => "Az email formátuma nem megfelelő!",
+            "email.exists" => "Az emailhez nem tartozik felhasználó!",
+
+            "password.requried" => "A jelszó mező kitöltése kötelező!",
+            "password.min" => "A jelszónak minimum 6 karakternek kell lennie!",
+            "password.max" => "A jelszó maximum 255 karakter lehet!",
+
         ]);
 
         if ($validator->fails())
