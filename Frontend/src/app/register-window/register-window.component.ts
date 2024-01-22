@@ -3,6 +3,9 @@ import { MenuComponent } from '../menu/menu.component';
 import { AuthService } from '../services/auth.service';
 import { LoginWindowComponent } from '../login-window/login-window.component';
 import { ToastrService } from 'ngx-toastr';
+import { catchError, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-register-window',
@@ -17,15 +20,29 @@ export class RegisterWindowComponent {
   public phone: string = "";
 
 
-  constructor(public menu: MenuComponent, private authService: AuthService, private toastr: ToastrService) {}
+  constructor(public menu: MenuComponent, private authService: AuthService, private toastr: ToastrService, private toast: ToastrService) { }
 
   public register() {
-    this.authService.register(this.name, this.email, this.phone, this.password, this.passwordAgain).subscribe((result) => {
-      this.menu.showLogin();
-      this.toastr.success("Sikeres regisztráció!", undefined, {
-        timeOut: 3000,
-      });
-    });
+    this.authService.register(this.name, this.email, this.phone, this.password, this.passwordAgain)
+      .pipe(catchError((err: HttpErrorResponse) => {
+        for (const message of err.error.name ?? []) {
+          this.toast.error(message)
+        }
+        for (const message of err.error.phone ?? []) {
+          this.toast.error(message)
+        }
+        for (const message of err.error.email ?? []) {
+          this.toast.error(message)
+        }
+        for (const message of err.error.password ?? []) {
+          this.toast.error(message)
+        }
+        return throwError(() => err)
+      }))
+        .subscribe((result) => {
+          this.menu.showLogin();
+          this.toastr.success("Sikeres regisztráció!");
+        });
   }
 
 }
