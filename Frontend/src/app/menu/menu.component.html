@@ -1,4 +1,4 @@
-<div class="row mx-auto text-center">
+<div class="row mx-auto text-center" *ngIf="!authService.user">
   <div class="col-4 d-flex justify-content-center align-items-center">
     <button
       class="btn btn-gray"
@@ -7,7 +7,7 @@
       data-bs-target="#offcanvasBottom"
       aria-controls="offcanvasBottom"
     >
-      <img src="/assets/profile.svg" alt="profile" />
+      <img src="/assets/login.svg" alt="profile" />
     </button>
     <div
       class="offcanvas offcanvas-bottom h-75 background-waves-bottom background-waves-top"
@@ -54,7 +54,26 @@
   <div class="col-4 d-flex justify-content-center align-items-center">
     <a routerLink=""><img src="/assets/default-monochrome-white.svg" alt="logo"/></a>
   </div>
+  <div class="col-4 d-flex justify-content-center align-items-center" *ngIf="authService.isLoggedIn">
+    <a routerLink="profile"><img src="/assets/hamburger.svg" alt="profile" id="profile"  /></a>
+  </div>
+</div>
+<div class="row mx-auto text-center" *ngIf="authService.user">
   <div class="col-4 d-flex justify-content-center align-items-center">
-    <a routerLink="profile"><img src="/assets/settings.svg" alt="profile" id="profile"  /></a>
+    <button
+      class="btn btn-gray"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasBottom"
+      aria-controls="offcanvasBottom"
+    >
+      <img src="/assets/profile.svg" alt="profile"/>
+    </button>
+  </div>
+  <div class="col-4 d-flex justify-content-center align-items-center">
+    <a routerLink=""><img src="/assets/default-monochrome-white.svg" alt="logo"/></a>
+  </div>
+  <div class="col-4 d-flex justify-content-center align-items-center" *ngIf="authService.isLoggedIn">
+    <a routerLink="profile"><img src="/assets/hamburger.svg" alt="profile" id="profile"  /></a>
   </div>
 </div>

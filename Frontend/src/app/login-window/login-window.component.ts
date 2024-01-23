@@ -4,6 +4,8 @@ import { AuthService } from '../services/auth.service';
 import { catchError, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login-window',
@@ -14,7 +16,7 @@ export class LoginWindowComponent {
   public email: string = "";
   public password: string = "";
 
-  constructor(public menu: MenuComponent, private authService: AuthService, private toast: ToastrService) { }
+  constructor(public menu: MenuComponent, private authService: AuthService, private toast: ToastrService,  private router: Router) { }
 
   public login() {
     this.authService.login(this.email, this.password)
@@ -27,8 +29,8 @@ export class LoginWindowComponent {
         }
         return throwError(() => err)
       }))
-      .subscribe((result) => {
-        localStorage.setItem("token", result.token);
+      .subscribe(() => {
+        this.router.navigate(["/"]);
         this.toast.success("Sikeres bejelentkezés!")
       });
 
