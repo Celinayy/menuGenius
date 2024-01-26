@@ -423,7 +423,7 @@
                                     <!--<Button Name="btnImageCancel" Content="Mégsem" Click="btnImageCancel_Click"/>-->
                                 </UniformGrid>
                                 <UniformGrid>
-                                    <Image Name="imgProductImage" Source="{Binding productImage.img_data, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" />
+                                    <Image Name="imgProductImage" Source="{Binding productImage.img_data, UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill" Width="300"/>
                                 </UniformGrid>
                             </StackPanel>
                         </GroupBox>
@@ -677,19 +677,19 @@
                 </Grid.RowDefinitions>
                 <UniformGrid Columns="2" Rows="6" Width="800" DataContext="{Binding selectedEvent}">
                     <Label Content="ID:"/>
-                    <TextBlock Name="tbEventLogId" Text="{Binding id}" Foreground="White"/>
+                    <TextBlock Name="tbEventLogId" Text="{Binding id}"/>
                     <Label Content="Esemény típusa:"/>
-                    <TextBlock Name="tbEventLogEventType" Text="{Binding event_type}" Foreground="White"/>
+                    <TextBlock Name="tbEventLogEventType" Text="{Binding event_type}"/>
                     <Label Content="Érintett tábla:"/>
-                    <TextBlock Name="tbEventLogAffectedTable" Text="{Binding affected_table}" Foreground="White"/>
+                    <TextBlock Name="tbEventLogAffectedTable" Text="{Binding affected_table}"/>
                     <Label Content="Érintett ID:"/>
-                    <TextBlock Name="tbEventLogAffectedId" Text="{Binding affected_id}" Foreground="White"/>
+                    <TextBlock Name="tbEventLogAffectedId" Text="{Binding affected_id}"/>
                     <Label Content="Eseményleírás:"/>
-                    <TextBlock Name="tbEventLogEventDescription" Text="{Binding event_description}" Foreground="White"/>
+                    <TextBlock Name="tbEventLogEventDescription" Text="{Binding event_description}"/>
                     <Label Content="Dátum:"/>
-                    <TextBlock Name="tbEventLogDate" Text="{Binding date, Converter={StaticResource DateTimeFormatConverter}}" Foreground="White"/>
+                    <TextBlock Name="tbEventLogDate" Text="{Binding date, Converter={StaticResource DateTimeFormatConverter}}"/>
                     <Label Content="Felhasználó:"/>
-                    <TextBlock Name="tbEventLogUser" Text="{Binding eventlog_user, Converter={StaticResource DateTimeFormatConverter}}" Foreground="White"/>
+                    <TextBlock Name="tbEventLogUser" Text="{Binding eventlog_user, Converter={StaticResource DateTimeFormatConverter}}"/>
                 </UniformGrid>
                 <!--<WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">
                     <Button Name="btnEventLogSave" Content="Mentés" Click="btnDataSave_Click"/>
