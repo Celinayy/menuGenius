@@ -14,6 +14,7 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
+input[type="phone"]:focus,
 .uneditable-input:focus {
   border-color: #fbcb04;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #fbcb04;

@@ -21,6 +21,7 @@ export class LoginWindowComponent {
   public login() {
     this.authService.login(this.email, this.password)
       .pipe(catchError((err: HttpErrorResponse) => {
+        console.log(err)
         for (const message of err.error.email ?? []) {
           this.toast.error(message)
         }
@@ -31,6 +32,7 @@ export class LoginWindowComponent {
       }))
       .subscribe(() => {
         this.router.navigate(["/"]);
+        window.location.reload()
         this.toast.success("Sikeres bejelentkezés!")
       });
 
