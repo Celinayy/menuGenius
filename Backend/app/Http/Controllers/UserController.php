@@ -84,7 +84,7 @@ class UserController extends Controller
         $user->update($data);
 
         return response()->json(['message' => 'Az adatok sikeresen frissítve lettek.']);
-        }
+    }
 
     /**
      * Remove the specified resource from storage.
