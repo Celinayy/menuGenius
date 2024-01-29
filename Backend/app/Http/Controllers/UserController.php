@@ -71,16 +71,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, $id)
+    public function update(UpdateUserRequest $request)
     {
-        $user = User::find($id);
+        $user = User::find(auth()->user()->id);
 
         if (!$user) {
             return response()->json(['error' => 'Felhasználó nem található.'], 404);
-        }
-
-        if (auth()->user()->id !== $user->id) {
-            return response()->json(['error' => 'Nincs jogosultság a módosításra.'], 403);
         }
 
         $data = $request->json()->all();

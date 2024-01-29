@@ -5,16 +5,37 @@
     <div class="col-xs-12 col-md-4 pb-2">
       <div class="card">
         <div class="card-body">
-          <label for="emailCurrentSettings" class="fw-light">Jelenlegi e-amail cím</label>
-          <input type="email" id="emailCurrentSettings" class="form-control mb-1" disabled [(ngModel)]="authService.user.email"/>
+          <label for="emailCurrentSettings" class="fw-light"
+            >Jelenlegi e-amail cím</label
+          >
+          <input
+            type="email"
+            id="emailCurrentSettings"
+            class="form-control mb-1"
+            disabled
+            [(ngModel)]="authService.user.email"
+          />
           <label for="emailNewSettings" class="fw-light">Új e-mail</label>
-          <input type="email" id="emailNewSettings" class="form-control mb-1" />
-          <label for="emailAgainSettings" class="fw-light">Új e-mail megerősítése</label>
-          <input type="email" id="emailAgainSettings" class="form-control mb-1" />
+          <input
+            type="email"
+            id="emailNewSettings"
+            class="form-control mb-1"
+            [(ngModel)]="email"
+          />
+          <label for="emailAgainSettings" class="fw-light"
+            >Új e-mail megerősítése</label
+          >
+          <input
+            type="email"
+            id="emailAgainSettings"
+            class="form-control mb-1"
+            [(ngModel)]="emailAgain"
+          />
           <div class="text-center mt-3">
             <button
+              [disabled]="email !== emailAgain"
               class="btn btn-warning fs-5 fw-light"
-              (click)="saveSettings()"
+              (click)="saveEmail()"
             >
               Új e-mail cím mentése
             </button>
@@ -25,18 +46,39 @@
     <div class="col-xs-12 col-md-4 pb-2">
       <div class="card">
         <div class="card-body">
-          <label for="phonenumberCurrentSettings" class="fw-light">Jelenlegi telefonszám</label>
-          <input type="email" id="phonenumberCurrentSettings" class="form-control mb-1" disabled  [(ngModel)]="authService.user.phone"/>
-          <label for="phonenumberNewSettings" class="fw-light">Új telefonszám</label>
-          <input type="email" id="phonenumberNewSettings" class="form-control mb-1" />
+          <label for="phonenumberCurrentSettings" class="fw-light"
+            >Jelenlegi telefonszám</label
+          >
+          <input
+            type="email"
+            id="phonenumberCurrentSettings"
+            class="form-control mb-1"
+            disabled
+            [(ngModel)]="authService.user.phone"
+          />
+          <label for="phonenumberNewSettings" class="fw-light"
+            >Új telefonszám</label
+          >
+          <input
+            type="email"
+            id="phonenumberNewSettings"
+            class="form-control mb-1"
+            [(ngModel)]="phone"
+          />
           <label for="phonenumberAgainSettings" class="fw-light"
             >Új telefonszám megerősítése</label
           >
-          <input type="email" id="phonenumberAgainSettings" class="form-control mb-1" />
+          <input
+            type="email"
+            id="phonenumberAgainSettings"
+            class="form-control mb-1"
+            [(ngModel)]="phoneAgain"
+          />
           <div class="text-center mt-3">
             <button
+            [disabled]="phone !== phoneAgain"
               class="btn btn-warning fs-5 fw-light"
-              (click)="saveSettings()"
+              (click)="savePhone()"
             >
               Új telefonszám mentése
             </button>
@@ -50,15 +92,33 @@
           <label for="passwordCurrentSettings" class="fw-light"
             >Adja meg a jelenlegi jelszavát!</label
           >
-          <input type="password" id="passwordCurrentSettings" class="form-control mb-1" />
+          <input
+            type="password"
+            id="passwordCurrentSettings"
+            class="form-control mb-1"
+          />
           <label for="passwordNewSettings" class="fw-light">Új jelszó</label>
-          <input type="password" id="passwordNewSettings" class="form-control mb-1" />
-          <label for="passwordAgainSettings" class="fw-light">Új jelszó megerősítése</label>
-          <input type="password" id="passwordAgainSettings" class="form-control mb-1" />
+          <input
+            type="password"
+            id="passwordNewSettings"
+            class="form-control mb-1"
+            [(ngModel)]="password"
+
+          />
+          <label for="passwordAgainSettings" class="fw-light"
+            >Új jelszó megerősítése</label
+          >
+          <input
+            type="password"
+            id="passwordAgainSettings"
+            class="form-control mb-1"
+            [(ngModel)]="passwordAgain"
+          />
           <div class="text-center mt-3">
             <button
+            [disabled]="password !== passwordAgain"
               class="btn btn-warning fs-5 fw-light"
-              (click)="saveSettings()"
+              (click)="savePassword()"
             >
               Új jelszó mentése
             </button>
