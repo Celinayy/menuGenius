@@ -58,7 +58,7 @@ Route::controller(ReservationController::class)->group(function () {
 Route::controller(UserController::class)->group(function (){
     Route::middleware('auth:sanctum')->get('user', 'index');
     Route::middleware('auth:sanctum')->get('user/{id}', 'show');
-    Route::middleware('auth:sanctum')->put('user/{id}', 'update');
+    Route::middleware('auth:sanctum')->put('user', 'update');
     Route::middleware('auth:sanctum')->delete('user/{id}', 'destroy');
     Route::post('user', 'store');
 });

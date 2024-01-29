@@ -70,4 +70,16 @@ export class AuthService {
   public get isLoggedIn() {
     return !!this.user;
   }
+
+
+  public update(data: Partial<{
+    email: string,
+    phone: string,
+    password: string
+  }>) {
+    return this.connection.put<{ token: string }>(`${this.url}/user`, data,
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+      })
+  }
 }
