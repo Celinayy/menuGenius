@@ -508,7 +508,7 @@
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel>
-                                    <Label Content="Összes alapanyag:"/>
+                                    <Label Content="Összes allergén:"/>
                                     <ComboBox Name="cobIngredientAllergen" ItemsSource="{Binding Allergens}" DisplayMemberPath="name"/>
                                     <Button Name="btnAddAllergen" Content="Hozzáad" Click="btnAddAllergen_Click"/>
                                     <Button Name="btnAddallergenDelete" Content=">>Töröl" Click="btnAddallergenDelete_Click"/>
