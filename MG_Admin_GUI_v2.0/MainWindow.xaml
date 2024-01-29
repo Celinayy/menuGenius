@@ -3,12 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:MG_Admin_GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" FontSize="16" WindowState="Maximized">
+        Title="MainWindow" Height="450" Width="800" FontSize="16" WindowState="Maximized" Background="SlateGray" Foreground="Black">
     <Window.Resources>
+        <Style x:Key="TitleLabelStyle" TargetType="Label">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="SlateGray"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="Wheat"/>
+        </Style>
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="Goldenrod"/>
+        </Style>
         <Style TargetType="DataGrid">
             <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="13"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="10"/>
@@ -20,7 +34,11 @@
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="10"/>
-            <Setter Property="Padding" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
         <Style TargetType="DatePicker">
             <Setter Property="Margin" Value="10"/>
@@ -32,8 +50,14 @@
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Padding" Value="5"/>
         </Style>
+        <Style TargetType="xctk:DateTimePicker">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
     </Window.Resources>
-    <Grid>
+    <Grid ShowGridLines="True">
         <TabControl>
             <TabItem Header="Rendelések" Name="tabPurchase">
                 <Grid>
@@ -45,45 +69,141 @@
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="0.3*"/>
                         <RowDefinition Height="2*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button Content=">" Name="btnOrderedToCooked" Grid.Column="1"/>
-                    <StackPanel Grid.Column="0">
-                        <DataGrid Name="dgOrdered">
-                            
-                        </DataGrid>
-                    </StackPanel>
-                    <Button Content=">" Name="btnCookedToServed" Grid.Column="3"/>
-                    <StackPanel Grid.Column="2">
-                        <DataGrid Name="dgCooked">
-                            
-                        </DataGrid>
-                    </StackPanel>
-                    <StackPanel Grid.Column="4">
-                        <DataGrid Name="dgServed">
-                            
-                        </DataGrid>
-                    </StackPanel>
-                    <DataGrid Name="dgPurchases" Grid.Row="1" Grid.ColumnSpan="5">
-                    
+                    <UniformGrid Rows="1" Columns="3" Grid.ColumnSpan="5">
+                        <Label Content="Rendelések:" Style="{StaticResource TitleLabelStyle}" HorizontalContentAlignment="Center" Margin="10 10 35 10"/>
+                        <Label Content="Elkészült rendelések:" Style="{StaticResource TitleLabelStyle}" HorizontalContentAlignment="Center" Margin="25 10 25 10"/>
+                        <Label Content="Felszolgált rendelések:" Style="{StaticResource TitleLabelStyle}" HorizontalContentAlignment="Center" Margin="35 10 10 10"/>
+                    </UniformGrid>
+
+                    <DataGrid Grid.Row="1" Grid.Column="0" Name="dgOrdered" 
+                              SelectionChanged="dgPurchases_SelectionChanged" 
+                              AutoGenerateColumns="False" 
+                              AlternatingRowBackground="LightGray">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd HH:mm}" Width="auto"/>
+                            <DataGridTemplateColumn Header="Tételek" Width="3*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl ItemsSource="{Binding ProductPurchases}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Product.Name}"/>
+                                                        <TextBlock Text=" - "/>
+                                                        <TextBlock Text="{Binding Quantity}"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Asztal" Binding="{Binding Desk.Id}" Width="*"/>
+                            <DataGridTextColumn Header="Státusz" Binding="{Binding Status}" Width="*"/>
+                            <DataGridCheckBoxColumn Header="Fizetve" Binding="{Binding Paid}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content=">" Name="btnOrderedToCooked" Grid.Row="1" Grid.Column="1"/>
+                    <DataGrid Grid.Row="1" Grid.Column="2" Name="dgCooked" SelectionChanged="dgPurchases_SelectionChanged" AutoGenerateColumns="False" AlternatingRowBackground="LightGray">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd}" Width="auto"/>
+                            <DataGridTemplateColumn Header="Tételek" Width="3*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl ItemsSource="{Binding ProductPurchases}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Product.Name}"/>
+                                                        <TextBlock Text=" - "/>
+                                                        <TextBlock Text="{Binding Quantity}"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Asztal" Binding="{Binding Desk.Id}" Width="*"/>
+                            <DataGridTextColumn Header="Státusz" Binding="{Binding Status}" Width="*"/>
+                            <DataGridCheckBoxColumn Header="Fizetve" Binding="{Binding Paid}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content=">" Name="btnCookedToServed" Grid.Row="1" Grid.Column="3" Click="btnCookedToServed_Click"/>
+                    <DataGrid Grid.Row="1" Grid.Column="4" Name="dgServed" SelectionChanged="dgPurchases_SelectionChanged" AutoGenerateColumns="False" AlternatingRowBackground="LightGray">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd}" Width="auto"/>
+                            <DataGridTemplateColumn Header="Tételek" Width="3*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl ItemsSource="{Binding ProductPurchases}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Product.Name}"/>
+                                                        <TextBlock Text=" - "/>
+                                                        <TextBlock Text="{Binding Quantity}"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Asztal" Binding="{Binding Desk.Id}" Width="*"/>
+                            <DataGridTextColumn Header="Státusz" Binding="{Binding Status}" Width="*"/>
+                            <DataGridCheckBoxColumn Header="Fizetve" Binding="{Binding Paid}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid Name="dgPurchases" Grid.Row="2" Grid.ColumnSpan="5" SelectionChanged="dgPurchases_SelectionChanged" IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="LightGray">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="auto"/>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd}" Width="auto"/>
+                            <DataGridTemplateColumn Header="Tételek" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl ItemsSource="{Binding ProductPurchases}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Product.Name}"/>
+                                                        <TextBlock Text=" - "/>
+                                                        <TextBlock Text="{Binding Quantity}"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Asztal" Binding="{Binding Desk.Id}" Width="auto"/>
+                            <DataGridTextColumn Header="Státusz" Binding="{Binding Status}" Width="auto"/>
+                            <DataGridTextColumn Header="Státusz" Binding="{Binding TotalPay}" Width="auto"/>
+                            <DataGridTextColumn Header="Státusz" Binding="{Binding User.Name}" Width="auto"/>
+                            <DataGridCheckBoxColumn Header="Fizetve" Binding="{Binding Paid}" Width="auto"/>
+                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Foglalások" Name="tabReservation">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="4*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="0.5*"/>
                         <RowDefinition Height="4*"/>
                     </Grid.RowDefinitions>
                     <StackPanel>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
@@ -104,66 +224,293 @@
                             <Label Grid.Column="2" Grid.Row="2" Content="Távozás időpontja:"/>
                             <Label Grid.Column="2" Grid.Row="3" Content="Lezárva:"/>
                             <TextBox Text="{Binding NumberOfGuests}" Name="tbReservationNumberOfGuests" Grid.Row="0" Grid.Column="3"/>
-                            <DatePicker SelectedDate="{Binding CheckinDate}" Name="dpReservationCheckinDate" Grid.Row="1" Grid.Column="3"/>
-                            <DatePicker SelectedDate="{Binding CheckoutDate}" Name="dpReservationCheckoutDate" Grid.Row="2" Grid.Column="3"/>
-                            <CheckBox IsChecked="{Binding Closed}" Name="tbReservationClosed" Grid.Row="3" Grid.Column="3"/>
+                            <xctk:DateTimePicker Grid.Column="3" Grid.Row="1" Name="dtpReservationCheckinDate" Value="{Binding CheckinDate}" Format="Custom" FormatString="yyyy.MM.dd HH:mm"/>
+                            <xctk:DateTimePicker Grid.Column="3" Grid.Row="2" Name="dtpReservationCheckoutDate" Value="{Binding CheckoutDate}" Format="Custom" FormatString="yyyy.MM.dd HH:mm"/>
+                            <CheckBox IsChecked="{Binding Closed}" Name="chbReservationClosed" Grid.Row="3" Grid.Column="3"/>
                         </Grid>
                         
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Content="Mentés"/>
-                        <Button Content="Módosítás"/>
-                        <Button Content="Törlés"/>
+                        <Button Name="btnReservationSave" Content="Mentés" Click="btnReservationSave_Click"/>
+                        <Button Name="btnReservationUpdate" Content="Módosítás" Click="btnReservationUpdate_Click"/>
+                        <Button Name="btnReservationDelete" Content="Törlés" Click="btnReservationDelete_Click"/>
                     </StackPanel>
-                    <DataGrid Name="dgReservations" Grid.Row="2" Grid.ColumnSpan="3" SelectionChanged="dgReservations_SelectionChanged">
-
+                    <DataGrid Name="dgReservations" Grid.Row="2" Grid.ColumnSpan="3" SelectionChanged="dgReservations_SelectionChanged" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="0.3*"/>
+                            <DataGridTextColumn Header="Érkezés" Binding="{Binding CheckinDate, StringFormat=yyyy.MM.dd HH.mm}" Width="*"/>
+                            <DataGridTextColumn Header="Távozás" Binding="{Binding CheckoutDate, StringFormat=yyyy.MM.dd HH.mm}" Width="*"/>
+                            <DataGridTextColumn Header="Telefon" Binding="{Binding Phone}" Width="*"/>
+                            <DataGridTextColumn Header="Asztal" Binding="{Binding Desk.Id}" Width="0.5*"/>
+                            <DataGridTextColumn Header="Felhasználó" Binding="{Binding User.Name}" Width="2*"/>
+                            <DataGridCheckBoxColumn Header="Lezárva" Binding="{Binding Closed}" Width="0.4*"/>
+                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
 
             </TabItem>
             <TabItem Header="Ételek, italok" Name="tabProduct">
-                <Grid>
+                <Grid ShowGridLines="False">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="4*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2.3*"/>
+                        <RowDefinition Height="0.5*"/>
                         <RowDefinition Height="4*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.3*"/>
                     </Grid.ColumnDefinitions>
+                    <Grid Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Étel neve:"/>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Kategória:"/>
+                        <Label Grid.Row="2" Grid.Column="0" Content="Kiszerelés:"/>
+                        <Label Grid.Row="3" Grid.Column="0" Content="Ár:"/>
+                        <Label Grid.Row="4" Grid.Column="0" Content="Étel-e:"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Name="tbProductName" Text="{Binding Name}"/>
+                        <ComboBox Grid.Row="1" Grid.Column="1" Name="cobProductCategory" 
+                                  ItemsSource="{Binding dbContext.Categories}" 
+                                  DisplayMemberPath="Name" 
+                                  SelectedValuePath="Id" 
+                                  SelectedItem="{Binding Category}"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Name="tbProductPacking" Text="{Binding Packing}"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Name="tbProductPrice"  Text="{Binding Price}"/>
+                        <CheckBox Grid.Row="4" Grid.Column="1" Name="tbProductIsFood"  IsChecked="{Binding IsFood}"/>
+
+                        <Label Grid.Row="0" Grid.Column="2" Content="Leírás:"/>
+                        <TextBox Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Text="{Binding Description}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                        <Grid ShowGridLines="False" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1.1*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="Alapanyagok:"/>
+                            <Label Grid.Row="0" Grid.Column="2" Content="Összes alapanyag:"/>
+                            <ListView Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" ItemsSource="{Binding ProductIngredients}" DisplayMemberPath="Name" Margin="10"/>
+                            <ComboBox Grid.Row="0" Grid.Column="3" 
+                                      Name="cobProductsIngredients" 
+                                      ItemsSource="{Binding dbContext.Ingredients}"
+                                      DisplayMemberPath="Name"/>
+                            <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                                <Button Name="btnAddIngredient" Content="Hozzáad" Click="btnAddIngredient_Click"/>
+                            </StackPanel>
+                        </Grid>
+
+                    </Grid>
+                    <GroupBox Header="Kép" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2">
+                        <WrapPanel HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" Height="60">
+                                <Label Content="Fájlnév:" HorizontalAlignment="Left"/>
+                                <TextBox Name="tbImageName" Text="{Binding Image.ImgName}" HorizontalAlignment="Left" Width="200"/>
+                                <Button Name="btnNewImage" Content="Új kép" Click="btnNewImage_Click" Width="80"/>
+                                <Button Name="btnDeleteImage" Content="Törlés" Width="80"/>
+                            </StackPanel>
+                            <Viewbox>
+                                <Image Name="imgImage" Source="{Binding Image.ImgData, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                            </Viewbox>
+                        </WrapPanel>
+                    </GroupBox>
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button Content="Mentés"/>
                         <Button Content="Módosítás"/>
                         <Button Content="Törlés"/>
                     </StackPanel>
-                    <DataGrid Name="dgProducts" Grid.Row="2" Grid.ColumnSpan="3">
-
+                    <DataGrid Name="dgProducts" Grid.Row="2" Grid.ColumnSpan="3" AutoGenerateColumns="False" SelectionChanged="dgProducts_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="auto"/>
+                            <DataGridTemplateColumn Header="Kép" Width="auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Image.ImgData}" Width="50"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Ételnév" Binding="{Binding Name}" Width="auto"/>
+                            <DataGridTextColumn Header="Leírás" Binding="{Binding Description}" Width="auto"/>
+                            <DataGridTextColumn Header="Kategória" Binding="{Binding Category.Name}" Width="*"/>
+                            <DataGridCheckBoxColumn Header="Étel-e" Binding="{Binding IsFood}" Width="*"/>
+                            <DataGridTextColumn Header="Ár" Binding="{Binding Price}" Width="*"/>
+                        </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
 
             </TabItem>
             <TabItem Header="Egyéb listák" Name="tabAKHA">
-                <Grid>
+                <Grid ShowGridLines="False">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Name="spCategory" Grid.Column="0">
-                        
-                    </StackPanel>
-                    <StackPanel Name="spIngredient" Grid.Column="1">
-                        
-                    </StackPanel>
-                    <StackPanel Name="spAllergen" Grid.Column="2">
-                        
-                    </StackPanel>
-                    <StackPanel Name="spDesk" Grid.Column="3">
-                        
-                    </StackPanel>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
+                    <UniformGrid Grid.Row="0" Grid.ColumnSpan="4" Columns="4">
+                        <Label Grid.Row="0" Grid.Column="0" Content="Kategóriák:" Style="{StaticResource TitleLabelStyle}"/>
+                        <Label Grid.Row="0" Grid.Column="1" Content="Alapanyagok:" Style="{StaticResource TitleLabelStyle}"/>
+                        <Label Grid.Row="0" Grid.Column="2" Content="Allergének:" Style="{StaticResource TitleLabelStyle}"/>
+                        <Label Grid.Row="0" Grid.Column="3" Content="Asztalok:" Style="{StaticResource TitleLabelStyle}"/>
+                    </UniformGrid>
+                    <WrapPanel Name="spCategory" Grid.Column="0" Grid.Row="1">
+                        <Grid ShowGridLines="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="186"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="Id:"/>
+                            <Label Grid.Row="1" Grid.Column="0" Content="Név:"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name}"/>
+                            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button Content="Mentés"/>
+                                <Button Content="Módosítás"/>
+                                <Button Content="Törlés"/>
+                            </StackPanel>
+
+                            <DataGrid ItemsSource="{Binding Categories}" Name="dgCategories" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgCategories_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
+                                    <DataGridTextColumn Header="Név" Binding="{Binding Name}" Width="3*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </WrapPanel>
+                    <WrapPanel Name="spIngredient" Grid.Column="1" Grid.Row="1">
+                        <Grid ShowGridLines="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="Id:"/>
+                            <Label Grid.Row="1" Grid.Column="0" Content="Név:"/>
+                            <Label Grid.Row="2" Grid.Column="0" Content="Allergének:" HorizontalAlignment="Left"/>
+                            <Label Grid.Row="2" Grid.Column="1" Content="Összes allergén:" HorizontalAlignment="Left"/>
+                            <ListView Grid.Row="3" Grid.Column="0" Grid.RowSpan="3" ItemsSource="{Binding IngredientAllergens}" Margin="5"/>
+                            <ComboBox Grid.Row="3" Grid.Column="1" Name="cobIngredientAllergens" ItemsSource="{Binding Allergens}"/>
+                            <Button Grid.Row="4" Grid.Column="1" Content="Hozzáad"/>
+                            <Button Grid.Row="5" Grid.Column="1" Content="Töröl"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name}"/>
+                            <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button Content="Mentés"/>
+                                <Button Content="Módosítás"/>
+                                <Button Content="Törlés"/>
+                            </StackPanel>
+
+                            <DataGrid Name="dgIngredients" ItemsSource="{Binding}" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgIngredients_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
+                                    <DataGridTextColumn Header="Név" Binding="{Binding Name}" Width="2*"/>
+                                    <DataGridTextColumn Header="Allergének" Binding="{Binding IngredientAllergens}" Width="2*"/>
+                                </DataGrid.Columns>
+                                
+                            </DataGrid>
+                        </Grid>
+                    </WrapPanel>
+                    <WrapPanel Name="spAllergen" Grid.Column="2" Grid.Row="1">
+                        <Grid ShowGridLines="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="142"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="Id:"/>
+                            <Label Grid.Row="1" Grid.Column="0" Content="Kód:"/>
+                            <Label Grid.Row="2" Grid.Column="0" Content="Név:"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Code}"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Name}"/>
+                            <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button Content="Mentés"/>
+                                <Button Content="Módosítás"/>
+                                <Button Content="Törlés"/>
+                            </StackPanel>
+
+                            <DataGrid ItemsSource="{Binding}" Name="dgAllergens" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgAllergens_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
+                                    <DataGridTextColumn Header="Név" Binding="{Binding Name}" Width="3*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </WrapPanel>
+                    <WrapPanel Name="spDesk" Grid.Column="3" Grid.Row="1">
+                        <Grid ShowGridLines="False">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="186"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="Id:"/>
+                            <Label Grid.Row="1" Grid.Column="0" Content="Név:"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NumberOfSeats}"/>
+                            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button Content="Mentés"/>
+                                <Button Content="Módosítás"/>
+                                <Button Content="Törlés"/>
+                            </StackPanel>
+
+                            <DataGrid ItemsSource="{Binding}" Name="dgDesks" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgDesks_SelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
+                                    <DataGridTextColumn Header="Név" Binding="{Binding NumberOfSeats}" Width="3*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </WrapPanel>
                 </Grid>
             </TabItem>
             <TabItem Header="Felhasználók" Name="tabUser">

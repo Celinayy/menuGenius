@@ -26,4 +26,7 @@ public partial class Product
     public virtual Image Image { get; set; } = null!;
 
     public virtual ICollection<ProductPurchase> ProductPurchases { get; set; } = new List<ProductPurchase>();
+
+    public virtual ICollection<ProductIngredient> ProductIngredients { get; set; } = new List<ProductIngredient>();
+
 }

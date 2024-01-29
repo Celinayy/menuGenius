@@ -365,8 +365,9 @@ public partial class MenugeniusContext : DbContext
 
         modelBuilder.Entity<ProductIngredient>(entity =>
         {
+            entity.HasKey(e => new { e.ProductId, e.IngredientId }).HasName("PRIMARY");
+            
             entity
-                .HasNoKey()
                 .ToTable("product_ingredient")
                 .UseCollation("utf8mb4_hungarian_ci");
 
