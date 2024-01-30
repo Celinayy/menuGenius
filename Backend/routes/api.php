@@ -60,7 +60,7 @@ Route::controller(UserController::class)->group(function (){
     Route::middleware('auth:sanctum')->get('user/{id}', 'show');
     Route::middleware('auth:sanctum')->put('user', 'update');
     Route::middleware('auth:sanctum')->delete('user/{id}', 'destroy');
-    Route::post('user', 'store');
+    Route::middleware('auth.universal')->post('user', 'store');
 });
 
 //Route::middleware('auth:sanctum')->resource("user", UserController::class)->except(["edit", "create"]);

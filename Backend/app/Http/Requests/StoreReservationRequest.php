@@ -22,13 +22,13 @@ class StoreReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'number_of_guests' => ['required', 'integer'],
-            // 'checkin_date' => ['required', 'datetime', 'after_or_equal:today'],
-            // 'checkout_date' => ['required', 'datetime'],
-            // 'name' => ['required', 'string'],
-            // 'phone' => ['required', 'string'],
-            // 'desk_id' => ['required', 'exists:desks,id'],
-            // 'user_id' => ['required', 'exists:users,id']
+            'name' => ['required', 'string'],
+            'phone' => ['required', 'string'],
+            'number_of_guests' => ['required', 'integer', 'min:1'],
+            'checkin_date' => ['required', 'date_format:Y-m-d H:i:s', 'after_or_equal:today'],
+            // TODO: maximum 3 órás foglalás kezelése
+            'checkout_date' => ['required', 'date_format:Y-m-d H:i:s', 'after:checkin_date'],
+            'comment' => ['string', 'nullable'],
         ];
     }
 }
