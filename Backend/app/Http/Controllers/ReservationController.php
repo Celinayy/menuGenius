@@ -66,7 +66,6 @@ class ReservationController extends Controller
             'checkout_date' => $checkoutDateTime,
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
-            // TODO: Megyjezés mező felvétele a foglalás táblába
             'comment' => $request->input('comment'),
             'desk_id' => $desk->id,
             // TODO: Kezeljük a bejelentkezett felhasználókat (de továbbra is engedjük, hogy nem bejelentkezett felhasználók foglaljanak)
