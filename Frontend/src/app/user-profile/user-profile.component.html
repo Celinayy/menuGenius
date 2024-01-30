@@ -25,6 +25,6 @@
 <div class="container mx-auto text-center mt-3" *ngIf="!authService.user">
   <h1>Nem vagy bejelentkezve!</h1>
   <p>Kérlek jelentkezz be, ha több funkciót szeretnél elérni!</p>
-  <button class="btn btn-warning" >Bejelentkezés</button><br>
-  <button class="btn btn-secondary mt-2" >Regisztráció</button>
+  <button class="btn btn-warning" routerLink="/">Bejelentkezés</button><br>
+  <button class="btn btn-dark mt-2"  routerLink="/">Regisztráció</button>
 </div>
