@@ -20,7 +20,8 @@ class Reservation extends Model
         'phone',
         'user_id',
         'desk_id',
-        'closed'
+        'closed',
+        'comment'
     ];
 
 

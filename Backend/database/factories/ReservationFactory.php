@@ -41,7 +41,7 @@ class ReservationFactory extends Factory
             'desk_id' => $desk -> id,
             'user_id' => $user -> id,
             'closed' => $this -> faker -> boolean,
-
+            'comment' => $this -> faker ->optional() -> paragraph
         ];
     }
 

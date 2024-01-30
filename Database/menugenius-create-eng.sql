@@ -79,6 +79,7 @@ CREATE TABLE reservations (
     desk_id bigint  NOT NULL,
     user_id bigint NULL,
     closed bool DEFAULT 0,
+    comment  text NULL,
     FOREIGN KEY (desk_id) REFERENCES desks(id),
     FOREIGN KEY (user_id) REFERENCES users(id),
     CONSTRAINT PRIMARY KEY (id)
