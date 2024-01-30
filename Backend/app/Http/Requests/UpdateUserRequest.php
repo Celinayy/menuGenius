@@ -25,7 +25,6 @@ class UpdateUserRequest extends FormRequest
             'name' => ['min:3'],
             'email' => ['unique:users', 'email'],
             'password' => ['confirmed', 'min:6'],
-            'current_password' => ['required'],
             'phone' => ['regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10'],
         ];
     }
