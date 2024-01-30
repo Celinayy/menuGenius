@@ -11,10 +11,12 @@ import { ToastrService } from 'ngx-toastr';
 export class SettingsWindowComponent {
 
   public showSavedToast: boolean = false;
+
   public email: string = "";
   public emailAgain: string = "";
   public phone: string = "";
   public phoneAgain: string = "";
+  public currentPassword: string = "";
   public password: string = "";
   public passwordAgain: string = "";
 
@@ -32,7 +34,7 @@ export class SettingsWindowComponent {
   public saveEmail() {
     this.authService.update({ email: this.email })
       .pipe(catchError((err) => {
-        this.toast.error(err.message)
+        this.toast.error(err.error.message)
         return throwError(() => err)
       }))
       .subscribe(() => {
@@ -45,7 +47,7 @@ export class SettingsWindowComponent {
   public savePhone() {
     this.authService.update({ phone: this.phone })
       .pipe(catchError((err) => {
-        this.toast.error(err.message)
+        this.toast.error(err.error.message)
         return throwError(() => err)
       }))
       .subscribe(() => {
@@ -57,9 +59,13 @@ export class SettingsWindowComponent {
   }
 
   public savePassword() {
-    this.authService.update({ password: this.password })
+    this.authService.update({
+      password: this.password,
+      password_confirmation: this.passwordAgain,
+      current_password: this.currentPassword
+    })
       .pipe(catchError((err) => {
-        this.toast.error(err.message)
+        this.toast.error(err.error.message)
         return throwError(() => err)
       }))
       .subscribe(() => {

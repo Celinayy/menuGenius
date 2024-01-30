@@ -75,7 +75,9 @@ export class AuthService {
   public update(data: Partial<{
     email: string,
     phone: string,
-    password: string
+    password: string,
+    current_password: string,
+    password_confirmation: string,
   }>) {
     return this.connection.put<{ token: string }>(`${this.url}/user`, data,
       {
