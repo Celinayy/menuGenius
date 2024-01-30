@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "menugenius",
-    "dateExported": "2024-01-21T16:06:21.919Z",
+    "dateExported": "2024-01-30T12:26:33.888Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -54,7 +54,7 @@
             "method": "POST",
             "sortNum": 7500,
             "created": "2024-01-12T03:05:22.766Z",
-            "modified": "2024-01-20T22:25:16.015Z",
+            "modified": "2024-01-30T12:21:54.232Z",
             "headers": [],
             "params": [],
             "body": {
@@ -63,7 +63,7 @@
                 "form": [
                     {
                         "name": "email",
-                        "value": "menugenius@gmail.com"
+                        "value": "user@gmail.hu"
                     },
                     {
                         "name": "password",
@@ -82,12 +82,12 @@
             "method": "POST",
             "sortNum": 8125,
             "created": "2024-01-12T05:33:43.526Z",
-            "modified": "2024-01-20T22:25:04.982Z",
+            "modified": "2024-01-30T12:23:41.929Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "51|WPbTrJnYTepO56LCVrEVSm9Z24JFFmJOyhZa2uZdbbd62235"
+                "bearer": "72|tBOe6qGPI6qsclYbDkl2FgWjy0fZrqxcpRSJERxE653c5707"
             },
             "tests": []
         },
@@ -114,21 +114,21 @@
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
             "containerId": "",
             "name": "PUT update user",
-            "url": "127.0.0.1:8000/api/user/2",
+            "url": "127.0.0.1:8000/api/user/",
             "method": "PUT",
             "sortNum": 16875,
             "created": "2024-01-18T11:23:44.667Z",
-            "modified": "2024-01-19T14:53:36.144Z",
+            "modified": "2024-01-30T12:23:32.482Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n    \"phone\": \"+96 10 987 6543\"\n}",
+                "raw": "{\n    \"current_password\": \"secreto\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
                 "form": []
             },
             "auth": {
                 "type": "bearer",
-                "bearer": "41|AdGSplpv7DFCL68p2egqCmt5LetNz0stQiuP9nWt8d44c01d"
+                "bearer": "72|tBOe6qGPI6qsclYbDkl2FgWjy0fZrqxcpRSJERxE653c5707"
             },
             "tests": []
         },
@@ -318,7 +318,7 @@
             "method": "GET",
             "sortNum": 95000,
             "created": "2024-01-16T19:57:27.588Z",
-            "modified": "2024-01-20T22:24:40.713Z",
+            "modified": "2024-01-21T22:30:35.793Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -326,10 +326,6 @@
                 }
             ],
             "params": [],
-            "auth": {
-                "type": "bearer",
-                "bearer": "51|WPbTrJnYTepO56LCVrEVSm9Z24JFFmJOyhZa2uZdbbd62235"
-            },
             "tests": []
         },
         {

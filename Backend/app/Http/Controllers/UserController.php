@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -81,9 +83,21 @@ class UserController extends Controller
 
         $data = $request->json()->all();
 
+        if (isset($data['password'])) {
+            $currentPassword = $data['current_password'];
+    
+            if (!Hash::check($currentPassword, $user->password)) {
+                return response()->json(['error' => 'A régi jelszó nem egyezik.'], 422);
+            }
+        }
+
         $user->update($data);
 
         return response()->json(['message' => 'Az adatok sikeresen frissítve lettek.']);
+
+        // $data = $request->json()->all();
+        // $user->update($data);
+        // return response()->json(['message' => 'Az adatok sikeresen frissítve lettek.']);
     }
 
     /**
