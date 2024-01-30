@@ -3,6 +3,23 @@
     <h4 class="fw-light text-center">ASZTALFOGLALÁS</h4>
     <hr class="mx-auto w-75" />
     <div class="col-xs-12 col-md-6">
+      <label for="nameReservation" class="fw-light">Teljes név</label>
+      <input type="text" id="nameReservation" class="form-control mb-2"
+      [(ngModel)]="name"
+      />
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <label for="dateReservation" class="fw-light">Dátum</label>
+      <input
+        type="date"
+        id="dateReservation"
+        class="form-control mb-2"
+        value="date"
+        [ngModel]="formattedDate"
+        (ngModelChange)="date = $event"
+      />
+    </div>
+    <div class="col-xs-12 col-md-6">
       <label for="phonenumberReservation" class="fw-light">Telefonszám</label>
       <input
         type="text"
@@ -10,10 +27,52 @@
         class="form-control mb-2"
         [(ngModel)]="phone"
       />
-      <label for="emailReservation" class="fw-light">E-mail</label>
-      <input type="email" id="emailReservation" class="form-control mb-2"
-      [(ngModel)]="email"
-      />
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <label for="textareaReservation" class="fw-light">Érkezés ideje</label>
+      <select
+        id="personsNumberReservation"
+        type="number"
+        class="form-control mb-2"
+        [(ngModel)]="check_in_datetime"
+      >
+        <option selected>10:00</option>
+        <option>11:00</option>
+        <option>12:00</option>
+        <option>13:00</option>
+        <option>14:00</option>
+        <option>15:00</option>
+        <option>16:00</option>
+        <option>17:00</option>
+        <option>18:00</option>
+        <option>19:00</option>
+        <option>20:00</option>
+      </select>
+    </div>
+    <div class="col-xs-12 col-md-3">
+      <label for="textareaReservation" class="fw-light">Távozás ideje</label>
+      <select
+        id="personsNumberReservation"
+        type="number"
+        class="form-control mb-2"
+        [(ngModel)]="check_out_datetime"
+      >
+      <option selected >11:00</option>
+      <option>12:00</option>
+      <option>13:00</option>
+      <option>14:00</option>
+      <option>15:00</option>
+      <option>16:00</option>
+      <option>17:00</option>
+      <option>18:00</option>
+      <option>19:00</option>
+      <option>20:00</option>
+      <option>21:00</option>
+      <option>22:00</option>
+      <option>23:00</option>
+      </select>
+    </div>
+    <div class="col-xs-12 col-md-6">
       <label for="personsNumberReservation" class="fw-light"
         >Hány főre szeretnél foglalni?</label
       >
@@ -33,15 +92,8 @@
         <option>9</option>
         <option>10</option>
       </select>
-      <label for="dateReservation" class="fw-light">Dátum</label>
-      <input
-        type="date"
-        id="dateReservation"
-        class="form-control mb-2"
-        value="date"
-      />
     </div>
-    <div class="col-xs-12 col-md-6">
+      <div class="col-xs-12 col-md-6">
       <label for="textareaReservation" class="fw-light">Megjegyzés</label>
       <textarea
         type="text"
@@ -50,10 +102,11 @@
         rows="2"
         cols="40"
         style="resize: none"
+        [(ngModel)]="comment"
       ></textarea>
     </div>
     <div class="text-center mt-4">
-      <button class="btn btn-warning fs-5 fw-light">Foglalás leadása</button>
+      <button class="btn btn-warning fs-5 fw-light" (click)="handleSubmit()">Foglalás leadása</button>
     </div>
   </div>
 </div>
