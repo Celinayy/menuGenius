@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { ReservationService } from '../services/reservation.service';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-reservation-window',
@@ -26,6 +27,7 @@ export class TableReservationWindowComponent {
     private datePipe: DatePipe,
     public reservationService: ReservationService,
     private toast: ToastrService,
+    private router: Router
   ) {
     this.authService.getUser().subscribe((user) => {
       this.phone = user.phone;
@@ -50,7 +52,8 @@ export class TableReservationWindowComponent {
       return throwError(() => err);
     }))
     .subscribe(() => {
-      this.toast.success("Sikeres foglalás!");
+      this.toast.success("Válogasson a kínálatunkból!", "Sikeres foglalás!");
+      this.router.navigate(["/products"])
     })
   }
 
