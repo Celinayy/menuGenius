@@ -6,6 +6,8 @@ use App\Models\Purchase;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
 use \Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
+
 
 class PurchaseController extends Controller
 {
@@ -59,14 +61,19 @@ class PurchaseController extends Controller
      */
     public function store(StorePurchaseRequest $request)
     {
+        if (Auth::guard('sanctum')->check()) {
+            $user = Auth::guard('sanctum')->user();
+        } else {
+            $user = null;
+        }
+
         $purchase = Purchase::create([
             'date_time' => $request->input('date_time', now()),
             'total_pay' => $request->input('total_pay'),
             'status' => $request->input('status', 'ordered'),
             'paid' => $request->input('paid', false),
             'desk_id' => $request->input('desk_id'),
-            'user_id' => $request->input('user_id')
-            //'user_id' => auth()->id(),
+            'user_id' => $user ? $user->id : null,
         ]);
     
         $products = $request->input('products');
