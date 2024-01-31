@@ -7,9 +7,10 @@
             <h5 class="card-title">{{reservation.name}} foglalása</h5>
             <p class="card-text">{{reservation.comment || "Nincs külön megjegyzés a foglaláshoz!"}}</p>
             <!-- TODO Amennyiben a foglalás már elmúlt, úgy majd a rendelt ételek lesznek láthatóak, ha belekattint a felh. -->
-            <a routerLink="/products" class="btn btn-warning">Megnézem addig a kínálatot!</a>
+            <a routerLink="/products" class="btn btn-warning" *ngIf="!isReservationOver(reservation)">Megnézem addig a kínálatot!</a>
+            <a class="btn btn-warning" *ngIf="isReservationOver(reservation)">Megnézem a rendeléseimet!</a>
           </div>
-          <div class="card-footer text-body-secondary">
+          <div class="card-footer bg-transparent text-body-secondary">
             {{daySince(reservation)}}
           </div>
         </div>

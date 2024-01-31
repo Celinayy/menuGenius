@@ -3,9 +3,9 @@ import { ReservationService } from '../services/reservation.service';
 import { ReservationModel } from '../models/reservation-model';
 import * as moment from 'moment';
 @Component({
-  selector: 'app-history-window',
-  templateUrl: './history-window.component.html',
-  styleUrls: ['./history-window.component.css']
+  selector: 'app-user-reservation-window',
+  templateUrl: './user-reservation-window.component.html',
+  styleUrls: ['./user-reservation-window.component.css']
 })
 export class HistoryWindowComponent {
 
@@ -30,6 +30,9 @@ export class HistoryWindowComponent {
     } else {
       return "Mai napi foglalás"
     }
+  }
 
+  public isReservationOver(reservation: ReservationModel) {
+    return moment(reservation.checkout_date).isBefore(moment());
   }
 }

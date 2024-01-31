@@ -19,8 +19,9 @@ import { FilterPipe } from './filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { HistoryWindowComponent } from './user-reservation-window/history-window.component';
+import { HistoryWindowComponent } from './user-reservation-window/user-reservation-window.component';
 import { FavouriteFoodWindowComponent } from './favourite-food-window/favourite-food-window.component';
+import { ProductsDetailsWindowComponent } from './products-details-window/products-details-window.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FavouriteFoodWindowComponent } from './favourite-food-window/favourite-
     UserProfileComponent,
     HistoryWindowComponent,
     FavouriteFoodWindowComponent,
+    ProductsDetailsWindowComponent,
   ],
   imports: [
     BrowserModule,

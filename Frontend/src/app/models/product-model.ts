@@ -1,3 +1,5 @@
+import { IngredientModel } from "./ingredient-model";
+
 export interface ProductModel {
   id: number,
   name: string,
@@ -9,5 +11,6 @@ export interface ProductModel {
   image_id: number,
   image: {
     data: string,
-  }
+  },
+  ingredients: IngredientModel[]
 }
