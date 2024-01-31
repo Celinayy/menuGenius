@@ -19,7 +19,7 @@ import { FilterPipe } from './filter.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { HistoryWindowComponent } from './history-window/history-window.component';
+import { HistoryWindowComponent } from './user-reservation-window/history-window.component';
 import { FavouriteFoodWindowComponent } from './favourite-food-window/favourite-food-window.component';
 
 @NgModule({

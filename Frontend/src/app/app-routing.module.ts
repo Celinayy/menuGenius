@@ -5,7 +5,7 @@ import { TableReservationWindowComponent } from './table-reservation-window/tabl
 import { ProductsWindowComponent } from './products-window/products-window.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SettingsWindowComponent } from './settings-window/settings-window.component';
-import { HistoryWindowComponent } from './history-window/history-window.component';
+import { HistoryWindowComponent } from './user-reservation-window/history-window.component';
 import { FavouriteFoodWindowComponent } from './favourite-food-window/favourite-food-window.component';
 
 const routes: Routes = [

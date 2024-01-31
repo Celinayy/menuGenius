@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
+import { ReservationModel } from '../models/reservation-model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,12 @@ export class ReservationService {
 
   private formatDateTime(date: Date, time: string) {
     return `${moment(date).format("YYYY-MM-DD")} ${time}:00`
+  }
+
+
+  public getUserReservation() {
+    return this.connection.get<ReservationModel[]>(this.url, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+    })
   }
 }
