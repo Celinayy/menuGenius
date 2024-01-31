@@ -5,5 +5,6 @@ export interface ReservationModel {
   checkout_date: Date;
   name: string;
   phone: string;
-  desk_id: number
+  desk_id: number;
+  comment: string;
 }
