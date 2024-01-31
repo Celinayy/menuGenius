@@ -60,6 +60,12 @@ class ReservationController extends Controller
             ], 400);
         }
 
+        if (Auth::guard('sanctum')->check()) {
+            $user = Auth::guard('sanctum')->user();
+        } else {
+            $user = null;
+        }
+
         $reservation = Reservation::create([
             'number_of_guests' => $request->input('number_of_guests'),
             'checkin_date' => $checkinDateTime,
@@ -68,8 +74,8 @@ class ReservationController extends Controller
             'phone' => $request->input('phone'),
             'comment' => $request->input('comment'),
             'desk_id' => $desk->id,
-            // TODO: Kezeljük a bejelentkezett felhasználókat (de továbbra is engedjük, hogy nem bejelentkezett felhasználók foglaljanak)
             'closed' => false,
+            'user_id' => $user ? $user->id : null,
         ]);
 
         return response()->json(['message' => 'A foglalás létrehozva!', 'data' => $reservation], 201);

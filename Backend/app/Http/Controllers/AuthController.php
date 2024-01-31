@@ -23,7 +23,7 @@ class AuthController extends Controller
 
             ],
             [
-                "name.required" => "Az név megadása kötelező!",
+                "name.required" => "A név megadása kötelező!",
                 "name.min" => "Túl rövid név!",
                 "name.max" => "Túl hosszú név!",
 
@@ -65,10 +65,9 @@ class AuthController extends Controller
             "email.email" => "Az email formátuma nem megfelelő!",
             "email.exists" => "Az emailhez nem tartozik felhasználó!",
 
-            "password.requried" => "A jelszó mező kitöltése kötelező!",
+            "password.required" => "A jelszó mező kitöltése kötelező!",
             "password.min" => "A jelszónak minimum 6 karakternek kell lennie!",
             "password.max" => "A jelszó maximum 255 karakter lehet!",
-
         ]);
 
         if ($validator->fails())
