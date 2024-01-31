@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HistoryWindowComponent } from './history-window.component';
+import { HistoryWindowComponent } from './user-reservation-window.component';
 
 describe('HistoryWindowComponent', () => {
   let component: HistoryWindowComponent;

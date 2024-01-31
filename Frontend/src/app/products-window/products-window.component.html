@@ -27,10 +27,15 @@
         src="data:image/png;base64, {{ product.image.data }}"
         alt="Card image cap"
       />
-      <div class="card-body">
+      <div class="card-body d-flex flex-column">
         <h5 class="card-title">{{ product.name }}</h5>
-        <p class="card-text pb-4">{{ product.description }}</p>
+        <p class="card-text">{{ product.description }}</p>
+        <div class="mt-auto">
+          <h5 class="fw-light">{{ product.price }},-</h5>
+          <button [routerLink]="'/products/' + product.id" class="btn btn-warning">
+            Részletek/rendelés
+          </button>
+        </div>
       </div>
-    </div>
   </div>
 </div>

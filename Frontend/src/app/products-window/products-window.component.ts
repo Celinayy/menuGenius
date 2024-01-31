@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductModel } from '../models/product-model';
 import { ProductService } from '../services/product.service';
 import { CategoryModel } from '../models/category-model';
 import { CategoriesService } from '../services/categories.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-products-window',
@@ -18,7 +19,10 @@ export class ProductsWindowComponent {
   public searchTerm: string = '';
   public category_id : number | null = null;
 
-  constructor(private productService: ProductService, private categoryService: CategoriesService) {
+  constructor(
+    private productService: ProductService,
+    private categoryService: CategoriesService,
+    ) {
     this.loadProducts()
     this.loadCategories();
 
