@@ -37,7 +37,7 @@ class Product extends Model
 
     public function purchases():BelongsToMany
     {
-        return $this->belongsToMany(Ingredient::class, 'product_purchase')->withPivot('quantity')->as('product_purchase');
+        return $this->belongsToMany(Purchase::class, 'product_purchase')->withPivot('quantity')->as('product_purchase');
     }
 
     public function users():BelongsToMany
