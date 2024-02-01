@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProductModel } from '../models/product-model';
 import { BehaviorSubject } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

@@ -1,12 +1,11 @@
-<div class="container">
-  <div class="row mt-3 mx-auto text-center">
+<div class="container mx-auto text-center">
+  <div class="row mt-3 ">
     <h4 class="fw-light text-center">FOGLALÁSOK</h4>
     <hr class="mx-auto w-75" >
         <div class="card text-center m-2 blur" *ngFor="let reservation of userReservationHistory">
           <div class="card-body">
             <h5 class="card-title">{{reservation.name}} foglalása</h5>
             <p class="card-text">{{reservation.comment || "Nincs külön megjegyzés a foglaláshoz!"}}</p>
-            <!-- TODO Amennyiben a foglalás már elmúlt, úgy majd a rendelt ételek lesznek láthatóak, ha belekattint a felh. -->
             <a routerLink="/products" class="btn btn-warning" *ngIf="!isReservationOver(reservation)">Megnézem addig a kínálatot!</a>
             <a class="btn btn-warning" *ngIf="isReservationOver(reservation)">Megnézem a rendeléseimet!</a>
           </div>

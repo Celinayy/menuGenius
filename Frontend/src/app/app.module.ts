@@ -22,6 +22,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { HistoryWindowComponent } from './user-reservation-window/user-reservation-window.component';
 import { FavouriteFoodWindowComponent } from './favourite-food-window/favourite-food-window.component';
 import { ProductsDetailsWindowComponent } from './products-details-window/products-details-window.component';
+import { CartWindowComponent } from './cart-window/cart-window.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ProductsDetailsWindowComponent } from './products-details-window/produc
     HistoryWindowComponent,
     FavouriteFoodWindowComponent,
     ProductsDetailsWindowComponent,
+    CartWindowComponent,
   ],
   imports: [
     BrowserModule,
