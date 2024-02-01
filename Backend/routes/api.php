@@ -32,7 +32,10 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login');
     Route::middleware('auth:sanctum')->post('/logout', 'logout');
 });
+
+
 Route::controller(ProductController::class)->group(function () {
+    Route::middleware('auth:sanctum')->get('product/userFavorites', 'userFavorites');
     Route::get('product', 'index');
     Route::get('product/{id}', 'show');
     Route::middleware('auth:sanctum')->post('product/{id}/addToFavorites', 'addToFavorites');

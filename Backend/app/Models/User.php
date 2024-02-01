@@ -63,7 +63,7 @@ class User extends Authenticatable
 
     public function reservations():HasMany
     {
-        return $this->hasMany(Purchase::class);
+        return $this->hasMany(Reservation::class);
     }
 
     public function event_log():HasMany

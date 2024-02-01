@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "menugenius",
-    "dateExported": "2024-01-30T12:26:33.888Z",
+    "dateExported": "2024-02-01T16:54:06.907Z",
     "version": "1.1",
     "folders": [],
     "requests": [
@@ -54,7 +54,7 @@
             "method": "POST",
             "sortNum": 7500,
             "created": "2024-01-12T03:05:22.766Z",
-            "modified": "2024-01-30T12:21:54.232Z",
+            "modified": "2024-01-30T18:22:39.390Z",
             "headers": [],
             "params": [],
             "body": {
@@ -63,7 +63,7 @@
                 "form": [
                     {
                         "name": "email",
-                        "value": "user@gmail.hu"
+                        "value": "kocsog@example.org"
                     },
                     {
                         "name": "password",
@@ -82,12 +82,12 @@
             "method": "POST",
             "sortNum": 8125,
             "created": "2024-01-12T05:33:43.526Z",
-            "modified": "2024-01-30T12:23:41.929Z",
+            "modified": "2024-02-01T16:15:20.906Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "72|tBOe6qGPI6qsclYbDkl2FgWjy0fZrqxcpRSJERxE653c5707"
+                "bearer": "89|1J268aDhR15D5J2mVgSEJDRcVYNnEjUBhMJKS0yI2b0fe671"
             },
             "tests": []
         },
@@ -100,12 +100,12 @@
             "method": "GET",
             "sortNum": 8750,
             "created": "2024-01-12T03:24:14.824Z",
-            "modified": "2024-01-19T14:52:48.402Z",
+            "modified": "2024-02-01T16:50:58.965Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "41|AdGSplpv7DFCL68p2egqCmt5LetNz0stQiuP9nWt8d44c01d"
+                "bearer": "90|cl6sRVtJWou0SR53M1vih6OxRgsqj7dtMsZ7RHLMa2f393ef"
             },
             "tests": []
         },
@@ -318,7 +318,7 @@
             "method": "GET",
             "sortNum": 95000,
             "created": "2024-01-16T19:57:27.588Z",
-            "modified": "2024-01-21T22:30:35.793Z",
+            "modified": "2024-01-31T05:04:48.225Z",
             "headers": [
                 {
                     "name": "Accept",
@@ -326,6 +326,10 @@
                 }
             ],
             "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "84|QIGzUt0vBbfD3nMEBfBX4kZfwhLfGofoiCSzB1aXe400b10c"
+            },
             "tests": []
         },
         {
@@ -355,12 +359,12 @@
             "method": "POST",
             "sortNum": 100000,
             "created": "2024-01-16T19:55:46.420Z",
-            "modified": "2024-01-17T13:54:22.625Z",
+            "modified": "2024-01-31T05:01:35.290Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"number_of_guests\": 3,\n  \"checkin_date\": \"2024-01-18T18:00\",\n  \"checkout_date\": \"2024-01-18T20:00\",\n  \"name\": \"Teszt Elek\",\n  \"phone\": \"3634287\",\n  \"desk_id\": 3,\n  \"user_id\": 2,\n  \"closed\": false\n}",
+                "raw": "{\n  \"number_of_guests\": 6,\n  \"checkin_date\": \"2024-03-31 18:00:00\",\n  \"checkout_date\": \"2024-03-31 20:00:00\",\n  \"name\": \"Valami Béla\",\n  \"phone\": \"+36 30 987 6541\",\n  \"comment\": \"Ablak mellé kérem!\"\n}",
                 "form": []
             },
             "tests": []
@@ -460,6 +464,42 @@
                 "type": "json",
                 "raw": "{\n  \"checkin_date\": \"2024-02-20 15:00:00\",\n  \"checkout_date\": \"2024-02-20 16:00:00\",\n  \"number_of_guests\": 20\n}",
                 "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d3e8441d-68c1-46f5-81fc-484bd47427e9",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "POST add product to favorites",
+            "url": "127.0.0.1:8000/api/product/10/addToFavorites",
+            "method": "POST",
+            "sortNum": 260000,
+            "created": "2024-02-01T14:51:02.339Z",
+            "modified": "2024-02-01T15:26:34.621Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "87|WprMRdI2jdD7KGYdNZ5ModQb3J8I5pDQB8FlcZzs74998fd1"
+            },
+            "tests": []
+        },
+        {
+            "_id": "e83c28a0-acca-4646-91cb-788351e1cc2e",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "",
+            "name": "GET user favorites",
+            "url": "127.0.0.1:8000/api/product/userFavorites",
+            "method": "GET",
+            "sortNum": 270000,
+            "created": "2024-02-01T15:25:31.816Z",
+            "modified": "2024-02-01T16:46:43.006Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "90|cl6sRVtJWou0SR53M1vih6OxRgsqj7dtMsZ7RHLMa2f393ef"
             },
             "tests": []
         }

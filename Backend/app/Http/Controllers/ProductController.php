@@ -45,30 +45,19 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return Product::with([
+        $product = Product::with([
             'image', 
             'category', 
             'ingredients' => function($query) {
                 $query->with('allergens');
             }
-            ])->findOrFail($id);
-
-        // if (!$product) {
-        //     return response()->json(['error' => 'A terméket nem találtam!'], 404);
-        // }
-
-        // if($product){
-        //     $product = Product::with([
-        //         'image', 
-        //         'category', 
-        //         'ingredients' => function($query) {
-        //             $query->with('allergens');
-        //         }
-        //     ])->findOrFail($product->id);
-        //     return response()->json($product);
-        // }
-        //return response()->json($product);
-    }
+        ])->find($id);
+    
+        if (!$product) {
+            return response()->json(['error' => 'A terméket nem találtam!'], 404);
+        }
+    
+        return response()->json($product);    }
 
     /**
      * Show the form for editing the specified resource.
@@ -125,5 +114,23 @@ class ProductController extends Controller
             return response()->json(['message' => 'Be kell jelentkezni a kedvencekhez']);
         }
     }
-            
+
+    public function userFavorites()
+    {
+        $user = auth()->user();
+    
+        $favorites = $user->products()
+            ->wherePivot('favorite', true)
+            ->with([
+                'image', 
+                'category', 
+                'ingredients' => function($query) {
+                    $query->with('allergens');
+                }
+            ])
+            ->get();
+
+        return response()->json(['favorites' => $favorites]);
+    }
+                
 }
