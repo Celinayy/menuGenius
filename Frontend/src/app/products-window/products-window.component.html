@@ -25,37 +25,10 @@
   </div>
   <hr />
   <div class="row px-4 position-relative d-flex justify-content-center">
-    <div
-      class="card col-12 col-md-6 col-lg-3 blur m-2"
+    <app-product-card
       *ngFor="let product of filterCategory | filter : searchKey : 'name'"
+      [product]="product"
     >
-      <img
-        class="card-img-top rounded mt-3"
-        src="data:image/png;base64, {{ product.image.data }}"
-        alt="Card image cap"
-      />
-      <div class="card-body d-flex flex-column">
-        <h5 class="card-title">{{ product.name }}</h5>
-        <p class="card-text">{{ product.description }}</p>
-        <div class="mt-auto">
-          <h5 class="fw-light">{{ product.price }},-</h5>
-          <div>
-            <div class="row">
-              <div class="col-9">
-                <button
-                  [routerLink]="'/products/' + product.id"
-                  class="btn btn-warning"
-                >
-                  Részletek/rendelés
-                </button>
-              </div>
-              <div class="col-3">
-                <app-star-button [product]="product" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </app-product-card>
   </div>
 </div>

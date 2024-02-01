@@ -24,6 +24,7 @@ import { FavouriteFoodWindowComponent } from './favourite-food-window/favourite-
 import { ProductsDetailsWindowComponent } from './products-details-window/products-details-window.component';
 import { CartWindowComponent } from './cart-window/cart-window.component';
 import { StarButtonComponent } from './star-button/star-button.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { StarButtonComponent } from './star-button/star-button.component';
     ProductsDetailsWindowComponent,
     CartWindowComponent,
     StarButtonComponent,
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,

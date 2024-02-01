@@ -3,33 +3,10 @@
     <h4 class="fw-light text-center">KEDVENC ÉTELEK ÉS ITALOK</h4>
     <hr class="mx-auto w-75" />
     <div class="row px-4 position-relative d-flex justify-content-center">
-      <div class="card col-12 col-md-6 col-lg-3 blur m-2">
-        <img
-          class="card-img-top rounded mt-3"
-          src="/assets/dog.jpg"
-          alt="Card image cap"
-        />
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">Termék neve</h5>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed eos,
-            recusandae quibusdam est repellat natus harum fugiat possimus unde,
-            cupiditate assumenda distinctio minus illum iure illo eveniet
-            laborum veritatis ut?
-          </p>
-          <h5 class="fw-light">Termék ára</h5>
-          <div class="row">
-            <div class="col-9">
-              <button  class="btn btn-warning">
-                Részletek/rendelés
-              </button>
-            </div>
-            <div class="col-3">
-
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-product-card
+        *ngFor="let product of favouriteProducts"
+        [product]="product"
+      />
     </div>
   </div>
 </div>
