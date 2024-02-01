@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
-            $table->boolean('favorite');
-            $table->integer('stars');
+            $table->boolean('favorite')->default('false');
+            $table->integer('stars')->default('5');
             //$table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');
