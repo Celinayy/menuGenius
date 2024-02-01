@@ -40,6 +40,11 @@ class Product extends Model
         return $this->belongsToMany(Ingredient::class, 'product_purchase')->withPivot('quantity')->as('product_purchase');
     }
 
+    public function users():BelongsToMany
+    {
+        return  $this->belongsToMany(User::class,'product_user');
+    }
+
     // public function allergens()
     // {
     //     return $this->ingredients()->belongsToMany(Allergen::class, 'ingredient_allergen');
