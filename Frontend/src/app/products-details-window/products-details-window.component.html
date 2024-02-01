@@ -43,7 +43,7 @@
         <button class="btn btn-dark mb-2" (click)="addToCart()">
           Kosárhoz adás!
         </button>
-        <button class="btn btn-warning mb-2">Azonnali rendelés!</button>
+        <button class="btn btn-warning mb-2" (click)="addToCart()" routerLink="/cart">Azonnali rendelés!</button>
         <button class="btn btn-danger" routerLink="/products">
           Vissza a kínálathoz!
         </button>
