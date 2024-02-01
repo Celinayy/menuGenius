@@ -9,16 +9,10 @@ import { ProductModel } from '../models/product-model';
   styleUrls: ['./favourite-food-window.component.css']
 })
 export class FavouriteFoodWindowComponent {
-  private allProducts: ProductModel[] = [];
-
-  constructor(private productService: ProductService, private favoriteService: FavouriteService) {
-    this.productService.listProducts().subscribe((products) => {
-      this.allProducts = products;
-    })
-  }
+  constructor(private productService: ProductService, private favoriteService: FavouriteService) {}
 
   public get favouriteProducts() {
-    return this.allProducts.filter((product) => {
+    return this.productService.products.filter((product) => {
       return this.favoriteService.isFavourite(product);
     });
   }

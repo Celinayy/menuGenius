@@ -11,8 +11,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./products-window.component.css']
 })
 export class ProductsWindowComponent {
-
-  public products: ProductModel[] = [];
   public categories: CategoryModel[] = [];
 
   searchKey: string = "";
@@ -23,19 +21,12 @@ export class ProductsWindowComponent {
     private productService: ProductService,
     private categoryService: CategoriesService,
     ) {
-    this.loadProducts()
     this.loadCategories();
 
     this.productService.search.subscribe((val: any) =>{
       this.searchKey = val;
     })
 
-  };
-
-  private loadProducts() {
-    this.productService.listProducts().subscribe((products) => {
-      this.products = products;
-    })
   };
 
   private loadCategories() {
@@ -50,7 +41,7 @@ export class ProductsWindowComponent {
   }
 
   public get filterCategory() {
-    return this.products.filter((p) => {
+    return this.productService.products.filter((p) => {
       if(!this.category_id) return true;
       return p.category_id === this.category_id;
     })

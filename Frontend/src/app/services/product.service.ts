@@ -11,8 +11,13 @@ export class ProductService {
   private url = "http://localhost:8000/api/product"
   public search = new BehaviorSubject<string>("");
 
-  constructor(
-    private connection: HttpClient) { }
+  public products: ProductModel[] = [];
+
+  constructor(private connection: HttpClient) {
+    this.listProducts().subscribe((products) => {
+      this.products = products;
+    });
+  }
 
   public listProducts() {
     return this.connection.get<ProductModel[]>(this.url)
