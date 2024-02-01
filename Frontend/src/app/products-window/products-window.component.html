@@ -50,7 +50,7 @@
                 </button>
               </div>
               <div class="col-3">
-                <app-star-button [product]="product" />
+                <app-star-button [product]="product" *ngIf="authService.isLoggedIn" />
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import { ProductService } from '../services/product.service';
 import { CategoryModel } from '../models/category-model';
 import { CategoriesService } from '../services/categories.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-products-window',
@@ -20,6 +21,7 @@ export class ProductsWindowComponent {
   constructor(
     private productService: ProductService,
     private categoryService: CategoriesService,
+    public authService: AuthService,
     ) {
     this.loadCategories();
 
