@@ -3,6 +3,7 @@ import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductModel } from '../models/product-model';
 import { ToastrService } from 'ngx-toastr';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-products-details-window',
@@ -11,12 +12,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProductsDetailsWindowComponent {
 
-  public product: ProductModel | undefined;
+  public product!: ProductModel;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     public productService: ProductService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private cartService: CartService,
   ) {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.productService.loadProductById(parseInt(params.get("id") as string)).subscribe((product) => {
@@ -37,9 +39,9 @@ export class ProductsDetailsWindowComponent {
     return Array.from(new Set(allergensWithDuplicates))
   }
 
-// Még nincs mögötte logika
   public addToCart() {
      this.toast.success("Kosárhoz adva!")
+     this.cartService.addProduct(this.product);
   }
 
 }

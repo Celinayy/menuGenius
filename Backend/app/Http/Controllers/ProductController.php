@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\DB;
+
 
 class ProductController extends Controller
 {
@@ -35,18 +37,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        // $product = new Product();
-        // $product->name = $request->input('name');
-        // $product->description = $request->input('description');
-        // $product->packing = $request->input('packing');
-        // $product->price = $request->input('price');
-        // $product->is_food = $request->input('is_food');
-        // $product->category_id = $request->input('category_id');
-        // $product->image_id = $request->input('image_id');
-
-        // $product->save();
-
-        // return response()->json(['message' => 'A termék létrehozva!', 'data' => $product], 201);
+        //
     }
 
     /**
@@ -102,4 +93,37 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function addToFavorites($productId)
+    {
+        if (auth()->check()) {
+            $user = auth()->user();
+
+            $user->products()->attach($productId, ['favorite' => true]);
+
+            return response()->json(['message' => 'Termék hozzáadva a kedvencekhez']);
+        } else {
+            return response()->json(['message' => 'Be kell jelentkezni a kedvencekhez']);
+        }
+    }
+
+    public function removeFromFavorites($productId)
+    {
+        if (auth()->check()) {
+            $user = auth()->user();
+    
+            $pivotRow = $user->products()->where('product_id', $productId)->first();
+    
+            if ($pivotRow) {
+                $user->products()->updateExistingPivot($productId, ['favorite' => false]);
+    
+                return response()->json(['message' => 'Termék eltávolítva a kedvencekből']);
+            } else {
+                return response()->json(['message' => 'A termék nem található a kedvencek között'], 404);
+            }
+        } else {
+            return response()->json(['message' => 'Be kell jelentkezni a kedvencekhez']);
+        }
+    }
+            
 }

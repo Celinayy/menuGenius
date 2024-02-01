@@ -35,6 +35,8 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(ProductController::class)->group(function () {
     Route::get('product', 'index');
     Route::get('product/{id}', 'show');
+    Route::middleware('auth:sanctum')->post('product/{id}/addToFavorites', 'addToFavorites');
+    Route::middleware('auth:sanctum')->post('product/{id}/removeFromFavorites', 'removeFromFavorites');
 });
 
 Route::controller(PurchaseController::class)->group(function () {

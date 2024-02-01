@@ -4,22 +4,29 @@
       <h1>Kínálatunk</h1>
     </div>
     <div class="col-md-6 col-12 align-items-center d-flex">
-      <select class="form-select me-2" [(ngModel)] = "category_id" aria-label="Default select example">
+      <select
+        class="form-select me-2"
+        [(ngModel)]="category_id"
+        aria-label="Default select example"
+      >
         <option [ngValue]="null">Összses</option>
-        <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+        <option *ngFor="let category of categories" [ngValue]="category.id">
+          {{ category.name }}
+        </option>
       </select>
       <input
         type="email"
         class="form-control"
         placeholder="Keresés"
-      [(ngModel)]="searchTerm" (keyup)="search()"
+        [(ngModel)]="searchTerm"
+        (keyup)="search()"
       />
     </div>
   </div>
   <hr />
   <div class="row px-4 position-relative d-flex justify-content-center">
     <div
-      class="card col-12 col-md-6 col-lg-3 blur m-2"
+      class="card blur col-12 col-md-6 col-lg-3 m-2"
       *ngFor="let product of filterCategory | filter : searchKey : 'name'"
     >
       <img
@@ -32,10 +39,23 @@
         <p class="card-text">{{ product.description }}</p>
         <div class="mt-auto">
           <h5 class="fw-light">{{ product.price }},-</h5>
-          <button [routerLink]="'/products/' + product.id" class="btn btn-warning">
-            Részletek/rendelés
-          </button>
+          <div>
+            <div class="row">
+              <div class="col-9">
+                <button
+                  [routerLink]="'/products/' + product.id"
+                  class="btn btn-warning"
+                >
+                  Részletek/rendelés
+                </button>
+              </div>
+              <div class="col-3">
+                <app-star-button [product]="product" *ngIf="authService.isLoggedIn" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
   </div>
 </div>

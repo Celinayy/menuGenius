@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CartService } from '../services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart-window',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./cart-window.component.css']
 })
 export class CartWindowComponent {
+  constructor(public cart: CartService, private toast: ToastrService) {}
 
+  public get totalPrice() {
+    return this.cart.products.reduce((prev, product) => prev + product.price, 0);
+  }
+
+  public removeItem(index: number) {
+    this.cart.removeItem(index);
+    this.toast.success("Termék sikeresen eltávolítva a kosárból!");
+  }
 }

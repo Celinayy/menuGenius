@@ -14,9 +14,12 @@
         <div class="card-body text-center">
           <h3>{{ product.name }}</h3>
         </div>
+
+        <label class="fw-semibold">Leírás</label>
         <p class="text-justify">
           {{ product.description }}
         </p>
+
         <div *ngIf="product.ingredients.length > 0">
           <label class="fw-semibold">Összetevők</label>
           <p>
@@ -37,8 +40,10 @@
             >
           </p>
         </div>
-        <button class="btn btn-dark mb-2" (click)="addToCart()">Kosárhoz adás!</button>
-        <button class="btn btn-warning mb-2">Azonnali rendelés!</button>
+        <button class="btn btn-dark mb-2" (click)="addToCart()">
+          Kosárhoz adás!
+        </button>
+        <button class="btn btn-warning mb-2" (click)="addToCart()" routerLink="/cart">Azonnali rendelés!</button>
         <button class="btn btn-danger" routerLink="/products">
           Vissza a kínálathoz!
         </button>
