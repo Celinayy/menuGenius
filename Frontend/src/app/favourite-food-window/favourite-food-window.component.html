@@ -2,7 +2,12 @@
   <div class="row mt-3">
     <h4 class="fw-light text-center">KEDVENC ÉTELEK ÉS ITALOK</h4>
     <hr class="mx-auto w-75" />
-    <div class="row px-4 position-relative d-flex justify-content-center">
+    <div class="container mx-auto text-center mt-3" *ngIf="favouriteProducts.length === 0">
+      <h1>Még nincsenek kedvenc ételeid!</h1>
+      <p>Adj hozzá kedvenc ételeket, ha szeretnéd hogy itt megjelenjenek!</p>
+      <button class="btn btn-warning" routerLink="/products">Kínálatunk</button><br />
+    </div>
+    <div class="row px-4 position-relative d-flex justify-content-center" *ngIf="favouriteProducts.length > 0">
       <div
         class="card blur col-12 col-md-6 col-lg-3 m-2"
         *ngFor="let product of favouriteProducts"
