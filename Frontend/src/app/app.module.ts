@@ -23,6 +23,7 @@ import { HistoryWindowComponent } from './user-reservation-window/user-reservati
 import { FavouriteFoodWindowComponent } from './favourite-food-window/favourite-food-window.component';
 import { ProductsDetailsWindowComponent } from './products-details-window/products-details-window.component';
 import { CartWindowComponent } from './cart-window/cart-window.component';
+import { StarButtonComponent } from './star-button/star-button.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CartWindowComponent } from './cart-window/cart-window.component';
     FavouriteFoodWindowComponent,
     ProductsDetailsWindowComponent,
     CartWindowComponent,
+    StarButtonComponent,
   ],
   imports: [
     BrowserModule,

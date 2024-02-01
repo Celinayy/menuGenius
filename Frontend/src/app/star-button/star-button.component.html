@@ -1,0 +1,10 @@
+<i
+  *ngIf="!isFavourite"
+  (click)="addToFavouriteList()"
+  class="bi bi-star icon-button"
+></i>
+<i
+  *ngIf="isFavourite"
+  (click)="removeFromFavouriteList()"
+  class="bi bi-star-fill icon-button"
+></i>
