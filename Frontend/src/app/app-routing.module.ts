@@ -8,6 +8,7 @@ import { SettingsWindowComponent } from './settings-window/settings-window.compo
 import { HistoryWindowComponent } from './user-reservation-window/user-reservation-window.component';
 import { FavouriteFoodWindowComponent } from './favourite-food-window/favourite-food-window.component';
 import { ProductsDetailsWindowComponent } from './products-details-window/products-details-window.component';
+import { CartWindowComponent } from './cart-window/cart-window.component';
 
 const routes: Routes = [
   {path: "", component: MainWindowComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: "profile/history", component: HistoryWindowComponent},
   {path: "profile/favFood", component: FavouriteFoodWindowComponent},
   {path: "products", component: ProductsWindowComponent},
-  {path: "products/:id", component: ProductsDetailsWindowComponent}
+  {path: "products/:id", component: ProductsDetailsWindowComponent},
+  {path: "cart", component: CartWindowComponent}
 ];
 
 @NgModule({
