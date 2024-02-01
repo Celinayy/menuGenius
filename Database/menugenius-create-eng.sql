@@ -98,6 +98,18 @@ CREATE TABLE users (
     CONSTRAINT PRIMARY KEY (id)
 );
 
+-- Table: product_user
+CREATE TABLE product_user (
+    id bigint NOT NULL AUTO_INCREMENT,
+    product_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    favorite bool NOT NULL,
+    stars int NULL,
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    CONSTRAINT PRIMARY KEY (id)
+);
+
 -- Table: order
 CREATE TABLE purchases (
     id bigint  NOT NULL AUTO_INCREMENT,

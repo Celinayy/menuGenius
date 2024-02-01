@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 
 class User extends Authenticatable
@@ -72,5 +74,10 @@ class User extends Authenticatable
     public function user():BelongsTo
     {
         return $this->belongsTo(User::class)->withDefault(['name' => 'guest']);
+    }
+
+    public function products():BelongsToMany
+    {
+        return  $this->belongsToMany(Product::class,'product_user');
     }
 }
