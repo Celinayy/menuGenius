@@ -71,13 +71,13 @@ class User extends Authenticatable
         return $this->hasMany(EventLog::class);
     }
 
-    public function user():BelongsTo
-    {
-        return $this->belongsTo(User::class)->withDefault(['name' => 'guest']);
-    }
+    // public function user():BelongsTo
+    // {
+    //     return $this->belongsTo(User::class)->withDefault(['name' => 'guest']);
+    // }
 
     public function products():BelongsToMany
     {
-        return  $this->belongsToMany(Product::class,'product_user');
+        return  $this->belongsToMany(Product::class,'product_user')->as('product_user')->withPivot('favorite', 'stars');
     }
 }
