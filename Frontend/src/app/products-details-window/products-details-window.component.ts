@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductModel } from '../models/product-model';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../services/cart.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-products-details-window',
@@ -19,6 +20,7 @@ export class ProductsDetailsWindowComponent {
     public productService: ProductService,
     private toast: ToastrService,
     private cartService: CartService,
+    public authService: AuthService,
   ) {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.productService.loadProductById(parseInt(params.get("id") as string)).subscribe((product) => {

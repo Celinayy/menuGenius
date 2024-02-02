@@ -11,10 +11,20 @@ export class FavouriteService {
   private favProducIds: number[] = [];
   private url = "http://localhost:8000/api"
 
-  constructor(private connection: HttpClient, private toast: ToastrService) { }
+  constructor(private connection: HttpClient, private toast: ToastrService) {
+    this.loadFavourites().subscribe((result) => {
+      this.favProducIds  = result.favorites.map((product) => {
+        return product.id;
+      });
+    })
+  }
 
   private loadFavourites() {
-    return this.connection.get<ProductModel[]>(`${this.url}/products/`)
+    return this.connection.get<{favorites: ProductModel[]}>(`${this.url}/product/userFavorites`, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
   }
 
   public addToFavourite(product: ProductModel) {
