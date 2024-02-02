@@ -40,10 +40,12 @@
             >
           </p>
         </div>
-        <button class="btn btn-dark mb-2" (click)="addToCart()">
+        <label class="fw-semibold">Termék ára</label>
+        <h5 class="fw-light">{{ product.price }},-</h5>
+        <button *ngIf="authService.isLoggedIn" class="btn btn-dark mb-2" (click)="addToCart()">
           Kosárhoz adás!
         </button>
-        <button class="btn btn-warning mb-2" (click)="addToCart()" routerLink="/cart">Azonnali rendelés!</button>
+        <button *ngIf="authService.isLoggedIn" class="btn btn-warning mb-2" (click)="addToCart()" routerLink="/cart" >Azonnali rendelés!</button>
         <button class="btn btn-danger" routerLink="/products">
           Vissza a kínálathoz!
         </button>
