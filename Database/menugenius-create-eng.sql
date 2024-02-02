@@ -81,7 +81,7 @@ CREATE TABLE reservations (
     closed bool DEFAULT 0,
     comment  text NULL,
     FOREIGN KEY (desk_id) REFERENCES desks(id),
-    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     CONSTRAINT PRIMARY KEY (id)
 );
 
@@ -105,8 +105,8 @@ CREATE TABLE product_user (
     user_id bigint NOT NULL,
     favorite bool NOT NULL,
     stars int NULL,
-    FOREIGN KEY (product_id) REFERENCES products(id),
-    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     CONSTRAINT PRIMARY KEY (id)
 );
 
@@ -119,8 +119,8 @@ CREATE TABLE purchases (
     paid bool  NOT NULL,
     user_id int  NULL,
     desk_id int  NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (desk_id) REFERENCES desks(id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (desk_id) REFERENCES desks(id) ON DELETE CASCADE,
     CONSTRAINT PRIMARY KEY (id)
 );
 
@@ -141,7 +141,7 @@ CREATE TABLE event_logs (
     event text,
     date datetime NOT NULL,
     user_id int NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE images (

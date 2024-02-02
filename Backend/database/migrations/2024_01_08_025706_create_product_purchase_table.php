@@ -16,10 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('purchase_id');
             $table->integer('quantity');
+            $table->softDeletes();
             //$table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('purchase_id')->references('id')->on('purchases');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade');
         });
     }
 

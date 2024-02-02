@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('product_ingredient', function (Blueprint $table) {
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('ingredient_id');
+            $table->softDeletes();
             //$table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products');

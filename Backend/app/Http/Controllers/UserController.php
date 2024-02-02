@@ -103,10 +103,14 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        if (auth()->user()->id === $user->id) {
-            $user->delete();
+        $authenticatedUser = auth()->user();
+        \Log::info('Authenticated User ID: ' . optional($authenticatedUser)->id);
+        \Log::info('User to Delete ID: ' . $id);
+    
+        if ($authenticatedUser && $authenticatedUser->id == $id) {
+            User::destroy($id);
             return response()->json(['message' => 'A profil sikeresen törölve lett.']);
         } else {
             return response()->json(['error' => 'Nincs engedélyed a profil törléséhez.'], 403);

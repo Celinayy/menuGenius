@@ -7,17 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Product extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     public $timestamps = false;
 
     protected $fillable = [
         'product_id'
         ];
+    protected $dates = ['deleted_at'];
 
 
     public function category():BelongsTo

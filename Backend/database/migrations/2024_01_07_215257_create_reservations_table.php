@@ -22,10 +22,11 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->boolean('closed')->default(0);
             $table->string('comment')->nullable();
+            $table->softDeletes();
             //$table->timestamps();
 
-            $table->foreign('desk_id')->references("id")->on("desks");
-            $table->foreign('user_id')->references("id")->on("users");
+            $table->foreign('desk_id')->references("id")->on("desks")->onDelete('cascade');
+            $table->foreign('user_id')->references("id")->on("users")->onDelete('cascade');
 
         });
     }
