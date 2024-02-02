@@ -19,10 +19,11 @@ return new class extends Migration
             $table->boolean('paid');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('desk_id');
+            $table->softDeletes();
             //$table->timestamps();
 
-            $table->foreign('user_id')->references("id")->on("users");
-            $table->foreign('desk_id')->references("id")->on("desks");
+            $table->foreign('user_id')->references("id")->on("users")->onDelete('cascade');
+            $table->foreign('desk_id')->references("id")->on("desks")->onDelete('cascade');
 
         });
     }

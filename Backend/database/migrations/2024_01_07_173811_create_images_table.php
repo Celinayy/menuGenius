@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('img_name')->unique();
+            $table->softDeletes();
             //$table->binary('img_data');
             //$table->timestamps();
 

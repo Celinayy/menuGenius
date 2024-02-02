@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class User extends Authenticatable
@@ -18,6 +18,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public $timestamps = false;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -55,6 +56,8 @@ class User extends Authenticatable
         'phone' => null,
         'admin' => 0,
     ];
+
+    protected $dates =['deleted_at'];
 
     public function purchases():HasMany
     {

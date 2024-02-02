@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('price');
             $table->boolean('is_food');
             $table->unsignedBigInteger('image_id');
+            $table->softDeletes();
             //$table->timestamps();
 
             $table->foreign('category_id')->references("id")->on("categories");

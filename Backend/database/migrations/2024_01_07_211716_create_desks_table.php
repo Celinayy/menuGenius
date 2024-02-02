@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('desks', function (Blueprint $table) {
             $table->id();
             $table->integer('number_of_seats');
+            $table->softDeletes();
             //$table->timestamps();
         });
     }
