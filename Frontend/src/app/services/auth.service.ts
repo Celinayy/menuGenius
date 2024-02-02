@@ -84,4 +84,10 @@ export class AuthService {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       })
   }
+
+  public deleteUser() {
+    return this.connection.delete(`${this.url}/user/${this.user!.id}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    })
+  }
 }

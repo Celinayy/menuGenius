@@ -127,7 +127,41 @@
         </div>
       </div>
     </div>
-
+    <!-- Nem működik még -->
+    <div class="col-xs-12 col-md-4 pb-2 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <label for="passwordCheck" class="fw-light"
+            >Adja meg a jelszavát!</label
+          >
+          <input
+            type="password"
+            id="passwordCheck"
+            class="form-control mb-1"
+            [(ngModel)]="passwordCheck"
+          />
+          <label for="passwordAgainCheck" class="fw-light"
+            >Jelszó megerősítése</label
+          >
+          <input
+            type="password"
+            id="passwordAgainCheck"
+            class="form-control mb-1"
+            [(ngModel)]="passwordAgainCheck"
+          />
+          <div class="text-center mt-3">
+            <button
+              class="btn btn-danger fs-5 fw-light"
+              [disabled]="passwordCheck !== passwordAgainCheck"
+              (click)="checkPassword(passwordCheck)"
+            >
+              Felhasználó törlése
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Nem működik még eddig-->
     <div class="toast-container position-fixed bottom-0 end-0 p-3 text-center">
       <div
         [class.opacity-100]="showSavedToast"
