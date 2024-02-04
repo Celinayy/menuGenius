@@ -26,4 +26,5 @@ public partial class Reservation
     public virtual Desk Desk { get; set; } = null!;
 
     public virtual User? User { get; set; }
+    public string? Comment { get; set; }
 }

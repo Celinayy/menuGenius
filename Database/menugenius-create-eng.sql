@@ -134,14 +134,14 @@ CREATE TABLE product_purchase (
 );
 
 CREATE TABLE event_logs (
-    id bigint NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    event_type VARCHAR(30) NOT NULL,
-    affected_table VARCHAR(30) NOT NULL,
-    affected_id int NOT NULL,
-    event text,
-    date datetime NOT NULL,
-    user_id int NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+  id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  event_type varchar(255) NOT NULL,
+  user_id bigint(20) UNSIGNED DEFAULT NULL,
+  route varchar(255) NOT NULL,
+  body text DEFAULT NULL,
+  date_time datetime NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  CONSTRAINT PRIMARY KEY (id)
 );
 
 CREATE TABLE images (

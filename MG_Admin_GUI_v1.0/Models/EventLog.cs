@@ -39,64 +39,50 @@ namespace MG_Admin_GUI.Models
             }
         }
 
-        private string _affected_table;
-        public string affected_table
+        private string _route;
+        public string route
         {
-            get { return _affected_table; }
+            get { return _route; }
             set
             {
-                if (value != _affected_table)
+                if (value != _route)
                 {
-                    _affected_table = value;
-                    OnPropertyChanged(nameof(affected_table));
+                    _route = value;
+                    OnPropertyChanged(nameof(route));
                 }
             }
         }
 
-        private int _affected_id;
-        public int affected_id
+        private string? _body;
+        public string? body
         {
-            get { return _affected_id; }
+            get { return _body; }
             set
             {
-                if (value != _affected_id)
+                if (value != _body)
                 {
-                    _affected_id = value;
-                    OnPropertyChanged(nameof(affected_id));
+                    _body = value;
+                    OnPropertyChanged(nameof(body));
                 }
             }
         }
 
-        private string _event_description;
-        public string event_description
+        private DateTime _date_time;
+        public DateTime date_time
         {
-            get { return _event_description; }
+            get { return _date_time; }
             set
             {
-                if (value != _event_description)
+                if (value != _date_time)
                 {
-                    _event_description = value;
-                    OnPropertyChanged(nameof(event_description));
+                    _date_time = value;
+                    OnPropertyChanged(nameof(date_time));
                 }
             }
         }
 
-        private DateTime _date;
-        public DateTime date
-        {
-            get { return _date; }
-            set
-            {
-                if (value != _date)
-                {
-                    _date = value;
-                    OnPropertyChanged(nameof(date));
-                }
-            }
-        }
-
-        private User _eventlog_user;
-        public User eventlog_user
+        private User? _eventlog_user;
+        public User? eventlog_user
         {
             get { return _eventlog_user; }
             set
@@ -109,15 +95,61 @@ namespace MG_Admin_GUI.Models
             }
         }
 
+        private DateTime? _deleted_at;
+        public DateTime? deleted_at
+        {
+            get { return _deleted_at; }
+            set
+            {
+                if (value != _deleted_at)
+                {
+                    _deleted_at = value;
+                    OnPropertyChanged(nameof(deleted_at));
+                }
+            }
+        }
+
         public EventLog(MySqlDataReader reader)
         {
             id = reader.GetInt32("id");
-            date = reader.GetDateTime("date");
             event_type = reader.GetString("event_type");
-            affected_table = reader.GetString("affected_table");
-            affected_id = reader.GetInt32("affected_id");
-            event_description = reader.GetString("event");
-            eventlog_user = GetUserForEventlog(reader.GetInt32("user_id"));
+            //eventlog_user = GetUserForEventlog(reader.GetInt32("user_id"));
+
+            if (!reader.IsDBNull(reader.GetOrdinal("user_id")))
+            {
+                eventlog_user = GetUserForEventlog(reader.GetInt32("user_id"));
+            }
+            else
+            {
+                eventlog_user = null;
+            }
+
+
+            route = reader.GetString("route");
+            //body = reader.GetInt32("body");
+
+            if (!reader.IsDBNull(reader.GetOrdinal("body")))
+            {
+                body = reader.GetString("body");
+            }
+            else
+            {
+                body = null;
+            }
+
+
+
+            date_time = reader.GetDateTime("date_time");
+
+            if (!reader.IsDBNull(reader.GetOrdinal("deleted_at")))
+            {
+                deleted_at = reader.GetDateTime("deleted_at");
+            }
+            else
+            {
+                deleted_at = null;
+            }
+
         }
 
         public UserViewModel UserVM => new UserViewModel();

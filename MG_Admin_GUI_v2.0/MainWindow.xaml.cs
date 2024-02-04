@@ -42,7 +42,7 @@ namespace MG_Admin_GUI
         public MainWindow()
         {
             InitializeComponent();
-            ShowLoginWindow();
+            //ShowLoginWindow();
             LoadDatas();
 
         }

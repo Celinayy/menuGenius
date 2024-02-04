@@ -306,7 +306,7 @@
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Grid.Column="0" Content="Alapanyagok:"/>
                             <Label Grid.Row="0" Grid.Column="2" Content="Összes alapanyag:"/>
-                            <ListView Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" ItemsSource="{Binding ProductIngredients}" DisplayMemberPath="Name" Margin="10"/>
+                            <ListView Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" ItemsSource="{Binding ProductIngredients, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" DisplayMemberPath="Name" Margin="10"/>
                             <ComboBox Grid.Row="0" Grid.Column="3" 
                                       Name="cobProductsIngredients" 
                                       ItemsSource="{Binding dbContext.Ingredients}"
@@ -424,7 +424,7 @@
                             <Label Grid.Row="1" Grid.Column="0" Content="Név:"/>
                             <Label Grid.Row="2" Grid.Column="0" Content="Allergének:" HorizontalAlignment="Left"/>
                             <Label Grid.Row="2" Grid.Column="1" Content="Összes allergén:" HorizontalAlignment="Left"/>
-                            <ListView Grid.Row="3" Grid.Column="0" Grid.RowSpan="3" ItemsSource="{Binding IngredientAllergens}" Margin="5"/>
+                            <ListView Grid.Row="3" Grid.Column="0" Grid.RowSpan="3" ItemsSource="{Binding IngredientAllergens}" DisplayMemberPath="Name" Margin="5"/>
                             <ComboBox Grid.Row="3" Grid.Column="1" Name="cobIngredientAllergens" ItemsSource="{Binding Allergens}"/>
                             <Button Grid.Row="4" Grid.Column="1" Content="Hozzáad"/>
                             <Button Grid.Row="5" Grid.Column="1" Content="Töröl"/>
@@ -440,7 +440,7 @@
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*"/>
                                     <DataGridTextColumn Header="Név" Binding="{Binding Name}" Width="2*"/>
-                                    <DataGridTextColumn Header="Allergének" Binding="{Binding IngredientAllergens}" Width="2*"/>
+                                    <DataGridTextColumn Header="Allergének" Binding="{Binding IngredientAllergens.Name}" Width="2*"/>
                                 </DataGrid.Columns>
                                 
                             </DataGrid>

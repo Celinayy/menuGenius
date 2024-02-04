@@ -680,16 +680,16 @@
                     <TextBlock Name="tbEventLogId" Text="{Binding id}"/>
                     <Label Content="Esemény típusa:"/>
                     <TextBlock Name="tbEventLogEventType" Text="{Binding event_type}"/>
-                    <Label Content="Érintett tábla:"/>
-                    <TextBlock Name="tbEventLogAffectedTable" Text="{Binding affected_table}"/>
-                    <Label Content="Érintett ID:"/>
-                    <TextBlock Name="tbEventLogAffectedId" Text="{Binding affected_id}"/>
-                    <Label Content="Eseményleírás:"/>
-                    <TextBlock Name="tbEventLogEventDescription" Text="{Binding event_description}"/>
+                    <Label Content="Útvonal:"/>
+                    <TextBlock Name="tbEventLogRoute" Text="{Binding route}"/>
+                    <Label Content="Kérés:"/>
+                    <TextBlock Name="tbEventLogBody" Text="{Binding body}"/>
                     <Label Content="Dátum:"/>
-                    <TextBlock Name="tbEventLogDate" Text="{Binding date, Converter={StaticResource DateTimeFormatConverter}}"/>
+                    <TextBlock Name="tbEventLogDate" Text="{Binding date_time, Converter={StaticResource DateTimeFormatConverter}}"/>
                     <Label Content="Felhasználó:"/>
-                    <TextBlock Name="tbEventLogUser" Text="{Binding eventlog_user, Converter={StaticResource DateTimeFormatConverter}}"/>
+                    <TextBlock Name="tbEventLogUser" Text="{Binding eventlog_user}"/>
+                    <Label Content="Törölt-e:"/>
+                    <TextBlock Name="tbEventLogDeleted" Text="{Binding deleted_at, Converter={StaticResource DateTimeFormatConverter}}"/>
                 </UniformGrid>
                 <!--<WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">
                     <Button Name="btnEventLogSave" Content="Mentés" Click="btnDataSave_Click"/>
@@ -700,12 +700,12 @@
                 <DataGrid IsReadOnly="True" Grid.Row="2" Name="dgEventLogs" AutoGenerateColumns="False" ItemsSource="{Binding EventLogs}" SelectionChanged="dgEventLogs_SelectionChanged" CanUserAddRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"/>
-                        <DataGridTextColumn Header="Dátum" Binding="{Binding date, Converter={StaticResource DateTimeFormatConverter}}" Width="2*"/>
+                        <DataGridTextColumn Header="Dátum" Binding="{Binding date_time, Converter={StaticResource DateTimeFormatConverter}}" Width="2*"/>
                         <DataGridTextColumn Header="Esemény típus" Binding="{Binding event_type}" Width="2*"/>
-                        <DataGridTextColumn Header="Érintett tábla" Binding="{Binding affected_table}" Width="2*"/>
-                        <DataGridTextColumn Header="Érintett ID" Binding="{Binding affected_id}" Width="*"/>
-                        <DataGridTextColumn Header="Esemény leírása" Binding="{Binding event_description}" Width="2*"/>
+                        <DataGridTextColumn Header="Útvonal" Binding="{Binding route}" Width="2*"/>
+                        <DataGridTextColumn Header="Kérés" Binding="{Binding body}" Width="*"/>
                         <DataGridTextColumn Header="Felhasználó" Binding="{Binding eventlog_user}" Width="2*"/>
+                        <DataGridTextColumn Header="Dátum" Binding="{Binding deleted_at, Converter={StaticResource DateTimeFormatConverter}}" Width="2*"/>
                     </DataGrid.Columns>
 
                 </DataGrid>

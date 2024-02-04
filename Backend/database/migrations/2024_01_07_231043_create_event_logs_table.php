@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('event_logs', function (Blueprint $table) {
             $table->id();
             $table->string('event_type');
-            $table->string('affected_table');
-            $table->integer('affected_id');
-            $table->string('event');
-            $table->datetime('date');
             $table->unsignedBigInteger('user_id');
-            $table->softDeletes();
+            $table->string('route');
+            $table->integer('body');
+            $table->datetime('date_time');
             //$table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references("id")->on("users")->onDelete('cascade');
 

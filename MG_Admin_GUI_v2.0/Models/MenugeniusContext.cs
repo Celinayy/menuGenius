@@ -124,24 +124,24 @@ public partial class MenugeniusContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("id");
-            entity.Property(e => e.AffectedId)
-                .HasColumnType("int(11)")
-                .HasColumnName("affected_id");
-            entity.Property(e => e.AffectedTable)
+            entity.Property(e => e.Body)
+                .HasColumnType("string")
+                .HasColumnName("body");
+            entity.Property(e => e.Route)
                 .HasMaxLength(255)
-                .HasColumnName("affected_table");
-            entity.Property(e => e.Date)
+                .HasColumnName("route");
+            entity.Property(e => e.DateTime)
                 .HasColumnType("datetime")
-                .HasColumnName("date");
-            entity.Property(e => e.Event)
-                .HasMaxLength(255)
-                .HasColumnName("event");
+                .HasColumnName("date_time");
             entity.Property(e => e.EventType)
                 .HasMaxLength(255)
                 .HasColumnName("event_type");
             entity.Property(e => e.UserId)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("user_id");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("datetime")
+                .HasColumnName("deleted_at");
 
             entity.HasOne(d => d.User).WithMany(p => p.EventLogs)
                 .HasForeignKey(d => d.UserId)
