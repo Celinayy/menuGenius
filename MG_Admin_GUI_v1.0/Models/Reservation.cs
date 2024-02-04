@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Bcpg;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -108,8 +109,8 @@ namespace MG_Admin_GUI.Models
             }
         }
 
-        private User _reservationUser;
-        public User reservationUser
+        private User? _reservationUser;
+        public User? reservationUser
         {
             get { return _reservationUser; }
             set
@@ -137,6 +138,20 @@ namespace MG_Admin_GUI.Models
             }
         }
 
+        private string _comment;
+        public string comment
+        {
+            get { return _comment; }
+            set
+            {
+                if (value != _comment)
+                {
+                    _comment = value;
+                    OnPropertyChanged(nameof(comment));
+                }
+            }
+        }
+
         public Reservation(MySqlDataReader reader)
         {
             id = reader.GetInt32("Id");
@@ -146,7 +161,24 @@ namespace MG_Admin_GUI.Models
             name = reader.GetString("name");
             phone = reader.GetString("phone");
             reservationDesk = Purchase.GetDeskForPurchase(reader.GetInt32("desk_id"));
-            reservationUser = Purchase.GetUserForPurchase(reader.GetInt32("user_id"));
+
+
+            if (!reader.IsDBNull(reader.GetOrdinal("user_id")))
+            {
+                int userId = reader.GetInt32("user_id");
+                if (userId == null)
+                {
+                    reservationUser = null;
+                }
+                else
+                {
+                    reservationUser = Purchase.GetUserForPurchase(userId);
+                
+                }
+            }
+
+
+
             reservationClosed = reader.GetBoolean("closed");
         }
 

@@ -871,9 +871,9 @@ namespace MG_Admin_GUI
 
             tbEventLogId.Text = string.Empty;
             tbEventLogEventType.Text = string.Empty;
-            tbEventLogAffectedTable.Text = string.Empty;
-            tbEventLogAffectedId.Text = string.Empty;
-            tbEventLogEventDescription.Text = string.Empty;
+            tbEventLogRoute.Text = string.Empty;
+            tbEventLogBody.Text = string.Empty;
+            tbEventLogDeleted.Text = string.Empty;
             tbEventLogDate.Text = string.Empty;
         }
 
