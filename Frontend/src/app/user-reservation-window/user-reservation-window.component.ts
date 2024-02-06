@@ -9,7 +9,7 @@ import * as moment from 'moment';
 })
 export class HistoryWindowComponent {
 
-  public userReservationHistory: ReservationModel[] = []
+  public userReservationHistory: ReservationModel[] = [];
 
   constructor(public reservationService: ReservationService) {
     this.loadHistory()
@@ -33,6 +33,14 @@ export class HistoryWindowComponent {
   }
 
   public isReservationOver(reservation: ReservationModel) {
-    return moment(reservation.checkout_date).isBefore(moment());
+    return moment(reservation.checkout_date).isBefore(moment(), "day");
+  }
+
+  public isReservationFuture(reservation: ReservationModel) {
+    return moment(reservation.checkin_date).isAfter(moment(), "day");
+  }
+
+  public isReservationToday(reservation: ReservationModel) {
+    return moment(reservation.checkin_date).isSame(moment(), "day");
   }
 }
