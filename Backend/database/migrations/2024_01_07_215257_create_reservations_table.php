@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('desk_id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->boolean('closed')->default(0);
-            $table->string('comment')->nullable();
+            $table->text('comment')->nullable();
             $table->softDeletes();
             //$table->timestamps();
 
