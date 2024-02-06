@@ -18,10 +18,7 @@ class EventLogger
     public function handle(Request $request, Closure $next): Response
     {
         $logRoute = $request->fullUrl();
-        $requestBody = $request->all();
-
-        // $uri = $request->path();
-        // $parameters = $request->route()->parameters();
+        $requestBody = $request->except(['password', 'password_confirmation']);
 
         DB::table('event_logs')->insert([
             'event_type' => $request->method(),
