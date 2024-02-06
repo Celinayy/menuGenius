@@ -28,11 +28,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SocialiteController;
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('/register', 'register');
-    Route::post('/login', 'login');
-    Route::middleware('auth:sanctum')->post('/logout', 'logout');
+    Route::middleware('eventlogger')->post('/register', 'register');
+    Route::middleware('eventlogger')->post('/login', 'login');
+    Route::middleware(['auth:sanctum', 'eventlogger'])->post('/logout', 'logout');
 });
-
 
 Route::controller(ProductController::class)->group(function () {
     Route::middleware('auth:sanctum')->get('product/userFavorites', 'userFavorites');
@@ -45,47 +44,28 @@ Route::controller(ProductController::class)->group(function () {
 Route::controller(PurchaseController::class)->group(function () {
     Route::middleware('auth:sanctum')->get('purchase', 'index');
     Route::middleware('auth:sanctum')->get('purchase/{id}', 'show');
-    Route::middleware('auth:sanctum')->put('purchase/{id}', 'update');
-    Route::post('purchase', 'store');
+    Route::middleware(['auth:sanctum', 'eventlogger'])->put('purchase/{id}', 'update');
+    Route::middleware('eventlogger')->post('purchase', 'store');
 });
-
-//Route::get('/reservation/checkAvailableDesk', [ReservationController::class, 'checkAvailableDesk']);
 
 Route::controller(ReservationController::class)->group(function () {
     Route::get('reservation/checkAvailableDesk', 'checkAvailableDesk');
     Route::middleware('auth:sanctum')->get('reservation', 'index');
     Route::middleware('auth:sanctum')->get('reservation/{id}', 'show');
-    Route::middleware('auth:sanctum')->put('reservation/{id}', 'update');
-    Route::middleware('auth:sanctum')->delete('reservation/{id}', 'destroy');
-    Route::post('reservation', 'store');
+    Route::middleware(['auth:sanctum', 'eventlogger'])->put('reservation/{id}', 'update');
+    Route::middleware(['auth:sanctum', 'eventlogger'])->delete('reservation/{id}', 'destroy');
+    Route::middleware('eventlogger')->post('reservation', 'store');
 });
 
 Route::controller(UserController::class)->group(function (){
     Route::middleware('auth:sanctum')->get('user', 'index');
     Route::middleware('auth:sanctum')->get('user/{id}', 'show');
-    Route::middleware('auth:sanctum')->put('user', 'update');
-    Route::middleware('auth:sanctum')->delete('user/{id}', 'destroy');
-    Route::middleware('auth.universal')->post('user', 'store');
+    Route::middleware(['auth:sanctum', 'eventlogger'])->put('user', 'update');
+    Route::middleware(['auth:sanctum', 'eventlogger'])->delete('user/{id}', 'destroy');
+    Route::middleware(['auth.universal', 'eventlogger'])->post('user', 'store');
 });
 
-//Route::middleware('auth:sanctum')->resource("user", UserController::class)->except(["edit", "create"]);
 Route::get("allergen", [AllergenController::class, 'index']);
 Route::get("category", [CategoryController::class, 'index']);
 Route::get("ingredient", [IngredientController::class, 'index']);
 Route::get("desk", [DeskController::class, 'index']);
-
-//Route::post('/login/callback', [SocialiteController::class, 'handleProviderCallback']);
-//Route::middleware(['auth:sanctum', 'permission:admin'])->resource("eventlog", EventLogController::class)->except(["edit", "create"]);
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-
-// Route::middleware(['auth:sanctum', 'permission:guest'])->group(function () {
-//     Route::put('reservation/{id}', [ReservationController::class, 'update']);
-//     Route::delete('reservation/{id}', [ReservationController::class, 'destroy']);
-// });
-
-//Route::middleware(['permission:guest'])->post('reservation', ReservationController::class);
-//Route::middleware('auth:sanctum')->get('reservation/{id}', [ReservationController::class, 'show']);
-//Route::middleware('auth:sanctum')->resource("desk", DeskController::class)->except(["edit", "create"]);
-//Route::resource("image", ImageController::class)->except(["edit", "create"]);

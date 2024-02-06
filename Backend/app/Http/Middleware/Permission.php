@@ -33,7 +33,6 @@ class Permission
             return $next($request);
         }
 
-
         return response()->json(['error' => 'Nincs jogosultságod!'], 403);
     }
 }

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('event_logs', function (Blueprint $table) {
             $table->id();
             $table->string('event_type');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('route');
-            $table->integer('body');
+            $table->text('body');
             $table->datetime('date_time');
             //$table->timestamps();
             $table->softDeletes();
