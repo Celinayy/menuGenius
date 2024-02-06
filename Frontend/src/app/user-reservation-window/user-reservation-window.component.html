@@ -2,7 +2,13 @@
   <div class="row mt-3 ">
     <h4 class="fw-light text-center">FOGLALÁSOK</h4>
     <hr class="mx-auto w-75" >
-        <div class="card text-center m-2 blur" *ngFor="let reservation of userReservationHistory">
+        <div
+        class="card text-center m-2 blur"
+        [class.bg-danger-subtle]="isReservationOver(reservation)"
+        [class.bg-warning-subtle]="isReservationToday(reservation)"
+        [class.bg-success-subtle]="isReservationFuture(reservation)"
+        *ngFor="let reservation of userReservationHistory"
+        >
           <div class="card-body">
             <h4 class="card-title">{{reservation.name}} foglalása</h4>
             <h5>{{reservation.number_of_guests}} főre</h5>
@@ -14,6 +20,7 @@
             {{daySince(reservation)}}
           </div>
         </div>
+
         <div *ngIf="userReservationHistory.length === 0">
           <h2>Sajnos még nincs foglalásod!</h2><br>
           <button class="btn btn-warning" routerLink="/tableReservation">Foglalok asztalt!</button>
