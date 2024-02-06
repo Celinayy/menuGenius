@@ -40,12 +40,31 @@
             >
           </p>
         </div>
-        <label class="fw-semibold">Termék ára</label>
-        <h5 class="fw-light">{{ product.price }},-</h5>
-        <button *ngIf="authService.isLoggedIn" class="btn btn-dark mb-2" (click)="addToCart()">
+        <div class="row position-relative">
+          <div class="col-6">
+            <label class="fw-semibold">Termék ára</label>
+            <h5 class="fw-light">{{ product.price }},-</h5>
+          </div>
+          <div class="col-6 mx-auto text-end">
+            <app-star-button [product]="product" *ngIf="authService.isLoggedIn" />
+          </div>
+        </div>
+
+        <button
+          *ngIf="authService.isLoggedIn"
+          class="btn btn-dark mb-2"
+          (click)="addToCart()"
+        >
           Kosárhoz adás!
         </button>
-        <button *ngIf="authService.isLoggedIn" class="btn btn-warning mb-2" (click)="addToCart()" routerLink="/cart" >Azonnali rendelés!</button>
+        <button
+          *ngIf="authService.isLoggedIn"
+          class="btn btn-warning mb-2"
+          (click)="addToCart()"
+          routerLink="/cart"
+        >
+          Azonnali rendelés!
+        </button>
         <button class="btn btn-danger" routerLink="/products">
           Vissza a kínálathoz!
         </button>
