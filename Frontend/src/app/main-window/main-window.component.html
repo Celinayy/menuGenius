@@ -32,10 +32,14 @@
             *ngFor="let product of products; index as i"
           >
             <div class="card">
-              <img
-                src="data:image/png;base64, {{ product.image.data }}"
-                class="card-img"
-              />
+              <a [routerLink]="'/products/' + product.id">
+                <img
+                  src="data:image/png;base64, {{ product.image.data }}"
+                  class="card-img"
+
+                />
+              </a>
+
             </div>
           </div>
         </div>
