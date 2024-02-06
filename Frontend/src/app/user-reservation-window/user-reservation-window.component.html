@@ -4,7 +4,8 @@
     <hr class="mx-auto w-75" >
         <div class="card text-center m-2 blur" *ngFor="let reservation of userReservationHistory">
           <div class="card-body">
-            <h5 class="card-title">{{reservation.name}} foglalása</h5>
+            <h4 class="card-title">{{reservation.name}} foglalása</h4>
+            <h5>{{reservation.number_of_guests}} főre</h5>
             <p class="card-text">{{reservation.comment || "Nincs külön megjegyzés a foglaláshoz!"}}</p>
             <a routerLink="/products" class="btn btn-warning" *ngIf="!isReservationOver(reservation)">Megnézem addig a kínálatot!</a>
             <a class="btn btn-warning" *ngIf="isReservationOver(reservation)">Megnézem a rendeléseimet!</a>
