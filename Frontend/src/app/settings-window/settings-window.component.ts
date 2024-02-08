@@ -90,8 +90,8 @@ export class SettingsWindowComponent {
     }
   }
 
-  public deleteUser() {
-    this.authService.deleteUser().pipe(catchError((err) => {
+  public deleteUser(current_password: string) {
+    this.authService.deleteUser(current_password).pipe(catchError((err) => {
       this.toast.error(err.error.message)
       return throwError(() => err)
     }))

@@ -85,9 +85,10 @@ export class AuthService {
       })
   }
 
-  public deleteUser() {
+  public deleteUser(current_password: string) {
     return this.connection.delete(`${this.url}/user/${this.user!.id}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      body: { current_password}
     })
   }
 }
