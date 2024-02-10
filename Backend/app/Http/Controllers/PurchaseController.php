@@ -74,6 +74,7 @@ class PurchaseController extends Controller
             'paid' => $request->input('paid', false),
             'desk_id' => $request->input('desk_id'),
             'user_id' => $user ? $user->id : null,
+            'stripe_id' => $request->input('stripe_id')
         ]);
     
         $products = $request->input('products');

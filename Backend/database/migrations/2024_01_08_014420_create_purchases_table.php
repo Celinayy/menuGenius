@@ -19,6 +19,7 @@ return new class extends Migration
             $table->boolean('paid');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('desk_id');
+            $table->string('stripe_id');
             $table->softDeletes();
             //$table->timestamps();
 
