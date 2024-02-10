@@ -22,4 +22,4 @@ Route::get(uri: '/payform', action: 'App\Http\Controllers\StripeController@index
 Route::post(uri: '/checkout', action: 'App\Http\Controllers\StripeController@checkout')->name(name:'checkout');
 Route::post(uri: '/success', action: 'App\Http\Controllers\StripeController@handleSuccess')->name(name:'handle.success');
 //Route::match(['get', 'post'], '/success', 'App\Http\Controllers\StripeController@handleSuccess')->name('success');
-Route::view('/success', 'success')->name('success');
+//Route::view('/success', 'success')->name('success');
