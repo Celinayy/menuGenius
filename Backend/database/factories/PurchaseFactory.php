@@ -34,6 +34,7 @@ class PurchaseFactory extends Factory
             'paid' => $this -> faker -> boolean,
             'user_id' => $user -> id,
             'desk_id' => $desk -> id,
+            'stripe_id' => $this -> faker -> bothify('pm_#????????????#??????????')
         ];
     }
 

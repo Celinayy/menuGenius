@@ -69,3 +69,8 @@ Route::get("allergen", [AllergenController::class, 'index']);
 Route::get("category", [CategoryController::class, 'index']);
 Route::get("ingredient", [IngredientController::class, 'index']);
 Route::get("desk", [DeskController::class, 'index']);
+
+Route::get('/charge', function () {
+    return view('charge');
+});
+
