@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProductModel } from '../models/product-model';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +9,7 @@ import { ProductModel } from '../models/product-model';
 export class CartService {
   public products: ProductModel[] = [];
 
-  constructor() {
+  constructor(private connection: HttpClient) {
     const previousState = sessionStorage.getItem("cart");
     if(previousState) {
       this.products = JSON.parse(previousState);
@@ -26,5 +28,14 @@ export class CartService {
   public removeItem(index: number) {
     this.products.splice(index, 1);
     this.persist();
+  }
+
+  public checkout() {
+    return this.connection.post<{url: string}>("http://localhost:8000/api/checkout",
+      {
+        products: this.products.map((product) => product.id),
+        desk_id: 1
+      }
+    )
   }
 }
