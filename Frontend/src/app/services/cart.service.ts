@@ -30,11 +30,11 @@ export class CartService {
     this.persist();
   }
 
-  public checkout() {
+  public checkout(deskId: number) {
     return this.connection.post<{url: string}>("http://localhost:8000/api/checkout",
       {
         products: this.products.map((product) => product.id),
-        desk_id: 1
+        desk_id: deskId
       }
     )
   }

@@ -8,7 +8,14 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './cart-window.component.html',
   styleUrls: ['./cart-window.component.css']
 })
+
+
+
 export class CartWindowComponent {
+
+  public deskId = "";
+
+
   constructor(public cart: CartService, private toast: ToastrService, ) {}
 
   public get totalPrice() {
@@ -21,7 +28,7 @@ export class CartWindowComponent {
   }
 
   public checkout() {
-    this.cart.checkout().subscribe((result) => {
+    this.cart.checkout(+this.deskId).subscribe((result) => {
       this.cart.clear()
       window.location.replace(result.url)
     })
