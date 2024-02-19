@@ -9,7 +9,7 @@
         [(ngModel)]="category_id"
         aria-label="Default select example"
       >
-        <option [ngValue]="null">Összses</option>
+        <option [ngValue]="null">Összes</option>
         <option *ngFor="let category of categories" [ngValue]="category.id">
           {{ category.name }}
         </option>

@@ -1,0 +1,10 @@
+
+.header {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.router-outlet-container {
+    margin-top: 15vh;
+  }

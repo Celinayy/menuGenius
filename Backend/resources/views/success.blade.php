@@ -17,7 +17,6 @@
         <input type="hidden" name="date_time" value="{{ now() }}">
         <label for="desk_id">Desk ID:</label>
         <input type="text" name="desk_id" value="">
-        <!-- További mezők hozzáadása szükség esetén -->
         <button type="submit">Vásárlás rögzítése</button>
     </form>
     </body>
