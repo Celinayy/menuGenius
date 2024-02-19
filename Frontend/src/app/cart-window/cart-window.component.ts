@@ -22,6 +22,7 @@ export class CartWindowComponent {
 
   public checkout() {
     this.cart.checkout().subscribe((result) => {
+      this.cart.clear()
       window.location.replace(result.url)
     })
   }

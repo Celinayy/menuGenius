@@ -9,6 +9,8 @@ import { HistoryWindowComponent } from './user-reservation-window/user-reservati
 import { FavouriteFoodWindowComponent } from './favourite-food-window/favourite-food-window.component';
 import { ProductsDetailsWindowComponent } from './products-details-window/products-details-window.component';
 import { CartWindowComponent } from './cart-window/cart-window.component';
+import { SuccesfullPaymentWindowComponent } from './succesfull-payment-window/succesfull-payment-window.component';
+import { CancelPaymentWindowComponent } from './cancel-payment-window/cancel-payment-window.component';
 
 const routes: Routes = [
   {path: "", component: MainWindowComponent},
@@ -19,7 +21,10 @@ const routes: Routes = [
   {path: "profile/favFood", component: FavouriteFoodWindowComponent},
   {path: "products", component: ProductsWindowComponent},
   {path: "products/:id", component: ProductsDetailsWindowComponent},
-  {path: "cart", component: CartWindowComponent}
+  {path: "cart", component: CartWindowComponent},
+  {path: "stripe/payment/success", component: SuccesfullPaymentWindowComponent},
+  {path: "stripe/payment/cancel", component: CancelPaymentWindowComponent}
+
 ];
 
 @NgModule({

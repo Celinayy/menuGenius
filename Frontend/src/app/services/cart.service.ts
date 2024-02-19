@@ -38,4 +38,8 @@ export class CartService {
       }
     )
   }
+  public clear() {
+    this.products = []
+    sessionStorage.removeItem("cart")
+  }
 }

@@ -53,8 +53,8 @@ class StripeController extends Controller
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
             'mode' => 'payment',
-            'success_url' => route('checkout.success',[], true).'?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => route('checkout.cancel', [], true).'?session_id={CHECKOUT_SESSION_ID}',
+            'success_url' => 'http://localhost:4200/stripe/payment/success',
+            'cancel_url' => 'http://localhost:4200/stripe/payment/cancel',
             'customer_creation' => 'always'
         ];
 
