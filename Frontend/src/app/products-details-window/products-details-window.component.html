@@ -51,14 +51,12 @@
         </div>
 
         <button
-          *ngIf="authService.isLoggedIn"
           class="btn btn-dark mb-2"
           (click)="addToCart()"
         >
           Kosárhoz adás!
         </button>
         <button
-          *ngIf="authService.isLoggedIn"
           class="btn btn-warning mb-2"
           (click)="addToCart()"
           routerLink="/cart"
