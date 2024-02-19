@@ -30,10 +30,10 @@ class StripeController extends Controller
 
         \Log::info('Customer', [$user]);
 
-    
+
         $lineItems = [];
         $totalPrice = 0;
-        
+
         foreach ($request->products as $productId) {
             $product = Product::findOrFail($productId);
             $totalPrice += $product->price;
@@ -48,20 +48,20 @@ class StripeController extends Controller
                 'quantity' => 1,
             ];
         }
-    
+
         $sessionData = [
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
             'mode' => 'payment',
-            'success_url' => route('checkout.success',[], true).'?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => route('checkout.cancel', [], true).'?session_id={CHECKOUT_SESSION_ID}',
+            'success_url' => 'http://localhost:4200/stripe/payment/success',
+            'cancel_url' => 'http://localhost:4200/stripe/payment/cancel',
             'customer_creation' => 'always'
         ];
-    
+
         if ($user) {
             $sessionData['customer_email'] = $user->email;
         }
-    
+
         $session = Session::create($sessionData);
 
         $purchase = new Purchase();
@@ -79,11 +79,13 @@ class StripeController extends Controller
 
         foreach ($products as $productId) {
             $product = Product::findOrFail($productId);
-    
+
             $purchase->products()->attach($product, ['quantity' => 1]);
         }
 
-        return redirect($session->url);
+        return [
+            "url" => $session->url,
+        ];
 
     }
 
@@ -94,12 +96,12 @@ class StripeController extends Controller
         try{
             $sessionId = $request->get('session_id');
             $session = Session::retrieve($sessionId);
-    
+
             if (!$session){
                 throw new NotFoundHttpException();
             }
             $customer = \Stripe\Customer::retrieve($session->customer, []);
-    
+
             $purchase = Purchase::where('stripe_id', $session->id)->first();
             // echo '<pre>';
             // var_dump($purchase);
@@ -112,7 +114,7 @@ class StripeController extends Controller
                 $purchase->paid = true;
                 $purchase->save();
             }
-    
+
             return view('product.checkout-success', compact('customer'));
 
         } catch(\Exception $e)

@@ -5,6 +5,7 @@
 }
 
 .toast-top-center {
+  position: absolute;
   top: 16px;
   right: 0;
   width: 100%;
