@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('total_pay');
             $table->enum('status',['ordered', 'cooked', 'served']);
             $table->boolean('paid');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('desk_id');
             $table->string('stripe_id');
             $table->softDeletes();
