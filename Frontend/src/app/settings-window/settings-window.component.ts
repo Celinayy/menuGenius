@@ -96,8 +96,9 @@ export class SettingsWindowComponent {
       return throwError(() => err)
     }))
       .subscribe(() => {
-        this.authService.logout().subscribe()
         this.router.navigate(["/"]);
+        sessionStorage.clear()
+        this.authService.user = undefined;
         this.toast.success("Sikeresen törölte a felhasználóját!")
       })
   }
