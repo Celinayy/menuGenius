@@ -15,13 +15,17 @@ public partial class Purchase
 
     public bool Paid { get; set; }
 
-    public ulong UserId { get; set; }
+    public ulong? UserId { get; set; }
 
     public ulong DeskId { get; set; }
+
+    public string StripeId { get; set; } = null!;
+
+    public DateTime? DeletedAt { get; set; }
 
     public virtual Desk Desk { get; set; } = null!;
 
     public virtual ICollection<ProductPurchase> ProductPurchases { get; set; } = new List<ProductPurchase>();
 
-    public virtual User User { get; set; } = null!;
+    public virtual User? User { get; set; }
 }

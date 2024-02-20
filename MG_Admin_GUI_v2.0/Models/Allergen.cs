@@ -10,4 +10,7 @@ public partial class Allergen
     public decimal Code { get; set; }
 
     public string Name { get; set; } = null!;
+
+    public DateTime? DeletedAt { get; set; }
+
 }

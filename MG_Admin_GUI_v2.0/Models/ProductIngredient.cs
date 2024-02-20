@@ -7,13 +7,13 @@ namespace MG_Admin_GUI.Models;
 
 public partial class ProductIngredient
 {
-    [Key]
     public ulong ProductId { get; set; }
 
-    [Key]
     public ulong IngredientId { get; set; }
 
+    public DateTime? DeletedAt { get; set; }
+    [NotMapped]
     public virtual Ingredient Ingredient { get; set; } = null!;
-
+    [NotMapped]
     public virtual Product Product { get; set; } = null!;
 }

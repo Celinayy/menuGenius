@@ -23,6 +23,7 @@
         <Style TargetType="DataGrid">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="FontSize" Value="13"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="10"/>
@@ -62,18 +63,19 @@
             <TabItem Header="Rendelések" Name="tabPurchase">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="0.5*"/>
-                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="203*"/>
+                        <ColumnDefinition Width="45*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="248*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="248*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.3*"/>
                         <RowDefinition Height="2*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <UniformGrid Rows="1" Columns="3" Grid.ColumnSpan="5">
+                    <UniformGrid Rows="1" Columns="3" Grid.ColumnSpan="6">
                         <Label Content="Rendelések:" Style="{StaticResource TitleLabelStyle}" HorizontalContentAlignment="Center" Margin="10 10 35 10"/>
                         <Label Content="Elkészült rendelések:" Style="{StaticResource TitleLabelStyle}" HorizontalContentAlignment="Center" Margin="25 10 25 10"/>
                         <Label Content="Felszolgált rendelések:" Style="{StaticResource TitleLabelStyle}" HorizontalContentAlignment="Center" Margin="35 10 10 10"/>
@@ -82,7 +84,7 @@
                     <DataGrid Grid.Row="1" Grid.Column="0" Name="dgOrdered" 
                               SelectionChanged="dgPurchases_SelectionChanged" 
                               AutoGenerateColumns="False" 
-                              AlternatingRowBackground="LightGray">
+                              AlternatingRowBackground="LightGray" Grid.ColumnSpan="2" Margin="10,10,10,10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd HH:mm}" Width="auto"/>
                             <DataGridTemplateColumn Header="Tételek" Width="3*">
@@ -107,8 +109,8 @@
                             <DataGridCheckBoxColumn Header="Fizetve" Binding="{Binding Paid}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content=">" Name="btnOrderedToCooked" Grid.Row="1" Grid.Column="1"/>
-                    <DataGrid Grid.Row="1" Grid.Column="2" Name="dgCooked" SelectionChanged="dgPurchases_SelectionChanged" AutoGenerateColumns="False" AlternatingRowBackground="LightGray">
+                    <Button Content=">" Name="btnOrderedToCooked" Grid.Row="1" Grid.Column="2" Margin="10,10,10,10"/>
+                    <DataGrid Grid.Row="1" Grid.Column="3" Name="dgCooked" SelectionChanged="dgPurchases_SelectionChanged" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" Margin="10,10,10,10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd}" Width="auto"/>
                             <DataGridTemplateColumn Header="Tételek" Width="3*">
@@ -133,8 +135,8 @@
                             <DataGridCheckBoxColumn Header="Fizetve" Binding="{Binding Paid}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content=">" Name="btnCookedToServed" Grid.Row="1" Grid.Column="3" Click="btnCookedToServed_Click"/>
-                    <DataGrid Grid.Row="1" Grid.Column="4" Name="dgServed" SelectionChanged="dgPurchases_SelectionChanged" AutoGenerateColumns="False" AlternatingRowBackground="LightGray">
+                    <Button Content=">" Name="btnCookedToServed" Grid.Row="1" Grid.Column="4" Click="btnCookedToServed_Click" Margin="10,10,10,10"/>
+                    <DataGrid Grid.Row="1" Grid.Column="5" Name="dgServed" SelectionChanged="dgPurchases_SelectionChanged" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" Margin="10,10,10,10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd}" Width="auto"/>
                             <DataGridTemplateColumn Header="Tételek" Width="3*">
@@ -159,7 +161,7 @@
                             <DataGridCheckBoxColumn Header="Fizetve" Binding="{Binding Paid}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <DataGrid Name="dgPurchases" Grid.Row="2" Grid.ColumnSpan="5" SelectionChanged="dgPurchases_SelectionChanged" IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="LightGray">
+                    <DataGrid Name="dgPurchases" Grid.Row="2" Grid.ColumnSpan="6" SelectionChanged="dgPurchases_SelectionChanged" IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" Margin="10,10,10,10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="auto"/>
                             <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd}" Width="auto"/>
@@ -228,7 +230,7 @@
                             <xctk:DateTimePicker Grid.Column="3" Grid.Row="2" Name="dtpReservationCheckoutDate" Value="{Binding CheckoutDate}" Format="Custom" FormatString="yyyy.MM.dd HH:mm"/>
                             <CheckBox IsChecked="{Binding Closed}" Name="chbReservationClosed" Grid.Row="3" Grid.Column="3"/>
                         </Grid>
-                        
+
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button Name="btnReservationSave" Content="Mentés" Click="btnReservationSave_Click"/>
@@ -306,7 +308,7 @@
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Grid.Column="0" Content="Alapanyagok:"/>
                             <Label Grid.Row="0" Grid.Column="2" Content="Összes alapanyag:"/>
-                            <ListView Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" ItemsSource="{Binding ProductIngredients, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" DisplayMemberPath="Name" Margin="10"/>
+                            <ListView Name="lvProductIngredients" DisplayMemberPath="Name" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Margin="10"/>
                             <ComboBox Grid.Row="0" Grid.Column="3" 
                                       Name="cobProductsIngredients" 
                                       ItemsSource="{Binding dbContext.Ingredients}"
@@ -424,7 +426,7 @@
                             <Label Grid.Row="1" Grid.Column="0" Content="Név:"/>
                             <Label Grid.Row="2" Grid.Column="0" Content="Allergének:" HorizontalAlignment="Left"/>
                             <Label Grid.Row="2" Grid.Column="1" Content="Összes allergén:" HorizontalAlignment="Left"/>
-                            <ListView Grid.Row="3" Grid.Column="0" Grid.RowSpan="3" ItemsSource="{Binding IngredientAllergens}" DisplayMemberPath="Name" Margin="5"/>
+                            <ListView Name="lvIngredientAllergens" DisplayMemberPath="Name" Grid.Row="3" Grid.Column="0" Grid.RowSpan="3" Margin="5"/>
                             <ComboBox Grid.Row="3" Grid.Column="1" Name="cobIngredientAllergens" ItemsSource="{Binding Allergens}"/>
                             <Button Grid.Row="4" Grid.Column="1" Content="Hozzáad"/>
                             <Button Grid.Row="5" Grid.Column="1" Content="Töröl"/>
@@ -442,7 +444,7 @@
                                     <DataGridTextColumn Header="Név" Binding="{Binding Name}" Width="2*"/>
                                     <DataGridTextColumn Header="Allergének" Binding="{Binding IngredientAllergens.Name}" Width="2*"/>
                                 </DataGrid.Columns>
-                                
+
                             </DataGrid>
                         </Grid>
                     </WrapPanel>

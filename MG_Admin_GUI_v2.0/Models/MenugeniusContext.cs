@@ -43,6 +43,8 @@ public partial class MenugeniusContext : DbContext
 
     public virtual DbSet<ProductPurchase> ProductPurchases { get; set; }
 
+    public virtual DbSet<ProductUser> ProductUsers { get; set; }
+
     public virtual DbSet<Purchase> Purchases { get; set; }
 
     public virtual DbSet<Reservation> Reservations { get; set; }
@@ -50,7 +52,8 @@ public partial class MenugeniusContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseMySql("server=localhost;database=menugenius;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.28-mariadb"));
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseMySql("server=localhost;database=menugenius;uid=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.28-mariadb"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -76,6 +79,9 @@ public partial class MenugeniusContext : DbContext
             entity.Property(e => e.Code)
                 .HasPrecision(8, 2)
                 .HasColumnName("code");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.Name).HasColumnName("name");
         });
 
@@ -92,6 +98,9 @@ public partial class MenugeniusContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("id");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.Name).HasColumnName("name");
         });
 
@@ -106,6 +115,9 @@ public partial class MenugeniusContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("id");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.NumberOfSeats)
                 .HasColumnType("int(11)")
                 .HasColumnName("number_of_seats");
@@ -125,27 +137,27 @@ public partial class MenugeniusContext : DbContext
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("id");
             entity.Property(e => e.Body)
-                .HasColumnType("string")
+                .HasColumnType("text")
                 .HasColumnName("body");
-            entity.Property(e => e.Route)
-                .HasMaxLength(255)
-                .HasColumnName("route");
             entity.Property(e => e.DateTime)
                 .HasColumnType("datetime")
                 .HasColumnName("date_time");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.EventType)
                 .HasMaxLength(255)
                 .HasColumnName("event_type");
+            entity.Property(e => e.Route)
+                .HasMaxLength(255)
+                .HasColumnName("route");
             entity.Property(e => e.UserId)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("user_id");
-            entity.Property(e => e.DeletedAt)
-                .HasColumnType("datetime")
-                .HasColumnName("deleted_at");
 
             entity.HasOne(d => d.User).WithMany(p => p.EventLogs)
                 .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("event_logs_user_id_foreign");
         });
 
@@ -190,6 +202,9 @@ public partial class MenugeniusContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("id");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.ImgData).HasColumnName("img_data");
             entity.Property(e => e.ImgName).HasColumnName("img_name");
         });
@@ -207,6 +222,9 @@ public partial class MenugeniusContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("id");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.Name).HasColumnName("name");
         });
 
@@ -224,6 +242,9 @@ public partial class MenugeniusContext : DbContext
             entity.Property(e => e.AllergenId)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("allergen_id");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.IngredientId)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("ingredient_id");
@@ -337,6 +358,9 @@ public partial class MenugeniusContext : DbContext
             entity.Property(e => e.CategoryId)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("category_id");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.Description)
                 .HasMaxLength(255)
                 .HasColumnName("description");
@@ -365,9 +389,8 @@ public partial class MenugeniusContext : DbContext
 
         modelBuilder.Entity<ProductIngredient>(entity =>
         {
-            entity.HasKey(e => new { e.ProductId, e.IngredientId }).HasName("PRIMARY");
-            
             entity
+                .HasNoKey()
                 .ToTable("product_ingredient")
                 .UseCollation("utf8mb4_hungarian_ci");
 
@@ -375,6 +398,9 @@ public partial class MenugeniusContext : DbContext
 
             entity.HasIndex(e => e.ProductId, "product_ingredient_product_id_foreign");
 
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.IngredientId)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("ingredient_id");
@@ -408,6 +434,9 @@ public partial class MenugeniusContext : DbContext
             entity.Property(e => e.Id)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("id");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.ProductId)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("product_id");
@@ -420,13 +449,50 @@ public partial class MenugeniusContext : DbContext
 
             entity.HasOne(d => d.Product).WithMany(p => p.ProductPurchases)
                 .HasForeignKey(d => d.ProductId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("product_purchase_product_id_foreign");
 
             entity.HasOne(d => d.Purchase).WithMany(p => p.ProductPurchases)
                 .HasForeignKey(d => d.PurchaseId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("product_purchase_purchase_id_foreign");
+        });
+
+        modelBuilder.Entity<ProductUser>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity
+                .ToTable("product_user")
+                .UseCollation("utf8mb4_hungarian_ci");
+
+            entity.HasIndex(e => e.ProductId, "product_user_product_id_foreign");
+
+            entity.HasIndex(e => e.UserId, "product_user_user_id_foreign");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("bigint(20) unsigned")
+                .HasColumnName("id");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
+            entity.Property(e => e.Favorite).HasColumnName("favorite");
+            entity.Property(e => e.ProductId)
+                .HasColumnType("bigint(20) unsigned")
+                .HasColumnName("product_id");
+            entity.Property(e => e.Stars)
+                .HasDefaultValueSql("'5'")
+                .HasColumnType("int(11)")
+                .HasColumnName("stars");
+            entity.Property(e => e.UserId)
+                .HasColumnType("bigint(20) unsigned")
+                .HasColumnName("user_id");
+
+            entity.HasOne(d => d.Product).WithMany(p => p.ProductUsers)
+                .HasForeignKey(d => d.ProductId)
+                .HasConstraintName("product_user_product_id_foreign");
+
+            entity.HasOne(d => d.User).WithMany(p => p.ProductUsers)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("product_user_user_id_foreign");
         });
 
         modelBuilder.Entity<Purchase>(entity =>
@@ -447,6 +513,9 @@ public partial class MenugeniusContext : DbContext
             entity.Property(e => e.DateTime)
                 .HasColumnType("datetime")
                 .HasColumnName("date_time");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.DeskId)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("desk_id");
@@ -454,6 +523,9 @@ public partial class MenugeniusContext : DbContext
             entity.Property(e => e.Status)
                 .HasColumnType("enum('ordered','cooked','served')")
                 .HasColumnName("status");
+            entity.Property(e => e.StripeId)
+                .HasMaxLength(255)
+                .HasColumnName("stripe_id");
             entity.Property(e => e.TotalPay)
                 .HasColumnType("int(11)")
                 .HasColumnName("total_pay");
@@ -463,12 +535,11 @@ public partial class MenugeniusContext : DbContext
 
             entity.HasOne(d => d.Desk).WithMany(p => p.Purchases)
                 .HasForeignKey(d => d.DeskId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("purchases_desk_id_foreign");
 
             entity.HasOne(d => d.User).WithMany(p => p.Purchases)
                 .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("purchases_user_id_foreign");
         });
 
@@ -494,6 +565,12 @@ public partial class MenugeniusContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("checkout_date");
             entity.Property(e => e.Closed).HasColumnName("closed");
+            entity.Property(e => e.Comment)
+                .HasColumnType("text")
+                .HasColumnName("comment");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.DeskId)
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("desk_id");
@@ -512,11 +589,11 @@ public partial class MenugeniusContext : DbContext
 
             entity.HasOne(d => d.Desk).WithMany(p => p.Reservations)
                 .HasForeignKey(d => d.DeskId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("reservations_desk_id_foreign");
 
             entity.HasOne(d => d.User).WithMany(p => p.Reservations)
                 .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("reservations_user_id_foreign");
         });
 
@@ -534,13 +611,16 @@ public partial class MenugeniusContext : DbContext
                 .HasColumnType("bigint(20) unsigned")
                 .HasColumnName("id");
             entity.Property(e => e.Admin).HasColumnName("admin");
+            entity.Property(e => e.DeletedAt)
+                .HasColumnType("timestamp")
+                .HasColumnName("deleted_at");
             entity.Property(e => e.Email).HasColumnName("email");
             entity.Property(e => e.EmailVerifiedAt)
                 .HasColumnType("timestamp")
                 .HasColumnName("email_verified_at");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
-                .HasDefaultValueSql("'Guest'")
+                .HasDefaultValueSql("'guest'")
                 .HasColumnName("name");
             entity.Property(e => e.Password)
                 .HasMaxLength(255)
