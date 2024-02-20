@@ -9,7 +9,6 @@ public partial class Ingredient
 
     public string Name { get; set; } = null!;
 
-    public virtual ICollection<ProductIngredient> ProductIngredients { get; set; } = new List<ProductIngredient>();
-
+    public DateTime? DeletedAt { get; set; }
 
 }

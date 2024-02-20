@@ -23,8 +23,11 @@ public partial class Reservation
 
     public bool Closed { get; set; }
 
+    public string? Comment { get; set; }
+
+    public DateTime? DeletedAt { get; set; }
+
     public virtual Desk Desk { get; set; } = null!;
 
     public virtual User? User { get; set; }
-    public string? Comment { get; set; }
 }

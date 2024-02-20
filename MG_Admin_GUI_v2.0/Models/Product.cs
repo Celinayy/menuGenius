@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 
 namespace MG_Admin_GUI.Models;
@@ -21,12 +22,14 @@ public partial class Product
 
     public ulong ImageId { get; set; }
 
+    public DateTime? DeletedAt { get; set; }
+
     public virtual Category Category { get; set; } = null!;
 
     public virtual Image Image { get; set; } = null!;
 
     public virtual ICollection<ProductPurchase> ProductPurchases { get; set; } = new List<ProductPurchase>();
 
-    public virtual ICollection<ProductIngredient> ProductIngredients { get; set; } = new List<ProductIngredient>();
+    public virtual ICollection<ProductUser> ProductUsers { get; set; } = new List<ProductUser>();
 
 }

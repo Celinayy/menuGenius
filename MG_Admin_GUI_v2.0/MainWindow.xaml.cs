@@ -42,7 +42,7 @@ namespace MG_Admin_GUI
         public MainWindow()
         {
             InitializeComponent();
-            //ShowLoginWindow();
+            ShowLoginWindow();
             LoadDatas();
 
         }
@@ -250,6 +250,11 @@ namespace MG_Admin_GUI
             if (dgProducts.SelectedItem == null) { return; }
             product = (Product)dgProducts.SelectedItem;
             tabProduct.DataContext = product;
+            var ingredientForProduct = dbContext.ProductIngredients
+                .Where(pi => pi.ProductId == product.Id)
+                .Select(pi => pi.Ingredient)
+                .ToList();
+            lvProductIngredients.ItemsSource = ingredientForProduct;
         }
 
         private void btnAddIngredient_Click(object sender, RoutedEventArgs e)
@@ -269,6 +274,13 @@ namespace MG_Admin_GUI
             if (dgIngredients.SelectedItem == null) { return; }
             ingredient = (Ingredient)dgIngredients.SelectedItem;
             spIngredient.DataContext = ingredient;
+
+            var allergenForIngredient = dbContext.IngredientAllergens
+                .Where(pi => pi.IngredientId == ingredient.Id)
+                .Select(pi => pi.Allergen)
+                .ToList();
+            lvIngredientAllergens.ItemsSource = allergenForIngredient;
+
         }
 
         private void dgAllergens_SelectionChanged(object sender, SelectionChangedEventArgs e)

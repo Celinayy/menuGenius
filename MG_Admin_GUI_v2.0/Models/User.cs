@@ -21,7 +21,11 @@ public partial class User
 
     public string? RememberToken { get; set; }
 
+    public DateTime? DeletedAt { get; set; }
+
     public virtual ICollection<EventLog> EventLogs { get; set; } = new List<EventLog>();
+
+    public virtual ICollection<ProductUser> ProductUsers { get; set; } = new List<ProductUser>();
 
     public virtual ICollection<Purchase> Purchases { get; set; } = new List<Purchase>();
 

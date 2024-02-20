@@ -9,6 +9,8 @@ public partial class Image
 
     public string ImgName { get; set; } = null!;
 
+    public DateTime? DeletedAt { get; set; }
+
     public byte[]? ImgData { get; set; }
 
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
