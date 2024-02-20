@@ -76,8 +76,5 @@ Route::get('/charge', function () {
 
 Route::get('/', [StripeController::class, 'index'])->name(name:'index');
 Route::post('/checkout', [StripeController::class, 'checkout'])->name(name:'checkout');
-Route::get('/success', [StripeController::class, 'success'])->name(name:'checkout.success');
-Route::get('/cancel', [StripeController::class, 'cancel'])->name(name:'checkout.cancel');
-Route::post('/webhook', [StripeController::class, 'webhook'])->name(name:'checkout.webhook');
 
 
