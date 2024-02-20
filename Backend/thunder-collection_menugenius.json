@@ -1,145 +1,128 @@
 {
     "client": "Thunder Client",
     "collectionName": "menugenius",
-    "dateExported": "2024-02-01T16:54:06.907Z",
+    "dateExported": "2024-02-20T16:48:31.786Z",
     "version": "1.1",
-    "folders": [],
+    "folders": [
+        {
+            "_id": "071684e3-a3d6-4c27-b304-840446dc023a",
+            "name": "User",
+            "containerId": "",
+            "created": "2024-02-09T17:19:02.635Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "2e7f0deb-e162-4976-8f2f-3c98598860a1",
+            "name": "Lists",
+            "containerId": "",
+            "created": "2024-02-09T17:19:26.005Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "20b20771-09dc-44ee-95cb-c214bb4794a5",
+            "name": "Products",
+            "containerId": "",
+            "created": "2024-02-09T17:19:39.405Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "d44be6e7-f122-4255-ae32-0dcc6bd8a225",
+            "name": "Purchases",
+            "containerId": "",
+            "created": "2024-02-09T17:19:51.304Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "f0024fda-26d0-4339-94c0-64638330f591",
+            "name": "Reservations",
+            "containerId": "",
+            "created": "2024-02-09T17:20:07.005Z",
+            "sortNum": 50000
+        }
+    ],
     "requests": [
+        {
+            "_id": "9e0dc072-0f10-4509-b445-7667eb074613",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "20b20771-09dc-44ee-95cb-c214bb4794a5",
+            "name": "GET all product",
+            "url": "127.0.0.1:8000/api/product/",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-01-08T03:18:17.684Z",
+            "modified": "2024-01-19T14:01:37.919Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
         {
             "_id": "6a3ef14d-6ceb-478f-9b92-93ad7a3c7085",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
+            "containerId": "071684e3-a3d6-4c27-b304-840446dc023a",
             "name": "POST register user",
-            "url": "127.0.0.1:8000/api/",
+            "url": "127.0.0.1:8000/api/register",
             "method": "POST",
-            "sortNum": 5000,
+            "sortNum": 10000,
             "created": "2024-01-12T04:13:36.855Z",
-            "modified": "2024-01-12T04:20:22.885Z",
-            "headers": [],
-            "params": [],
-            "body": {
-                "type": "formdata",
-                "raw": "",
-                "form": [
-                    {
-                        "name": "name",
-                        "value": "valaki"
-                    },
-                    {
-                        "name": "email",
-                        "value": "valaki@gmail.com"
-                    },
-                    {
-                        "name": "password",
-                        "value": "password"
-                    },
-                    {
-                        "name": "admin",
-                        "value": "0"
-                    },
-                    {
-                        "name": "password_confirmation",
-                        "value": "password"
-                    }
-                ]
-            },
-            "tests": []
-        },
-        {
-            "_id": "76582744-5e5c-4e4b-96be-79775c74550e",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "POST login user",
-            "url": "127.0.0.1:8000/api/login",
-            "method": "POST",
-            "sortNum": 7500,
-            "created": "2024-01-12T03:05:22.766Z",
-            "modified": "2024-01-30T18:22:39.390Z",
-            "headers": [],
-            "params": [],
-            "body": {
-                "type": "formdata",
-                "raw": "",
-                "form": [
-                    {
-                        "name": "email",
-                        "value": "kocsog@example.org"
-                    },
-                    {
-                        "name": "password",
-                        "value": "password"
-                    }
-                ]
-            },
-            "tests": []
-        },
-        {
-            "_id": "8a17e815-4223-4752-8758-bbae2433758c",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "POST logout user",
-            "url": "127.0.0.1:8000/api/logout",
-            "method": "POST",
-            "sortNum": 8125,
-            "created": "2024-01-12T05:33:43.526Z",
-            "modified": "2024-02-01T16:15:20.906Z",
-            "headers": [],
-            "params": [],
-            "auth": {
-                "type": "bearer",
-                "bearer": "89|1J268aDhR15D5J2mVgSEJDRcVYNnEjUBhMJKS0yI2b0fe671"
-            },
-            "tests": []
-        },
-        {
-            "_id": "875f7ff9-7ea0-4655-8a1e-cab18b271e79",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "GET logged in user",
-            "url": "127.0.0.1:8000/api/user",
-            "method": "GET",
-            "sortNum": 8750,
-            "created": "2024-01-12T03:24:14.824Z",
-            "modified": "2024-02-01T16:50:58.965Z",
-            "headers": [],
-            "params": [],
-            "auth": {
-                "type": "bearer",
-                "bearer": "90|cl6sRVtJWou0SR53M1vih6OxRgsqj7dtMsZ7RHLMa2f393ef"
-            },
-            "tests": []
-        },
-        {
-            "_id": "fae1000b-d98d-405f-bc67-de94cc7fb07d",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "PUT update user",
-            "url": "127.0.0.1:8000/api/user/",
-            "method": "PUT",
-            "sortNum": 16875,
-            "created": "2024-01-18T11:23:44.667Z",
-            "modified": "2024-01-30T12:23:32.482Z",
+            "modified": "2024-02-06T14:17:02.835Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n    \"current_password\": \"secreto\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+                "raw": "{\n  \"name\": \"rosszfej\",\n  \"email\": \"rosszfej@gmail.com\",\n  \"password\": \"password\",\n  \"admin\": 0,\n  \"password_confirmation\": \"password\",\n  \"phone\": \"+36201345876\"\n}",
                 "form": []
             },
+            "tests": []
+        },
+        {
+            "_id": "e3b18d5b-9470-4dc3-b2e2-ef4b4350d14b",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "d44be6e7-f122-4255-ae32-0dcc6bd8a225",
+            "name": "GET all own purchase",
+            "url": "127.0.0.1:8000/api/purchase",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-01-12T07:11:38.782Z",
+            "modified": "2024-01-19T14:02:35.085Z",
+            "headers": [],
+            "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "72|tBOe6qGPI6qsclYbDkl2FgWjy0fZrqxcpRSJERxE653c5707"
+                "bearer": "39|LHg712CcASqTYAD2fjZPgl3e5aBEbJ6smOsRecsF8f90da29"
+            },
+            "tests": []
+        },
+        {
+            "_id": "868d74bc-beae-4835-8a7e-8552e64510c9",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "f0024fda-26d0-4339-94c0-64638330f591",
+            "name": "GET all own reservation",
+            "url": "127.0.0.1:8000/api/reservation",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-01-16T19:57:27.588Z",
+            "modified": "2024-02-01T18:17:17.334Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "94|Wfeh4mrhiqC355rEPIJYLebKMe6LVAYNSqMpzcx677532060"
             },
             "tests": []
         },
         {
             "_id": "7dc98f91-719a-4dfd-a4ff-1763b793bee4",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
+            "containerId": "2e7f0deb-e162-4976-8f2f-3c98598860a1",
             "name": "GET allergen",
             "url": "127.0.0.1:8000/api/allergen",
             "method": "GET",
-            "sortNum": 53125,
+            "sortNum": 10000,
             "created": "2024-01-19T13:59:36.932Z",
             "modified": "2024-01-19T13:59:55.957Z",
             "headers": [],
@@ -147,13 +130,41 @@
             "tests": []
         },
         {
+            "_id": "76582744-5e5c-4e4b-96be-79775c74550e",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "071684e3-a3d6-4c27-b304-840446dc023a",
+            "name": "POST login user",
+            "url": "127.0.0.1:8000/api/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-01-12T03:05:22.766Z",
+            "modified": "2024-02-09T17:22:44.904Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "email",
+                        "value": "user@gmail.com"
+                    },
+                    {
+                        "name": "password",
+                        "value": "password"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
             "_id": "d10f4f7f-bd3c-4c75-aeca-c8a207654958",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
+            "containerId": "2e7f0deb-e162-4976-8f2f-3c98598860a1",
             "name": "GET categories",
             "url": "127.0.0.1:8000/api/category/",
             "method": "GET",
-            "sortNum": 58750,
+            "sortNum": 20000,
             "created": "2024-01-14T07:48:11.839Z",
             "modified": "2024-01-16T21:42:20.693Z",
             "headers": [
@@ -166,87 +177,27 @@
             "tests": []
         },
         {
-            "_id": "5068db43-4b2b-4098-9b20-47e4c78bbc2a",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "GET desk",
-            "url": "127.0.0.1:8000/api/desk",
-            "method": "GET",
-            "sortNum": 64375,
-            "created": "2024-01-19T14:00:28.832Z",
-            "modified": "2024-01-19T14:00:38.161Z",
-            "headers": [],
-            "params": [],
-            "tests": []
-        },
-        {
-            "_id": "1dbbb51d-2718-43fa-8fbd-7a90b3e9ff0a",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "GET ingredient",
-            "url": "127.0.0.1:8000/api/ingredient",
-            "method": "GET",
-            "sortNum": 67187.5,
-            "created": "2024-01-19T14:00:54.045Z",
-            "modified": "2024-01-19T14:01:03.996Z",
-            "headers": [],
-            "params": [],
-            "tests": []
-        },
-        {
-            "_id": "9e0dc072-0f10-4509-b445-7667eb074613",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "GET all product",
-            "url": "127.0.0.1:8000/api/product/",
-            "method": "GET",
-            "sortNum": 68593.8,
-            "created": "2024-01-08T03:18:17.684Z",
-            "modified": "2024-01-19T14:01:37.919Z",
-            "headers": [],
-            "params": [],
-            "tests": []
-        },
-        {
             "_id": "78306dc0-cd53-468e-9f34-528d9dc185bb",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
+            "containerId": "20b20771-09dc-44ee-95cb-c214bb4794a5",
             "name": "GET product by id",
-            "url": "127.0.0.1:8000/api/product/2",
+            "url": "127.0.0.1:8000/api/product/1",
             "method": "GET",
-            "sortNum": 69296.9,
+            "sortNum": 20000,
             "created": "2024-01-19T14:01:53.022Z",
-            "modified": "2024-01-20T14:27:57.336Z",
+            "modified": "2024-02-01T17:47:15.400Z",
             "headers": [],
             "params": [],
-            "tests": []
-        },
-        {
-            "_id": "e3b18d5b-9470-4dc3-b2e2-ef4b4350d14b",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "GET all own purchase",
-            "url": "127.0.0.1:8000/api/purchase",
-            "method": "GET",
-            "sortNum": 70000,
-            "created": "2024-01-12T07:11:38.782Z",
-            "modified": "2024-01-19T14:02:35.085Z",
-            "headers": [],
-            "params": [],
-            "auth": {
-                "type": "bearer",
-                "bearer": "39|LHg712CcASqTYAD2fjZPgl3e5aBEbJ6smOsRecsF8f90da29"
-            },
             "tests": []
         },
         {
             "_id": "50321c3f-1539-415b-811d-eb6ef8e340e7",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
+            "containerId": "d44be6e7-f122-4255-ae32-0dcc6bd8a225",
             "name": "GET purchase by id",
             "url": "127.0.0.1:8000/api/purchase/202",
             "method": "GET",
-            "sortNum": 80000,
+            "sortNum": 20000,
             "created": "2024-01-19T14:04:17.012Z",
             "modified": "2024-01-19T22:03:23.447Z",
             "headers": [],
@@ -258,13 +209,49 @@
             "tests": []
         },
         {
+            "_id": "ab341e3e-e8ae-44b6-9c01-8f22b63df776",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "f0024fda-26d0-4339-94c0-64638330f591",
+            "name": "GET reservation by id",
+            "url": "127.0.0.1:8000/api/reservation/15",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-01-19T22:41:11.651Z",
+            "modified": "2024-01-20T23:22:34.915Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "52|eMqEENAMn0o3VzABJGMvGJpOIMOaIGuwAu20aV7Cfe8d6923"
+            },
+            "tests": []
+        },
+        {
+            "_id": "8a17e815-4223-4752-8758-bbae2433758c",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "071684e3-a3d6-4c27-b304-840446dc023a",
+            "name": "POST logout user",
+            "url": "127.0.0.1:8000/api/logout",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-01-12T05:33:43.526Z",
+            "modified": "2024-02-06T14:18:06.277Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "9|SfjmHTurtCIKz8HeTHWXUgjTY9TzvwayBBx0UdbE40026167"
+            },
+            "tests": []
+        },
+        {
             "_id": "27a39341-45ea-4f28-8d2f-ae3f55e18775",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
+            "containerId": "d44be6e7-f122-4255-ae32-0dcc6bd8a225",
             "name": "POST purchase",
             "url": "127.0.0.1:8000/api/purchase",
             "method": "POST",
-            "sortNum": 90000,
+            "sortNum": 30000,
             "created": "2024-01-16T19:09:53.441Z",
             "modified": "2024-01-19T14:03:37.896Z",
             "headers": [],
@@ -277,87 +264,13 @@
             "tests": []
         },
         {
-            "_id": "35f78613-6bd4-4f9b-ae4a-16f77defd584",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "PUT purchase",
-            "url": "127.0.0.1:8000/api/purchase/202",
-            "method": "PUT",
-            "sortNum": 93750,
-            "created": "2024-01-19T14:20:22.305Z",
-            "modified": "2024-01-19T22:06:36.717Z",
-            "headers": [],
-            "params": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"date_time\": \"2024-01-14 12:30:00\",\n  \"total_pay\": 21000,\n  \"status\": \"ordered\",\n  \"paid\": 1,\n  \"user_id\": 2,\n  \"desk_id\": 4\n}",
-                "form": []
-            },
-            "tests": []
-        },
-        {
-            "_id": "39afc188-6d62-4fc6-b38d-7367bae9d373",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "DELETE purchase",
-            "url": "",
-            "method": "DELETE",
-            "sortNum": 94375,
-            "created": "2024-01-19T22:40:01.754Z",
-            "modified": "2024-01-19T22:45:06.432Z",
-            "headers": [],
-            "params": [],
-            "tests": []
-        },
-        {
-            "_id": "868d74bc-beae-4835-8a7e-8552e64510c9",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "GET all own reservation",
-            "url": "127.0.0.1:8000/api/reservation",
-            "method": "GET",
-            "sortNum": 95000,
-            "created": "2024-01-16T19:57:27.588Z",
-            "modified": "2024-01-31T05:04:48.225Z",
-            "headers": [
-                {
-                    "name": "Accept",
-                    "value": "application/json"
-                }
-            ],
-            "params": [],
-            "auth": {
-                "type": "bearer",
-                "bearer": "84|QIGzUt0vBbfD3nMEBfBX4kZfwhLfGofoiCSzB1aXe400b10c"
-            },
-            "tests": []
-        },
-        {
-            "_id": "ab341e3e-e8ae-44b6-9c01-8f22b63df776",
-            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "GET reservation by id",
-            "url": "127.0.0.1:8000/api/reservation/15",
-            "method": "GET",
-            "sortNum": 97500,
-            "created": "2024-01-19T22:41:11.651Z",
-            "modified": "2024-01-20T23:22:34.915Z",
-            "headers": [],
-            "params": [],
-            "auth": {
-                "type": "bearer",
-                "bearer": "52|eMqEENAMn0o3VzABJGMvGJpOIMOaIGuwAu20aV7Cfe8d6923"
-            },
-            "tests": []
-        },
-        {
             "_id": "98efd61c-cdf2-4c22-9a6c-ff54049fa433",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
+            "containerId": "f0024fda-26d0-4339-94c0-64638330f591",
             "name": "POST reservation",
             "url": "127.0.0.1:8000/api/reservation",
             "method": "POST",
-            "sortNum": 100000,
+            "sortNum": 30000,
             "created": "2024-01-16T19:55:46.420Z",
             "modified": "2024-01-31T05:01:35.290Z",
             "headers": [],
@@ -370,13 +283,78 @@
             "tests": []
         },
         {
+            "_id": "5068db43-4b2b-4098-9b20-47e4c78bbc2a",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "2e7f0deb-e162-4976-8f2f-3c98598860a1",
+            "name": "GET desk",
+            "url": "127.0.0.1:8000/api/desk",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-01-19T14:00:28.832Z",
+            "modified": "2024-01-19T14:00:38.161Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "875f7ff9-7ea0-4655-8a1e-cab18b271e79",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "071684e3-a3d6-4c27-b304-840446dc023a",
+            "name": "GET logged in user",
+            "url": "127.0.0.1:8000/api/user",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-01-12T03:24:14.824Z",
+            "modified": "2024-02-06T13:37:32.350Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "3|7dlYiIUHb7FbnBhcyl4GCSz0atjO1F65efyiQ4os869d07e5"
+            },
+            "tests": []
+        },
+        {
+            "_id": "1dbbb51d-2718-43fa-8fbd-7a90b3e9ff0a",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "2e7f0deb-e162-4976-8f2f-3c98598860a1",
+            "name": "GET ingredient",
+            "url": "127.0.0.1:8000/api/ingredient",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-01-19T14:00:54.045Z",
+            "modified": "2024-01-19T14:01:03.996Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "35f78613-6bd4-4f9b-ae4a-16f77defd584",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "d44be6e7-f122-4255-ae32-0dcc6bd8a225",
+            "name": "PUT purchase",
+            "url": "127.0.0.1:8000/api/purchase/202",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-01-19T14:20:22.305Z",
+            "modified": "2024-01-19T22:06:36.717Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"date_time\": \"2024-01-14 12:30:00\",\n  \"total_pay\": 21000,\n  \"status\": \"ordered\",\n  \"paid\": 1,\n  \"user_id\": 2,\n  \"desk_id\": 4\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
             "_id": "3d9b3e95-53ff-463f-9193-1183b1ee0777",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
+            "containerId": "f0024fda-26d0-4339-94c0-64638330f591",
             "name": "PUT reservation",
             "url": "127.0.0.1:8000/api/reservation/22",
             "method": "PUT",
-            "sortNum": 180000,
+            "sortNum": 40000,
             "created": "2024-01-19T22:21:09.497Z",
             "modified": "2024-01-19T22:36:43.481Z",
             "headers": [],
@@ -393,13 +371,50 @@
             "tests": []
         },
         {
+            "_id": "fae1000b-d98d-405f-bc67-de94cc7fb07d",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "071684e3-a3d6-4c27-b304-840446dc023a",
+            "name": "PUT update user",
+            "url": "127.0.0.1:8000/api/user/",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-01-18T11:23:44.667Z",
+            "modified": "2024-01-30T12:23:32.482Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n    \"current_password\": \"secreto\",\n    \"password\": \"password\",\n    \"password_confirmation\": \"password\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "72|tBOe6qGPI6qsclYbDkl2FgWjy0fZrqxcpRSJERxE653c5707"
+            },
+            "tests": []
+        },
+        {
+            "_id": "39afc188-6d62-4fc6-b38d-7367bae9d373",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "d44be6e7-f122-4255-ae32-0dcc6bd8a225",
+            "name": "DELETE purchase",
+            "url": "",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-01-19T22:40:01.754Z",
+            "modified": "2024-01-19T22:45:06.432Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
             "_id": "4c61d4c1-ffd1-4c64-9a32-05b6f0134699",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
+            "containerId": "f0024fda-26d0-4339-94c0-64638330f591",
             "name": "DELETE reservation",
             "url": "127.0.0.1:8000/api/reservation/22",
             "method": "DELETE",
-            "sortNum": 220000,
+            "sortNum": 50000,
             "created": "2024-01-19T22:42:43.262Z",
             "modified": "2024-01-19T22:44:39.648Z",
             "headers": [],
@@ -413,11 +428,11 @@
         {
             "_id": "fefec944-989f-4bb1-99d3-decedd72a628",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
+            "containerId": "f0024fda-26d0-4339-94c0-64638330f591",
             "name": "GET available table",
             "url": "127.0.0.1:8000/api/reservation/checktable",
             "method": "GET",
-            "sortNum": 230000,
+            "sortNum": 60000,
             "created": "2024-01-20T14:23:09.188Z",
             "modified": "2024-01-20T18:39:48.461Z",
             "headers": [],
@@ -430,20 +445,70 @@
             "tests": []
         },
         {
-            "_id": "2c58226c-a367-4a88-a617-e124dc716c70",
+            "_id": "7ae7da0c-3a29-499a-b87a-dc418a64d792",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "GET check tables",
-            "url": "127.0.0.1:8000/api/reservation/checktable",
+            "containerId": "071684e3-a3d6-4c27-b304-840446dc023a",
+            "name": "DELETE user",
+            "url": "127.0.0.1:8000/api/user/7",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2024-02-02T10:14:51.820Z",
+            "modified": "2024-02-02T11:28:29.795Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "1|MGg3261KP9buqpZ2aaiRUVtLZrt9z6wyZqup9dOp3a412ece"
+            },
+            "tests": []
+        },
+        {
+            "_id": "0242dc52-226c-4592-b696-c0a6b95b5185",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "d44be6e7-f122-4255-ae32-0dcc6bd8a225",
+            "name": "GET checkout",
+            "url": "http://127.0.0.1:8000/api/",
             "method": "GET",
-            "sortNum": 240000,
-            "created": "2024-01-20T21:38:06.497Z",
-            "modified": "2024-01-20T21:39:09.311Z",
+            "sortNum": 60000,
+            "created": "2024-02-09T17:10:00.527Z",
+            "modified": "2024-02-09T19:28:01.168Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "d3e8441d-68c1-46f5-81fc-484bd47427e9",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "071684e3-a3d6-4c27-b304-840446dc023a",
+            "name": "POST add product to favorites",
+            "url": "127.0.0.1:8000/api/product/10/addToFavorites",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-02-01T14:51:02.339Z",
+            "modified": "2024-02-01T15:26:34.621Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "87|WprMRdI2jdD7KGYdNZ5ModQb3J8I5pDQB8FlcZzs74998fd1"
+            },
+            "tests": []
+        },
+        {
+            "_id": "3656fcf4-0267-436f-bfb0-0313805ef68f",
+            "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
+            "containerId": "d44be6e7-f122-4255-ae32-0dcc6bd8a225",
+            "name": "POST payment",
+            "url": "127.0.0.1:8000/checkout",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-02-09T17:21:12.506Z",
+            "modified": "2024-02-14T19:49:29.638Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"date_time\": \"2024-01-14T12:30:00\",\n  \"number_of_guests\": 20\n}",
+                "raw": "{\n  \"products\":[\n    32, 14\n    ]\n}",
                 "form": []
             },
             "tests": []
@@ -451,11 +516,11 @@
         {
             "_id": "f25c8c3a-7050-4000-be78-f0d75773b3e7",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
+            "containerId": "f0024fda-26d0-4339-94c0-64638330f591",
             "name": "GET check tables",
             "url": "127.0.0.1:8000/api/reservation/checkAvailableDesk",
             "method": "GET",
-            "sortNum": 250000,
+            "sortNum": 80000,
             "created": "2024-01-20T22:29:35.370Z",
             "modified": "2024-01-21T15:21:44.630Z",
             "headers": [],
@@ -468,40 +533,34 @@
             "tests": []
         },
         {
-            "_id": "d3e8441d-68c1-46f5-81fc-484bd47427e9",
+            "_id": "e83c28a0-acca-4646-91cb-788351e1cc2e",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "POST add product to favorites",
-            "url": "127.0.0.1:8000/api/product/10/addToFavorites",
-            "method": "POST",
-            "sortNum": 260000,
-            "created": "2024-02-01T14:51:02.339Z",
-            "modified": "2024-02-01T15:26:34.621Z",
+            "containerId": "071684e3-a3d6-4c27-b304-840446dc023a",
+            "name": "GET user favorites",
+            "url": "127.0.0.1:8000/api/product/userFavorites",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-02-01T15:25:31.816Z",
+            "modified": "2024-02-01T18:08:36.203Z",
             "headers": [],
             "params": [],
             "auth": {
                 "type": "bearer",
-                "bearer": "87|WprMRdI2jdD7KGYdNZ5ModQb3J8I5pDQB8FlcZzs74998fd1"
+                "bearer": "92|YS1MR8n1VOL5HRCP0NQQKdJbWUds8JVDdKqzd0js666bedd1"
             },
             "tests": []
         },
         {
-            "_id": "e83c28a0-acca-4646-91cb-788351e1cc2e",
+            "_id": "9cf4cdea-0d87-43de-afac-3c6d4c559384",
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
-            "containerId": "",
-            "name": "GET user favorites",
-            "url": "127.0.0.1:8000/api/product/userFavorites",
+            "containerId": "d44be6e7-f122-4255-ae32-0dcc6bd8a225",
+            "name": "POST success payment",
+            "url": "",
             "method": "GET",
-            "sortNum": 270000,
-            "created": "2024-02-01T15:25:31.816Z",
-            "modified": "2024-02-01T16:46:43.006Z",
-            "headers": [],
-            "params": [],
-            "auth": {
-                "type": "bearer",
-                "bearer": "90|cl6sRVtJWou0SR53M1vih6OxRgsqj7dtMsZ7RHLMa2f393ef"
-            },
-            "tests": []
+            "sortNum": 290000,
+            "created": "2024-02-09T22:31:01.861Z",
+            "modified": "2024-02-09T22:31:01.862Z",
+            "headers": []
         }
     ]
 }

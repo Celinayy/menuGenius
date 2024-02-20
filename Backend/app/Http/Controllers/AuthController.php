@@ -91,7 +91,5 @@ class AuthController extends Controller
             $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
         }
         return response()->json(['message' => 'Sikeres kijelentkezés!']);
-
-        //$request->user()->currentAccessToken()->delete();
     }
 }

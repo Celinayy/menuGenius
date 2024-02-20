@@ -23,7 +23,6 @@ class PurchaseFactory extends Factory
     {
         $statuses = ['ordered', 'cooked', 'served'];
 
-        //$user = $this->faker->boolean ? User::inRandomOrder()->first() : null;
         $user = User::inRandomOrder()->first();
         $desk = Desk::inRandomOrder()->first();
 
