@@ -31,13 +31,22 @@ export class CartService {
   }
 
   public checkout(deskId: number) {
+    const token = localStorage.getItem("token");
+
     return this.connection.post<{url: string}>("http://localhost:8000/api/checkout",
       {
         products: this.products.map((product) => product.id),
         desk_id: deskId
+      }, {
+        headers: token ? {
+          "Authorization": `Bearer ${token}`,
+        } : {
+
+        },
       }
     )
   }
+  
   public clear() {
     this.products = []
     sessionStorage.removeItem("cart")

@@ -21,6 +21,7 @@ class StripeController extends Controller
     public function checkout(Request $request)
     {
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        //$user = auth()->user();
 
         if (Auth::guard('sanctum')->check()) {
             $user = Auth::guard('sanctum')->user();
@@ -29,7 +30,6 @@ class StripeController extends Controller
         }
 
         \Log::info('Customer', [$user]);
-
 
         $lineItems = [];
         $totalPrice = 0;
@@ -53,7 +53,8 @@ class StripeController extends Controller
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
             'mode' => 'payment',
-            'success_url' => 'http://localhost:4200/stripe/payment/success',
+            'success_url' => route('checkout.success', [], true)."?session_id={CHECKOUT_SESSION_ID}",
+            //'success_url' => 'http://localhost:4200/stripe/payment/success'.'?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => 'http://localhost:4200/stripe/payment/cancel',
             'customer_creation' => 'always'
         ];
@@ -72,7 +73,6 @@ class StripeController extends Controller
         $purchase->user_id = $user ? $user->id : null;
         $purchase->desk_id = $request->desk_id;
         $purchase->stripe_id = $session->id;
-
         $purchase->save();
 
         $products = $request->input('products');
@@ -86,15 +86,16 @@ class StripeController extends Controller
         return [
             "url" => $session->url,
         ];
-
     }
 
     public function success(Request $request)
     {
+        \Log::info('Success method called.');
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         $customer = null;
         try{
             $sessionId = $request->get('session_id');
+            \Log::info($sessionId);
             $session = Session::retrieve($sessionId);
 
             if (!$session){
@@ -103,6 +104,7 @@ class StripeController extends Controller
             $customer = \Stripe\Customer::retrieve($session->customer, []);
 
             $purchase = Purchase::where('stripe_id', $session->id)->first();
+            \Log::info($purchase);
             // echo '<pre>';
             // var_dump($purchase);
             // echo '</pre>';
@@ -110,12 +112,13 @@ class StripeController extends Controller
             if (!$purchase){
                 throw new NotFoundHttpException();
             }
-            if ($purchase->paid === false){
-                $purchase->paid = true;
+            if ($purchase->paid === 0){
+                $purchase->paid = 1;
                 $purchase->save();
             }
 
-            return view('product.checkout-success', compact('customer'));
+            //return view('product.checkout-success', compact('customer'));
+            return redirect('http://localhost:4200/stripe/payment/success');
 
         } catch(\Exception $e)
         {
@@ -125,10 +128,10 @@ class StripeController extends Controller
 
     public function cancel()
     {
-        $purchase = Purchase::where('stripe_id', 'cs_test_b1xM2mc8XNxEZ81X85eobz4WkniDX6clDVBvYcIuyRzk6oUGRJOIazkokE')->first();
-        echo '<pre>';
-        var_dump($purchase);
-        '</pre>';
+        // $purchase = Purchase::where('stripe_id', 'cs_test_b1xM2mc8XNxEZ81X85eobz4WkniDX6clDVBvYcIuyRzk6oUGRJOIazkokE')->first();
+        // echo '<pre>';
+        // var_dump($purchase);
+        // '</pre>';
     }
 
     public function webhook()
@@ -154,11 +157,12 @@ class StripeController extends Controller
                 $session = $event->data->object;
 
                 $purchase = Purchase::where('stripe_id', $session->id)->first();
-                if ($purchase && $purchase->paid === false) {
-                    $purchase->paid = true;
+                if ($purchase && $purchase->paid === 0) {
+                    $purchase->paid = 1;
                     $purchase->save();
                     //E-mail küldése a vásárlónak
                 }
+                break;
             default:
                 echo 'Ismeretlen eseménytípus ' . $event->type;
         }
