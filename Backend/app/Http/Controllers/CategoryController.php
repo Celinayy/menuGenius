@@ -29,12 +29,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        // $category = new Category();
-        // $category->name = $request->input('name');
-
-        // $category->save();
-
-        // return response()->json(['message' => 'A termékkategória létrehozva!', 'data' => $category], 201);
+        //
     }
 
     /**

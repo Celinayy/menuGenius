@@ -41,13 +41,7 @@ class ImageController extends Controller
      */
     public function store(StoreImageRequest $request)
     {
-        $image = new Image();
-        $image->img_name = $request->input('img_name');
-        $image->img_data = $request->input('img_data');
-
-        $image->save();
-
-        return response()->json(['message' => 'Az asztal létrehozva!', 'data' => $image], 201);
+        //
     }
 
     /**

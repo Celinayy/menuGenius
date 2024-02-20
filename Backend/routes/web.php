@@ -15,14 +15,6 @@ use App\Http\Controllers\StripeController;
 |
 */
 
-/* Route::get('/', function () {
-    return view('welcome');
-});
- */
-
-
-//Route::match(['get', 'post'], '/success', 'App\Http\Controllers\StripeController@handleSuccess')->name('success');
-//Route::view('/success', 'success')->name('success');
 Route::get('/success', [StripeController::class, 'success'])->name('checkout.success');
 Route::get('/cancel', [StripeController::class, 'cancel'])->name('checkout.cancel');
 Route::post('/webhook', [StripeController::class, 'webhook'])->name('checkout.webhook');

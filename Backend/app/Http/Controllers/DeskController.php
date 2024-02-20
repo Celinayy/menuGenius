@@ -29,12 +29,7 @@ class DeskController extends Controller
      */
     public function store(StoreDeskRequest $request)
     {
-        // $desk = new Desk();
-        // $desk->number_of_guests = $request->input('number_of_guests');
-
-        // $desk->save();
-
-        // return response()->json(['message' => 'Az asztal létrehozva!', 'data' => $desk], 201);
+        //
     }
 
     /**

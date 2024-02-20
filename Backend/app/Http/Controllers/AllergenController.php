@@ -29,13 +29,7 @@ class AllergenController extends Controller
      */
     public function store(StoreAllergenRequest $request)
     {
-        // $allergen = new Allergen();
-        // $allergen->code = $request->input('code');
-        // $allergen->name = $request->input('name');
-
-        // $allergen->save();
-
-        // return response()->json(['message' => 'Az allergén létrehozva!', 'data' => $allergen], 201);
+        //
     }
 
     /**

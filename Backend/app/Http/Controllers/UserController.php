@@ -38,17 +38,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        // $input = $request->validated();
-        // $input['password'] = Hash::make($input['password']);
-
-        // $user = User::create($input);
-
-        // $data = [
-        //     'token' => $user->createToken('Sanctom+Socialite')->plainTextToken,
-        //     'user' => $user,
-        // ];
-
-        // return response()->json($data, 200);
+        //
     }
 
     /**
@@ -94,10 +84,6 @@ class UserController extends Controller
         $user->update($data);
 
         return response()->json(['message' => 'Az adatok sikeresen frissítve lettek.']);
-
-        // $data = $request->json()->all();
-        // $user->update($data);
-        // return response()->json(['message' => 'Az adatok sikeresen frissítve lettek.']);
     }
 
     /**
@@ -106,8 +92,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         $authenticatedUser = auth()->user();
-        \Log::info('Authenticated User ID: ' . optional($authenticatedUser)->id);
-        \Log::info('User to Delete ID: ' . $id);
     
         if ($authenticatedUser && $authenticatedUser->id == $id) {
             User::destroy($id);
