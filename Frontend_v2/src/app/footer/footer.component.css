@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    align-self: center;
+    justify-content: right;
+    align-items: center;
+    padding: 1vw;
+    background: rgba(0, 0, 0, 50%);
+    margin-bottom: 10px;
+}
+
+#menugenius-logo{
+    width: 10vw;   
+    height: auto;
+    margin-right: 3vw;
+    margin-left: 1vw;
+}
