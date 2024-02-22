@@ -1,77 +1,82 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { interval, Observable, startWith, Subject, switchMap, timer } from 'rxjs';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
+import { Category } from '../models/category.model';
+import { CategoryService } from '../services/category.service';
+import { AuthService } from '../services/auth.service';
+import { Image } from '../models/image.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-food-menu',
   templateUrl: './food-menu.component.html',
-  styleUrls: ['./food-menu.component.css']
+  styleUrls: ['./food-menu.component.css'],
 })
 export class FoodMenuComponent implements OnInit {
+  @Input() slides: Image[] = [];
+  currentIndex: number = 0;
+  timeoutId?: number;
+
+  public categories: Category[] = [];
   products: Product[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private categoryService: CategoryService, 
+    public authService: AuthService,
+    ) {
+      this.loadCategories();
+    };
 
   ngOnInit() {
     this.productService.listFoodProducts().subscribe(products => {
       this.products = products;
-
-      //console.log('Product images:', this.products.map(product => product.image.data));
-
-      this.slides = this.products.map(product => ({ img: 'data:image/png;base64,' + product.image.data }));
     });
+    this.resetTimer();
   }
 
-  slides: { img: string }[] = [];
-
-  // slides = [
-  //   { img: 'https://via.placeholder.com/600.png/09f/fff' },
-  //   { img: 'https://via.placeholder.com/600.png/021/fff' },
-  //   { img: 'https://via.placeholder.com/600.png/321/fff' },
-  //   { img: 'https://via.placeholder.com/600.png/422/fff' },
-  //   { img: 'https://via.placeholder.com/600.png/654/fff' },
-  // ];
-
-  slideConfig = { 
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    variableWidth: true,
-    centerMode: true,
-    dots: false,
-    arrows: true,
-    adaptiveHeight: true,
-    variableHeight: true,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          variableWidth: false,
-        }
-      }
-    ]    
-  };
-
-  addSlide() {
-    this.slides.push({ img: 'http://placehold.it/350x150/777777' });
+  private loadCategories() {
+    this.categoryService.getAllCategory().subscribe((categories) => {
+      this.categories = categories;
+    })
   }
 
-  removeSlide() {
-    this.slides.length = this.slides.length - 1;
+  ngOnDestroy() {
+    window.clearTimeout(this.timeoutId);
+  }
+  resetTimer() {
+    if (this.timeoutId) {
+      window.clearTimeout(this.timeoutId);
+    }
+    this.timeoutId = window.setTimeout(() => this.goToNext(), 3000);
   }
 
-  slickInit(e: any) {
-    console.log('slick initialized');
-  }
-  breakpoint(e: any) {
-    console.log('breakpoint');
-  }
-  afterChange(e: any) {
-    console.log('afterChange');
+  goToPrevious(): void {
+    const isFirstSlide = this.currentIndex === 0;
+    const newIndex = isFirstSlide
+      ? this.slides.length - 1
+      : this.currentIndex - 1;
+
+    this.resetTimer();
+    this.currentIndex = newIndex;
   }
 
-  beforeChange(e: any) {
-    console.log('beforeChange');
+  goToNext(): void {
+    const isLastSlide = this.currentIndex === this.slides.length - 1;
+    const newIndex = isLastSlide ? 0 : this.currentIndex + 1;
+
+    this.resetTimer();
+    this.currentIndex = newIndex;
   }
+
+  goToSlide(slideIndex: number): void {
+    this.resetTimer();
+    this.currentIndex = slideIndex;
+  }
+
+  getCurrentSlideUrl() {
+    return `url('data:image/jpeg;base64, ${this.products[this.currentIndex].image.data}')`;
+  }
+  
 }
