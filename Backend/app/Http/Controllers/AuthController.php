@@ -80,6 +80,8 @@ class AuthController extends Controller
                 'user' => $user,
             ];
             return response()->json($data, 200);
+        } else {
+            return response()->json(["error" => "Hibás e-mail cím vagy jelszó!"], 401);
         }
     }
 
