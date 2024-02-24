@@ -21,7 +21,9 @@ export class LoginWindowComponent {
   public login() {
     this.authService.login(this.email, this.password)
       .pipe(catchError((err: HttpErrorResponse) => {
-        console.log(err)
+        if(err.error.error) {
+          this.toast.error(err.error.error)
+        }
         for (const message of err.error.email ?? []) {
           this.toast.error(message)
         }
