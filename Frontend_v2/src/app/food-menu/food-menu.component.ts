@@ -16,7 +16,12 @@ import { CommonModule } from '@angular/common';
 export class FoodMenuComponent implements OnInit {
   @Input() slides: Image[] = [];
   currentIndex: number = 0;
-  timeoutId?: number;
+  //timeoutId?: number;
+
+  searchKey: string = "";
+  public searchTerm: string = '';
+  public category_id : number | null = null;
+
 
   public categories: Category[] = [];
   products: Product[] = [];
@@ -27,30 +32,29 @@ export class FoodMenuComponent implements OnInit {
     public authService: AuthService,
     ) {
       this.loadCategories();
+
+      this.productService.search.subscribe((val: any) =>{
+        this.searchKey = val;
+      })
     };
 
   ngOnInit() {
     this.productService.listFoodProducts().subscribe(products => {
       this.products = products;
     });
-    this.resetTimer();
-  }
-
-  private loadCategories() {
-    this.categoryService.getAllCategory().subscribe((categories) => {
-      this.categories = categories;
-    })
+    //this.resetTimer();
   }
 
   ngOnDestroy() {
-    window.clearTimeout(this.timeoutId);
+    //window.clearTimeout(this.timeoutId);
   }
-  resetTimer() {
-    if (this.timeoutId) {
-      window.clearTimeout(this.timeoutId);
-    }
-    this.timeoutId = window.setTimeout(() => this.goToNext(), 3000);
-  }
+
+  // resetTimer() {
+  //   if (this.timeoutId) {
+  //     window.clearTimeout(this.timeoutId);
+  //   }
+  //   this.timeoutId = window.setTimeout(() => this.goToNext(), 3000);
+  // }
 
   goToPrevious(): void {
     const isFirstSlide = this.currentIndex === 0;
@@ -58,7 +62,7 @@ export class FoodMenuComponent implements OnInit {
       ? this.slides.length - 1
       : this.currentIndex - 1;
 
-    this.resetTimer();
+    //this.resetTimer();
     this.currentIndex = newIndex;
   }
 
@@ -66,12 +70,12 @@ export class FoodMenuComponent implements OnInit {
     const isLastSlide = this.currentIndex === this.slides.length - 1;
     const newIndex = isLastSlide ? 0 : this.currentIndex + 1;
 
-    this.resetTimer();
+    //this.resetTimer();
     this.currentIndex = newIndex;
   }
 
   goToSlide(slideIndex: number): void {
-    this.resetTimer();
+    //this.resetTimer();
     this.currentIndex = slideIndex;
   }
 
@@ -79,4 +83,24 @@ export class FoodMenuComponent implements OnInit {
     return `url('data:image/jpeg;base64, ${this.products[this.currentIndex].image.data}')`;
   }
   
+  private loadCategories() {
+    this.categoryService.getAllCategory().subscribe((categories) => {
+      this.categories = categories;
+    })
+  }
+
+  search() {
+    this.productService.search.next(this.searchTerm);
+  }
+
+  // public get filterCategory() {
+  //   return this.productService.listFoodProducts().filter((p) => {
+  //     if(!this.category_id) return true;
+  //     return p.category.id === this.category_id;
+  //   })
+  // }
+
+  goToProductSlide(product: Product): void {
+    this.currentIndex = this.products.findIndex(p => p === product);
+  }
 }
