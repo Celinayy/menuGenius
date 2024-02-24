@@ -23,6 +23,18 @@ export class ProductService {
     return this.connection.get<ProductModel[]>(this.url)
   }
 
+  public listDrinks() {
+    return this.products.filter((product) => {
+      return !product.is_food
+    })
+  }
+
+  public listFoods() {
+    return this.products.filter((product) => {
+      return product.is_food
+    })
+  }
+
 
   public loadProductById(id: number) {
     return this.connection.get<ProductModel>(`${this.url}/${id}`)

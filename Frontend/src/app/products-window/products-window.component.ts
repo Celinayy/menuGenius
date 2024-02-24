@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductModel } from '../models/product-model';
 import { ProductService } from '../services/product.service';
 import { CategoryModel } from '../models/category-model';
 import { CategoriesService } from '../services/categories.service';
-import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
