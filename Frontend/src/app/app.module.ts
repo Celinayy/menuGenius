@@ -26,6 +26,8 @@ import { CartWindowComponent } from './cart-window/cart-window.component';
 import { StarButtonComponent } from './star-button/star-button.component';
 import { SuccesfullPaymentWindowComponent } from './succesfull-payment-window/succesfull-payment-window.component';
 import { CancelPaymentWindowComponent } from './cancel-payment-window/cancel-payment-window.component';
+import { DrinksWindowComponent } from './drinks-window/drinks-window.component';
+import { FoodsWindowComponent } from './foods-window/foods-window.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { CancelPaymentWindowComponent } from './cancel-payment-window/cancel-pay
     StarButtonComponent,
     SuccesfullPaymentWindowComponent,
     CancelPaymentWindowComponent,
+    DrinksWindowComponent,
+    FoodsWindowComponent,
   ],
   imports: [
     BrowserModule,
