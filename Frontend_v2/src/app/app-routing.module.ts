@@ -8,6 +8,7 @@ import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FoodWindowComponent } from './food-window/food-window.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,7 @@ const routes: Routes = [
   {
     title: 'Étlap',
     path: 'food-menu',
-    component: FoodMenuComponent
+    component: FoodWindowComponent
   },
   {
     title: 'Itallap',

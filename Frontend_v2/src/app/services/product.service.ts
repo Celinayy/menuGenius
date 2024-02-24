@@ -11,6 +11,8 @@ export class ProductService {
 
   private url = "http://localhost:8000/api/product"
   public search = new BehaviorSubject<string>("");
+  public foodProducts: Product[] = [];
+  public drinkProducts: Product[] = [];
 
   constructor(private connection: HttpClient) { }
 
@@ -20,10 +22,13 @@ export class ProductService {
   
   public listFoodProducts() {
     return this.listProducts().pipe(
-      map(products => products.filter(product => product.is_food == true))
+      map(products => {
+        this.foodProducts = products.filter(product => product.is_food == true);
+        return this.foodProducts;
+      })
     );
   }
-
+  
   public listDrinkProducts() {
     return this.listProducts().pipe(
       map(products => products.filter(product => product.is_food == false))
