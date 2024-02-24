@@ -11,6 +11,8 @@ import { ProductsDetailsWindowComponent } from './products-details-window/produc
 import { CartWindowComponent } from './cart-window/cart-window.component';
 import { SuccesfullPaymentWindowComponent } from './succesfull-payment-window/succesfull-payment-window.component';
 import { CancelPaymentWindowComponent } from './cancel-payment-window/cancel-payment-window.component';
+import { FoodsWindowComponent } from './foods-window/foods-window.component';
+import { DrinksWindowComponent } from './drinks-window/drinks-window.component';
 
 const routes: Routes = [
   {path: "", component: MainWindowComponent},
@@ -22,8 +24,10 @@ const routes: Routes = [
   {path: "products", component: ProductsWindowComponent},
   {path: "products/:id", component: ProductsDetailsWindowComponent},
   {path: "cart", component: CartWindowComponent},
+  {path: "profile/foods", component: FoodsWindowComponent},
+  {path: "profile/drinks", component: DrinksWindowComponent},
   {path: "stripe/payment/success", component: SuccesfullPaymentWindowComponent},
-  {path: "stripe/payment/cancel", component: CancelPaymentWindowComponent}
+  {path: "stripe/payment/cancel", component: CancelPaymentWindowComponent},
 
 ];
 
