@@ -71,6 +71,7 @@ body{
     font-family: "Titillium Web", sans-serif;
     font-weight: 200;
     font-style: normal;
+    color: white;
 }
 .background {
     background-image: url('assets/background-desktop-min.png');

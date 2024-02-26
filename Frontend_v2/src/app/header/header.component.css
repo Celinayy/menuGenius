@@ -1,19 +1,10 @@
-.container{
-    display: flex;
-    justify-content: space-around;
-    align-content: center;
-    margin-top: 10px;
-    background: rgba(0, 0, 0, 50%);
-}
-.header-container{
-    display: flex;
-    align-items: center;
-    margin-left: 5px;
-    padding: 10px;
+.container-fluid {
+    padding: 1vw;
 }
 
 a {
-    color: white;
     text-decoration: none;
-    margin-left: 10px;
+    margin-left: 0.7vw;
+    margin-right: 1.5vw;
+    color: white;
 }

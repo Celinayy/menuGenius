@@ -1,35 +1,21 @@
-<div class="logo-container">
-    <img src="../../assets/eat_more_white.svg" id="restaurant-logo"/>
-</div>
-<div class="container">
-    <div id="main-menu">
-        <div class="li-main"><a routerLink="/about">Rólunk</a></div>
-        <div class="li-main"><a routerLink="/food-menu">Étlap</a></div>
-        <div class="li-main"><a routerLink="/drink-menu">Itallap</a></div>
-        <div class="li-main"><a routerLink="/reservation">Foglalás</a></div>
-        <div class="li-main"><a routerLink="/cart">Kosár</a></div>
-
+<nav class="navbar navbar-expand-sm navbar-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div [ngClass]="{'collapse': isNavbarCollapsed, 'navbar-collapse': true}" class="row collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav" id="main-menu">
+                <li class="li-main nav-item"><a class="nav-link" routerLink="/about">Rólunk</a></li>
+                <li class="li-main nav-item"><a class="nav-link" routerLink="/food-menu">Étlap</a></li>
+                <li class="li-main nav-item"><a class="nav-link" routerLink="/drink-menu">Itallap</a></li>
+                <li class="li-main nav-item"><a class="nav-link" routerLink="/reservation">Foglalás</a></li>
+                <li class="li-main nav-item"><a class="nav-link" routerLink="/cart">Kosár</a></li>
+            </ul>
+            <ul class="nav navbar-nav" id="profil-menu">
+                <li class="li-profil nav-item"><a class="nav-link" routerLink="/login">Belépés</a></li>
+                <li class="li-profil nav-item"><a class="nav-link" routerLink="/register">Regisztráció</a></li>
+                <li class="li-profil nav-item"><a class="nav-link" routerLink="/profile">Profil</a></li>
+            </ul>
+        </div>
     </div>
-    <div id="profil-menu">
-        <div class="li-profil"><a routerLink="/login">Belépés</a></div>
-        <div class="li-profil"><a routerLink="/register">Regisztráció</a></div>
-        <div class="li-profil"><a routerLink="/profile">Profil</a></div>
-    </div>
-</div>
-<!-- <div>
-    <nav>
-        <ul id="main-menu">
-            <li class="li-main"><a routerLink="/about">Rólunk</a></li>
-            <li class="li-main"><a routerLink="/food-menu">Étlap</a></li>
-            <li class="li-main"><a routerLink="/drink-menu">Itallap</a></li>
-            <li class="li-main"><a routerLink="/reservation">Foglalás</a></li>
-            <li class="li-main"><a routerLink="/cart">Kosár</a></li>
-        </ul>
-        <ul id="profil-menu">
-            <li class="li-profil"><a routerLink="/login">Belépés</a></li>
-            <li class="li-profil"><a routerLink="/register">Regisztráció</a></li>
-            <li class="li-profil"><a routerLink="/profile">Profil</a></li>
-        </ul>
-    </nav>
-
-</div> -->
+</nav>

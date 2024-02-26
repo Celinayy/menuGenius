@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "menugenius",
-    "dateExported": "2024-02-20T16:48:31.786Z",
+    "dateExported": "2024-02-25T15:29:02.458Z",
     "version": "1.1",
     "folders": [
         {
@@ -50,10 +50,23 @@
             "method": "GET",
             "sortNum": 10000,
             "created": "2024-01-08T03:18:17.684Z",
-            "modified": "2024-01-19T14:01:37.919Z",
+            "modified": "2024-02-25T15:15:33.195Z",
             "headers": [],
             "params": [],
-            "tests": []
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                },
+                {
+                    "type": "json-query",
+                    "custom": "json.",
+                    "action": "equal",
+                    "value": "{productlist}"
+                }
+            ]
         },
         {
             "_id": "6a3ef14d-6ceb-478f-9b92-93ad7a3c7085",
@@ -64,7 +77,7 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-01-12T04:13:36.855Z",
-            "modified": "2024-02-06T14:17:02.835Z",
+            "modified": "2024-02-24T20:37:55.520Z",
             "headers": [],
             "params": [],
             "body": {
@@ -72,7 +85,14 @@
                 "raw": "{\n  \"name\": \"rosszfej\",\n  \"email\": \"rosszfej@gmail.com\",\n  \"password\": \"password\",\n  \"admin\": 0,\n  \"password_confirmation\": \"password\",\n  \"phone\": \"+36201345876\"\n}",
                 "form": []
             },
-            "tests": []
+            "tests": [
+                {
+                    "type": "res-code",
+                    "custom": "",
+                    "action": "equal",
+                    "value": "200"
+                }
+            ]
         },
         {
             "_id": "e3b18d5b-9470-4dc3-b2e2-ef4b4350d14b",
@@ -138,7 +158,7 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2024-01-12T03:05:22.766Z",
-            "modified": "2024-02-09T17:22:44.904Z",
+            "modified": "2024-02-24T10:18:41.226Z",
             "headers": [],
             "params": [],
             "body": {
@@ -151,7 +171,7 @@
                     },
                     {
                         "name": "password",
-                        "value": "password"
+                        "value": "dfadefs"
                     }
                 ]
             },
@@ -181,11 +201,11 @@
             "colId": "a431e3e2-e41f-4abc-bcd8-2c6270327d6d",
             "containerId": "20b20771-09dc-44ee-95cb-c214bb4794a5",
             "name": "GET product by id",
-            "url": "127.0.0.1:8000/api/product/1",
+            "url": "127.0.0.1:8000/api/product/{{#number, 1, 72}}",
             "method": "GET",
             "sortNum": 20000,
             "created": "2024-01-19T14:01:53.022Z",
-            "modified": "2024-02-01T17:47:15.400Z",
+            "modified": "2024-02-25T15:21:16.330Z",
             "headers": [],
             "params": [],
             "tests": []

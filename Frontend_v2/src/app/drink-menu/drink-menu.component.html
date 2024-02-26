@@ -1,1 +1,76 @@
-<p>drink-menu works!</p>
+<div class="container-fluid">
+    <div class="row align-self-center flex-wrap">
+        <div class="col-auto">
+            Válassz kategóriát:
+        </div>
+        <div class="col-auto">
+            <select class="form-select me-2" [(ngModel)]="category" aria-label="Default select example">
+                <option [ngValue]="null">Összes</option>
+                <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            Keresés:
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Keresés" [(ngModel)]="searchTerm" (keyup)="search()"/>
+        </div>
+    </div>
+    <div class="row px-4 position-relative d-flex justify-content-center">
+        <div class="card blur col-12 col-md-6 col-lg-3 m-2" *ngFor="let product of drinks">
+            <img class="card-img-top rounded mt-3" src="data:image/png;base64, {{ product.image.data }}" alt="Card image cap" />
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <div class="mt-auto">
+                <h5 class="fw-light">{{ product.price }},-</h5>
+                <div class="row">
+                    <div class="col-9">
+                        <button [routerLink]="'/products/' + product.id" class="btn btn-warning">
+                            Részletek/rendelés
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container pt-3">
+    <div class="items-center row p-2">
+        <div class="col-md-6 col-12 align-items-center d-flex">
+            Válassz kategóriát:
+        </div>
+        <div class="col-md-6 col-12 align-items-center d-flex">
+            <select class="form-select me-2" [(ngModel)]="category" aria-label="Default select example">
+                <option [ngValue]="null">Összes</option>
+                <option *ngFor="let category of categories" [ngValue]="category.id">{{ category.name }}</option>
+            </select>
+        </div>
+        <div class="col-md-6 col-12 align-items-center d-flex">
+            Keresés:
+        </div>
+        <div>
+            <input type="text" class="form-control" placeholder="Keresés" [(ngModel)]="searchTerm" (keyup)="search()"/>
+        </div>
+    </div>
+    <hr />
+    <div class="row px-4 position-relative d-flex justify-content-center">
+        <div class="card blur col-12 col-md-6 col-lg-3 m-2" *ngFor="let product of products">
+            <img class="card-img-top rounded mt-3" src="data:image/png;base64, {{ product.image.data }}" alt="Card image cap" />
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <div class="mt-auto">
+                <h5 class="fw-light">{{ product.price }},-</h5>
+                <div class="row">
+                    <div class="col-9">
+                        <button [routerLink]="'/products/' + product.id" class="btn btn-warning">
+                            Részletek/rendelés
+                        </button>
+                    </div>
+                </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div> -->

@@ -19,7 +19,6 @@
       />
   </div>
   <div class="food-carousel">
-    <div>
       <ngx-slick-carousel class="carousel"
         #slickModal="slick-carousel" 
         [config]="slideConfig">
@@ -27,8 +26,6 @@
             <img src="{{ slide.img }}" alt="" width="160%" height="auto">
         </div>
       </ngx-slick-carousel>
-    </div>
-    <div class="food-carousel">
       <ngx-slick-carousel class="carousel-small"
         #slickModal="slick-carousel" 
         [config]="slideNavConfig">
@@ -36,7 +33,6 @@
             <img src="{{ slide.img }}" alt="" width="100%" height="auto">
         </div>
       </ngx-slick-carousel>
-    </div>
   </div>
 </div>
     
