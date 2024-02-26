@@ -39,10 +39,9 @@ export class RegisterWindowComponent {
         }
         return throwError(() => err)
       }))
-      .subscribe((result) => {
+      .subscribe(() => {
         this.menu.showLogin();
         window.location.reload()
-        this.toastr.success("Sikeres regisztráció!");
       });
   }
 
