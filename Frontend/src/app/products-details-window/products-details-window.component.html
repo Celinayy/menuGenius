@@ -17,7 +17,7 @@
 
         <label class="fw-semibold">Leírás</label>
         <p class="text-justify">
-          {{ product.description }}
+          {{ product.description || "Ehhez a termékhez nem tartozik leírás!" }}
         </p>
 
         <div *ngIf="product.ingredients.length > 0">
