@@ -35,7 +35,6 @@ export class LoginWindowComponent {
       .subscribe(() => {
         this.router.navigate(["/"]);
         window.location.reload()
-        this.toast.success("Sikeres bejelentkezés!")
       });
 
   }
