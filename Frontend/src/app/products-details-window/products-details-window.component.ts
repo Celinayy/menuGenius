@@ -5,6 +5,7 @@ import { ProductModel } from '../models/product-model';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../services/cart.service';
 import { AuthService } from '../services/auth.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-products-details-window',
@@ -21,6 +22,7 @@ export class ProductsDetailsWindowComponent {
     private toast: ToastrService,
     private cartService: CartService,
     public authService: AuthService,
+    private _location: Location
   ) {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.productService.loadProductById(parseInt(params.get("id") as string)).subscribe((product) => {
@@ -44,6 +46,10 @@ export class ProductsDetailsWindowComponent {
   public addToCart() {
      this.toast.success("Kosárhoz adva!")
      this.cartService.addProduct(this.product);
+  }
+
+  backPreviousPage() {
+    this._location.back();
   }
 
 }
