@@ -7,12 +7,9 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   isModalOpen: boolean = false;
+  isNavbarCollapsed = true;
 
-  openModal() {
-    this.isModalOpen = true;
-  }
-
-  closeModal() {
-    this.isModalOpen = false;
+  toggleNavbar() {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
   }
 }

@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LogoComponent } from './logo/logo.component';
 import { AboutComponent } from './about/about.component';
 import { FoodMenuComponent } from './food-menu/food-menu.component';
 import { FoodWindowComponent } from './food-window/food-window.component';
@@ -31,6 +32,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     HeaderComponent,
     FooterComponent,
     NavbarComponent,
+    LogoComponent,
     AboutComponent,
     FoodMenuComponent,
     FoodWindowComponent,

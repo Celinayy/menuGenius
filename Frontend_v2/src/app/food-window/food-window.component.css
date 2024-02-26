@@ -46,16 +46,16 @@
   transform: scale(0.8);
 }
 .slick-list {
-  height: 500px;
+  height: 100%;
+  width: 100%;
 }
 .slick-track {
   height: 100%;
 }
-
 .adimg {
   margin: 0 auto;
 }
-
 img {
   border-radius: 10px;
 }
+
