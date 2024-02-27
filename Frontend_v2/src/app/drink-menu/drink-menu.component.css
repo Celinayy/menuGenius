@@ -16,3 +16,11 @@
     font-size: calc(0.3rem + 0.8vw + 0.8vh);
 }
 
+.modal-backdrop + .modal-backdrop {
+    z-index: 1040 !important;
+  }
+
+
+.modal {
+    z-index: 8800 !important;
+}

@@ -11,6 +11,10 @@ import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
+    path: '',
+    component: AboutComponent
+  },
+  {
     title: 'Rólunk',
     path: 'about',
     component: AboutComponent,

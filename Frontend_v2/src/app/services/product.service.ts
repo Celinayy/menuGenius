@@ -41,4 +41,8 @@ export class ProductService {
       map(products => products.filter(product => product.is_food == false))
     );
   }
+
+  // public loadProductById(id: number) {
+  //   return this.connection.get<Product>(`${this.url}/${id}`)
+  // }
 }

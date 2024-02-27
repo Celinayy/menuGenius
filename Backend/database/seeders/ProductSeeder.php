@@ -24,8 +24,6 @@ class ProductSeeder extends Seeder
             'image_id'=>69,
             'category_id'=>1
             ] );
-            
-            
                         
             Product::create( [
             'id'=>2,
@@ -37,8 +35,6 @@ class ProductSeeder extends Seeder
             'image_id'=>5,
             'category_id'=>1
             ] );
-            
-            
                         
             Product::create( [
             'id'=>3,
@@ -50,8 +46,6 @@ class ProductSeeder extends Seeder
             'image_id'=>66,
             'category_id'=>1
             ] );
-            
-            
                         
             Product::create( [
             'id'=>4,
@@ -63,8 +57,6 @@ class ProductSeeder extends Seeder
             'image_id'=>37,
             'category_id'=>1
             ] );
-            
-            
                         
             Product::create( [
             'id'=>5,
@@ -76,8 +68,6 @@ class ProductSeeder extends Seeder
             'image_id'=>24,
             'category_id'=>2
             ] );
-            
-            
                         
             Product::create( [
             'id'=>6,
@@ -89,8 +79,6 @@ class ProductSeeder extends Seeder
             'image_id'=>44,
             'category_id'=>2
             ] );
-            
-            
                         
             Product::create( [
             'id'=>7,
@@ -102,8 +90,6 @@ class ProductSeeder extends Seeder
             'image_id'=>36,
             'category_id'=>2
             ] );
-            
-            
                         
             Product::create( [
             'id'=>8,
@@ -115,8 +101,6 @@ class ProductSeeder extends Seeder
             'image_id'=>29,
             'category_id'=>2
             ] );
-            
-            
                         
             Product::create( [
             'id'=>9,
@@ -128,8 +112,6 @@ class ProductSeeder extends Seeder
             'image_id'=>48,
             'category_id'=>3
             ] );
-            
-            
                         
             Product::create( [
             'id'=>10,
@@ -141,8 +123,6 @@ class ProductSeeder extends Seeder
             'image_id'=>16,
             'category_id'=>3
             ] );
-            
-            
                         
             Product::create( [
             'id'=>11,
@@ -154,8 +134,6 @@ class ProductSeeder extends Seeder
             'image_id'=>10,
             'category_id'=>3
             ] );
-            
-            
                         
             Product::create( [
             'id'=>12,
@@ -167,8 +145,6 @@ class ProductSeeder extends Seeder
             'image_id'=>63,
             'category_id'=>3
             ] );
-            
-            
                         
             Product::create( [
             'id'=>13,
@@ -180,8 +156,6 @@ class ProductSeeder extends Seeder
             'image_id'=>25,
             'category_id'=>3
             ] );
-            
-            
                         
             Product::create( [
             'id'=>14,
@@ -193,8 +167,6 @@ class ProductSeeder extends Seeder
             'image_id'=>17,
             'category_id'=>4
             ] );
-            
-            
                         
             Product::create( [
             'id'=>15,
@@ -206,8 +178,6 @@ class ProductSeeder extends Seeder
             'image_id'=>62,
             'category_id'=>4
             ] );
-            
-            
                         
             Product::create( [
             'id'=>16,
@@ -219,8 +189,6 @@ class ProductSeeder extends Seeder
             'image_id'=>59,
             'category_id'=>4
             ] );
-            
-            
                         
             Product::create( [
             'id'=>17,
@@ -232,8 +200,6 @@ class ProductSeeder extends Seeder
             'image_id'=>12,
             'category_id'=>5
             ] );
-            
-            
                         
             Product::create( [
             'id'=>18,
@@ -245,8 +211,6 @@ class ProductSeeder extends Seeder
             'image_id'=>3,
             'category_id'=>5
             ] );
-            
-            
                         
             Product::create( [
             'id'=>19,
@@ -258,8 +222,6 @@ class ProductSeeder extends Seeder
             'image_id'=>45,
             'category_id'=>5
             ] );
-            
-            
                         
             Product::create( [
             'id'=>20,
@@ -271,8 +233,6 @@ class ProductSeeder extends Seeder
             'image_id'=>4,
             'category_id'=>5
             ] );
-            
-            
                         
             Product::create( [
             'id'=>21,
@@ -284,8 +244,6 @@ class ProductSeeder extends Seeder
             'image_id'=>23,
             'category_id'=>6
             ] );
-            
-            
                         
             Product::create( [
             'id'=>22,
@@ -297,8 +255,6 @@ class ProductSeeder extends Seeder
             'image_id'=>60,
             'category_id'=>6
             ] );
-            
-            
                         
             Product::create( [
             'id'=>23,
@@ -310,8 +266,6 @@ class ProductSeeder extends Seeder
             'image_id'=>61,
             'category_id'=>6
             ] );
-            
-            
                         
             Product::create( [
             'id'=>24,
@@ -323,8 +277,6 @@ class ProductSeeder extends Seeder
             'image_id'=>53,
             'category_id'=>7
             ] );
-            
-            
                         
             Product::create( [
             'id'=>25,
@@ -336,9 +288,7 @@ class ProductSeeder extends Seeder
             'image_id'=>55,
             'category_id'=>7
             ] );
-            
-            
-                        
+
             Product::create( [
             'id'=>26,
             'name'=>'Hummuszos cukkinitekercs',
@@ -349,8 +299,6 @@ class ProductSeeder extends Seeder
             'image_id'=>32,
             'category_id'=>7
             ] );
-            
-            
                         
             Product::create( [
             'id'=>27,
@@ -362,8 +310,6 @@ class ProductSeeder extends Seeder
             'image_id'=>47,
             'category_id'=>8
             ] );
-            
-            
                         
             Product::create( [
             'id'=>28,
@@ -375,8 +321,6 @@ class ProductSeeder extends Seeder
             'image_id'=>71,
             'category_id'=>8
             ] );
-            
-            
                         
             Product::create( [
             'id'=>29,
@@ -388,8 +332,6 @@ class ProductSeeder extends Seeder
             'image_id'=>41,
             'category_id'=>8
             ] );
-            
-            
                         
             Product::create( [
             'id'=>30,
@@ -401,8 +343,6 @@ class ProductSeeder extends Seeder
             'image_id'=>27,
             'category_id'=>9
             ] );
-            
-            
                         
             Product::create( [
             'id'=>31,
@@ -414,8 +354,6 @@ class ProductSeeder extends Seeder
             'image_id'=>68,
             'category_id'=>9
             ] );
-            
-            
                         
             Product::create( [
             'id'=>32,
@@ -427,8 +365,6 @@ class ProductSeeder extends Seeder
             'image_id'=>9,
             'category_id'=>9
             ] );
-            
-            
                         
             Product::create( [
             'id'=>33,
@@ -440,8 +376,6 @@ class ProductSeeder extends Seeder
             'image_id'=>33,
             'category_id'=>10
             ] );
-            
-            
                         
             Product::create( [
             'id'=>34,
@@ -453,8 +387,6 @@ class ProductSeeder extends Seeder
             'image_id'=>54,
             'category_id'=>10
             ] );
-            
-            
                         
             Product::create( [
             'id'=>35,
@@ -466,8 +398,6 @@ class ProductSeeder extends Seeder
             'image_id'=>30,
             'category_id'=>10
             ] );
-            
-            
                         
             Product::create( [
             'id'=>36,
@@ -479,8 +409,6 @@ class ProductSeeder extends Seeder
             'image_id'=>50,
             'category_id'=>10
             ] );
-            
-            
                         
             Product::create( [
             'id'=>37,
@@ -492,8 +420,6 @@ class ProductSeeder extends Seeder
             'image_id'=>64,
             'category_id'=>10
             ] );
-            
-            
                         
             Product::create( [
             'id'=>38,
@@ -505,8 +431,6 @@ class ProductSeeder extends Seeder
             'image_id'=>14,
             'category_id'=>11
             ] );
-            
-            
                         
             Product::create( [
             'id'=>39,
@@ -518,8 +442,6 @@ class ProductSeeder extends Seeder
             'image_id'=>42,
             'category_id'=>11
             ] );
-            
-            
                         
             Product::create( [
             'id'=>40,
@@ -531,8 +453,6 @@ class ProductSeeder extends Seeder
             'image_id'=>6,
             'category_id'=>11
             ] );
-            
-            
                         
             Product::create( [
             'id'=>41,
@@ -544,8 +464,6 @@ class ProductSeeder extends Seeder
             'image_id'=>65,
             'category_id'=>11
             ] );
-            
-            
                         
             Product::create( [
             'id'=>42,
@@ -557,8 +475,6 @@ class ProductSeeder extends Seeder
             'image_id'=>72,
             'category_id'=>11
             ] );
-            
-            
                         
             Product::create( [
             'id'=>43,
@@ -570,8 +486,6 @@ class ProductSeeder extends Seeder
             'image_id'=>56,
             'category_id'=>12
             ] );
-            
-            
                         
             Product::create( [
             'id'=>44,
@@ -583,8 +497,6 @@ class ProductSeeder extends Seeder
             'image_id'=>52,
             'category_id'=>12
             ] );
-            
-            
                         
             Product::create( [
             'id'=>45,
@@ -596,8 +508,6 @@ class ProductSeeder extends Seeder
             'image_id'=>26,
             'category_id'=>12
             ] );
-            
-            
                         
             Product::create( [
             'id'=>46,
@@ -609,12 +519,10 @@ class ProductSeeder extends Seeder
             'image_id'=>18,
             'category_id'=>12
             ] );
-            
-            
                         
             Product::create( [
             'id'=>47,
-            'name'=>'Coca-cola',
+            'name'=>'Coca-Cola',
             'description'=>'',
             'packing'=>'0,5 l',
             'price'=>500,
@@ -622,8 +530,6 @@ class ProductSeeder extends Seeder
             'image_id'=>11,
             'category_id'=>13
             ] );
-            
-            
                         
             Product::create( [
             'id'=>48,
@@ -635,8 +541,6 @@ class ProductSeeder extends Seeder
             'image_id'=>22,
             'category_id'=>13
             ] );
-            
-            
                         
             Product::create( [
             'id'=>49,
@@ -648,8 +552,6 @@ class ProductSeeder extends Seeder
             'image_id'=>58,
             'category_id'=>13
             ] );
-            
-            
                         
             Product::create( [
             'id'=>50,
@@ -661,8 +563,6 @@ class ProductSeeder extends Seeder
             'image_id'=>39,
             'category_id'=>13
             ] );
-            
-            
                         
             Product::create( [
             'id'=>51,
@@ -674,8 +574,6 @@ class ProductSeeder extends Seeder
             'image_id'=>21,
             'category_id'=>14
             ] );
-            
-            
                         
             Product::create( [
             'id'=>52,
@@ -687,8 +585,6 @@ class ProductSeeder extends Seeder
             'image_id'=>8,
             'category_id'=>14
             ] );
-            
-            
                         
             Product::create( [
             'id'=>53,
@@ -700,8 +596,6 @@ class ProductSeeder extends Seeder
             'image_id'=>38,
             'category_id'=>14
             ] );
-            
-            
                         
             Product::create( [
             'id'=>54,
@@ -713,8 +607,6 @@ class ProductSeeder extends Seeder
             'image_id'=>34,
             'category_id'=>14
             ] );
-            
-            
                         
             Product::create( [
             'id'=>55,
@@ -726,8 +618,6 @@ class ProductSeeder extends Seeder
             'image_id'=>13,
             'category_id'=>15
             ] );
-            
-            
                         
             Product::create( [
             'id'=>56,
@@ -739,8 +629,6 @@ class ProductSeeder extends Seeder
             'image_id'=>19,
             'category_id'=>15
             ] );
-            
-            
                         
             Product::create( [
             'id'=>57,
@@ -752,8 +640,6 @@ class ProductSeeder extends Seeder
             'image_id'=>57,
             'category_id'=>15
             ] );
-            
-            
                         
             Product::create( [
             'id'=>58,
@@ -765,8 +651,6 @@ class ProductSeeder extends Seeder
             'image_id'=>31,
             'category_id'=>15
             ] );
-            
-            
                         
             Product::create( [
             'id'=>59,
@@ -778,8 +662,6 @@ class ProductSeeder extends Seeder
             'image_id'=>20,
             'category_id'=>16
             ] );
-            
-            
                         
             Product::create( [
             'id'=>60,
@@ -791,8 +673,6 @@ class ProductSeeder extends Seeder
             'image_id'=>7,
             'category_id'=>16
             ] );
-            
-            
                         
             Product::create( [
             'id'=>61,
@@ -804,8 +684,6 @@ class ProductSeeder extends Seeder
             'image_id'=>51,
             'category_id'=>16
             ] );
-            
-            
                         
             Product::create( [
             'id'=>62,
@@ -817,8 +695,6 @@ class ProductSeeder extends Seeder
             'image_id'=>15,
             'category_id'=>16
             ] );
-            
-            
                         
             Product::create( [
             'id'=>63,
@@ -830,8 +706,6 @@ class ProductSeeder extends Seeder
             'image_id'=>35,
             'category_id'=>17
             ] );
-            
-            
                         
             Product::create( [
             'id'=>64,
@@ -843,8 +717,6 @@ class ProductSeeder extends Seeder
             'image_id'=>1,
             'category_id'=>17
             ] );
-            
-            
                         
             Product::create( [
             'id'=>65,
@@ -856,8 +728,6 @@ class ProductSeeder extends Seeder
             'image_id'=>2,
             'category_id'=>17
             ] );
-            
-            
                         
             Product::create( [
             'id'=>66,
@@ -869,8 +739,6 @@ class ProductSeeder extends Seeder
             'image_id'=>67,
             'category_id'=>17
             ] );
-            
-            
                         
             Product::create( [
             'id'=>67,
@@ -882,8 +750,6 @@ class ProductSeeder extends Seeder
             'image_id'=>46,
             'category_id'=>18
             ] );
-            
-            
                         
             Product::create( [
             'id'=>68,
@@ -895,8 +761,6 @@ class ProductSeeder extends Seeder
             'image_id'=>70,
             'category_id'=>18
             ] );
-            
-            
                         
             Product::create( [
             'id'=>69,
@@ -908,8 +772,6 @@ class ProductSeeder extends Seeder
             'image_id'=>40,
             'category_id'=>19
             ] );
-            
-            
                         
             Product::create( [
             'id'=>70,
@@ -921,8 +783,6 @@ class ProductSeeder extends Seeder
             'image_id'=>28,
             'category_id'=>19
             ] );
-            
-            
                         
             Product::create( [
             'id'=>71,
@@ -934,8 +794,6 @@ class ProductSeeder extends Seeder
             'image_id'=>49,
             'category_id'=>20
             ] );
-            
-            
                         
             Product::create( [
             'id'=>72,

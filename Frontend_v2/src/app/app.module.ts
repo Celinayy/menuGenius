@@ -23,7 +23,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FilterPipe } from './filter.pipe';
-
+import { ProductComponent } from './product/product.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductModalComponent } from './product-modal/product-modal.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { FilterPipe } from './filter.pipe';
     RegisterComponent,
     ProfileComponent,
     FilterPipe,
-
+    ProductComponent,
+    ProductModalComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { FilterPipe } from './filter.pipe';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     DatePipe,
