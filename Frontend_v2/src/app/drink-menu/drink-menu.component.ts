@@ -4,6 +4,7 @@ import { ProductService } from '../services/product.service';
 import { Category } from '../models/category.model';
 import { CategoryService } from '../services/category.service';
 import { AuthService } from '../services/auth.service';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-drink-menu',
@@ -13,36 +14,40 @@ import { AuthService } from '../services/auth.service';
 export class DrinkMenuComponent {
   searchKey: string = "";
   public searchTerm: string = '';
-  public category : Object | null = null;
+  public category: Category | null = null;
 
-  public categories: Category[] = [];
   drinks: Product[] = [];
+  public categories: Category[] = [];
 
   constructor(
     private productService: ProductService,
-    private categoryService: CategoryService, 
     public authService: AuthService,
     ) {
-      this.loadCategories();
-
-      this.productService.search.subscribe((val: any) =>{
-        this.searchKey = val;
-      })
-    }
-
-  ngOnInit() {
-    this.productService.listDrinkProducts().subscribe(drinks => {
-      this.drinks = drinks;
-      //this.slides = this.products.map(product => ({ img: 'data:image/png;base64,' + product.image.data }));
-    });
-  }
-
-  private loadCategories() {
-    this.categoryService.getAllCategory().subscribe((categories) => {
-      this.categories = categories;
+    this.productService.search.subscribe((val: any) =>{
+      this.searchKey = val;
     })
   }
-
+    
+  ngOnInit() {
+    combineLatest([
+      this.productService.listDrinkProducts()
+    ]).subscribe(([drinks]) => {
+      this.drinks = drinks;
+      this.loadCategories();
+    });
+  }
+  
+  private loadCategories() {
+    const drinkCategories: Category[] = [];
+  
+    this.drinks.forEach((drink) => {
+      if (!drinkCategories.some(category => category.id === drink.category.id)) {
+        drinkCategories.push(drink.category);
+      }
+    });
+  
+    this.categories = drinkCategories;
+  }
   search() {
     this.productService.search.next(this.searchTerm);
   }
@@ -50,7 +55,7 @@ export class DrinkMenuComponent {
   public get filterCategory() {
     return this.productService.drinkProducts.filter((p) => {
       if(!this.category) return true;
-      return p.category === this.category;
+      return p.category.id === this.category.id;
     })
   }
 
