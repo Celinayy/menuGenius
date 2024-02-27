@@ -74,12 +74,24 @@ body{
   color: white;
 }
 
-.background {
+/* .background {
   background-image: url('assets/background-desktop-min.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
   z-index: -1;
+} */
+
+.background {
+  background-image: url('assets/background-desktop-wide2.png');
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center; /* Jobbra zárja a háttérképet */
 }
 
 :root {

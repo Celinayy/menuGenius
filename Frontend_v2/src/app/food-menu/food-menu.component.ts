@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { Category } from '../models/category.model';
-import { CategoryService } from '../services/category.service';
-import { AuthService } from '../services/auth.service';
 import { combineLatest } from 'rxjs';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ProductModalComponent } from '../product-modal/product-modal.component';
 
 @Component({
   selector: 'app-food-menu',
   templateUrl: './food-menu.component.html',
   styleUrls: ['./food-menu.component.css'],
 })
+
 export class FoodMenuComponent implements OnInit {
   searchKey: string = "";
   public searchTerm: string = '';
@@ -21,13 +22,17 @@ export class FoodMenuComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private categoryService: CategoryService, 
-    public authService: AuthService,
+    private modalService: NgbModal,
+    private modalConfig: NgbModalConfig
     ) {
-      
       this.productService.search.subscribe((val: any) =>{
         this.searchKey = val;
-      })
+      }),
+      this.modalConfig.backdrop = 'static';
+      this.modalConfig.keyboard = true;
+      this.modalConfig.animation = true,
+      this.modalConfig.size = 'lg',
+      this.modalConfig.centered = true
   }
     
   ngOnInit() {
@@ -61,5 +66,8 @@ export class FoodMenuComponent implements OnInit {
     })
   }
 
-
+  showDetails(product: Product) {
+    const modalRef = this.modalService.open(ProductModalComponent);
+    modalRef.componentInstance.product = product;
+  }
 }
