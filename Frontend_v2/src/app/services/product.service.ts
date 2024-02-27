@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product.model';
-import { BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,15 @@ export class ProductService {
   public foodProducts: Product[] = [];
   public drinkProducts: Product[] = [];
 
-  constructor(private connection: HttpClient) { }
+  constructor(private connection: HttpClient) {
+    this.listFoodProducts().subscribe((foodProducts) => {
+      this.foodProducts = foodProducts;
+    });
+
+    this.listDrinkProducts().subscribe((drinkProducts) => {
+      this.drinkProducts = drinkProducts;
+    });
+  }
 
   public listProducts() {
     return this.connection.get<Product[]>(this.url);

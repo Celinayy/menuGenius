@@ -1,44 +1,81 @@
- <div>
-    <div class="items-center row p-2">
-      <div class="col-md-6 col-12 align-items-center d-flex">
-        Válassz kategóriát:
-        <select
-          class="form-select me-2"
-          [(ngModel)]="category_id">
-          <option [ngValue]="null">Összes</option>
-          <option *ngFor="let category of categories" [ngValue]="category.id">
-            {{ category.name }}
-          </option>
-        </select>
-        Keresés:
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Keresés"
-          [(ngModel)]="searchTerm"
-          (keyup)="search()"
-        />
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-3">
+            <h2>Ételkínálatunk:</h2>
+        </div>
+        <div class="col-2 text-right align-self-center">
+            Válassz kategóriát:
+        </div>
+        <div class="col-2 m-1">
+            <select class="form-select" [(ngModel)]="category" aria-label="Default select example">
+                <option [ngValue]="null">Összes</option>
+                <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+            </select>
+        </div>
+        <div class="col-2 text-right align-self-center">
+            Keresés:
+        </div>
+        <div class="col-2 m-1">
+            <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Keresés" 
+            [(ngModel)]="searchTerm" 
+            (keyup)="search()"/>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="card col-6 col-md-4 col-lg-3 m-2 p-1" *ngFor="let product of filterCategory | filter : searchKey : 'name'">
+            <img class="card-img-top rounded" src="data:image/png;base64, {{ product.image.data }}" alt="{{product.name}}"/>
+            <div class="card-header row m-0 p-0">
+                <div class="col d-flex m-0 p-1 justify-content-around">
+                    <a [routerLink]="'/products/' + product.id" class="btn btn-warning p-1 m-0">
+                        Részletek
+                    </a>
+                    <a [routerLink]="'/cart/'" class="btn btn-dark p-1 m-0">
+                        Kosárba
+                    </a>
+                </div>
+            </div>
+            <p class="card-text card-price text-center titillium-web-semibold pb-0">{{ product.price }},-Ft</p>
+            <h5 class="card-footer text-center m-0 p-1 bg-warning">{{ product.name }}</h5>
+            <p class="card-text p-2">{{ product.description }}</p>
+        </div>
+    </div>
+<!-- 
+<div class="container-fluid">
+  <div class="row align-self-center flex-wrap">
+      <div class="col-auto">
+          Válassz kategóriát:
       </div>
-    </div>
-  </div>  
-  <div class="slider">
-    <div>
-      <div (click)="goToPrevious()" class="leftArrow">❰</div>
-      <div (click)="goToNext()" class="rightArrow">❱</div>
-    </div>
-    <div class="slide" [ngStyle]="{ 'background-image': getCurrentSlideUrl() }"></div>
-    <!-- <div class="dotsContainer">
-      <div
-        *ngFor="let product of products; let slideIndex = index"
-        class="dot"
-        (click)="goToSlide(slideIndex)"
-      >
-        ●
+      <div class="col-auto">
+          <select class="form-select me-2" [(ngModel)]="category" aria-label="Default select example">
+              <option [ngValue]="null">Összes</option>
+              <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+          </select>
       </div>
-    </div> -->
+      <div class="col-auto">
+          Keresés:
+      </div>
+      <div class="col-auto">
+          <input type="text" class="form-control" placeholder="Keresés" [(ngModel)]="searchTerm" (keyup)="search()"/>
+      </div>
   </div>
-  <div class="product-list">
-    <div class="product-item" *ngFor="let product of products" (click)="goToProductSlide(product)">
-      <img src="data:image/png;base64, {{ product.image.data }}"/>
-    </div>
+  <div class="row px-4 position-relative d-flex justify-content-center">
+      <div class="card blur col-12 col-md-6 col-lg-3 m-2" *ngFor="let product of filterCategory">
+          <img class="card-img-top rounded mt-3" src="data:image/png;base64, {{ product.image.data }}" alt="Card image cap" />
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <div class="mt-auto">
+              <h5 class="fw-light">{{ product.price }},-</h5>
+              <div class="row">
+                  <div class="col-9">
+                      <button [routerLink]="'/products/' + product.id" class="btn btn-warning">
+                          Részletek/rendelés
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
+</div> -->

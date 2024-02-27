@@ -1,21 +1,23 @@
-<nav class="navbar navbar-expand-sm navbar-dark">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div [ngClass]="{'collapse': isNavbarCollapsed, 'navbar-collapse': true}" class="row collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav" id="main-menu">
-                <li class="li-main nav-item"><a class="nav-link" routerLink="/about">Rólunk</a></li>
-                <li class="li-main nav-item"><a class="nav-link" routerLink="/food-menu">Étlap</a></li>
-                <li class="li-main nav-item"><a class="nav-link" routerLink="/drink-menu">Itallap</a></li>
-                <li class="li-main nav-item"><a class="nav-link" routerLink="/reservation">Foglalás</a></li>
-                <li class="li-main nav-item"><a class="nav-link" routerLink="/cart">Kosár</a></li>
-            </ul>
-            <ul class="nav navbar-nav" id="profil-menu">
-                <li class="li-profil nav-item"><a class="nav-link" routerLink="/login">Belépés</a></li>
-                <li class="li-profil nav-item"><a class="nav-link" routerLink="/register">Regisztráció</a></li>
-                <li class="li-profil nav-item"><a class="nav-link" routerLink="/profile">Profil</a></li>
-            </ul>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <nav class="navbar navbar-expand-sm navbar-dark">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav flex-column" id="main-menu">
+                        <li class="li-main nav-item"><a class="nav-link" routerLink="/about">Rólunk</a></li>
+                        <li class="li-main nav-item"><a class="nav-link" routerLink="/food-menu">Étlap</a></li>
+                        <li class="li-main nav-item"><a class="nav-link" routerLink="/drink-menu">Itallap</a></li>
+                        <li class="li-main nav-item"><a class="nav-link" routerLink="/reservation">Foglalás</a></li>
+                        <li class="li-main nav-item"><a class="nav-link" routerLink="/cart">Kosár</a></li>
+                        <li class="li-profil nav-item"><a class="nav-link" routerLink="/login">Belépés</a></li>
+                        <li class="li-profil nav-item"><a class="nav-link" routerLink="/register">Regisztráció</a></li>
+                        <li class="li-profil nav-item"><a class="nav-link" routerLink="/profile">Profil</a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
     </div>
-</nav>
+</div>

@@ -2,3 +2,17 @@
     color: white;
     padding: 1vw;
 }
+/* 
+.btn-content {
+    font-size: calc(0.1rem + 0.6vw + 0.6vh);
+}
+
+.card-text {
+    max-height: 10vh;
+    overflow: hidden;
+} */
+
+.card-price {
+    font-size: calc(0.3rem + 0.8vw + 0.8vh);
+}
+

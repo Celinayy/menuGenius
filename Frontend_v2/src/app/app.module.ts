@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +13,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LogoComponent } from './logo/logo.component';
 import { AboutComponent } from './about/about.component';
 import { FoodMenuComponent } from './food-menu/food-menu.component';
-import { FoodWindowComponent } from './food-window/food-window.component';
 import { DrinkMenuComponent } from './drink-menu/drink-menu.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { CartComponent } from './cart/cart.component';
@@ -22,8 +21,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { CommonModule } from '@angular/common';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { CommonModule, DatePipe } from '@angular/common';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -35,14 +34,15 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     LogoComponent,
     AboutComponent,
     FoodMenuComponent,
-    FoodWindowComponent,
     DrinkMenuComponent,
     ReservationComponent,
     CartComponent,
     ContentComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    FilterPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -53,9 +53,10 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     }),
     CommonModule,
     FormsModule,
-    SlickCarouselModule
+    ReactiveFormsModule,
   ],
   providers: [
+    DatePipe,
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
