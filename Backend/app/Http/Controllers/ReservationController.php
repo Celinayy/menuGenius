@@ -175,7 +175,7 @@ class ReservationController extends Controller
     {
         $availableTable = Desk::where('number_of_seats', '>=', $number_of_guests)
             ->whereDoesntHave('reservation', function ($query) use ($check_in_date, $check_out_date) {
-                $query->where('closed', '=', 0) // Csak nem lezárt foglalásokat vegyük figyelembe
+                $query->where('closed', '=', 0)
                     ->where(function ($query) use ($check_in_date, $check_out_date) {
                         $query->whereBetween('checkin_date', [$check_in_date, $check_out_date])
                             ->orWhereBetween('checkout_date', [$check_in_date, $check_out_date])

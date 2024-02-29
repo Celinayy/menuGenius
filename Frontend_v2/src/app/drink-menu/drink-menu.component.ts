@@ -3,8 +3,11 @@ import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { Category } from '../models/category.model';
 import { combineLatest } from 'rxjs';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { ProductModalComponent } from '../product-modal/product-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProductModalComponent } from '../modals/product-modal/product-modal.component';
+import { CartService } from '../services/cart.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-drink-menu',
@@ -12,10 +15,11 @@ import { ProductModalComponent } from '../product-modal/product-modal.component'
   styleUrls: ['./drink-menu.component.css']
 })
 
-export class DrinkMenuComponent {
+export class DrinkMenuComponent implements OnInit {
   searchKey: string = "";
   public searchTerm: string = '';
   public category: Category | null = null;
+  public product!: Product;
 
   drinks: Product[] = [];
   public categories: Category[] = [];
@@ -23,17 +27,13 @@ export class DrinkMenuComponent {
   constructor(
     private productService: ProductService,
     private modalService: NgbModal,
-    private modalConfig: NgbModalConfig
+    private cartService: CartService,
+    private toast: ToastrService
     ) {
-    this.productService.search.subscribe((val: any) =>{
-      this.searchKey = val;
-    }),
-    this.modalConfig.backdrop = 'static';
-    this.modalConfig.keyboard = true;
-    this.modalConfig.animation = true,
-    this.modalConfig.size = 'lg',
-    this.modalConfig.centered = true
-  }
+      this.productService.search.subscribe((val: any) =>{
+        this.searchKey = val;
+      });
+    }
     
   ngOnInit() {
     combineLatest([
@@ -67,7 +67,13 @@ export class DrinkMenuComponent {
   }
 
   showDetails(product: Product) {
-    const modalRef = this.modalService.open(ProductModalComponent);
+    const modalRef = this.modalService.open(ProductModalComponent, {size: 'lg', centered: true, animation: true, keyboard: true});
     modalRef.componentInstance.product = product;
   }
+
+  public addToCart(product: Product) {
+    this.cartService.addProduct(product);
+    this.toast.success("Kosárhoz adva!")
+  }
+
 }

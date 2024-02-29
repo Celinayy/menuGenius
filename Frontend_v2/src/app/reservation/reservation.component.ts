@@ -3,8 +3,10 @@ import { AuthService } from '../services/auth.service';
 import { DatePipe } from '@angular/common';
 import { ReservationService } from '../services/reservation.service';
 import { ToastrService } from 'ngx-toastr';
-import { catchError, throwError } from 'rxjs';
+import { catchError, from, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from '../models/user.model';
+
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
@@ -19,6 +21,7 @@ export class ReservationComponent {
   public check_in_datetime: string = "10:00";
   public check_out_datetime: string = "11:00";
   public comment: string = "";
+  public user: User | null = null;
 
 
   constructor(
@@ -26,12 +29,15 @@ export class ReservationComponent {
     private datePipe: DatePipe,
     public reservationService: ReservationService,
     private toast: ToastrService,
-    private router: Router
+    private router: Router,
   ) {
-    this.authService.getUser().subscribe((user) => {
-      this.phone = user.phone;
-      this.name = user.name;
-    })
+    this.authService.getUser().subscribe((user) =>{
+      if (user) {
+        this.phone = user.phone;
+        this.name = user.name;
+      }
+    });
+    
   }
 
   public handleSubmit() {
@@ -52,7 +58,7 @@ export class ReservationComponent {
     }))
     .subscribe(() => {
       this.toast.success("Válogasson a kínálatunkból!", "Sikeres foglalás!");
-      this.router.navigate(["/products"])
+      //this.router.navigate(["/products"])
     })
   }
 

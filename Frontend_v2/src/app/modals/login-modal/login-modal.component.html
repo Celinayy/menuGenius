@@ -1,0 +1,29 @@
+<div class="text-center p-3">
+    <label>Bejelentkezés</label>
+    <input type="email" class="form-control mt-3" placeholder="E-mail" [(ngModel)]="email">
+    <input type="password" class="form-control mt-3" placeholder="Jelszó" [(ngModel)]="password">
+    <div class="row  mt-3 p-3">
+        <button type="button" class="col btn btn-secondary mr-1" (click)="closeModal()">Mégsem</button>
+        <button type="button" class="col btn btn-warning ml-1" (click)="login()">Bejelentkezés</button>
+
+    </div>
+</div>
+
+<!-- <div class="modal" id="loginModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Belépés</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="email" class="form-control m-1" placeholder="E-mail" [(ngModel)]="email">
+                <input type="password" class="form-control m-1" placeholder="Jelszó" [(ngModel)]="password">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="login()">Bejelentkezés</button>
+            </div>
+        </div>
+    </div>
+</div> -->

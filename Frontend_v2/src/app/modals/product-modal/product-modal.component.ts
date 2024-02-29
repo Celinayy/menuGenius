@@ -1,29 +1,27 @@
-import { Component } from '@angular/core';
-import { ProductService } from '../services/product.service';
-import { ActivatedRoute } from '@angular/router';
-import { Product } from '../models/product.model';
+import { Component, Input } from '@angular/core';
+import { NgbActiveModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ProductService } from 'src/app/services/product.service';
+import { Product } from 'src/app/models/product.model';
 import { ToastrService } from 'ngx-toastr';
-import { CartService } from '../services/cart.service';
-import { AuthService } from '../services/auth.service';
-import { Location } from '@angular/common';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrl: './product.component.css'
+  selector: 'app-product-detail-modal',
+  templateUrl: './product-modal.component.html',
+  styleUrls: ['./product-modal.component.css']
 })
-export class ProductComponent {
 
-  public product!: Product;
+export class ProductModalComponent {
+  @Input() product!: Product;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     public productService: ProductService,
     private toast: ToastrService,
     private cartService: CartService,
-    public authService: AuthService,
-    private _location: Location
+    public activeModal: NgbActiveModal,
+    private modalConfig: NgbModalConfig
   ) {
+    this.modalConfig.size = 'sm';
     // this.activatedRoute.paramMap.subscribe((params) => {
     //   this.productService.loadProductById(parseInt(params.get("id") as string)).subscribe((product) => {
     //     this.product = product;
@@ -48,8 +46,8 @@ export class ProductComponent {
      this.cartService.addProduct(this.product);
   }
 
-  backPreviousPage() {
-    this._location.back();
+  closeModal() {
+    this.activeModal.close();
   }
 
 }

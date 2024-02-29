@@ -17,15 +17,16 @@ import { DrinkMenuComponent } from './drink-menu/drink-menu.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { CartComponent } from './cart/cart.component';
 import { ContentComponent } from './content/content.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FilterPipe } from './filter.pipe';
-import { ProductComponent } from './product/product.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ProductModalComponent } from './product-modal/product-modal.component';
+import { ProductModalComponent } from './modals/product-modal/product-modal.component';
+import { LoginModalComponent } from './modals/login-modal/login-modal.component';
+import { RegisterModalComponent } from './modals/register-modal/register-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -40,24 +41,25 @@ import { ProductModalComponent } from './product-modal/product-modal.component';
     ReservationComponent,
     CartComponent,
     ContentComponent,
-    LoginComponent,
-    RegisterComponent,
     ProfileComponent,
     FilterPipe,
-    ProductComponent,
-    ProductModalComponent
+    ProductModalComponent,
+    LoginModalComponent,
+    RegisterModalComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      positionClass: "toast-top-center",
+      positionClass: "toast-center-center",
     }),
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgbModalModule,
   ],
   providers: [
     DatePipe,
