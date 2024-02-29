@@ -91,10 +91,21 @@ body{
   height: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right center; /* Jobbra zárja a háttérképet */
+  background-position: right center;
 }
 
 :root {
   --min-font-size: 10px;
   --max-font-size: 24px;
+}
+
+.modal-backdrop {
+  display: none;
+  position: relative;
+  z-index: -1 !important;
+}
+
+.modal {
+  position: fixed;
+  z-index: 9999;
 }

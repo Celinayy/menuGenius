@@ -1,0 +1,13 @@
+<div class="text-center p-3">
+    <label>Regisztráció</label>
+    <input type="text" class="form-control mx-auto m-1" placeholder="Teljes név" [(ngModel)]="name">
+    <input type="email" class="form-control mx-auto m-1" placeholder="E-mail" [(ngModel)]="email">
+    <input type="phone" class="form-control mx-auto m-1" placeholder="Telefonszám" [(ngModel)]="phone">
+    <input type="password" class="form-control mx-auto m-1" placeholder="Jelszó" [(ngModel)]="password">
+    <input type="password" class="form-control mx-auto m-1" placeholder="Jelszó újra" [(ngModel)]="passwordAgain">
+    <div class="row mt-3 p-3">
+        <button type="button" class="col btn btn-secondary mr-1" (click)="closeModal()">Mégsem</button>
+        <button type="button" class="col btn btn-warning ml-1" (click)="register()">Regisztráció</button>
+    </div>
+
+</div>

@@ -2,7 +2,9 @@
   <div class="row row-cols-2">
     <div class="col-2 bg-black bg-opacity-50">
       <app-logo class="logo position-fixed top-0 start-0"></app-logo>
-      <app-navbar class="sidebar position-fixed top-50 start-0 translate-middle-y"></app-navbar>
+      <app-navbar (openLoginModal)="openLoginModal()" (openRegisterModal)="openRegisterModal()" class="sidebar position-fixed top-50 start-0 translate-middle-y"></app-navbar>
+      <app-register-modal *ngIf="registerModalOpen"></app-register-modal>
+      <app-login-modal *ngIf="loginModalOpen"></app-login-modal>
     </div>
     <div class="col d-flex flex-column h-100">
       <div class="row top-0 end-0">

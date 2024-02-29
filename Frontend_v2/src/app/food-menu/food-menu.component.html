@@ -25,16 +25,16 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="card col-6 col-md-4 col-lg-3 m-2 p-1" *ngFor="let product of filterCategory | filter : searchKey : 'name'">
+        <div class="card rounded-3 col-6 col-md-4 col-lg-3 m-2 p-1" *ngFor="let product of filterCategory | filter : searchKey : 'name'">
             <img class="card-img-top rounded" src="data:image/png;base64, {{ product.image.data }}" alt="{{product.name}}"/>
             <div class="card-header row m-0 p-0">
                 <div class="col d-flex m-0 p-1 justify-content-around">
-                    <a class="btn btn-warning p-1 m-0" (click)="showDetails(product)">
+                    <button class="btn btn-outline-dark p-1 m-0" (click)="showDetails(product)">
                         Részletek
-                    </a>
-                    <a [routerLink]="'/cart/'" class="btn btn-dark p-1 m-0">
+                    </button>
+                    <button class="btn btn-warning p-1 m-0" (click)="addToCart(product)">
                         Kosárba
-                    </a>
+                    </button>
                 </div>
             </div>
             <p class="card-text card-price text-center titillium-web-semibold pb-0">{{ product.price }},-Ft</p>

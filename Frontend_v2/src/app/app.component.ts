@@ -1,5 +1,7 @@
 import { Component, HostListener, ChangeDetectorRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-root',
@@ -8,19 +10,35 @@ import { Title } from '@angular/platform-browser';
 })
 export class AppComponent {
   title = 'MenuGenius';
-  constructor(private titleService: Title, private cdr: ChangeDetectorRef) {}
+  loginModalOpen: boolean = false;
+  registerModalOpen: boolean = false;
+  
+  
+  constructor(
+    private titleService: Title, 
+    public modalService: NgbModal,
+    ) {
+  }
 
   ngOnInit(): void{
     this.titleService.setTitle('MenuGenius');
     //this.setDefaultFontSize();
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize() {
-    //this.setDefaultFontSize();
-    //this.cdr.detectChanges();
-    this.onResize();
+  openLoginModal(){
+    this.loginModalOpen = true;
   }
+
+  openRegisterModal(){
+    this.registerModalOpen = true;
+  }
+
+  // @HostListener('window:resize', ['$event'])
+  // onResize() {
+  //   //this.setDefaultFontSize();
+  //   //this.cdr.detectChanges();
+  //   this.onResize();
+  // }
 
   // setDefaultFontSize() {
   //   const width = window.innerWidth;
@@ -28,4 +46,5 @@ export class AppComponent {
   //   const fontSize = Math.min(width, height) * 0.04;
   //   document.body.style.fontSize = fontSize + 'px';
   // }
+
 }

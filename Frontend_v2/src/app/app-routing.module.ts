@@ -5,8 +5,6 @@ import { FoodMenuComponent } from './food-menu/food-menu.component';
 import { DrinkMenuComponent } from './drink-menu/drink-menu.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { CartComponent } from './cart/cart.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
@@ -38,16 +36,6 @@ const routes: Routes = [
     title: 'Kosár',
     path: 'cart',
     component: CartComponent
-  },
-  {
-    title: 'Belépés',
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    title: 'Regisztráció',
-    path: 'register',
-    component: RegisterComponent
   },
   {
     title: 'Profil',
