@@ -1,5 +1,59 @@
-.container-fluid {
-  color: white;
-  padding: 1vw;
+.grid-container {
+  display: grid;
+  grid-template-rows: 10% 80% 10%;
+  grid-template-columns: 100%;
+  grid-template-areas: 
+    'search-bar search-bar search-bar'
+    'product-pager product-pager product-pager'
+    'allergen-filter allergen-filter allergen-filter'
+  ;
+  gap: 0px;
 }
 
+.search-bar {
+  grid-area: search-bar;
+}
+
+.left-arrow {
+  grid-area: left-arrow;
+}
+
+.right-arrow {
+  grid-area: right-arrow;
+}
+
+.product-pager {
+  grid-area: product-pager;
+}
+
+.allergen-filter {
+  grid-area: allergen-filter;
+}
+
+
+.container-fluid {
+  color: white;
+}
+
+.demo-toggles {
+  display: flex;
+  flex-direction: column;
+}
+
+.demo-toggles * {
+  margin-bottom: 16px;
+}
+
+.demo-options {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.demo-data * {
+  margin: 16px 0;
+}
+
+.demo-paginator {
+  width: 600px;
+}

@@ -13,15 +13,7 @@ export class ProductService {
   public foodProducts: Product[] = [];
   public drinkProducts: Product[] = [];
 
-  constructor(private connection: HttpClient) {
-    this.listFoodProducts().subscribe((foodProducts) => {
-      this.foodProducts = foodProducts;
-    });
-
-    this.listDrinkProducts().subscribe((drinkProducts) => {
-      this.drinkProducts = drinkProducts;
-    });
-  }
+  constructor(private connection: HttpClient) {}
 
   public listProducts() {
     return this.connection.get<Product[]>(this.url);
@@ -29,10 +21,11 @@ export class ProductService {
   
   public listFoodProducts() {
     return this.listProducts().pipe(
-      map(products => {
-        this.foodProducts = products.filter(product => product.is_food == true);
-        return this.foodProducts;
-      })
+      map(products => products.filter(product => product.is_food == true))
+      //map(products => {
+        //this.foodProducts = products.filter(product => product.is_food == true);
+        //return this.foodProducts;
+      //})
     );
   }
   
