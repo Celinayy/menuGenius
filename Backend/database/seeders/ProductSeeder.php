@@ -181,8 +181,8 @@ class ProductSeeder extends Seeder
                         
             Product::create( [
             'id'=>16,
-            'name'=>'Sült kacsacomb lila káposztával , krumplipürével',
-            'description'=>'Ropogósra sült kacsacomb párolt káposztával, krumplipürével.',
+            'name'=>'Sült kacsacomb',
+            'description'=>'Ropogósra sült kacsacomb párolt lilakáposztával, krumplipürével.',
             'packing'=>'1 adag',
             'price'=>3000,
             'is_food'=>'1',
@@ -280,8 +280,8 @@ class ProductSeeder extends Seeder
                         
             Product::create( [
             'id'=>25,
-            'name'=>'Rakott édesburgonya fekete fokhagymával',
-            'description'=>'Rakott tál édesburgonyával, sok sajttal, sütőben sütve.',
+            'name'=>'Rakott édesburgonya',
+            'description'=>'Rakott tál édesburgonyával fekete fokhagymával, sok sajttal, sütőben sütve.',
             'packing'=>'1 adag',
             'price'=>3000,
             'is_food'=>'1',

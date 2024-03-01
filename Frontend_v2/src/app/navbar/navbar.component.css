@@ -1,7 +1,6 @@
 #main-menu {
     list-style-type: none;
     width: 14vw;
-    height: 60vh;
     /*font-size: calc(var(--min-font-size) + (var(--max-font-size) - var(--min-font-size)) * ((100vw - 320px) / (1920 - 320)));
     font-size: 2rem; */
     text-decoration: none;

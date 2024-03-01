@@ -14,10 +14,19 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>
-<body class="titillium-web-light h-100 m-0 p-0">
-  <div class="background position-fixed h-100 m-0 p-0"></div>
-  <div class="container-fluid g-0 h-100 m-0 p-0">
+<body class="background titillium-web-light">
+  <app-root class="root">
+    <!-- Az app-root elemen belül a Bootstrap komponenseket helyezd el -->
+    <div class="container-fluid g-0">
+      <!-- Bootstrap komponensek -->
+    </div>
+  </app-root>
+</body>
+
+<!-- <body class="titillium-web-light">
+  <div class="background"></div>
+  <div class="container-fluid">
     <app-root></app-root>
   </div>
-</body>
+</body> -->
 </html>

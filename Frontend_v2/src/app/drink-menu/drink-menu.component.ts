@@ -6,8 +6,6 @@ import { combineLatest } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductModalComponent } from '../modals/product-modal/product-modal.component';
 import { CartService } from '../services/cart.service';
-import { ToastrService } from 'ngx-toastr';
-
 
 @Component({
   selector: 'app-drink-menu',
@@ -20,6 +18,9 @@ export class DrinkMenuComponent implements OnInit {
   public searchTerm: string = '';
   public category: Category | null = null;
   public product!: Product;
+  currentPage: number = 1;
+  public drinksSlice: Product[] = [];
+
 
   drinks: Product[] = [];
   public categories: Category[] = [];
@@ -28,19 +29,30 @@ export class DrinkMenuComponent implements OnInit {
     private productService: ProductService,
     private modalService: NgbModal,
     private cartService: CartService,
-    private toast: ToastrService
     ) {
-      this.productService.search.subscribe((val: any) =>{
-        this.searchKey = val;
-      });
+      // this.productService.search.subscribe((val: any) =>{
+      //   this.searchKey = val;
+      // });
     }
     
+  // ngOnInit() {
+  //   combineLatest([
+  //     this.productService.listDrinkProducts()
+  //   ]).subscribe(([drinks]) => {
+  //     this.drinks = drinks;
+  //     this.loadCategories();
+  //   });
+  // }
+
   ngOnInit() {
-    combineLatest([
-      this.productService.listDrinkProducts()
-    ]).subscribe(([drinks]) => {
-      this.drinks = drinks;
-      this.loadCategories();
+    this.loadDrinks();
+    this.loadCategories();
+  }
+
+  private loadDrinks() {
+    this.productService.listDrinkProducts().subscribe((drinkProducts) => {
+      this.drinks = drinkProducts;
+      this.drinksSlice = this.drinks.slice(0, 4);
     });
   }
   
@@ -55,16 +67,24 @@ export class DrinkMenuComponent implements OnInit {
   
     this.categories = drinkCategories;
   }
-  search() {
-    this.productService.search.next(this.searchTerm);
-  }
+  
+  // search() {
+  //   this.productService.search.next(this.searchTerm);
+  // }
 
-  public get filterCategory() {
-    return this.productService.drinkProducts.filter((p) => {
-      if(!this.category) return true;
-      return p.category.id === this.category.id;
-    })
-  }
+  // public get filterCategory() {
+  //   return this.productService.listDrinkProducts().filter((p) => {
+  //     if(!this.category) return true;
+  //     return p.category.id === this.category.id;
+  //   })
+  // }
+
+  // public get filterCategory() {
+  //   return this.productService.drinkProducts.filter((p) => {
+  //     if(!this.category) return true;
+  //     return p.category.id === this.category.id;
+  //   })
+  // }
 
   showDetails(product: Product) {
     const modalRef = this.modalService.open(ProductModalComponent, {size: 'lg', centered: true, animation: true, keyboard: true});
@@ -73,7 +93,5 @@ export class DrinkMenuComponent implements OnInit {
 
   public addToCart(product: Product) {
     this.cartService.addProduct(product);
-    this.toast.success("Kosárhoz adva!")
   }
-
 }

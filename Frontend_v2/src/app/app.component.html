@@ -1,4 +1,17 @@
-<div class="container-fluid g-0 h-100">
+<!--CSS GRID-->
+<div class="grid-container">
+  <app-logo class="logo bg-black bg-opacity-75"></app-logo>
+  <app-navbar class="navbar bg-black bg-opacity-75 align-content-between m-0"></app-navbar>
+  <app-header class="header bg-black bg-opacity-75 justify-content-around m-0"></app-header>
+  <app-content class="content p-3 m-0"></app-content>
+  <app-footer class="footer bg-black bg-opacity-75 m-0"></app-footer>
+</div>
+
+
+
+
+<!--FLEXBOX-->
+<!-- <div class="container-fluid g-0 h-100">
   <div class="row row-cols-2">
     <div class="col-2 bg-black bg-opacity-50">
       <app-logo class="logo position-fixed top-0 start-0"></app-logo>
@@ -18,4 +31,24 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<!-- <div class="container g-0 w-100 m-0 p-0 h-100">
+  <div class="row">
+    <app-header class="col-12 header bg-black bg-opacity-50 fixed-top"></app-header>
+  </div>
+  <div class="row">
+    <div class="col-2 bg-black bg-opacity-50">
+      <app-logo class="logo"></app-logo>
+      <app-navbar class="sidebar" (openLoginModal)="openLoginModal()" (openRegisterModal)="openRegisterModal()"></app-navbar>
+      <app-register-modal *ngIf="registerModalOpen"></app-register-modal>
+      <app-login-modal *ngIf="loginModalOpen"></app-login-modal>
+    </div>
+    <div class="col">
+        <app-content class="col content end-0"></app-content>
+    </div>
+  </div>
+  <div class="row">
+    <app-footer class="col-12 footer bg-black bg-opacity-50 fixed-bottom"></app-footer>
+  </div>
+</div> -->
