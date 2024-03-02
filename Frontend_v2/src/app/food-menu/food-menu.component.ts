@@ -2,11 +2,12 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { Category } from '../models/category.model';
-import { combineLatest } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductModalComponent } from '../modals/product-modal/product-modal.component';
 import { CartService } from '../services/cart.service';
 import { PageEvent } from '@angular/material/paginator';
+import { BehaviorSubject } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-food-menu',
@@ -15,80 +16,74 @@ import { PageEvent } from '@angular/material/paginator';
 })
 
 export class FoodMenuComponent implements OnInit {
+  foodCategories: Category[] = [];
   searchKey: string = "";
-  public searchTerm: string = '';
-  public category: Category | null = null;
-  public product!: Product;
+  searchChar: string = '';
+  category: Category | null = null;
+  foodProducts: Product[] = [];
+  tempProducts: Product[] = [];
   currentPage: number = 1;
-  public foodsSlice: Product[] = [];
-  
-  foods: Product[] = [];
-  public categories: Category[] = [];
+  foodsSlice: Product[] = [];
+  productPerSlice: number = 4;
+  public search = new BehaviorSubject<string>("");
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   
   constructor(
     private productService: ProductService,
     private modalService: NgbModal,
     private cartService: CartService,
-    ) {
-      this.productService.search.subscribe((val: any) =>{
-        this.searchKey = val;
-      });
-    }
-    
-  // ngOnInit() {
-  //   combineLatest([
-  //     this.productService.listFoodProducts()
-  //   ]).subscribe(([foods]) => {
-  //     this.foods = foods;
-  //     this.loadCategories();
-  //     this.pageSlice = this.filterCategory.slice(0, 4);
-  //   });
-  // }
+    ) {}
 
-  ngOnInit() {
-    this.loadFoods();
+  ngOnInit(): void {
+    this.loadFoodProducts();
     this.loadCategories();
-  }
 
-  private loadFoods() {
-    this.productService.listFoodProducts().subscribe((products) => {
-      this.foods = products;
-      this.foodsSlice = this.filterCategory.slice(0, 4);
+    this.search.subscribe((searchTerm: string) => {
+      this.tempProducts = this.filterProducts(searchTerm);
+      this.currentPage = 1;
+      this.updatePageSlice();
     });
   }
-  
+
+  private loadFoodProducts() {
+    this.productService.listFoodProducts().subscribe((products) => {
+      this.foodProducts = products;
+      this.tempProducts = [...this.foodProducts];
+      this.updatePageSlice();
+    });
+  }
+
   private loadCategories() {
-    const foodCategories: Category[] = [];
-    
     this.productService.listFoodProducts().subscribe((foods) => {
       foods.forEach((food) => {
-        if (!foodCategories.some(category => category.id === food.category.id)) {
-          foodCategories.push(food.category);
+        if (!this.foodCategories.some(category => category.id === food.category.id)) {
+          this.foodCategories.push(food.category);
         }
       });
-  
-      this.categories = foodCategories;
     });
   }
 
-  search() {
-    this.productService.search.next(this.searchTerm);
+  private filterProducts(searchTerm: string): Product[] {
+    return this.foodProducts.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   }
 
-  public get filterCategory() {
-    return this.foods.filter((food) => {
-      const matchesCategory = !this.category || food.category === this.category;
-      const matchesSearchTerm = !this.searchTerm || food.name.toLowerCase().includes(this.searchTerm.toLowerCase());
-      return matchesCategory && matchesSearchTerm;
-    });
+  public onCategoryChange() {
+    this.searchChar = "";
+    this.tempProducts = [];
+    for (let product of this.foodProducts) {
+      if (!this.category || product.category.id === this.category.id) {
+        this.tempProducts.push(product);
+      }
+    }
+    this.paginator.pageIndex = 0;
+    this.foodsSlice = this.tempProducts.slice(0, 4);
   }
 
-  // public get filterCategory() {
-  //   return this.productService.foodProducts.filter((food) => {
-  //     if(!this.category) return true;
-  //     return food.category === this.category;
-  //   })
-  // }
+  searchProduct() {
+    this.search.next(this.searchChar);
+  }
 
   showDetails(product: Product) {
     const modalRef = this.modalService.open(ProductModalComponent, {size: 'lg', centered: true, animation: true, keyboard: true});
@@ -100,78 +95,13 @@ export class FoodMenuComponent implements OnInit {
   }
   
   onPageChange(event: PageEvent) {
-    const startIndex = event.pageIndex * event.pageSize;
-    let endIndex = startIndex + event.pageSize;
-
-    if (endIndex > this.filterCategory.length) {
-      endIndex = this.filterCategory.length;
-    }
-    this.foodsSlice = this.filterCategory.slice(startIndex, endIndex);
+    this.currentPage = event.pageIndex + 1;
+    this.updatePageSlice();
   }
 
-  // prevPage() {
-  //   if (this.currentPage > 1) {
-  //     console.log(this.currentPage, this.totalPages())
-
-  //       this.currentPage--;
-  //   }
-  // }
-
-  // nextPage() {
-  //   if (this.currentPage < this.totalPages()) {
-  //     console.log(this.currentPage, this.totalPages())
-  //       this.currentPage++;
-  //   }
-  // }
-
-  // totalPages() {
-  //   return Math.ceil(this.foods.length / this.imgInOneSlide);
-  // }
-
-    // public get filterCategory() {
-  //   const startIndex = (this.currentPage - 1) * 3;
-  //   const endIndex = this.currentPage * 3;
-    
-  //   let filteredProducts = this.productService.foodProducts;
-  
-  //   if (this.category) {
-  //     filteredProducts = filteredProducts.filter(product =>
-  //       product.category === this.category
-  //     );
-  
-  //     this.currentPage = 1;
-  //   }
-  
-  //   return filteredProducts.slice(startIndex, endIndex);
-  // }
-  
-
-  // public get filterCategory() {
-  //   let startIndex = (this.currentPage - 1) * this.imgInOneSlide;
-
-  //   const filteredFoods = this.productService.foodProducts.filter((p) => {
-  //     if(!this.category) return true;
-  //     return p.category.id === this.category.id;
-  //   })
-
-  //   const endIndex = this.currentPage * this.imgInOneSlide;
-
-  //   return filteredFoods.slice(startIndex, endIndex);
-
-  // }
-
-  // public get filterCategory() {
-  //   let startIndex = 0;
-
-  //   //const startIndex = (this.currentPage - 1) * 3;
-  //   //const endIndex = this.currentPage * 3;
-  //   return this.productService.foodProducts.filter((p) => {
-  //     if(!this.category) return true;
-  //     return p.category.id === this.category.id;
-  //   })
-  //   .slice(startIndex, endIndex);
-  // }
-
-
-
+  private updatePageSlice() {
+    const startIndex = (this.currentPage - 1) * this.productPerSlice;
+    const endIndex = Math.min(startIndex + this.productPerSlice, this.tempProducts.length);
+    this.foodsSlice = this.tempProducts.slice(startIndex, endIndex);
+  }
 }

@@ -57,3 +57,7 @@
 .demo-paginator {
   width: 600px;
 }
+
+::ng-deep .mat-paginator-range-actions {
+  display: none !important;
+}

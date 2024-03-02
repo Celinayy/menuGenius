@@ -7,7 +7,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -29,6 +31,7 @@ import { RegisterModalComponent } from './modals/register-modal/register-modal.c
 import { ReservationComponent } from './reservation/reservation.component';
 
 import { FilterPipe } from './filter.pipe';
+import { PaginatorService } from './services/paginator.service';
 
 @NgModule({
   declarations: [
@@ -62,11 +65,13 @@ import { FilterPipe } from './filter.pipe';
     NgbModule,
     NgbModalModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatInputModule
     ],
   providers: [
     DatePipe,
     provideAnimationsAsync(),
+    { provide: MatPaginatorIntl, useClass: PaginatorService }
   ],
   bootstrap: [AppComponent]
 })
