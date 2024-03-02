@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CartService } from '../services/cart.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -9,24 +8,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class CartComponent {
-
   public deskId = "";
 
-
-  constructor(public cart: CartService, private toast: ToastrService, ) {}
+  constructor(public cartService: CartService) {}
 
   public get totalPrice() {
-    return this.cart.products.reduce((prev, product) => prev + product.price, 0);
+    return this.cartService.products.reduce((prev, product) => prev + product.price, 0);
   }
 
   public removeItem(index: number) {
-    this.cart.removeItem(index);
-    this.toast.success("Termék sikeresen eltávolítva a kosárból!");
+    this.cartService.removeItem(index);
   }
 
   public checkout() {
-    this.cart.checkout(+this.deskId).subscribe((result) => {
-      this.cart.clear()
+    this.cartService.checkout(+this.deskId).subscribe((result) => {
+      this.cartService.clear()
       window.location.replace(result.url)
     })
   }
