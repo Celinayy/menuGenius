@@ -71,8 +71,8 @@ class ProductSeeder extends Seeder
                         
             Product::create( [
             'id'=>6,
-            'name'=>'Marha erőleves fridattó módra',
-            'description'=>'Erőleves fridatto palacsintatésztával.',
+            'name'=>'Marha erőleves fridattó',
+            'description'=>'Erőleves fridattó palacsintatésztával.',
             'packing'=>'1 adag',
             'price'=>3000,
             'is_food'=>'1',
@@ -115,7 +115,7 @@ class ProductSeeder extends Seeder
                         
             Product::create( [
             'id'=>10,
-            'name'=>'Csikós tokány penne tésztával',
+            'name'=>'Csikós tokány',
             'description'=>'Sertéslapockából készült tokány paprikás-paradicsomos szósszal, penne tésztával',
             'packing'=>'1 adag',
             'price'=>3000,
