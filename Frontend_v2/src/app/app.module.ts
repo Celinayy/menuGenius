@@ -10,6 +10,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MatBadgeModule } from '@angular/material/badge';
+
 
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -66,7 +68,8 @@ import { PaginatorService } from './services/paginator.service';
     NgbModalModule,
     MatPaginatorModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatBadgeModule
     ],
   providers: [
     DatePipe,
