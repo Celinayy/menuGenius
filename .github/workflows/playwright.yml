@@ -32,6 +32,7 @@ jobs:
       DB_DATABASE: menugenius
       DB_USERNAME: root
       DB_PASSWORD: password
+      HOME: /root
 
     timeout-minutes: 60
     runs-on: ubuntu-latest
