@@ -10,9 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./settings-window.component.css']
 })
 export class SettingsWindowComponent {
-
-  public showSavedToast: boolean = false;
-
   public email: string = "";
   public emailAgain: string = "";
   public phone: string = "";
@@ -27,14 +24,6 @@ export class SettingsWindowComponent {
 
   constructor(public authService: AuthService, private toast: ToastrService,
     public router: Router) { }
-
-  // public saveSettings() {
-  //   this.showSavedToast = true;
-  // setTimeout(() =>{
-  //   this.showSavedToast = false;
-  // }, 2500)
-
-  // }
 
   public saveEmail() {
     this.authService.update({ email: this.email })

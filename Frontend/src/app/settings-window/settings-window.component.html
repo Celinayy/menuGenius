@@ -138,6 +138,7 @@
             id="passwordCheck"
             class="form-control mb-1"
             [(ngModel)]="passwordCheck"
+            data-testid="password-input"
           />
           <label for="passwordAgainCheck" class="fw-light"
             >Jelszó megerősítése</label
@@ -147,12 +148,14 @@
             id="passwordAgainCheck"
             class="form-control mb-1"
             [(ngModel)]="passwordAgainCheck"
+            data-testid="password-again-input"
           />
           <div class="text-center mt-3">
             <button
               class="btn btn-danger fs-5 fw-light"
               [disabled]="passwordCheck !== passwordAgainCheck"
               (click)="deleteUser(passwordCheck)"
+              data-testid="delete-user-button"
             >
               Felhasználó törlése
             </button>
@@ -160,20 +163,4 @@
         </div>
       </div>
     </div>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3 text-center">
-      <div
-        [class.opacity-100]="showSavedToast"
-        [class.opacity-0]="!showSavedToast"
-        class="toast fade show"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-      >
-        <div class="toast-header">
-          <strong class="mx-auto">Üzenet</strong>
-        </div>
-        <div class="toast-body">Sikeres mentés!</div>
-      </div>
-    </div>
-  </div>
 </div>
