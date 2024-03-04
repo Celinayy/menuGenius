@@ -1,6 +1,7 @@
-import { Component, HostListener, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ThumbnailsPosition } from 'ng-gallery';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'MenuGenius';
   loginModalOpen: boolean = false;
   registerModalOpen: boolean = false;

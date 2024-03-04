@@ -4,14 +4,14 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatBadgeModule } from '@angular/material/badge';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -69,11 +69,12 @@ import { PaginatorService } from './services/paginator.service';
     MatPaginatorModule,
     MatTableModule,
     MatInputModule,
-    MatBadgeModule
+    MatBadgeModule,
+    BrowserAnimationsModule
     ],
   providers: [
     DatePipe,
-    provideAnimationsAsync(),
+    provideAnimations(),
     { provide: MatPaginatorIntl, useClass: PaginatorService }
   ],
   bootstrap: [AppComponent]

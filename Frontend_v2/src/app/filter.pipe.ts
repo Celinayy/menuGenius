@@ -6,18 +6,17 @@ import { Product } from './models/product.model';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(product: Product[], filterString: string, propName: string): Product[] {
+  transform(product: Product[], filterString: string, name: string): Product[] {
     const result: Product[] = [];
 
-    if(!product || filterString === '' || propName === '') {
+    if(!product || filterString === '' || name === '') {
       return product;
     }
-    product.forEach((p: any) => {
-      if(p[propName].trim().toLowerCase().includes(filterString.toLowerCase())){
+    product.forEach((p) => {
+      if(p.name.trim().toLowerCase().includes(filterString.toLowerCase())){
         result.push(p)
       }
     });
     return result;
   }
-
 }

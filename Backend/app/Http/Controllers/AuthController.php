@@ -94,4 +94,14 @@ class AuthController extends Controller
         }
         return response()->json(['message' => 'Sikeres kijelentkezés!']);
     }
+
+    // public function getUser()
+    // {
+    //     if (Auth::check()) {
+    //         $user = Auth::user();
+    //         return response()->json($user);
+    //     } else {
+    //         return response()->json(['error' => 'Nem található bejelentkezett felhasználó'], 401);
+    //     }
+    // }
 }

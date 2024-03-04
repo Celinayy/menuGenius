@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -7,17 +8,26 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 
-export class CartComponent {
+export class CartComponent implements OnInit {
   public deskId = "";
+  public userId: number = -1;
 
-  constructor(public cartService: CartService) {}
+  constructor(
+    public cartService: CartService, 
+    private toastr: ToastrService,
+    ) {}
+  
+  ngOnInit(): void {
+    this.cartService.loadCartData();
+  }
 
   public get totalPrice() {
-    return this.cartService.products.reduce((prev, product) => prev + product.price, 0);
+    return this.cartService.cartProducts.reduce((prev, product) => prev + product.price, 0);
   }
 
   public removeItem(index: number) {
     this.cartService.removeItem(index);
+    this.toastr.success('A termék törölve!', 'Siker');
   }
 
   public checkout() {

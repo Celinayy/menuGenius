@@ -1,6 +1,6 @@
 <div class="text-center p-3">
-    <label>Bejelentkezés</label>
-    <input type="email" class="form-control mt-3" placeholder="E-mail" [(ngModel)]="email">
+    <label for="email">Bejelentkezés</label>
+    <input type="email" id="email" class="form-control mt-3" placeholder="E-mail" [(ngModel)]="email">
     <input type="password" class="form-control mt-3" placeholder="Jelszó" [(ngModel)]="password">
     <div class="row  mt-3 p-3">
         <button type="button" class="col btn btn-secondary mr-1" (click)="closeModal()">Mégsem</button>
