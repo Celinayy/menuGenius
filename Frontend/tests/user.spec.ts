@@ -45,3 +45,26 @@ test("Jelszó megváltoztatása", async ({ page }) => {
     await expect(page.getByText("Sikeres mentés!")).toBeVisible();
 });
 
+
+test("Email cím megváltoztatása", async ({ page }) => {
+    await page.goto("/");
+
+    const fullName = faker.person.fullName();
+    const email = faker.internet.email();
+    const phone = faker.phone.number();
+    const password = faker.internet.password();
+    const newEmail = faker.internet.email();
+
+    await register(page, fullName, email, phone, password);
+    await login(page, email, password);
+    await openSettings(page);
+
+    await expect(page.getByTestId("current-email-input")).toHaveValue(email);
+    await expect(page.getByTestId("current-email-input")).toBeDisabled();
+
+    await page.getByTestId("new-email-input").fill(newEmail);
+    await page.getByTestId("new-email-again-input").fill(newEmail);
+
+    await page.getByTestId("save-email-change-button").click();
+    await expect(page.getByText("Sikeres mentés!")).toBeVisible();
+});

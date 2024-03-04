@@ -14,6 +14,7 @@
             class="form-control mb-1"
             disabled
             [(ngModel)]="authService.user.email"
+            data-testid="current-email-input"
           />
           <label for="emailNewSettings" class="fw-light">Új e-mail</label>
           <input
@@ -21,6 +22,7 @@
             id="emailNewSettings"
             class="form-control mb-1"
             [(ngModel)]="email"
+            data-testid="new-email-input"
           />
           <label for="emailAgainSettings" class="fw-light"
             >Új e-mail megerősítése</label
@@ -30,12 +32,14 @@
             id="emailAgainSettings"
             class="form-control mb-1"
             [(ngModel)]="emailAgain"
+            data-testid="new-email-again-input"
           />
           <div class="text-center mt-3">
             <button
               [disabled]="email !== emailAgain"
               class="btn btn-warning fs-5 fw-light"
               (click)="saveEmail()"
+              data-testid="save-email-change-button"
             >
               Új e-mail cím mentése
             </button>

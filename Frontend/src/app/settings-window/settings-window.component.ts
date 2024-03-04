@@ -32,9 +32,7 @@ export class SettingsWindowComponent {
         return throwError(() => err)
       }))
       .subscribe(() => {
-        setTimeout(() => {
-          this.toast.success("Sikeres mentés!")
-        }, 2500)
+        this.toast.success("Sikeres mentés!")
       })
   }
 
@@ -45,9 +43,7 @@ export class SettingsWindowComponent {
         return throwError(() => err)
       }))
       .subscribe(() => {
-        setTimeout(() => {
-          this.toast.success("Sikeres mentés!")
-        }, 2500)
+        this.toast.success("Sikeres mentés!")
       })
 
   }
@@ -63,16 +59,14 @@ export class SettingsWindowComponent {
         return throwError(() => err)
       }))
       .subscribe(() => {
-        setTimeout(() => {
-          this.toast.success("Sikeres mentés!")
-        }, 2500)
+        this.toast.success("Sikeres mentés!")
       })
   }
 
- // Nem működik még
+  // Nem működik még
 
   public checkPassword(passwordCheck: string) {
-    if(passwordCheck === this.currentPassword) {
+    if (passwordCheck === this.currentPassword) {
       this.toast.success("Egyezik a két jelszó!")
     } else {
       this.toast.error("Nem egyezik a két jelszó!")
