@@ -59,6 +59,7 @@
             class="form-control mb-1"
             disabled
             [(ngModel)]="authService.user.phone"
+            data-testid="current-phone-input"
           />
           <label for="phonenumberNewSettings" class="fw-light"
             >Új telefonszám</label
@@ -68,6 +69,7 @@
             id="phonenumberNewSettings"
             class="form-control mb-1"
             [(ngModel)]="phone"
+            data-testid="new-phone-input"
           />
           <label for="phonenumberAgainSettings" class="fw-light"
             >Új telefonszám megerősítése</label
@@ -77,12 +79,14 @@
             id="phonenumberAgainSettings"
             class="form-control mb-1"
             [(ngModel)]="phoneAgain"
+            data-testid="new-phone-again-input"
           />
           <div class="text-center mt-3">
             <button
             [disabled]="phone !== phoneAgain"
               class="btn btn-warning fs-5 fw-light"
               (click)="savePhone()"
+              data-testid="save-phone-change-button"
             >
               Új telefonszám mentése
             </button>

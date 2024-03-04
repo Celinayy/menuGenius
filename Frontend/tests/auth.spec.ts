@@ -1,5 +1,5 @@
 import { Page, expect, test } from "@playwright/test";
-import { faker } from "@faker-js/faker";
+import { fakerHU as faker } from "@faker-js/faker";
 import { login, logout, register } from "./utils";
 
 test("Regisztráció", async ({ page }) => {

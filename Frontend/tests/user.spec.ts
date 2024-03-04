@@ -1,5 +1,5 @@
 import { Page, expect, test } from "@playwright/test";
-import { faker } from "@faker-js/faker";
+import { fakerHU as faker } from "@faker-js/faker";
 import { login, register } from "./utils";
 
 const openSettings = async (page: Page) => {
@@ -66,5 +66,28 @@ test("Email cím megváltoztatása", async ({ page }) => {
     await page.getByTestId("new-email-again-input").fill(newEmail);
 
     await page.getByTestId("save-email-change-button").click();
+    await expect(page.getByText("Sikeres mentés!")).toBeVisible();
+});
+
+test("Telefonszám megváltoztatása", async ({ page }) => {
+    await page.goto("/");
+
+    const fullName = faker.person.fullName();
+    const email = faker.internet.email();
+    const phone = faker.phone.number();
+    const password = faker.internet.password();
+    const newPhone = faker.phone.number();
+
+    await register(page, fullName, email, phone, password);
+    await login(page, email, password);
+    await openSettings(page);
+
+    await expect(page.getByTestId("current-phone-input")).toHaveValue(phone);
+    await expect(page.getByTestId("current-phone-input")).toBeDisabled();
+
+    await page.getByTestId("new-phone-input").fill(newPhone);
+    await page.getByTestId("new-phone-again-input").fill(newPhone);
+
+    await page.getByTestId("save-phone-change-button").click();
     await expect(page.getByText("Sikeres mentés!")).toBeVisible();
 });
