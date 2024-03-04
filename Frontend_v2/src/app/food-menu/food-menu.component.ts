@@ -8,6 +8,7 @@ import { CartService } from '../services/cart.service';
 import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-food-menu',
@@ -32,6 +33,7 @@ export class FoodMenuComponent implements OnInit {
     private productService: ProductService,
     private modalService: NgbModal,
     private cartService: CartService,
+    private toastrService: ToastrService
     ) {}
 
   ngOnInit(): void {
@@ -72,7 +74,7 @@ export class FoodMenuComponent implements OnInit {
   public onCategoryChange() {
     this.searchChar = "";
     this.tempProducts = [];
-    for (let product of this.foodProducts) {
+    for (const product of this.foodProducts) {
       if (!this.category || product.category.id === this.category.id) {
         this.tempProducts.push(product);
       }
@@ -92,6 +94,7 @@ export class FoodMenuComponent implements OnInit {
 
   public addToCart(product: Product) {
     this.cartService.addProduct(product);
+    this.toastrService.success('A termék a kosárhoz adva!')
   }
   
   onPageChange(event: PageEvent) {

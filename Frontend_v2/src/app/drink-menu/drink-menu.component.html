@@ -2,7 +2,7 @@
     <div class="search-bar container">
       <div class="row align-items-center">
         <div class="col-3">
-          <h3 class="m-0 p-0">Étel kínálatunk:</h3>
+          <h3 class="m-0 p-0">Ital kínálatunk:</h3>
         </div>
         <div class="col">
           Kategóriák:
@@ -35,7 +35,7 @@
       </div>
       <div class="row">
         <div class="card container col-3 page-item rounded-3 text-dark p-1" style="width: 30vw; height: 55vh;" *ngFor="let product of drinksSlice | filter : searchKey : 'name'">
-          <img class="card-img-top rounded" src="data:image/png;base64, {{ product.image.data }}" alt="{{ product.name }}"/>
+          <img class="card-img-top rounded zoom" src="data:image/png;base64, {{ product.image.data }}" alt="{{ product.name }}"/>
           <div class="card-header row m-0 p-0">
             <div class="col d-flex m-0 p-1 justify-content-around">
               <button class="btn btn-outline-dark p-1 m-0" (click)="showDetails(product)">
@@ -46,7 +46,7 @@
               </button>
             </div>
           </div>
-          <p class="card-text card-price text-center titillium-web-semibold pb-0 fs-2 m-0">
+          <p class="card-text card-price text-center titillium-web-semibold">
             {{ product.price }},-Ft
           </p>
           <h5 class="card-footer text-center m-0 p-1 bg-warning">

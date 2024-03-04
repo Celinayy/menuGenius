@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { DatePipe } from '@angular/common';
 import { ReservationService } from '../services/reservation.service';
 import { ToastrService } from 'ngx-toastr';
-import { catchError, from, throwError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
 

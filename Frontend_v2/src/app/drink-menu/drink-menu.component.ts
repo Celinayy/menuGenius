@@ -71,7 +71,7 @@ export class DrinkMenuComponent implements OnInit {
     public onCategoryChange() {
       this.searchChar = "";
       this.tempProducts = [];
-      for (let product of this.drinkProducts) {
+      for (const product of this.drinkProducts) {
         if (!this.category || product.category.id === this.category.id) {
           this.tempProducts.push(product);
         }

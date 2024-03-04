@@ -19,14 +19,13 @@
     </div>
     <div class="col-xs-12 col-md-6 mb-3">
       <div class="card p-3 blur">
-        <label class="fw-semibold">Leírás</label>
         <p class="text-justify">
           {{ product.description || "Ehhez a termékhez nem tartozik leírás!" }}
         </p>
 
         <div *ngIf="product.ingredients.length > 0">
-          <label class="fw-semibold">Összetevők</label>
-          <p>
+          <label for="description" class="fw-semibold">Összetevők</label>
+          <p id="description">
             <span
               class="badge rounded-pill text-bg-dark me-1"
               *ngFor="let ingredient of product.ingredients"
@@ -35,8 +34,8 @@
           </p>
         </div>
         <div *ngIf="allergens.length > 0">
-          <label class="fw-semibold">Allergének</label>
-          <p>
+          <label for="allergens" class="fw-semibold">Allergének</label>
+          <p id="allergens">
             <span
               class="badge rounded-pill text-bg-warning me-1"
               *ngFor="let allergen of allergens"
@@ -46,8 +45,8 @@
         </div>
         <div class="row position-relative">
           <div class="col-6">
-            <label class="fw-semibold">Termék ára</label>
-            <h5 class="fw-light">{{ product.price }},-</h5>
+            <label for="price" class="fw-semibold">Termék ára</label>
+            <h5 id="price" class="fw-light">{{ product.price }},-</h5>
           </div>
           <!-- <div class="col-6 mx-auto text-end">
               <app-star-button [product]="product" *ngIf="authService.isLoggedIn" />

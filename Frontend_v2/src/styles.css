@@ -4,96 +4,66 @@
     font-family: "Titillium Web", sans-serif;
     font-weight: 200;
     font-style: normal;
-  }
+}
   
-  .titillium-web-extralight-italic {
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 200;
-    font-style: italic;
-  }
-  
-  .titillium-web-light {
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-  }
-  
-  .titillium-web-light-italic {
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 300;
-    font-style: italic;
-  }
-  
-  .titillium-web-regular {
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  .titillium-web-regular-italic {
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 400;
-    font-style: italic;
-  }
-  
-  .titillium-web-semibold {
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-  }
-  
-  .titillium-web-semibold-italic {
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 600;
-    font-style: italic;
-  }
-  
-  .titillium-web-bold {
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-  }
-  
-  .titillium-web-bold-italic {
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 700;
-    font-style: italic;
-  }
-  
-  .titillium-web-black {
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 900;
-    font-style: normal;
-  }
-
-/* body{
-  margin: 0px;
-  padding: 0px;
+.titillium-web-extralight-italic {
   font-family: "Titillium Web", sans-serif;
   font-weight: 200;
-  font-style: normal;
-  color: white;
-} */
-
-/* .background {
-  background-image: url('assets/background-desktop-min.png');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  z-index: -1;
-} */
-
-html, head, body, .root, .app-root {
-  margin: 0px !important;
-  padding: 0px !important;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
+  font-style: italic;
 }
 
-.container-fluid, .app-root {
-  margin: 0 !important;
-  padding: 0 !important;
+.titillium-web-light {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.titillium-web-light-italic {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.titillium-web-regular {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.titillium-web-regular-italic {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.titillium-web-semibold {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.titillium-web-semibold-italic {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.titillium-web-bold {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.titillium-web-bold-italic {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.titillium-web-black {
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 900;
+  font-style: normal;
 }
 
 body.titillium-web-light .app-root {
@@ -101,6 +71,23 @@ body.titillium-web-light .app-root {
   padding: 0 !important;
   z-index: -1;
 }
+
+.toast {
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%, -100%);
+  z-index: 9999;
+}
+
+/* html, body {
+  overflow-x: hidden;
+} */
+
+.container-fluid, .app-root {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 
 .background {
   background-image: url('assets/background_2b.jpg');
@@ -133,3 +120,28 @@ body.titillium-web-light .app-root {
   position: relative;
   z-index: 9999;
 } */
+
+/* body{
+  margin: 0px;
+  padding: 0px;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  color: white;
+} */
+
+/* .background {
+  background-image: url('assets/background-desktop-min.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+} */
+
+html, head, body, .root, .app-root {
+  margin: 0px !important;
+  padding: 0px !important;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}

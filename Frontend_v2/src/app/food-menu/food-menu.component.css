@@ -61,3 +61,7 @@
 ::ng-deep .mat-paginator-range-actions {
   display: none !important;
 }
+
+.card-price {
+  font-size: calc(0.5rem + 0.6vw + 0.6vh);
+}
