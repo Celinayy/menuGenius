@@ -97,6 +97,7 @@
             id="passwordCurrentSettings"
             class="form-control mb-1"
             [(ngModel)]="currentPassword"
+            data-testid="current-password-input"
           />
           <label for="passwordNewSettings" class="fw-light">Új jelszó</label>
           <input
@@ -104,6 +105,7 @@
             id="passwordNewSettings"
             class="form-control mb-1"
             [(ngModel)]="password"
+            data-testid="new-password-input"
 
           />
           <label for="passwordAgainSettings" class="fw-light"
@@ -114,12 +116,14 @@
             id="passwordAgainSettings"
             class="form-control mb-1"
             [(ngModel)]="passwordAgain"
+            data-testid="new-password-again-input"
           />
           <div class="text-center mt-3">
             <button
             [disabled]="password !== passwordAgain"
               class="btn btn-warning fs-5 fw-light"
               (click)="savePassword()"
+              data-testid="save-password-change-button"
             >
               Új jelszó mentése
             </button>
