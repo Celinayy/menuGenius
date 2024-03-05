@@ -23,6 +23,7 @@
 .navbar {
     grid-area: navbar;
     z-index: 1000;
+    width: 15vw;
 }
 
 .header {
@@ -36,8 +37,10 @@
 }
 
 .footer {
+    position: fixed;
     grid-area: footer;
     z-index: 1000;
+    width: 85vw;
 }
 
 /* FLEXBOX */

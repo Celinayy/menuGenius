@@ -81,5 +81,26 @@ namespace MG_Admin_GUI
             DialogResult = false;
             this.Close();
         }
+
+        private void loginEnter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                string enteredPassword = pbUserPassword.Password;
+                string enteredUserName = tbUserName.Text;
+
+                User loggedInUser = GetLoggedInUser(enteredUserName);
+
+                if (loggedInUser != null && BCrypt.Net.BCrypt.Verify(enteredPassword, loggedInUser.Password))
+                {
+                    DialogResult = true;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Hibás név, jelszó vagy nincs admin jog!");
+                }
+            }
+        }
     }
 }
