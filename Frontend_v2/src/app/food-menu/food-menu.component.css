@@ -65,3 +65,23 @@
 .card-price {
   font-size: calc(0.5rem + 0.6vw + 0.6vh);
 }
+
+/* mat-icon {
+  font-size: calc(0.2rem + 0.1vw + 0.1vh);
+  width: 10vw;
+  height: 10vh;
+}
+
+chip-option {
+  font-family:  'titillium-web-black' !important;
+  color: #343a40;
+  color: #ffc107
+} */
+
+.card-text {
+  overflow: hidden;
+}
+
+.card-footer {
+  font-size: calc(0.5rem + 0.5vw + 0.5vh);
+}

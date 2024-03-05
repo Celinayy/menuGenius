@@ -19,6 +19,7 @@ class EventLogger
     {
         $logRoute = $request->fullUrl();
         $requestBody = $request->except(['password', 'password_confirmation']);
+        $requestHeader = $request->headers;
 
         DB::table('event_logs')->insert([
             'event_type' => $request->method(),

@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatChipsModule } from '@angular/material/chips'; 
+import { MatChipsDefaultOptions } from '@angular/material/chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -70,12 +72,13 @@ import { PaginatorService } from './services/paginator.service';
     MatTableModule,
     MatInputModule,
     MatBadgeModule,
+    MatChipsModule,
     BrowserAnimationsModule
     ],
   providers: [
     DatePipe,
     provideAnimations(),
-    { provide: MatPaginatorIntl, useClass: PaginatorService }
+    { provide: MatPaginatorIntl, useClass: PaginatorService },
   ],
   bootstrap: [AppComponent]
 })

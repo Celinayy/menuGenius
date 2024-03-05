@@ -1,5 +1,9 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Kanit:wght@300&family=Montserrat:ital,wght@0,100;0,200;0,300;1,100;1,200&family=Poppins:wght@200&display=swap'); */
 
+/*@import '@angular/material/prebuilt-themes/purple-green.css';*/
+@import '../src/yellow-grey.css';
+
+
 .titillium-web-extralight {
     font-family: "Titillium Web", sans-serif;
     font-weight: 200;
@@ -91,7 +95,6 @@ body.titillium-web-light .app-root {
 
 .background {
   background-image: url('assets/background_2b.jpg');
-  position: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: right center;

@@ -1,7 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Product } from '../models/product.model';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../models/user.model';
 import { AuthService } from './auth.service';
 import { CartProduct } from '../models/cart-product.model';
 
@@ -12,7 +11,10 @@ export class CartService {
   public cartProducts: CartProduct[] = [];
   public userId: number = -1;
 
-  constructor(private connection: HttpClient, private authService: AuthService) {
+  constructor(
+    private connection: HttpClient, 
+    private authService: AuthService,
+    ) {
     this.authService.getUser().subscribe((user) =>{
       this.userId = user.id;
     });

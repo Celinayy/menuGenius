@@ -6,8 +6,9 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:MG_Admin_GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" FontSize="16" WindowState="Maximized" Background="SlateGray" Foreground="Black">
+        Title="MenuGenius Admin" Height="450" Width="800" FontSize="16" WindowState="Maximized" Background="SlateGray" Foreground="Black">
     <Window.Resources>
+        <local:DateTimeFormatConverter x:Key="DateTimeFormatConverter" />
         <Style x:Key="TitleLabelStyle" TargetType="Label">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="FontSize" Value="20"/>
@@ -516,16 +517,77 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Felhasználók" Name="tabUser">
-                <DataGrid Name="dgUsers">
+                <Grid>
+                    <DataGrid Name="dgUsers">
 
-                </DataGrid>
+                    </DataGrid>
+                </Grid>
+
 
 
             </TabItem>
             <TabItem Header="Eseménynapló" Name="tabEventLog">
-                <DataGrid Name="dgEventLogs">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="0.3*"/>
+                        <RowDefinition Height="2.8*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Width="800" VerticalAlignment="Center" Background="White" Margin="10">
+                        <Label Content="A kiválasztott esemény részletei:" FontWeight="Bold" HorizontalAlignment="Left"/>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Content="ID:"/>
+                            <TextBlock Name="tbEventLogId" Text="{Binding Id}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Content="Esemény típusa:"/>
+                            <TextBlock Name="tbEventLogEventType" Text="{Binding EventType}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Content="Útvonal:"/>
+                            <TextBlock Name="tbEventLogRoute" Text="{Binding Route}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Content="Kérés:"/>
+                            <TextBlock Name="tbEventLogBody" Text="{Binding Body}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Content="Dátum:"/>
+                            <TextBlock Name="tbEventLogDate" Text="{Binding DateTime, Converter={StaticResource DateTimeFormatConverter}}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Content="Törölt-e:"/>
+                            <TextBlock Name="tbEventLogUser" Text="{Binding UserId}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Label Content="Felhasználó:"/>
+                            <TextBlock Name="tbEventLogDeleted" Text="{Binding DeletedAt, Converter={StaticResource DateTimeFormatConverter}}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <!--<DataGrid IsReadOnly="True" Grid.Row="2" Name="dgEventLogs" AutoGenerateColumns="False" ItemsSource="{Binding EventLogs}" SelectionChanged="dgEventLogs_SelectionChanged" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"/>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding date_time, Converter={StaticResource DateTimeFormatConverter}}" Width="2*"/>
+                            <DataGridTextColumn Header="Esemény típus" Binding="{Binding event_type}" Width="2*"/>
+                            <DataGridTextColumn Header="Útvonal" Binding="{Binding route}" Width="2*"/>
+                            <DataGridTextColumn Header="Kérés" Binding="{Binding body}" Width="*"/>
+                            <DataGridTextColumn Header="Felhasználó" Binding="{Binding eventlog_user}" Width="2*"/>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding deleted_at, Converter={StaticResource DateTimeFormatConverter}}" Width="2*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>-->
+                    <DataGrid Grid.Row="2" Name="dgEventLogs" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="dgEventLogs_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd HH.mm}" Width="2*"/>
+                            <DataGridTextColumn Header="Esemény típus" Binding="{Binding EventType}" Width="2*"/>
+                            <DataGridTextColumn Header="Útvonal" Binding="{Binding Route}" Width="2*"/>
+                            <DataGridTextColumn Header="Kérés" Binding="{Binding Body}" Width="*"/>
+                            <DataGridTextColumn Header="Felhasználó" Binding="{Binding UserId}" Width="2*"/>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding DeletedAt, StringFormat=yyyy.MM.dd HH.mm}" Width="2*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
 
-                </DataGrid>
 
 
             </TabItem>

@@ -37,6 +37,7 @@ namespace MG_Admin_GUI
         Ingredient ingredient = new Ingredient();
         Allergen allergen = new Allergen();
         Desk desk = new Desk();
+        Models.EventLog eventlog = new Models.EventLog();
         private User loggedInUser;
 
         public MainWindow()
@@ -328,6 +329,11 @@ namespace MG_Admin_GUI
             }
         }
 
-
+        private void dgEventLogs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgEventLogs.SelectedItem == null) { return; }
+            eventlog = (Models.EventLog)dgEventLogs.SelectedItem;
+            tabEventLog.DataContext = eventlog;
+        }
     }
 }
