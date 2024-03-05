@@ -14,6 +14,7 @@
             class="form-control mb-1"
             disabled
             [(ngModel)]="authService.user.email"
+            data-testid="current-email-input"
           />
           <label for="emailNewSettings" class="fw-light">Új e-mail</label>
           <input
@@ -21,6 +22,7 @@
             id="emailNewSettings"
             class="form-control mb-1"
             [(ngModel)]="email"
+            data-testid="new-email-input"
           />
           <label for="emailAgainSettings" class="fw-light"
             >Új e-mail megerősítése</label
@@ -30,12 +32,14 @@
             id="emailAgainSettings"
             class="form-control mb-1"
             [(ngModel)]="emailAgain"
+            data-testid="new-email-again-input"
           />
           <div class="text-center mt-3">
             <button
               [disabled]="email !== emailAgain"
               class="btn btn-warning fs-5 fw-light"
               (click)="saveEmail()"
+              data-testid="save-email-change-button"
             >
               Új e-mail cím mentése
             </button>
@@ -55,6 +59,7 @@
             class="form-control mb-1"
             disabled
             [(ngModel)]="authService.user.phone"
+            data-testid="current-phone-input"
           />
           <label for="phonenumberNewSettings" class="fw-light"
             >Új telefonszám</label
@@ -64,6 +69,7 @@
             id="phonenumberNewSettings"
             class="form-control mb-1"
             [(ngModel)]="phone"
+            data-testid="new-phone-input"
           />
           <label for="phonenumberAgainSettings" class="fw-light"
             >Új telefonszám megerősítése</label
@@ -73,12 +79,14 @@
             id="phonenumberAgainSettings"
             class="form-control mb-1"
             [(ngModel)]="phoneAgain"
+            data-testid="new-phone-again-input"
           />
           <div class="text-center mt-3">
             <button
             [disabled]="phone !== phoneAgain"
               class="btn btn-warning fs-5 fw-light"
               (click)="savePhone()"
+              data-testid="save-phone-change-button"
             >
               Új telefonszám mentése
             </button>
@@ -97,6 +105,7 @@
             id="passwordCurrentSettings"
             class="form-control mb-1"
             [(ngModel)]="currentPassword"
+            data-testid="current-password-input"
           />
           <label for="passwordNewSettings" class="fw-light">Új jelszó</label>
           <input
@@ -104,6 +113,7 @@
             id="passwordNewSettings"
             class="form-control mb-1"
             [(ngModel)]="password"
+            data-testid="new-password-input"
 
           />
           <label for="passwordAgainSettings" class="fw-light"
@@ -114,12 +124,14 @@
             id="passwordAgainSettings"
             class="form-control mb-1"
             [(ngModel)]="passwordAgain"
+            data-testid="new-password-again-input"
           />
           <div class="text-center mt-3">
             <button
             [disabled]="password !== passwordAgain"
               class="btn btn-warning fs-5 fw-light"
               (click)="savePassword()"
+              data-testid="save-password-change-button"
             >
               Új jelszó mentése
             </button>
@@ -138,6 +150,7 @@
             id="passwordCheck"
             class="form-control mb-1"
             [(ngModel)]="passwordCheck"
+            data-testid="password-input"
           />
           <label for="passwordAgainCheck" class="fw-light"
             >Jelszó megerősítése</label
@@ -147,12 +160,14 @@
             id="passwordAgainCheck"
             class="form-control mb-1"
             [(ngModel)]="passwordAgainCheck"
+            data-testid="password-again-input"
           />
           <div class="text-center mt-3">
             <button
               class="btn btn-danger fs-5 fw-light"
               [disabled]="passwordCheck !== passwordAgainCheck"
               (click)="deleteUser(passwordCheck)"
+              data-testid="delete-user-button"
             >
               Felhasználó törlése
             </button>
@@ -160,20 +175,4 @@
         </div>
       </div>
     </div>
-    <div class="toast-container position-fixed bottom-0 end-0 p-3 text-center">
-      <div
-        [class.opacity-100]="showSavedToast"
-        [class.opacity-0]="!showSavedToast"
-        class="toast fade show"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-      >
-        <div class="toast-header">
-          <strong class="mx-auto">Üzenet</strong>
-        </div>
-        <div class="toast-body">Sikeres mentés!</div>
-      </div>
-    </div>
-  </div>
 </div>

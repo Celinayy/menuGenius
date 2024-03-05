@@ -3,31 +3,31 @@
     <h4 class="fw-light text-center">SAJÁT FUNKCIÓK</h4>
     <hr class="mx-auto w-75" />
     <div class="col-12">
-      <button class="btn btn-warning m-3" routerLink="favFood">
+      <button class="btn btn-warning m-3" routerLink="favFood" data-testid="open-favourite-foods-button">
         Kedvenc ételek
       </button>
     </div>
     <div class="col-12">
-      <button class="btn btn-warning m-3" routerLink="history">
+      <button class="btn btn-warning m-3" routerLink="history" data-testid="open-reservations-button">
         Foglalások
       </button>
     </div>
     <div class="col-12">
-      <button class="btn btn-warning m-3" routerLink="settings">
+      <button class="btn btn-warning m-3" routerLink="settings" data-testid="open-settings-button">
         Beállítások
       </button>
     </div>    <div class="col-12">
-      <button class="btn btn-warning m-3" routerLink="foods">
+      <button class="btn btn-warning m-3" routerLink="foods" data-testid="open-foods-button">
         Ételek
       </button>
     </div>
     <div class="col-12">
-      <button class="btn btn-warning m-3" routerLink="drinks">
+      <button class="btn btn-warning m-3" routerLink="drinks" data-testid="open-drinks-button">
         Italok
       </button>
     </div>
     <div class="col-12">
-      <button class="btn btn-danger m-3" (click)="logout()">
+      <button class="btn btn-danger m-3" (click)="logout()" data-testid="logout-button">
         Kijelentkezés
       </button>
     </div>

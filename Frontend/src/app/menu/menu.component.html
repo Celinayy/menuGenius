@@ -7,10 +7,11 @@
       data-bs-target="#offcanvasBottom"
       aria-controls="offcanvasBottom"
       *ngIf="!authService.isLoggedIn"
+      data-testid="open-auth-dialog-button"
     >
       <img src="/assets/login.svg" alt="profile" />
     </button>
-    <a routerLink="profile"><img src="/assets/hamburger.svg" alt="profile" id="profile"  *ngIf="authService.isLoggedIn" /></a>
+    <a routerLink="profile" data-testid="open-profile-button"><img src="/assets/hamburger.svg" alt="profile" id="profile"  *ngIf="authService.isLoggedIn" /></a>
     <div
       class="offcanvas offcanvas-bottom h-100 background-waves-bottom background-waves-top"
       tabindex="-1"
@@ -39,11 +40,11 @@
           <button class="btn btn-warning m-1" routerLink="tableRes"
           data-bs-dismiss="offcanvas">Folytatás vendégként</button>
           <br />
-          <button class="btn btn-warning m-1" (click)="showLogin()">
+          <button data-testid="open-login-window-button" class="btn btn-warning m-1" (click)="showLogin()">
             Bejelentkezés
           </button>
           <br />
-          <button class="btn btn-dark m-1" (click)="showRegister()">
+          <button data-testid="open-register-window-button" class="btn btn-dark m-1" (click)="showRegister()">
             Regisztráció
           </button>
         </div>

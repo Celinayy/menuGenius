@@ -10,9 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./settings-window.component.css']
 })
 export class SettingsWindowComponent {
-
-  public showSavedToast: boolean = false;
-
   public email: string = "";
   public emailAgain: string = "";
   public phone: string = "";
@@ -28,14 +25,6 @@ export class SettingsWindowComponent {
   constructor(public authService: AuthService, private toast: ToastrService,
     public router: Router) { }
 
-  // public saveSettings() {
-  //   this.showSavedToast = true;
-  // setTimeout(() =>{
-  //   this.showSavedToast = false;
-  // }, 2500)
-
-  // }
-
   public saveEmail() {
     this.authService.update({ email: this.email })
       .pipe(catchError((err) => {
@@ -43,9 +32,7 @@ export class SettingsWindowComponent {
         return throwError(() => err)
       }))
       .subscribe(() => {
-        setTimeout(() => {
-          this.toast.success("Sikeres mentés!")
-        }, 2500)
+        this.toast.success("Sikeres mentés!")
       })
   }
 
@@ -56,9 +43,7 @@ export class SettingsWindowComponent {
         return throwError(() => err)
       }))
       .subscribe(() => {
-        setTimeout(() => {
-          this.toast.success("Sikeres mentés!")
-        }, 2500)
+        this.toast.success("Sikeres mentés!")
       })
 
   }
@@ -74,16 +59,14 @@ export class SettingsWindowComponent {
         return throwError(() => err)
       }))
       .subscribe(() => {
-        setTimeout(() => {
-          this.toast.success("Sikeres mentés!")
-        }, 2500)
+        this.toast.success("Sikeres mentés!")
       })
   }
 
- // Nem működik még
+  // Nem működik még
 
   public checkPassword(passwordCheck: string) {
-    if(passwordCheck === this.currentPassword) {
+    if (passwordCheck === this.currentPassword) {
       this.toast.success("Egyezik a két jelszó!")
     } else {
       this.toast.error("Nem egyezik a két jelszó!")

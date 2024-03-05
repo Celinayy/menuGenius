@@ -1,6 +1,6 @@
 <div class="mx-auto text-center">
-  <input type="email" class="form-control m-1" placeholder="E-mail" [(ngModel)]="email">
-  <input type="password" class="form-control m-1" placeholder="Jelszó" [(ngModel)]="password">
+  <input type="email" class="form-control m-1" data-testid="email-input" placeholder="E-mail" [(ngModel)]="email">
+  <input type="password" class="form-control m-1" data-testid="password-input" placeholder="Jelszó" [(ngModel)]="password">
   <button class="btn btn-danger m-1" (click)="menu.back()">Vissza</button>
-  <button class="btn btn-primary m-1" (click)="login()">Bejelentkezés</button>
+  <button class="btn btn-primary m-1" (click)="login()" data-testid="login-button">Bejelentkezés</button>
 </div>
