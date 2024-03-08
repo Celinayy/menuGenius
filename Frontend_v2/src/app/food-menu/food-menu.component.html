@@ -8,7 +8,7 @@
         Kategóriák:
       </div>
       <div class="col-12 col-sm-6 col-md-2">
-        <select class="form-select" [(ngModel)]="category" aria-label="Default select example" (ngModelChange)="onCategoryChange()">
+        <select class="form-select" [(ngModel)]="category" aria-label="Default select example" (ngModelChange)="combineFilters()">
           <option [ngValue]="null">Összes</option>
           <option *ngFor="let category of foodCategories" [ngValue]="category">
             {{ category.name }}
@@ -19,7 +19,7 @@
         Keresés:
       </div>
       <div class="col-12 col-sm-6 col-md-2">
-        <input type="text" class="form-control" placeholder="Keresés" [(ngModel)]="searchChar" (keyup)="searchProduct()"/>
+        <input type="search" class="form-control" placeholder="Keresés..." [(ngModel)]="searchChar" (keyup)="searchProduct()"/>
       </div>
 
     </div>
@@ -34,7 +34,7 @@
       </mat-paginator>
     </div>
     <div class="row">
-      <div class="card container col-12 col-sm-6 col-md-4 col-xl-3 page-item rounded-3 text-dark p-1" style="width: 30vw; height: 50vh;" *ngFor="let product of foodsSlice | filter : searchKey : 'name'">
+      <div class="card container col-12 col-sm-6 col-md-4 col-xl-3 page-item rounded-3 text-dark p-1" style="width: 30vw; height: 50vh;" *ngFor="let product of foodsSlice | charFilter : searchKey : 'name'">
         <img class="card-img-top rounded" src="data:image/png;base64, {{ product.image.data }}" alt="{{ product.name }}"/>
         <div class="card-header row m-0 p-0">
           <div class="col d-flex m-0 p-1 justify-content-around">
@@ -58,7 +58,7 @@
     <div class="allergen-filter container">
       <label for="allergens" class="fw-semibold">Allergének</label>
       <mat-chip-listbox class="chip-box titillium-web-black" id="allergens" aria-label="Allergens" selectable multiple>
-        <mat-chip-option class="chip-option" *ngFor="let allergen of allergens" [value]="allergen.name" [selected]="selectedAllergens[allergen.id]" (click)="toggleAllergen(allergen.id)">
+        <mat-chip-option class="chip-option" *ngFor="let allergen of allergens | allergenFilter:selectedAllergens" [value]="allergen.name" [selected]="selectedAllergens[allergen.id]" (click)="toggleAllergen(allergen.id)">
           {{ allergen.name }}
         </mat-chip-option>
       </mat-chip-listbox>
