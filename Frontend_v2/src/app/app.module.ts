@@ -34,7 +34,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterModalComponent } from './modals/register-modal/register-modal.component';
 import { ReservationComponent } from './reservation/reservation.component';
 
-import { FilterPipe } from './filter.pipe';
+import { CharFilterPipe } from './pipes/char-filter.pipe';
+import { AllergenFilterPipe } from './pipes/allergen-filter.pipe';
 import { PaginatorService } from './services/paginator.service';
 
 @NgModule({
@@ -51,7 +52,8 @@ import { PaginatorService } from './services/paginator.service';
     CartComponent,
     ContentComponent,
     ProfileComponent,
-    FilterPipe,
+    CharFilterPipe,
+    AllergenFilterPipe,
     ProductModalComponent,
     LoginModalComponent,
     RegisterModalComponent,

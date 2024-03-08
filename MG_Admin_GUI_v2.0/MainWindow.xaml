@@ -87,7 +87,7 @@
                               AutoGenerateColumns="False" 
                               AlternatingRowBackground="LightGray" Grid.ColumnSpan="2" Margin="10,10,10,10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd HH:mm}" Width="auto"/>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, Converter={StaticResource DateTimeFormatConverter}}" Width="auto"/>
                             <DataGridTemplateColumn Header="Tételek" Width="3*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -110,10 +110,10 @@
                             <DataGridCheckBoxColumn Header="Fizetve" Binding="{Binding Paid}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content=">" Name="btnOrderedToCooked" Grid.Row="1" Grid.Column="2" Margin="10,10,10,10"/>
+                    <Button Content=">" Name="btnOrderedToCooked" Grid.Row="1" Grid.Column="2" Margin="10,10,10,10" Click="btnOrderedToCooked_Click"/>
                     <DataGrid Grid.Row="1" Grid.Column="3" Name="dgCooked" SelectionChanged="dgPurchases_SelectionChanged" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" Margin="10,10,10,10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd}" Width="auto"/>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, Converter={StaticResource DateTimeFormatConverter}}" Width="auto"/>
                             <DataGridTemplateColumn Header="Tételek" Width="3*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -139,7 +139,7 @@
                     <Button Content=">" Name="btnCookedToServed" Grid.Row="1" Grid.Column="4" Click="btnCookedToServed_Click" Margin="10,10,10,10"/>
                     <DataGrid Grid.Row="1" Grid.Column="5" Name="dgServed" SelectionChanged="dgPurchases_SelectionChanged" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" Margin="10,10,10,10">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd}" Width="auto"/>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, Converter={StaticResource DateTimeFormatConverter}}" Width="auto"/>
                             <DataGridTemplateColumn Header="Tételek" Width="3*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -165,7 +165,7 @@
                     <DataGrid Name="dgPurchases" Grid.Row="2" Grid.ColumnSpan="6" SelectionChanged="dgPurchases_SelectionChanged" IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" Margin="10,10,10,10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="auto"/>
-                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd}" Width="auto"/>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, Converter={StaticResource DateTimeFormatConverter}}" Width="auto"/>
                             <DataGridTemplateColumn Header="Tételek" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -216,7 +216,7 @@
                             </Grid.RowDefinitions>
                             <Label Grid.Column="0" Grid.Row="0" Content="Név:"/>
                             <Label Grid.Column="0" Grid.Row="1" Content="Telefon:"/>
-                            <Label Grid.Column="0" Grid.Row="2" Content="Asztal:"/>
+                            <Label Grid.Column="0" Grid.Row="2" Content="Asztal ID:"/>
                             <Label Grid.Column="0" Grid.Row="3" Content="Felhasználó:"/>
                             <TextBox Text="{Binding Name}" Name="tbReservationName" Grid.Row="0" Grid.Column="1"/>
                             <TextBox Text="{Binding Phone}" Name="tbReservationPhone" Grid.Row="1" Grid.Column="1"/>
@@ -227,11 +227,10 @@
                             <Label Grid.Column="2" Grid.Row="2" Content="Távozás időpontja:"/>
                             <Label Grid.Column="2" Grid.Row="3" Content="Lezárva:"/>
                             <TextBox Text="{Binding NumberOfGuests}" Name="tbReservationNumberOfGuests" Grid.Row="0" Grid.Column="3"/>
-                            <xctk:DateTimePicker Grid.Column="3" Grid.Row="1" Name="dtpReservationCheckinDate" Value="{Binding CheckinDate}" Format="Custom" FormatString="yyyy.MM.dd HH:mm"/>
-                            <xctk:DateTimePicker Grid.Column="3" Grid.Row="2" Name="dtpReservationCheckoutDate" Value="{Binding CheckoutDate}" Format="Custom" FormatString="yyyy.MM.dd HH:mm"/>
+                            <xctk:DateTimePicker Grid.Column="3" Grid.Row="1" Name="dtpReservationCheckinDate" Value="{Binding CheckinDate, Converter={StaticResource DateTimeFormatConverter}}"/>
+                            <xctk:DateTimePicker Grid.Column="3" Grid.Row="2" Name="dtpReservationCheckoutDate" Value="{Binding CheckoutDate, Converter={StaticResource DateTimeFormatConverter}}"/>
                             <CheckBox IsChecked="{Binding Closed}" Name="chbReservationClosed" Grid.Row="3" Grid.Column="3"/>
                         </Grid>
-
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button Name="btnReservationSave" Content="Mentés" Click="btnReservationSave_Click"/>
@@ -241,12 +240,21 @@
                     <DataGrid Name="dgReservations" Grid.Row="2" Grid.ColumnSpan="3" SelectionChanged="dgReservations_SelectionChanged" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="0.3*"/>
-                            <DataGridTextColumn Header="Érkezés" Binding="{Binding CheckinDate, StringFormat=yyyy.MM.dd HH.mm}" Width="*"/>
-                            <DataGridTextColumn Header="Távozás" Binding="{Binding CheckoutDate, StringFormat=yyyy.MM.dd HH.mm}" Width="*"/>
+                            <DataGridTextColumn Header="Érkezés" Binding="{Binding CheckinDate, Converter={StaticResource DateTimeFormatConverter}}" Width="*"/>
+                            <DataGridTextColumn Header="Távozás" Binding="{Binding CheckoutDate, Converter={StaticResource DateTimeFormatConverter}}" Width="*"/>
                             <DataGridTextColumn Header="Telefon" Binding="{Binding Phone}" Width="*"/>
-                            <DataGridTextColumn Header="Asztal" Binding="{Binding Desk.Id}" Width="0.5*"/>
+                            <DataGridTextColumn Header="Asztal Id-Ülőhely"  Width="0.5*">
+                                <DataGridTextColumn.Binding>
+                                    <MultiBinding StringFormat="{}{0} - {1}">
+                                        <Binding Path="Desk.Id" />
+                                        <Binding Path="Desk.NumberOfSeats" />
+                                    </MultiBinding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Vendégek száma" Binding="{Binding NumberOfGuests}" Width="0.5*"/>
                             <DataGridTextColumn Header="Felhasználó" Binding="{Binding User.Name}" Width="2*"/>
                             <DataGridCheckBoxColumn Header="Lezárva" Binding="{Binding Closed}" Width="0.4*"/>
+
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -291,10 +299,10 @@
                                   SelectedItem="{Binding Category}"/>
                         <TextBox Grid.Row="2" Grid.Column="1" Name="tbProductPacking" Text="{Binding Packing}"/>
                         <TextBox Grid.Row="3" Grid.Column="1" Name="tbProductPrice"  Text="{Binding Price}"/>
-                        <CheckBox Grid.Row="4" Grid.Column="1" Name="tbProductIsFood"  IsChecked="{Binding IsFood}"/>
+                        <CheckBox Grid.Row="4" Grid.Column="1" Name="cbProductIsFood"  IsChecked="{Binding IsFood}"/>
 
                         <Label Grid.Row="0" Grid.Column="2" Content="Leírás:"/>
-                        <TextBox Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Text="{Binding Description}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                        <TextBox Name="tbProductDescription" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Text="{Binding Description}" TextWrapping="Wrap" VerticalAlignment="Top"/>
                         <Grid ShowGridLines="False" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -334,9 +342,9 @@
                         </WrapPanel>
                     </GroupBox>
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Content="Mentés"/>
-                        <Button Content="Módosítás"/>
-                        <Button Content="Törlés"/>
+                        <Button Name="btnProductSave" Content="Mentés" Click="btnProductSave_Click"/>
+                        <Button Name="btnProductUpdate" Content="Módosítás" Click="btnProductUpdate_Click"/>
+                        <Button Name="btnProductDelete" Content="Törlés" Click="btnProductDelete_Click"/>
                     </StackPanel>
                     <DataGrid Name="dgProducts" Grid.Row="2" Grid.ColumnSpan="3" AutoGenerateColumns="False" SelectionChanged="dgProducts_SelectionChanged">
                         <DataGrid.Columns>
@@ -578,12 +586,12 @@
                     <DataGrid Grid.Row="2" Name="dgEventLogs" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="dgEventLogs_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
-                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, StringFormat=yyyy.MM.dd HH.mm}" Width="2*"/>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding DateTime, Converter={StaticResource DateTimeFormatConverter}}" Width="2*"/>
                             <DataGridTextColumn Header="Esemény típus" Binding="{Binding EventType}" Width="2*"/>
                             <DataGridTextColumn Header="Útvonal" Binding="{Binding Route}" Width="2*"/>
                             <DataGridTextColumn Header="Kérés" Binding="{Binding Body}" Width="*"/>
                             <DataGridTextColumn Header="Felhasználó" Binding="{Binding UserId}" Width="2*"/>
-                            <DataGridTextColumn Header="Dátum" Binding="{Binding DeletedAt, StringFormat=yyyy.MM.dd HH.mm}" Width="2*"/>
+                            <DataGridTextColumn Header="Dátum" Binding="{Binding DeletedAt, Converter={StaticResource DateTimeFormatConverter}}" Width="2*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

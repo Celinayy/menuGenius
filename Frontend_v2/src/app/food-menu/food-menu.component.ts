@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Input } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { Category } from '../models/category.model';
@@ -6,15 +6,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductModalComponent } from '../modals/product-modal/product-modal.component';
 import { CartService } from '../services/cart.service';
 import { PageEvent } from '@angular/material/paginator';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
 import { Allergen } from '../models/allergen.model';
 import { AllergenService } from '../services/allergen.service';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatChipListbox } from '@angular/material/chips';
 import { AuthService } from '../services/auth.service';
 import { User } from '../models/user.model';
+import { timeout, catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-food-menu',
@@ -23,22 +22,27 @@ import { User } from '../models/user.model';
 })
 
 export class FoodMenuComponent implements OnInit {
+  public user: User | null = null;
+  foodProducts: Product[] = [];
   foodCategories: Category[] = [];
+  category: Category | null = null;
+  allergens: Allergen[] = [];
+  tempProducts:Product[] = [];
+  
   searchKey: string = "";
   searchChar: string = '';
-  category: Category | null = null;
-  foodProducts: Product[] = [];
-  categoryFilteredProducts: Product[] = [];
-  searchFilteredProducts: Product[] = [];
-  allergenFilteredProducts: Product[] = [];
-  tempProducts:Product[] = [];
+  selectedAllergens: { [key: number]: boolean } = {};
+  public search = new BehaviorSubject<string>("");
+  searchTerm: string = '';
+  
   currentPage: number = 1;
   foodsSlice: Product[] = [];
   productPerSlice: number = 4;
-  public search = new BehaviorSubject<string>("");
-  allergens: Allergen[] = [];
-  selectedAllergens: { [key: number]: boolean } = {};
-  public user: User | null = null;
+  filterOptions: { searchTerm: string, category: Category | null, selectedAllergens: { [key: number]: boolean } } = {
+    searchTerm: '',
+    category: null,
+    selectedAllergens: {}
+  };
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   
@@ -52,39 +56,25 @@ export class FoodMenuComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    this.checkUser();
     this.loadFoodProducts();
     this.loadCategories();
     this.getAllergens();
-    
+    this.loadSelectedAllergensFromStorage();
+
     this.search.subscribe((searchTerm: string) => {
-      this.tempProducts = this.filterProducts(searchTerm);
-      this.currentPage = 1;
-      this.updatePageSlice();
-    });
-    
-    this.authService.getUser().subscribe((user) =>{
-      if (user) {
-        this.user = user;
-      }
-      this.loadSelectedAllergensFromStorage()
-      this.getFilterAllergen();
+      this.searchTerm = searchTerm;
+      this.combineFilters();
+      this.resetPageSlice();
     });
   }
 
-  getAllergens(): void {
-    this.allergenService.getAllAllergen().subscribe(
-      allergens => {
-        this.allergens = allergens;
-        this.allergens.forEach(allergen => {
-          this.selectedAllergens[allergen.id] = true;
-        });
-      },
-      error => {
-        console.error('Error fetching allergens:', error);
-      }
-    );
+  combineFilteredProducts(allergenFiltered: Product[], charFiltered: Product[], categoryFiltered: Product[]): Product[] {
+    const mergedProducts = [...new Set([...allergenFiltered, ...charFiltered, ...categoryFiltered])];
+    mergedProducts.sort((a, b) => a.id - b.id);
+    return mergedProducts;
   }
-
+  
   private loadFoodProducts() {
     this.productService.listFoodProducts().subscribe((products) => {
       this.foodProducts = products;
@@ -92,7 +82,7 @@ export class FoodMenuComponent implements OnInit {
       this.updatePageSlice();
     });
   }
-
+  
   private loadCategories() {
     this.productService.listFoodProducts().subscribe((foods) => {
       foods.forEach((food) => {
@@ -103,39 +93,39 @@ export class FoodMenuComponent implements OnInit {
     });
   }
 
-  private filterProducts(searchTerm: string): Product[] {
-    this.searchFilteredProducts = this.tempProducts.filter((product) => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    return this.searchFilteredProducts;
-  }
-
-  public onCategoryChange() {
-    this.searchChar = "";
-    this.tempProducts = [];
-    for (const product of this.foodProducts) {
-      if (!this.category || product.category.id === this.category.id) {
-        this.tempProducts.push(product);
+  private getAllergens() {
+    this.allergenService.getAllAllergen().subscribe(
+      allergens => {
+        this.allergens = allergens;
+        allergens.forEach(allergen => {
+          if (allergen.code.toString().endsWith('00')) allergen.parent = true;
+          else allergen.parent = false;
+        });
+      },
+      error => {
+        console.error('Error fetching allergens:', error);
       }
+    );
+  }
+
+  combineFilters(): void {
+    let filteredProducts = [...this.foodProducts];
+  
+    if (this.category) {
+      filteredProducts = filteredProducts.filter(product => !this.category || product.category.id === this.category.id);
     }
-    this.paginator.pageIndex = 0;
-    this.foodsSlice = this.tempProducts.slice(0, 4);
+  
+    if (this.searchTerm.trim() !== '') {
+      filteredProducts = filteredProducts.filter((product) => product.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
+    }  
+    if (this.selectedAllergens) {
+      filteredProducts = filteredProducts.filter((product) => product.ingredients.every(ingredient => ingredient.allergens.every(allergen => this.selectedAllergens[allergen.id])));
+    }
+  
+    this.tempProducts = filteredProducts;
+    this.resetPageSlice();
   }
-
-  onAllergenChange(): void {
-    this.getFilterAllergen();
-  }
-
-  getFilterAllergen(): void {
-    console.log(this.selectedAllergens)
-    this.tempProducts = this.foodProducts.filter(product =>
-      product.ingredients.every(ingredient =>
-        ingredient.allergens.every(allergen => this.selectedAllergens[allergen.id])
-        )
-        );
-      console.log(this.tempProducts)
-      this.paginator.pageIndex = 0;
-    this.foodsSlice = this.tempProducts.slice(0, 4);
-  }
-
+  
   searchProduct() {
     this.search.next(this.searchChar);
   }
@@ -164,24 +154,19 @@ export class FoodMenuComponent implements OnInit {
   toggleAllergen(allergenId: number): void {
     this.selectedAllergens[allergenId] = !this.selectedAllergens[allergenId];
     this.saveSelectedAllergensToStorage();
-    this.getFilterAllergen();
+    this.combineFilters();
   }
 
   loadSelectedAllergensFromStorage(): void {
     if (this.user){
-      console.log('user-lsafs-if:', this.user.id)
       const selectedAllergensString = localStorage.getItem(`selectedAllergens_${this.user.id}`);
-      console.log('sAS-lsafs-if:', selectedAllergensString)
       if (selectedAllergensString) {
         this.selectedAllergens = JSON.parse(selectedAllergensString);
       }
     } else {
-      console.log('user-lsafs-else:', this.user)
       const selectedAllergensString = sessionStorage.getItem('selectedAllergens');
-      console.log('sAS-lsafs-else:', selectedAllergensString)
       if (selectedAllergensString) {
         this.selectedAllergens = JSON.parse(selectedAllergensString);
-        console.log('sAS-lsafs-else-if:', this.selectedAllergens)
       } else {
         this.setAllAllergensActive();
       }
@@ -201,5 +186,37 @@ export class FoodMenuComponent implements OnInit {
     } else {
       sessionStorage.setItem('selectedAllergens', JSON.stringify(this.selectedAllergens));
     }
+  }
+
+  resetPageSlice() {
+    this.paginator.pageIndex = 0;
+    this.foodsSlice = this.tempProducts.slice(0, 4);
+  }
+
+  checkUser() {
+    this.authService.getUser().pipe(
+      timeout(5000),
+      catchError(error => of(null))
+    ).subscribe((user) =>{
+      if (user) {
+        this.user = user;
+        const storageData = localStorage.getItem(`selectedAllergens_${this.user.id}`);
+        console.log('storageData-login', storageData)
+        if (storageData) {
+          this.selectedAllergens = JSON.parse(storageData);
+        } else {
+          this.setAllAllergensActive();
+        }
+      } else {
+          const storageData = sessionStorage.getItem('selectedAllergens');
+          console.log('User', user)
+          console.log('storageData-nologin', storageData)
+          if (storageData) {
+            this.selectedAllergens = JSON.parse(storageData);
+          } else {
+            this.setAllAllergensActive();
+          }
+      }
+    });
   }
 }

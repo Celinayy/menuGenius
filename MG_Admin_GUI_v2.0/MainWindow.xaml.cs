@@ -37,13 +37,14 @@ namespace MG_Admin_GUI
         Ingredient ingredient = new Ingredient();
         Allergen allergen = new Allergen();
         Desk desk = new Desk();
+        Models.Image image = new Models.Image();
         Models.EventLog eventlog = new Models.EventLog();
         private User loggedInUser;
 
         public MainWindow()
         {
             InitializeComponent();
-            ShowLoginWindow();
+            //ShowLoginWindow();
             LoadDatas();
 
         }
@@ -258,6 +259,45 @@ namespace MG_Admin_GUI
             lvProductIngredients.ItemsSource = ingredientForProduct;
         }
 
+        private void btnProductSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnProductUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            //    if (String.IsNullOrWhiteSpace(tbProductName.Text)) { return; }
+
+            //    product = new Product()
+            //    {
+            //        Name = tbProductName.Text),
+            //        Description = tbProductDescription.Text),
+            //        //CategoryId = cobProductCategory.SelectedValue,
+            //        Packing = tbProductPacking.Text,
+            //        Price = int.Parse(tbProductPrice.Text),
+            //        IsFood = cbProductIsFood.IsChecked.HasValue && cbProductIsFood.IsChecked.Value);
+            //    //ImageId = image.Id;
+            //    }
+
+            //    if (dgProducts.SelectedItem != null)
+            //    {
+            //        dbContext.Entry((Reservation) dgReservations.SelectedItem).State = EntityState.Unchanged;
+            //    }
+
+            //    dbContext.Reservations.Add(reservation);
+            //    dbContext.SaveChanges();
+            //    dbContext.Reservations.Load();
+            //    LoadDatas();
+            //    ClearTextBoxes();
+        }
+
+
+        private void btnProductDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
         private void btnAddIngredient_Click(object sender, RoutedEventArgs e)
         {
 
@@ -335,5 +375,6 @@ namespace MG_Admin_GUI
             eventlog = (Models.EventLog)dgEventLogs.SelectedItem;
             tabEventLog.DataContext = eventlog;
         }
+
     }
 }

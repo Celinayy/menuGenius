@@ -29,12 +29,13 @@ class IngredientController extends Controller
      */
     public function store(StoreIngredientRequest $request)
     {
-        $ingredient = new Ingredient();
-        $ingredient->name = $request->input('name');
+        //
+        // $ingredient = new Ingredient();
+        // $ingredient->name = $request->input('name');
 
-        $ingredient->save();
+        // $ingredient->save();
 
-        return response()->json(['message' => 'A hozzávaló létrehozva!', 'data' => $ingredient], 201);
+        // return response()->json(['message' => 'A hozzávaló létrehozva!', 'data' => $ingredient], 201);
     }
 
     /**
