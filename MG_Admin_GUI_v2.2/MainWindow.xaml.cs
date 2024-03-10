@@ -1,9 +1,16 @@
 ﻿using MG_Admin_GUI.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace MG_Admin_GUI
 {
@@ -49,7 +56,6 @@ namespace MG_Admin_GUI
             }
         }
 
-
         public void LoadDatas()
         {
             dbContext.allergens.Load();
@@ -84,7 +90,6 @@ namespace MG_Admin_GUI
 
             var cookedObservableCollection = new ObservableCollection<purchase>(cookedPurchases);
             dgCooked.ItemsSource = cookedObservableCollection;
-
 
             var servedPurchases = dbContext.purchases
                 .Where(p => p.status == "served" && p.paid == false)
@@ -201,14 +206,62 @@ namespace MG_Admin_GUI
             if (dgReservations.SelectedItem == null) { return; }
             selectedReservation = (reservation)dgReservations.SelectedItem;
             tabReservation.DataContext = selectedReservation;
-
         }
 
         private void dgReservations_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            dgReservations.SelectedItem = null;
+            selectedReservation = null;
+            tabReservation.DataContext = selectedReservation;
         }
 
+        private void btnReservationSave_Click(object sender, RoutedEventArgs e)
+        {
+            var user = (user)cobReservationUser.SelectedItem;
+            var desk = (desk)cobReservationDesk.SelectedItem;
+
+            var reservation = new reservation()
+            {
+                number_of_guests = int.Parse(tbReservationNumberOfGuests.Text),
+                checkin_date = DateTime.Parse(dtpReservationCheckinDate.Text),
+                checkout_date = DateTime.Parse(dtpReservationCheckoutDate.Text),
+                name = (user != null ? user.name : tbReservationName.Text),
+                phone = tbReservationPhone.Text,
+                desk_id = desk.id,
+                user_id = (user != null ? user.id : null),
+                closed = chbReservationClosed.IsChecked.HasValue && chbReservationClosed.IsChecked.Value,
+                comment = tbReservationComment.Text
+            };
+            dbContext.reservations.Add(reservation);
+            dbContext.SaveChanges();
+            dgReservations.SelectedItem = null;
+            selectedReservation = null;
+            tabReservation.DataContext = selectedReservation;
+        }
+
+        private void btnReservationUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.SaveChanges();
+            dgReservations.SelectedItem = null;
+            selectedReservation = null;
+            tabReservation.DataContext = selectedReservation;
+        }
+
+        private void btnReservationDelete_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.reservations.Remove(selectedReservation);
+            dbContext.SaveChanges();
+            dgReservations.SelectedItem = null;
+            selectedReservation = null;
+            tabReservation.DataContext = selectedReservation;
+        }
+
+        private void btnReservationCancel_Click(object sender, RoutedEventArgs e)
+        {
+            dgReservations.SelectedItem = null;
+            selectedReservation = null;
+            tabReservation.DataContext = selectedReservation;
+        }
 
         #endregion
 
@@ -227,6 +280,43 @@ namespace MG_Admin_GUI
             tabProduct.DataContext = selectedProduct;
         }
 
+        private void btnProductSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnProductUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.SaveChanges();
+        }
+
+        private void btnProductDelete_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.products.Remove(selectedProduct);
+            dbContext.SaveChanges();
+        }
+
+        private void btnProductCancel_Click(object sender, RoutedEventArgs e)
+        {
+            dgProducts.SelectedItem = null;
+            selectedProduct = null;
+            tabProduct.DataContext = selectedProduct;
+        }
+
+        private void btnNewImage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDeleteImage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnProductAddIngredient_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         #endregion
 
@@ -245,7 +335,36 @@ namespace MG_Admin_GUI
             spCategory.DataContext = selectedCategory;
         }
 
+        private void btnCategorySave_Click(object sender, RoutedEventArgs e)
+        {
+            var category = new category()
+            {
+                name = tbListsCategoryName.Text,
+            };
+            dbContext.categories.Add(category);
+            dbContext.SaveChanges();
+            dgCategories.SelectedItem = null;
+            selectedCategory = null;
+            spCategory.DataContext = selectedCategory;
+        }
 
+        private void btnCategoryUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.SaveChanges();
+        }
+
+        private void btnCategoryDelete_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.categories.Remove(selectedCategory);
+            dbContext.SaveChanges();
+        }
+
+        private void btnCategoryCancel_Click(object sender, RoutedEventArgs e)
+        {
+            dgCategories.SelectedItem = null;
+            selectedCategory = null;
+            spCategory.DataContext = selectedCategory;
+        }
 
         private void dgIngredients_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -259,6 +378,39 @@ namespace MG_Admin_GUI
             dgIngredients.SelectedItem = null;
             selectedIngredient = null;
             spIngredient.DataContext = selectedIngredient;
+
+        }
+
+        private void btnIngredientSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnIngredientUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.SaveChanges();
+        }
+
+        private void btnIngredientDelete_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.ingredients.Remove(selectedIngredient);
+            dbContext.SaveChanges();
+        }
+
+        private void btnIngredientCancel_Click(object sender, RoutedEventArgs e)
+        {
+            dgIngredients.SelectedItem = null;
+            selectedIngredient = null;
+            spIngredient.DataContext = selectedIngredient;
+        }
+
+        private void btnIngredientAllergenAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnIngredientAllergenDelete_Click(object sender, RoutedEventArgs e)
+        {
 
         }
 
@@ -276,6 +428,37 @@ namespace MG_Admin_GUI
             spAllergen.DataContext = selectedAllergen;
         }
 
+        private void btnAllergenSave_Click(object sender, RoutedEventArgs e)
+        {
+            var allergen = new allergen()
+            {
+                name = tbListsAllergenName.Text,
+            };
+            dbContext.allergens.Add(allergen);
+            dbContext.SaveChanges();
+            dgAllergens.SelectedItem = null;
+            selectedAllergen = null;
+            spAllergen.DataContext = selectedAllergen;
+        }
+
+        private void btnAllergenUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.SaveChanges();
+        }
+
+        private void btnAllergenDelete_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.allergens.Remove(selectedAllergen);
+            dbContext.SaveChanges();
+        }
+
+        private void btnAllergenCancel_Click(object sender, RoutedEventArgs e)
+        {
+            dgAllergens.SelectedItem = null;
+            selectedAllergen = null;
+            spAllergen.DataContext = selectedAllergen;
+        }
+
         private void dgDesks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgDesks.SelectedItem == null) { return; }
@@ -284,6 +467,37 @@ namespace MG_Admin_GUI
         }
 
         private void dgDesks_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            dgDesks.SelectedItem = null;
+            selectedDesk = null;
+            spDesk.DataContext = selectedDesk;
+        }
+
+        private void btnDeskSave_Click(object sender, RoutedEventArgs e)
+        {
+            var desk = new desk()
+            {
+                number_of_seats = int.Parse(tbListsDeskNoS.Text)
+            };
+            dbContext.desks.Add(desk);
+            dbContext.SaveChanges();
+            dgDesks.SelectedItem = null;
+            selectedDesk = null;
+            spDesk.DataContext = selectedDesk;
+        }
+
+        private void btnDeskUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.SaveChanges();
+        }
+
+        private void btnDeskDelete_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.desks.Remove(selectedDesk);
+            dbContext.SaveChanges();
+        }
+
+        private void btnDeskCancel_Click(object sender, RoutedEventArgs e)
         {
             dgDesks.SelectedItem = null;
             selectedDesk = null;
@@ -307,6 +521,40 @@ namespace MG_Admin_GUI
             tabUser.DataContext = selectedUser;
         }
 
+        private void btnUserSave_Click(object sender, RoutedEventArgs e)
+        {
+            var user = new user()
+            {
+                name = tbUserName.Text,
+                email = tbUserEmail.Text,
+                password = tbUserPassword.Text,
+                phone = tbUserPhone.Text,
+                admin = cbUserAdmin.IsChecked.HasValue && cbUserAdmin.IsChecked.Value,
+            };
+            dbContext.users.Add(user);
+            dbContext.SaveChanges();
+            dgUsers.SelectedItem = null;
+            selectedUser = null;
+            tabUser.DataContext = selectedUser;
+        }
+
+        private void btnUserUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.SaveChanges();
+        }
+
+        private void btnUserDelete_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.users.Remove(selectedUser);
+            dbContext.SaveChanges();
+        }
+
+        private void btnUserCancel_Click(object sender, RoutedEventArgs e)
+        {
+            dgUsers.SelectedItem = null;
+            selectedUser = null;
+            tabUser.DataContext = selectedUser;
+        }
 
         #endregion
 

@@ -60,6 +60,68 @@ E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v3.0\MG_Admin_GUI\obj\Debug\net7.0
 E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v3.0\MG_Admin_GUI\obj\Debug\net7.0-windows\LoginWindow.baml
 E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v3.0\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI_Content.g.cs
 E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v3.0\MG_Admin_GUI\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\MG_Admin_GUI.exe
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\MG_Admin_GUI.deps.json
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\MG_Admin_GUI.runtimeconfig.json
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\MG_Admin_GUI.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\MG_Admin_GUI.pdb
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\BCrypt.Net-Next.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Xceed.Wpf.AvalonDock.NET5.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Xceed.Wpf.AvalonDock.Themes.Aero.NET5.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Xceed.Wpf.AvalonDock.Themes.Metro.NET5.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Xceed.Wpf.AvalonDock.Themes.VS2010.NET5.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Xceed.Wpf.Toolkit.NET5.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Humanizer.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Design.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.Extensions.Caching.Memory.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyInjection.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyModel.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.Extensions.Logging.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.Extensions.Options.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Microsoft.Extensions.Primitives.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Mono.TextTemplating.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\MySqlConnector.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\Pomelo.EntityFrameworkCore.MySql.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\cs-CZ\Xceed.Wpf.AvalonDock.NET5.resources.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\de\Xceed.Wpf.AvalonDock.NET5.resources.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\es\Xceed.Wpf.AvalonDock.NET5.resources.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\fr\Xceed.Wpf.AvalonDock.NET5.resources.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\hu\Xceed.Wpf.AvalonDock.NET5.resources.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\it\Xceed.Wpf.AvalonDock.NET5.resources.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\ja-JP\Xceed.Wpf.AvalonDock.NET5.resources.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\pt-BR\Xceed.Wpf.AvalonDock.NET5.resources.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\ro\Xceed.Wpf.AvalonDock.NET5.resources.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\ru\Xceed.Wpf.AvalonDock.NET5.resources.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\sv\Xceed.Wpf.AvalonDock.NET5.resources.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\bin\Debug\net7.0-windows\zh-Hans\Xceed.Wpf.AvalonDock.NET5.resources.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI.csproj.AssemblyReference.cache
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\LoginWindow.g.cs
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MainWindow.g.cs
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\App.g.cs
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI_Content.g.cs
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI_MarkupCompile.cache
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI_MarkupCompile.lref
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\LoginWindow.baml
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MainWindow.baml
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI.g.resources
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI.AssemblyInfoInputs.cache
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI.AssemblyInfo.cs
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI.csproj.CoreCompileInputs.cache
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin.EB85B2B5.Up2Date
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\refint\MG_Admin_GUI.dll
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI.pdb
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\MG_Admin_GUI.genruntimeconfig.cache
+E:\Projects\MenuGenius\_AdminGUI\MG_Admin_GUI_v2.2\MG_Admin_GUI\obj\Debug\net7.0-windows\ref\MG_Admin_GUI.dll
 C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI_v2.2\bin\Debug\net7.0-windows\MG_Admin_GUI.exe
 C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI_v2.2\bin\Debug\net7.0-windows\MG_Admin_GUI.deps.json
 C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI_v2.2\bin\Debug\net7.0-windows\MG_Admin_GUI.runtimeconfig.json
@@ -117,7 +179,7 @@ C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG
 C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI_v2.2\obj\Debug\net7.0-windows\MG_Admin_GUI.AssemblyInfo.cs
 C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI_v2.2\obj\Debug\net7.0-windows\MG_Admin_GUI.csproj.CoreCompileInputs.cache
 C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI_v2.2\obj\Debug\net7.0-windows\MG_Admin_GUI.sourcelink.json
-C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI_v2.2\obj\Debug\net7.0-windows\MG_Admin_GUI.csproj.CopyComplete
+C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI_v2.2\obj\Debug\net7.0-windows\MG_Admin.EB85B2B5.Up2Date
 C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI_v2.2\obj\Debug\net7.0-windows\MG_Admin_GUI.dll
 C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI_v2.2\obj\Debug\net7.0-windows\refint\MG_Admin_GUI.dll
 C:\Users\Szilard\Saját meghajtó\SZF-Tanfolyam\Vizsgaremek\GitHub\menuGenius\MG_Admin_GUI_v2.2\obj\Debug\net7.0-windows\MG_Admin_GUI.pdb
