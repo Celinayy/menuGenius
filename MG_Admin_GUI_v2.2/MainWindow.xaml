@@ -271,6 +271,7 @@
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button Name="btnReservationSave" Content="Mentés"/>
+                        <Button Name="btnReservationUpdate" Content="Módosítás"/>
                         <Button Name="btnReservationDelete" Content="Törlés"/>
                         <Button Name="btnReservationCancel" Content="Mégsem"/>
                     </StackPanel>
@@ -439,6 +440,7 @@
                                 <Button Content="Mentés"/>
                                 <Button Content="Módosítás"/>
                                 <Button Content="Törlés"/>
+                                <Button Content="Mégsem"/>
                             </StackPanel>
 
                             <DataGrid ItemsSource="{Binding categories}" Name="dgCategories" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgCategories_SelectionChanged" MouseDown="dgCategories_MouseDown">
@@ -487,6 +489,7 @@
                                 <Button Content="Mentés"/>
                                 <Button Content="Módosítás"/>
                                 <Button Content="Törlés"/>
+                                <Button Content="Mégsem"/>
                             </StackPanel>
 
                             <DataGrid Name="dgIngredients" ItemsSource="{Binding}" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgIngredients_SelectionChanged" MouseDown="dgIngredients_MouseDown">
@@ -529,6 +532,7 @@
                                 <Button Content="Mentés"/>
                                 <Button Content="Módosítás"/>
                                 <Button Content="Törlés"/>
+                                <Button Content="Mégsem"/>
                             </StackPanel>
 
                             <DataGrid ItemsSource="{Binding}" Name="dgAllergens" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgAllergens_SelectionChanged" MouseDown="dgAllergens_MouseDown">
@@ -560,6 +564,7 @@
                                 <Button Content="Mentés"/>
                                 <Button Content="Módosítás"/>
                                 <Button Content="Törlés"/>
+                                <Button Content="Mégsem"/>
                             </StackPanel>
 
                             <DataGrid ItemsSource="{Binding}" Name="dgDesks" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgDesks_SelectionChanged" MouseDown="dgDesks_MouseDown">
@@ -584,7 +589,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -612,6 +617,7 @@
                         <Button Content="Mentés"/>
                         <Button Content="Módosítás"/>
                         <Button Content="Törlés"/>
+                        <Button Content="Mégsem"/>
                     </StackPanel>
 
 
@@ -643,7 +649,7 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>

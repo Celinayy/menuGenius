@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zaN+BLdbdAJAWyVAE5vUnSNlmaP8vSYnBRqPjhdX+k04aH7PEaJmAdKzdXsbZ/sFU/xrIcLVe6WpsVv57QavXg==",
+  "dgSpecHash": "hpsow/V3fa54oVm9qwzr1aAf82eCtfgWXgACAz2Ec2/C7j8S6HqbUnkOHc6YBJZyQyGVlPog4bIYjSW6erVTXg==",
   "success": true,
-  "projectFilePath": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v3.0\\MG_Admin_GUI\\MG_Admin_GUI.csproj",
+  "projectFilePath": "C:\\Users\\Szilard\\Saját meghajtó\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\MG_Admin_GUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Szilard\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Szilard\\.nuget\\packages\\extended.wpf.toolkit\\4.6.0\\extended.wpf.toolkit.4.6.0.nupkg.sha512",
@@ -28,11 +28,7 @@
     "C:\\Users\\Szilard\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\7.0.0\\pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "C:\\Users\\Szilard\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\Szilard\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
-    "C:\\Users\\Szilard\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
-    "C:\\Users\\Szilard\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.16\\microsoft.windowsdesktop.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\Szilard\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.16\\microsoft.netcore.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\Szilard\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.16\\microsoft.aspnetcore.app.ref.7.0.16.nupkg.sha512",
-    "C:\\Users\\Szilard\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.16\\microsoft.netcore.app.host.win-x64.7.0.16.nupkg.sha512"
+    "C:\\Users\\Szilard\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

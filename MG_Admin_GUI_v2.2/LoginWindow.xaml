@@ -4,46 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MG_Admin_GUI"
-        mc:Ignorable="d"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="Bejelentkezés" Height="300" Width="400" Foreground="White" Background="Black">
-    <Window.Icon>
-        <BitmapImage UriSource="/Logos/menu_genius_icon.ico"/>
-    </Window.Icon>
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Width" Value="150"/>
             <Setter Property="Margin" Value="20 10 20 0"/>
             <Setter Property="Padding" Value="5"/>
         </Style>
-        <Storyboard x:Key="LogAnimation">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-75.248"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="85.544"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-64.95"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="7.921"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Key="Storyboard1">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-161.575"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="32.322"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="-77.228"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="0.395"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.232"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1.461"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="image" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)">
-                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0.232"/>
-                <EasingDoubleKeyFrame KeyTime="00:00:01" Value="1.461"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Key="Storyboard2"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -65,16 +33,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image x:Name="image" Source="/Logos/menu_genius_fekvo.png" Width="200" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
+            <Image Source="/Logos/menu_genius_fekvo.png" Width="200"/>
         </StackPanel>
     </Grid>
     <Window.InputBindings>
