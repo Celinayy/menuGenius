@@ -1,16 +1,9 @@
 ﻿using MG_Admin_GUI.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MG_Admin_GUI
 {
@@ -37,7 +30,7 @@ namespace MG_Admin_GUI
         public MainWindow()
         {
             InitializeComponent();
-            //ShowLoginWindow();
+            ShowLoginWindow();
             LoadDatas();
         }
 
@@ -110,7 +103,7 @@ namespace MG_Admin_GUI
             .ThenInclude(pp => pp.product)
             .ToList();
 
-            var paidObservableCollection = new ObservableCollection<purchase>(paidPurchases);
+            var paidObservableCollection = new ObservableCollection<purchase>(paidPurchases).OrderBy(p => p.date_time);
             dgPurchases.ItemsSource = paidObservableCollection;
 
             dgReservations.ItemsSource = dbContext.reservations.Local.ToObservableCollection();
