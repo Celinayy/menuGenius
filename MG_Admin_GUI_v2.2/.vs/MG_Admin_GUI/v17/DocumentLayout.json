@@ -1,53 +1,49 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\",
+  "WorkspaceRootPath": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|c:\\users\\szilard\\saj\u00E1t meghajt\u00F3\\szf-tanfolyam\\vizsgaremek\\github\\menugenius\\mg_admin_gui_v2.2\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|e:\\projects\\menugenius\\_admingui\\mg_admin_gui_v2.2\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|c:\\users\\szilard\\saj\u00E1t meghajt\u00F3\\szf-tanfolyam\\vizsgaremek\\github\\menugenius\\mg_admin_gui_v2.2\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|c:\\users\\szilard\\saj\u00E1t meghajt\u00F3\\szf-tanfolyam\\vizsgaremek\\github\\menugenius\\mg_admin_gui_v2.2\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|e:\\projects\\menugenius\\_admingui\\mg_admin_gui_v2.2\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|c:\\users\\szilard\\saj\u00E1t meghajt\u00F3\\szf-tanfolyam\\vizsgaremek\\github\\menugenius\\mg_admin_gui_v2.2\\models\\ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|e:\\projects\\menugenius\\_admingui\\mg_admin_gui_v2.2\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|e:\\projects\\menugenius\\_admingui\\mg_admin_gui_v2.2\\models\\ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:models\\ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|c:\\users\\szilard\\saj\u00E1t meghajt\u00F3\\szf-tanfolyam\\vizsgaremek\\github\\menugenius\\mg_admin_gui_v2.2\\models\\allergen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|e:\\projects\\menugenius\\_admingui\\mg_admin_gui_v2.2\\models\\allergen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:models\\allergen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|c:\\users\\szilard\\saj\u00E1t meghajt\u00F3\\szf-tanfolyam\\vizsgaremek\\github\\menugenius\\mg_admin_gui_v2.2\\datetimeformatconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|e:\\projects\\menugenius\\_admingui\\mg_admin_gui_v2.2\\datetimeformatconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:datetimeformatconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|c:\\users\\szilard\\saj\u00E1t meghajt\u00F3\\szf-tanfolyam\\vizsgaremek\\github\\menugenius\\mg_admin_gui_v2.2\\models\\product_ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|e:\\projects\\menugenius\\_admingui\\mg_admin_gui_v2.2\\models\\product_ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:models\\product_ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|c:\\users\\szilard\\saj\u00E1t meghajt\u00F3\\szf-tanfolyam\\vizsgaremek\\github\\menugenius\\mg_admin_gui_v2.2\\models\\menugeniuscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:models\\menugeniuscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|c:\\users\\szilard\\saj\u00E1t meghajt\u00F3\\szf-tanfolyam\\vizsgaremek\\github\\menugenius\\mg_admin_gui_v2.2\\models\\ingredient_allergen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|e:\\projects\\menugenius\\_admingui\\mg_admin_gui_v2.2\\models\\ingredient_allergen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:models\\ingredient_allergen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|c:\\users\\szilard\\saj\u00E1t meghajt\u00F3\\szf-tanfolyam\\vizsgaremek\\github\\menugenius\\mg_admin_gui_v2.2\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|e:\\projects\\menugenius\\_admingui\\mg_admin_gui_v2.2\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|c:\\users\\szilard\\saj\u00E1t meghajt\u00F3\\szf-tanfolyam\\vizsgaremek\\github\\menugenius\\mg_admin_gui_v2.2\\models\\desk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|e:\\projects\\menugenius\\_admingui\\mg_admin_gui_v2.2\\models\\desk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:models\\desk.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|c:\\users\\szilard\\saj\u00E1t meghajt\u00F3\\szf-tanfolyam\\vizsgaremek\\github\\menugenius\\mg_admin_gui_v2.2\\models\\purchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|e:\\projects\\menugenius\\_admingui\\mg_admin_gui_v2.2\\models\\purchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41B94480-4A7B-4E22-9AE6-3E2D4D1F6752}|MG_Admin_GUI.csproj|solutionrelative:models\\purchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -62,36 +58,36 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "LoginWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\LoginWindow.xaml",
+              "DocumentMoniker": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\LoginWindow.xaml",
               "RelativeDocumentMoniker": "LoginWindow.xaml",
-              "ToolTip": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\LoginWindow.xaml",
+              "ToolTip": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\LoginWindow.xaml",
               "RelativeToolTip": "LoginWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-03-10T22:03:57.707Z"
+              "WhenOpened": "2024-03-10T22:03:57.707Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\MainWindow.xaml",
+              "DocumentMoniker": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\MainWindow.xaml",
+              "ToolTip": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-03-10T21:55:31.782Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-10T21:55:31.782Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\MainWindow.xaml.cs",
+              "DocumentMoniker": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\MainWindow.xaml.cs",
+              "ToolTip": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AQIAAAkCAAAAAAAAAAAowBkCAAAuAAAA",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAACYAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-10T21:55:31.982Z",
               "EditorCaption": ""
@@ -100,9 +96,9 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "DateTimeFormatConverter.cs",
-              "DocumentMoniker": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\DateTimeFormatConverter.cs",
+              "DocumentMoniker": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\DateTimeFormatConverter.cs",
               "RelativeDocumentMoniker": "DateTimeFormatConverter.cs",
-              "ToolTip": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\DateTimeFormatConverter.cs",
+              "ToolTip": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\DateTimeFormatConverter.cs",
               "RelativeToolTip": "DateTimeFormatConverter.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAgwAsAAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -110,11 +106,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "product.cs",
-              "DocumentMoniker": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\product.cs",
+              "DocumentMoniker": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\product.cs",
               "RelativeDocumentMoniker": "Models\\product.cs",
-              "ToolTip": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\product.cs",
+              "ToolTip": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\product.cs",
               "RelativeToolTip": "Models\\product.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAAIwCIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -124,9 +120,9 @@
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "product_ingredient.cs",
-              "DocumentMoniker": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\product_ingredient.cs",
+              "DocumentMoniker": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\product_ingredient.cs",
               "RelativeDocumentMoniker": "Models\\product_ingredient.cs",
-              "ToolTip": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\product_ingredient.cs",
+              "ToolTip": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\product_ingredient.cs",
               "RelativeToolTip": "Models\\product_ingredient.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAADwvwQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -136,9 +132,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "ingredient.cs",
-              "DocumentMoniker": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\ingredient.cs",
+              "DocumentMoniker": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\ingredient.cs",
               "RelativeDocumentMoniker": "Models\\ingredient.cs",
-              "ToolTip": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\ingredient.cs",
+              "ToolTip": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\ingredient.cs",
               "RelativeToolTip": "Models\\ingredient.cs",
               "ViewState": "AQIAAA8AAAAAAAAAAAAIwCQAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -146,11 +142,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "ingredient_allergen.cs",
-              "DocumentMoniker": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\ingredient_allergen.cs",
+              "DocumentMoniker": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\ingredient_allergen.cs",
               "RelativeDocumentMoniker": "Models\\ingredient_allergen.cs",
-              "ToolTip": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\ingredient_allergen.cs",
+              "ToolTip": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\ingredient_allergen.cs",
               "RelativeToolTip": "Models\\ingredient_allergen.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAADwvwAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -160,9 +156,9 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "allergen.cs",
-              "DocumentMoniker": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\allergen.cs",
+              "DocumentMoniker": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\allergen.cs",
               "RelativeDocumentMoniker": "Models\\allergen.cs",
-              "ToolTip": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\allergen.cs",
+              "ToolTip": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\allergen.cs",
               "RelativeToolTip": "Models\\allergen.cs",
               "ViewState": "AQIAAAQAAAAAAAAAAAAIwBoAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -170,11 +166,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 10,
               "Title": "purchase.cs",
-              "DocumentMoniker": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\purchase.cs",
+              "DocumentMoniker": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\purchase.cs",
               "RelativeDocumentMoniker": "Models\\purchase.cs",
-              "ToolTip": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\purchase.cs",
+              "ToolTip": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\purchase.cs",
               "RelativeToolTip": "Models\\purchase.cs",
               "ViewState": "AQIAAAoAAAAAAAAAAAAowAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -182,27 +178,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "desk.cs",
-              "DocumentMoniker": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\desk.cs",
+              "DocumentMoniker": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\desk.cs",
               "RelativeDocumentMoniker": "Models\\desk.cs",
-              "ToolTip": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\desk.cs",
+              "ToolTip": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\Models\\desk.cs",
               "RelativeToolTip": "Models\\desk.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAADwvxMAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-10T21:55:31.999Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "menugeniusContext.cs",
-              "DocumentMoniker": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\menugeniusContext.cs",
-              "RelativeDocumentMoniker": "Models\\menugeniusContext.cs",
-              "ToolTip": "C:\\Users\\Szilard\\Saj\u00E1t meghajt\u00F3\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\Models\\menugeniusContext.cs",
-              "RelativeToolTip": "Models\\menugeniusContext.cs",
-              "ViewState": "AQIAALQAAAAAAAAAAAD4v78AAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-10T21:55:32Z"
             }
           ]
         }

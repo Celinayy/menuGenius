@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hpsow/V3fa54oVm9qwzr1aAf82eCtfgWXgACAz2Ec2/C7j8S6HqbUnkOHc6YBJZyQyGVlPog4bIYjSW6erVTXg==",
+  "dgSpecHash": "k+eNOnQETRhiBU9S2upVEuIMEonHQ+qr4i0S/N86G5Flb3/af73MTiOaTR7WpDrgbVMop5DqIvz7q4SGa5g3wQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Szilard\\Saját meghajtó\\SZF-Tanfolyam\\Vizsgaremek\\GitHub\\menuGenius\\MG_Admin_GUI_v2.2\\MG_Admin_GUI.csproj",
+  "projectFilePath": "E:\\Projects\\MenuGenius\\_AdminGUI\\MG_Admin_GUI_v2.2\\MG_Admin_GUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Szilard\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Szilard\\.nuget\\packages\\extended.wpf.toolkit\\4.6.0\\extended.wpf.toolkit.4.6.0.nupkg.sha512",
