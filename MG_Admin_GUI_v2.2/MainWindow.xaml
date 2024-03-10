@@ -238,26 +238,25 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Label Grid.Column="0" Grid.Row="0" Content="Név:"/>
-                            <Label Grid.Column="0" Grid.Row="1" Content="Telefon:"/>
-                            <Label Grid.Column="0" Grid.Row="2" Content="Asztal:"/>
-                            <Label Grid.Column="0" Grid.Row="3" Content="Felhasználó:"/>
+                            <Label Grid.Column="0" Grid.Row="1" Content="Felhasználó:"/>
+                            <Label Grid.Column="0" Grid.Row="2" Content="Telefon:"/>
+                            <Label Grid.Column="0" Grid.Row="3" Content="Asztal:"/>
                             <TextBox Text="{Binding name}" Name="tbReservationName" Grid.Row="0" Grid.Column="1"/>
-                            <TextBox Text="{Binding phone}" Name="tbReservationPhone" Grid.Row="1" Grid.Column="1"/>
-                            <ComboBox Grid.Row="2" Grid.Column="1"
-                                      Name="cobReservationDesk"
-                                      ItemsSource="{Binding dbContext.desks}"
-                                      SelectedValuePath="id"
-                                      SelectedItem="{Binding desk}"/>
-                            <!--<TextBox Text="{Binding desk_id}" Name="tbReservationDesk" Grid.Row="2" Grid.Column="1"/>-->
-                            <ComboBox  Grid.Row="3" Grid.Column="1"
+                            <ComboBox  Grid.Row="1" Grid.Column="1"
                                        Name="cobReservationUser"
                                        ItemsSource="{Binding dbContext.users}"
                                        DisplayMemberPath="name"
                                        SelectedValuePath="id"
                                        SelectedItem="{Binding user}"/>
-                            <!--<TextBox Text="{Binding user_id}" Name="tbReservationUser" Grid.Row="3" Grid.Column="1"/>-->
+                            <TextBox Text="{Binding phone}" Name="tbReservationPhone" Grid.Row="2" Grid.Column="1"/>
+                            <ComboBox Grid.Row="3" Grid.Column="1"
+                                      Name="cobReservationDesk"
+                                      ItemsSource="{Binding dbContext.desks}"
+                                      SelectedValuePath="id"
+                                      SelectedItem="{Binding desk}"/>
                             <Label Grid.Column="2" Grid.Row="0" Content="Vendégek száma:"/>
                             <Label Grid.Column="2" Grid.Row="1" Content="Érkezés időpontja:"/>
                             <Label Grid.Column="2" Grid.Row="2" Content="Távozás időpontja:"/>
@@ -266,24 +265,33 @@
                             <xctk:DateTimePicker Grid.Column="3" Grid.Row="1" Name="dtpReservationCheckinDate" Value="{Binding checkin_date}" Format="Custom" FormatString="yyyy.MM.dd HH:mm"/>
                             <xctk:DateTimePicker Grid.Column="3" Grid.Row="2" Name="dtpReservationCheckoutDate" Value="{Binding checkout_date}" Format="Custom" FormatString="yyyy.MM.dd HH:mm"/>
                             <CheckBox IsChecked="{Binding closed}" Name="chbReservationClosed" Grid.Row="3" Grid.Column="3"/>
+                            <Label Grid.Column="0" Grid.Row="5" Content="Megjegyzés:"/>
+                            <TextBox Name="tbReservationComment" Text="{Binding comment}" TextWrapping="Wrap" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3"/>
                         </Grid>
 
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Name="btnReservationSave" Content="Mentés"/>
-                        <Button Name="btnReservationUpdate" Content="Módosítás"/>
-                        <Button Name="btnReservationDelete" Content="Törlés"/>
-                        <Button Name="btnReservationCancel" Content="Mégsem"/>
+                        <Button Name="btnReservationSave" Content="Mentés" Click="btnReservationSave_Click"/>
+                        <Button Name="btnReservationUpdate" Content="Módosítás" Click="btnReservationUpdate_Click"/>
+                        <Button Name="btnReservationDelete" Content="Törlés" Click="btnReservationDelete_Click"/>
+                        <Button Name="btnReservationCancel" Content="Mégsem" Click="btnReservationCancel_Click"/>
                     </StackPanel>
-                    <DataGrid Name="dgReservations" Grid.Row="2" Grid.ColumnSpan="3" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgReservations_SelectionChanged" MouseDown="dgReservations_MouseDown">
+                    <DataGrid Name="dgReservations" 
+                              Grid.Row="2" Grid.ColumnSpan="3" 
+                              AutoGenerateColumns="False" 
+                              IsReadOnly="True" 
+                              SelectionChanged="dgReservations_SelectionChanged" 
+                              MouseDown="dgReservations_MouseDown">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Binding="{Binding id}" Width="0.3*"/>
-                            <DataGridTextColumn Header="Érkezés" Binding="{Binding checkin_date, StringFormat=yyyy.MM.dd HH.mm}" Width="*"/>
-                            <DataGridTextColumn Header="Távozás" Binding="{Binding checkout_date, StringFormat=yyyy.MM.dd HH.mm}" Width="*"/>
-                            <DataGridTextColumn Header="Telefon" Binding="{Binding phone}" Width="*"/>
-                            <DataGridTextColumn Header="Asztal" Binding="{Binding desk.id}" Width="0.5*"/>
-                            <DataGridTextColumn Header="Felhasználó" Binding="{Binding user.name}" Width="2*"/>
-                            <DataGridCheckBoxColumn Header="Lezárva" Binding="{Binding closed}" Width="0.4*"/>
+                            <DataGridTextColumn Header="Id" Binding="{Binding id}" Width="auto"/>
+                            <DataGridTextColumn Header="Érkezés" Binding="{Binding checkin_date, StringFormat=yyyy.MM.dd HH.mm}" Width="auto"/>
+                            <DataGridTextColumn Header="Távozás" Binding="{Binding checkout_date, StringFormat=yyyy.MM.dd HH.mm}" Width="auto"/>
+                            <DataGridTextColumn Header="Telefon" Binding="{Binding phone}" Width="auto"/>
+                            <DataGridTextColumn Header="Asztal" Binding="{Binding desk.id}" Width="auto"/>
+                            <DataGridTextColumn Header="Felhasználó" Binding="{Binding user.name}" Width="auto"/>
+                            <DataGridTextColumn Header="Név" Binding="{Binding name}" Width="auto"/>
+                            <DataGridCheckBoxColumn Header="Lezárva" Binding="{Binding closed}" Width="auto"/>
+                            <DataGridTextColumn Header="Megjegyzés" Binding="{Binding comment}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -357,7 +365,7 @@
                                       DisplayMemberPath="name"
                                       SelectedValuePath="id"/>
                             <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2">
-                                <Button Name="btnProductAddIngredient" Content="Hozzáad"/>
+                                <Button Name="btnProductAddIngredient" Content="Hozzáad" Click="btnProductAddIngredient_Click"/>
                             </StackPanel>
                         </Grid>
 
@@ -367,8 +375,8 @@
                             <StackPanel Orientation="Horizontal" Height="60">
                                 <Label Content="Fájlnév:" HorizontalAlignment="Left"/>
                                 <TextBox Name="tbImageName" Text="{Binding image.img_name}" HorizontalAlignment="Left" Width="200"/>
-                                <Button Name="btnNewImage" Content="Új kép" Width="80"/>
-                                <Button Name="btnDeleteImage" Content="Törlés" Width="80"/>
+                                <Button Name="btnNewImage" Content="Új kép" Width="80" Click="btnNewImage_Click"/>
+                                <Button Name="btnDeleteImage" Content="Törlés" Width="80" Click="btnDeleteImage_Click"/>
                             </StackPanel>
                             <Viewbox>
                                 <Image Name="imgImage" Source="{Binding image.img_data, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
@@ -376,10 +384,10 @@
                         </WrapPanel>
                     </GroupBox>
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Name="btnProductSave" Content="Mentés"/>
-                        <Button Name="btnProductUpdate" Content="Mentés" />
-                        <Button Name="btnProductDelete" Content="Törlés"/>
-                        <Button Name="btnProductCancel" Content="Mégsem"/>
+                        <Button Name="btnProductSave" Content="Mentés" Click="btnProductSave_Click"/>
+                        <Button Name="btnProductUpdate" Content="Mentés" Click="btnProductUpdate_Click"/>
+                        <Button Name="btnProductDelete" Content="Törlés" Click="btnProductDelete_Click"/>
+                        <Button Name="btnProductCancel" Content="Mégsem" Click="btnProductCancel_Click"/>
                     </StackPanel>
                     <DataGrid Name="dgProducts" Grid.Row="2" Grid.ColumnSpan="3" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dgProducts_SelectionChanged" MouseDown="dgProducts_MouseDown">
                         <DataGrid.Columns>
@@ -434,16 +442,16 @@
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Grid.Column="0" Content="Id:"/>
                             <Label Grid.Row="1" Grid.Column="0" Content="Név:"/>
-                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding id}"/>
-                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding name}"/>
+                            <TextBox Name="tbListsCategoryId" Grid.Row="0" Grid.Column="1" Text="{Binding id}"/>
+                            <TextBox Name="tbListsCategoryName" Grid.Row="1" Grid.Column="1" Text="{Binding name}"/>
                             <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button Content="Mentés"/>
-                                <Button Content="Módosítás"/>
-                                <Button Content="Törlés"/>
-                                <Button Content="Mégsem"/>
+                                <Button Name="btnCategorySave" Content="Mentés" Click="btnCategorySave_Click"/>
+                                <Button Name="btnCategoryUpdate" Content="Módosítás" Click="btnCategoryUpdate_Click"/>
+                                <Button Name="btnCategoryDelete" Content="Törlés" Click="btnCategoryDelete_Click"/>
+                                <Button Name="btnCategoryCancel" Content="Mégsem" Click="btnCategoryCancel_Click"/>
                             </StackPanel>
 
-                            <DataGrid ItemsSource="{Binding categories}" Name="dgCategories" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgCategories_SelectionChanged" MouseDown="dgCategories_MouseDown">
+                            <DataGrid ItemsSource="{Binding categories}" Name="dgCategories" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgCategories_SelectionChanged" MouseDown="dgCategories_MouseDown" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Id" Binding="{Binding id}" Width="*"/>
                                     <DataGridTextColumn Header="Név" Binding="{Binding name}" Width="3*"/>
@@ -481,18 +489,18 @@
                                       ItemsSource="{Binding allergens}"
                                       DisplayMemberPath="name"
                                       SelectedValuePath="id"/>
-                            <Button Grid.Row="4" Grid.Column="1" Content="Hozzáad"/>
-                            <Button Grid.Row="5" Grid.Column="1" Content="Töröl"/>
-                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding id}"/>
-                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding name}"/>
+                            <Button Name="btnIngredientAllergenAdd" Grid.Row="4" Grid.Column="1" Content="Hozzáad" Click="btnIngredientAllergenAdd_Click"/>
+                            <Button Name="btnIngredientAllergenDelete" Grid.Row="5" Grid.Column="1" Content="Töröl" Click="btnIngredientAllergenDelete_Click"/>
+                            <TextBox Name="tbListsIngredientId" Grid.Row="0" Grid.Column="1" Text="{Binding id}"/>
+                            <TextBox Name="tbListsIngredientName" Grid.Row="1" Grid.Column="1" Text="{Binding name}"/>
                             <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button Content="Mentés"/>
-                                <Button Content="Módosítás"/>
-                                <Button Content="Törlés"/>
-                                <Button Content="Mégsem"/>
+                                <Button Name="btnIngredientSave" Content="Mentés" Click="btnIngredientSave_Click"/>
+                                <Button Name="btnIngredientUpdate" Content="Módosítás" Click="btnIngredientUpdate_Click"/>
+                                <Button Name="btnIngredientDelete" Content="Törlés" Click="btnIngredientDelete_Click"/>
+                                <Button Name="btnIngredientCancel" Content="Mégsem" Click="btnIngredientCancel_Click"/>
                             </StackPanel>
 
-                            <DataGrid Name="dgIngredients" ItemsSource="{Binding}" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgIngredients_SelectionChanged" MouseDown="dgIngredients_MouseDown">
+                            <DataGrid Name="dgIngredients" ItemsSource="{Binding}" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgIngredients_SelectionChanged" MouseDown="dgIngredients_MouseDown" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Id" Binding="{Binding id}" Width="*"/>
                                     <DataGridTextColumn Header="Név" Binding="{Binding name}" Width="2*"/>
@@ -525,17 +533,17 @@
                             <Label Grid.Row="0" Grid.Column="0" Content="Id:"/>
                             <Label Grid.Row="1" Grid.Column="0" Content="Kód:"/>
                             <Label Grid.Row="2" Grid.Column="0" Content="Név:"/>
-                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding id}"/>
-                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding code}"/>
-                            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding name}"/>
+                            <TextBox Name="tbListsAllergenId" Grid.Row="0" Grid.Column="1" Text="{Binding id}"/>
+                            <TextBox Name="tbListsAllergenCode" Grid.Row="1" Grid.Column="1" Text="{Binding code}"/>
+                            <TextBox Name="tbListsAllergenName" Grid.Row="2" Grid.Column="1" Text="{Binding name}"/>
                             <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button Content="Mentés"/>
-                                <Button Content="Módosítás"/>
-                                <Button Content="Törlés"/>
-                                <Button Content="Mégsem"/>
+                                <Button Name="btnAllergenSave" Content="Mentés" Click="btnAllergenSave_Click"/>
+                                <Button Name="btnAllergenUpdate" Content="Módosítás" Click="btnAllergenUpdate_Click"/>
+                                <Button Name="btnAllergenDelete" Content="Törlés" Click="btnAllergenDelete_Click"/>
+                                <Button Name="btnAllergenCancel" Content="Mégsem" Click="btnAllergenCancel_Click"/>
                             </StackPanel>
 
-                            <DataGrid ItemsSource="{Binding}" Name="dgAllergens" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgAllergens_SelectionChanged" MouseDown="dgAllergens_MouseDown">
+                            <DataGrid ItemsSource="{Binding}" Name="dgAllergens" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgAllergens_SelectionChanged" MouseDown="dgAllergens_MouseDown" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Id" Binding="{Binding id}" Width="*"/>
                                     <DataGridTextColumn Header="Név" Binding="{Binding name}" Width="3*"/>
@@ -558,16 +566,16 @@
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0" Grid.Column="0" Content="Id:"/>
                             <Label Grid.Row="1" Grid.Column="0" Content="Név:"/>
-                            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding id}"/>
-                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding number_of_seats}"/>
+                            <TextBox Name="tbListsDeskId" Grid.Row="0" Grid.Column="1" Text="{Binding id}"/>
+                            <TextBox Name="tbListsDeskNoS" Grid.Row="1" Grid.Column="1" Text="{Binding number_of_seats}"/>
                             <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button Content="Mentés"/>
-                                <Button Content="Módosítás"/>
-                                <Button Content="Törlés"/>
-                                <Button Content="Mégsem"/>
+                                <Button Name="btnDeskSave" Content="Mentés" Click="btnDeskSave_Click"/>
+                                <Button Name="btnDeskUpdate" Content="Módosítás" Click="btnDeskUpdate_Click"/>
+                                <Button Name="btnDeskDelete" Content="Törlés" Click="btnDeskDelete_Click"/>
+                                <Button Name="btnDeskCancel" Content="Mégsem" Click="btnDeskCancel_Click"/>
                             </StackPanel>
 
-                            <DataGrid ItemsSource="{Binding}" Name="dgDesks" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgDesks_SelectionChanged" MouseDown="dgDesks_MouseDown">
+                            <DataGrid ItemsSource="{Binding}" Name="dgDesks" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" SelectionChanged="dgDesks_SelectionChanged" MouseDown="dgDesks_MouseDown" IsReadOnly="True">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Id" Binding="{Binding id}" Width="*"/>
                                     <DataGridTextColumn Header="Név" Binding="{Binding number_of_seats}" Width="3*"/>
@@ -614,10 +622,10 @@
                         </Grid>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Button Content="Mentés"/>
-                        <Button Content="Módosítás"/>
-                        <Button Content="Törlés"/>
-                        <Button Content="Mégsem"/>
+                        <Button Name="btnUserSave" Content="Mentés" Click="btnUserSave_Click"/>
+                        <Button Name="btnUserUpdate" Content="Módosítás" Click="btnUserUpdate_Click"/>
+                        <Button Name="btnUserDelete" Content="Törlés" Click="btnUserDelete_Click"/>
+                        <Button Name="btnUserCancel" Content="Mégsem" Click="btnUserCancel_Click"/>
                     </StackPanel>
 
 
@@ -625,7 +633,8 @@
                               Name="dgUsers" 
                               SelectionChanged="dgUsers_SelectionChanged" 
                               MouseDown="dgUsers_MouseDown"
-                              AutoGenerateColumns="False">
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="*"/>
                             <DataGridTextColumn Header="Név" Binding="{Binding name}" Width="2*"/>
