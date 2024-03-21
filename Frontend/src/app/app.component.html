@@ -1,2 +1,5 @@
-    <app-header/>
-    <router-outlet />
+<app-header />
+
+<div [@routeAnimations]="getRouteAnimationData()">
+    <router-outlet></router-outlet>
+</div>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MenuComponent } from '../menu/menu.component';
 import { AuthService } from '../services/auth.service';
 import { catchError, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -16,7 +15,7 @@ export class LoginWindowComponent {
   public email: string = "";
   public password: string = "";
 
-  constructor(public menu: MenuComponent, private authService: AuthService, private toast: ToastrService,  private router: Router) { }
+  constructor(private authService: AuthService, private toast: ToastrService,  private router: Router) { }
 
   public login() {
     this.authService.login(this.email, this.password)
@@ -34,7 +33,7 @@ export class LoginWindowComponent {
       }))
       .subscribe(() => {
         this.router.navigate(["/"]);
-        window.location.reload()
+        this.toast.success("Sikeres bejelentkezés!");
       });
 
   }

@@ -28,6 +28,7 @@ import { SuccesfullPaymentWindowComponent } from './succesfull-payment-window/su
 import { CancelPaymentWindowComponent } from './cancel-payment-window/cancel-payment-window.component';
 import { DrinksWindowComponent } from './drinks-window/drinks-window.component';
 import { FoodsWindowComponent } from './foods-window/foods-window.component';
+import { AuthMenuWindowComponent } from './auth-menu-window/auth-menu-window.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { FoodsWindowComponent } from './foods-window/foods-window.component';
     CancelPaymentWindowComponent,
     DrinksWindowComponent,
     FoodsWindowComponent,
+    AuthMenuWindowComponent,
   ],
   imports: [
     BrowserModule,
