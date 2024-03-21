@@ -1,7 +1,26 @@
-<input type="text" class="form-control mx-auto m-1" data-testid="full-name-input" placeholder="Teljes név" [(ngModel)]="name">
-<input type="email" class="form-control mx-auto m-1" data-testid="email-input" placeholder="E-mail" [(ngModel)]="email">
-<input type="phone" class="form-control mx-auto m-1" data-testid="phone-input" placeholder="Telefonszám" [(ngModel)]="phone">
-<input type="password" class="form-control mx-auto m-1" data-testid="password-input" placeholder="Jelszó" [(ngModel)]="password">
-<input type="password" class="form-control mx-auto m-1" data-testid="password-again-input" placeholder="Jelszó újra" [(ngModel)]="passwordAgain">
-<button class="btn btn-danger m-1" (click)="menu.back()">Vissza</button>
-<button class="btn btn-primary m-1" (click)="register()" data-testid="register-button">Regisztráció</button>
+<div class="container align-items-center p-3">
+    <h3 class="text-center">
+        Regisztrálj vagy jelentkezz be!
+    </h3>
+    
+    <hr class="mx-auto w-75" />
+
+    <div class="mx-auto w-50 text-center">
+        <input type="text" class="form-control mx-auto m-1" data-testid="full-name-input" placeholder="Teljes név"
+            [(ngModel)]="name">
+        <input type="email" class="form-control mx-auto m-1" data-testid="email-input" placeholder="E-mail"
+            [(ngModel)]="email">
+        <input type="phone" class="form-control mx-auto m-1" data-testid="phone-input" placeholder="Telefonszám"
+            [(ngModel)]="phone">
+        <input type="password" class="form-control mx-auto m-1" data-testid="password-input" placeholder="Jelszó"
+            [(ngModel)]="password">
+        <input type="password" class="form-control mx-auto m-1" data-testid="password-again-input"
+            placeholder="Jelszó újra" [(ngModel)]="passwordAgain">
+        <button class="btn btn-danger m-1" routerLink="/auth">Vissza</button>
+        <button class="btn btn-primary m-1" (click)="register()" data-testid="register-button">Regisztráció</button>
+    </div>
+
+    <hr class="w-75 mx-auto" />
+
+    <app-contact-window />
+</div>

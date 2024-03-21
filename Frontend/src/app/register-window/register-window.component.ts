@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { MenuComponent } from '../menu/menu.component';
 import { AuthService } from '../services/auth.service';
-import { LoginWindowComponent } from '../login-window/login-window.component';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +19,11 @@ export class RegisterWindowComponent {
   public phone: string = "";
 
 
-  constructor(public menu: MenuComponent, private authService: AuthService, private toastr: ToastrService, private toast: ToastrService) { }
+  constructor(
+    private authService: AuthService,
+    private toast: ToastrService,
+    private route: Router,
+  ) { }
 
   public register() {
     this.authService.register(this.name, this.email, this.phone, this.password, this.passwordAgain)
@@ -40,8 +43,8 @@ export class RegisterWindowComponent {
         return throwError(() => err)
       }))
       .subscribe(() => {
-        this.menu.showLogin();
-        window.location.reload()
+        this.route.navigate(["/"]);
+        this.toast.success("Sikeres regisztráció!");
       });
   }
 

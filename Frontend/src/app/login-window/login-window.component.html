@@ -1,6 +1,17 @@
-<div class="mx-auto text-center">
-  <input type="email" class="form-control m-1" data-testid="email-input" placeholder="E-mail" [(ngModel)]="email">
-  <input type="password" class="form-control m-1" data-testid="password-input" placeholder="Jelszó" [(ngModel)]="password">
-  <button class="btn btn-danger m-1" (click)="menu.back()">Vissza</button>
-  <button class="btn btn-primary m-1" (click)="login()" data-testid="login-button">Bejelentkezés</button>
+<div class="container align-items-center p-3">
+  <h3 class="text-center">
+    Regisztrálj vagy jelentkezz be!
+  </h3>
+  <hr class="mx-auto w-75" />
+  <div class="mx-auto w-50 text-center">
+    <input type="email" class="form-control m-1" data-testid="email-input" placeholder="E-mail" [(ngModel)]="email">
+    <input type="password" class="form-control m-1" data-testid="password-input" placeholder="Jelszó"
+      [(ngModel)]="password">
+    <button class="btn btn-danger m-1" routerLink="/auth">Vissza</button>
+    <button class="btn btn-primary m-1" (click)="login()" data-testid="login-button">Bejelentkezés</button>
+  </div>
+
+  <hr class="w-75 mx-auto" />
+
+  <app-contact-window />
 </div>

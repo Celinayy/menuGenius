@@ -11,6 +11,8 @@ test("Regisztráció", async ({ page }) => {
     const password = faker.internet.password();
 
     await register(page, fullName, email, phone, password);
+
+    await expect(page.getByText("Sikeres regisztráció!")).toBeVisible();
 });
 
 test("Bejelentkezés", async ({ page }) => {
@@ -23,6 +25,8 @@ test("Bejelentkezés", async ({ page }) => {
 
     await register(page, fullName, email, phone, password);
     await login(page, email, password);
+
+    await expect(page.getByText("Sikeres bejelentkezés!")).toBeVisible();
 });
 
 test("Kijelentkezés", async ({ page }) => {
