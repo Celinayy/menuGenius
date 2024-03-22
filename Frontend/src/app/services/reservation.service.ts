@@ -1,13 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { ReservationModel } from '../models/reservation-model';
+import { environment } from '../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservationService {
-  private url = "http://localhost:8000/api/reservation"
+  private url:string = `${environment.apiUrl}/api/reservation`
+
+
 
   constructor(private connection: HttpClient) { }
 
