@@ -1,13 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { UserModel } from '../models/user-model';
 import { map } from 'rxjs';
+import { environment } from '../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private url = "http://localhost:8000/api";
+  private url:string = `${environment.apiUrl}/api`
+
+
 
   public user?: UserModel;
 
@@ -55,7 +58,7 @@ export class AuthService {
 
   public getUser() {
     return this.connection.get<UserModel>(
-      "http://localhost:8000/api/user",
+      this.url+"/user",
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`

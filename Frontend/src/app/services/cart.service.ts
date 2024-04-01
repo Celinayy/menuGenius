@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ProductModel } from '../models/product-model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../environment';
 
 
 @Injectable({
@@ -8,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CartService {
   public products: ProductModel[] = [];
+  private url:string = `${environment.apiUrl}/api/checkout`
+
 
   constructor(private connection: HttpClient) {
     const previousState = sessionStorage.getItem("cart");
@@ -33,7 +36,7 @@ export class CartService {
   public checkout(deskId: number) {
     const token = localStorage.getItem("token");
 
-    return this.connection.post<{url: string}>("http://localhost:8000/api/checkout",
+    return this.connection.post<{url: string}>(this.url,
       {
         products: this.products.map((product) => product.id),
         desk_id: deskId

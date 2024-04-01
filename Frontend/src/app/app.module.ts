@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { APP_BASE_HREF } from '@angular/common';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -75,7 +77,9 @@ export function prefersReducedMotion(): boolean {
       positionClass: "toast-top-center",
     }),
   ],
-  providers: [DatePipe],
+  providers: [
+    {provide: DatePipe},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

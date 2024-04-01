@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { ProductModel } from '../models/product-model';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,13 @@ import { ToastrService } from 'ngx-toastr';
 export class FavouriteService {
 
   private favProducIds: number[] = [];
-  private url = "http://localhost:8000/api"
+  private url:string = `${environment.apiUrl}/api`
 
-  constructor(private connection: HttpClient, private toast: ToastrService) {
+
+
+  constructor(
+    private connection: HttpClient, 
+    private toast: ToastrService) {
     this.loadFavourites().subscribe((result) => {
       this.favProducIds  = result.favorites.map((product) => {
         return product.id;
