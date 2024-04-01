@@ -2,6 +2,13 @@ import { Page, expect, test } from "@playwright/test";
 import { fakerHU as faker } from "@faker-js/faker";
 import { login, logout, register } from "./utils";
 
+test.beforeEach(async ({ page }) => {
+    // Disable animations for tests
+    await page.emulateMedia({
+        reducedMotion: "reduce",
+    });
+});
+
 test("Regisztráció", async ({ page }) => {
     await page.goto("/");
 
