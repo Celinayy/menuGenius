@@ -26,10 +26,10 @@
                   {{daySince(reservation)}}
                 </div>
               </div>
-              <div *ngIf="userReservationHistory.length === 0">
-                <h2>Sajnos még nincs foglalásod!</h2><br>
-                <button class="btn btn-warning" routerLink="/tableReservation">Foglalok asztalt!</button>
-              </div>
+          </div>
+          <div *ngIf="userReservationHistory.length === 0">
+            <h2>Sajnos még nincs foglalásod!</h2><br>
+            <button class="btn btn-warning" routerLink="/tableReservation">Foglalok asztalt!</button>
           </div>
         </div>
       </div>
