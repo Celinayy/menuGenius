@@ -30,6 +30,12 @@ import { SuccesfullPaymentWindowComponent } from './succesfull-payment-window/su
 import { CancelPaymentWindowComponent } from './cancel-payment-window/cancel-payment-window.component';
 import { DrinksWindowComponent } from './drinks-window/drinks-window.component';
 import { FoodsWindowComponent } from './foods-window/foods-window.component';
+import { AuthMenuWindowComponent } from './auth-menu-window/auth-menu-window.component';
+
+export function prefersReducedMotion(): boolean {
+  const mediaQueryList = window.matchMedia("(prefers-reduced-motion)");
+  return mediaQueryList.matches;
+}
 
 @NgModule({
   declarations: [
@@ -54,6 +60,7 @@ import { FoodsWindowComponent } from './foods-window/foods-window.component';
     CancelPaymentWindowComponent,
     DrinksWindowComponent,
     FoodsWindowComponent,
+    AuthMenuWindowComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +68,10 @@ import { FoodsWindowComponent } from './foods-window/foods-window.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule.withConfig({
+      // A teszteken belül le kell tiltani az animációkat
+      disableAnimations: prefersReducedMotion(),
+    }),
     CommonModule,
     ToastrModule.forRoot({
       positionClass: "toast-top-center",

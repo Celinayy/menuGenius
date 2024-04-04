@@ -2,6 +2,13 @@ import { Page, expect, test } from "@playwright/test";
 import { fakerHU as faker } from "@faker-js/faker";
 import { login, logout, register } from "./utils";
 
+test.beforeEach(async ({ page }) => {
+    // Disable animations for tests
+    await page.emulateMedia({
+        reducedMotion: "reduce",
+    });
+});
+
 test("Regisztráció", async ({ page }) => {
     await page.goto("/");
 
@@ -11,6 +18,8 @@ test("Regisztráció", async ({ page }) => {
     const password = faker.internet.password();
 
     await register(page, fullName, email, phone, password);
+
+    await expect(page.getByText("Sikeres regisztráció!")).toBeVisible();
 });
 
 test("Bejelentkezés", async ({ page }) => {
@@ -23,6 +32,8 @@ test("Bejelentkezés", async ({ page }) => {
 
     await register(page, fullName, email, phone, password);
     await login(page, email, password);
+
+    await expect(page.getByText("Sikeres bejelentkezés!")).toBeVisible();
 });
 
 test("Kijelentkezés", async ({ page }) => {

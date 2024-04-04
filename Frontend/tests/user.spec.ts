@@ -7,6 +7,13 @@ const openSettings = async (page: Page) => {
     await page.getByTestId("open-settings-button").click();
 };
 
+test.beforeEach(async ({ page }) => {
+    // Disable animations for tests
+    await page.emulateMedia({
+        reducedMotion: "reduce",
+    });
+});
+
 test("Felhasználó törlése", async ({ page }) => {
     await page.goto("/");
 

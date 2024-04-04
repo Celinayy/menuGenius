@@ -7,20 +7,5 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
-
-  constructor(public authService: AuthService){}
-
-  public show: "login" | "register" | null = null;
-
-  showLogin() {
-    this.show = "login";
-  }
-
-  showRegister() {
-    this.show = "register";
-  }
-
-  back() {
-    this.show = null;
-  }
+  constructor(public authService: AuthService) { }
 }

@@ -13,22 +13,27 @@ import { SuccesfullPaymentWindowComponent } from './succesfull-payment-window/su
 import { CancelPaymentWindowComponent } from './cancel-payment-window/cancel-payment-window.component';
 import { FoodsWindowComponent } from './foods-window/foods-window.component';
 import { DrinksWindowComponent } from './drinks-window/drinks-window.component';
+import { AuthMenuWindowComponent } from './auth-menu-window/auth-menu-window.component';
+import { LoginWindowComponent } from './login-window/login-window.component';
+import { RegisterWindowComponent } from './register-window/register-window.component';
 
 const routes: Routes = [
-  {path: "", component: MainWindowComponent},
-  {path: "tableReservation", component: TableReservationWindowComponent},
-  {path: "profile", component: UserProfileComponent},
-  {path: "profile/settings", component: SettingsWindowComponent},
-  {path: "profile/history", component: HistoryWindowComponent},
-  {path: "profile/favFood", component: FavouriteFoodWindowComponent},
-  {path: "products", component: ProductsWindowComponent},
-  {path: "products/:id", component: ProductsDetailsWindowComponent},
-  {path: "cart", component: CartWindowComponent},
-  {path: "profile/foods", component: FoodsWindowComponent},
-  {path: "profile/drinks", component: DrinksWindowComponent},
-  {path: "stripe/payment/success", component: SuccesfullPaymentWindowComponent},
-  {path: "stripe/payment/cancel", component: CancelPaymentWindowComponent},
-
+  { path: "", component: MainWindowComponent },
+  { path: "auth", component: AuthMenuWindowComponent, data: { animation: "vertical" } },
+  { path: "auth/login", component: LoginWindowComponent, data: { animation: "horizontal" } },
+  { path: "auth/register", component: RegisterWindowComponent, data: { animation: "horizontal" } },
+  { path: "tableReservation", component: TableReservationWindowComponent },
+  { path: "profile", component: UserProfileComponent },
+  { path: "profile/settings", component: SettingsWindowComponent },
+  { path: "profile/history", component: HistoryWindowComponent },
+  { path: "profile/favFood", component: FavouriteFoodWindowComponent },
+  { path: "products", component: ProductsWindowComponent },
+  { path: "products/:id", component: ProductsDetailsWindowComponent },
+  { path: "cart", component: CartWindowComponent },
+  { path: "profile/foods", component: FoodsWindowComponent },
+  { path: "profile/drinks", component: DrinksWindowComponent },
+  { path: "stripe/payment/success", component: SuccesfullPaymentWindowComponent },
+  { path: "stripe/payment/cancel", component: CancelPaymentWindowComponent },
 ];
 
 @NgModule({
