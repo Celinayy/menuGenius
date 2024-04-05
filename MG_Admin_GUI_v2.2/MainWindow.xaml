@@ -366,6 +366,7 @@
                                       SelectedValuePath="id"/>
                             <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2">
                                 <Button Name="btnProductAddIngredient" Content="Hozzáad" Click="btnProductAddIngredient_Click"/>
+                                <Button Name="btnProductRemoveIngredient" Content="Eltávolít" Click="btnProductRemoveIngredient_Click"/>
                             </StackPanel>
                         </Grid>
 

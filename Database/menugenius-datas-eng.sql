@@ -257,7 +257,7 @@ INSERT INTO categories (id, name) VALUES
 (19, 'tea'),
 (20, 'koktél');
 
-INSERT INTO products (id, name, description, packing, price, is_food, image_id, category_id) VALUES
+INSERT INTO products (id, name, description, packing, price, is_food, image, category_id) VALUES
 (1, 'Töltött tojás', 'Tejfölös-mustáros krémmel töltött főtt tojás.', '1 adag',3000, '1', 69, 1),
 (2, 'Bruschetta', 'Olívaolajjal, sóval, borssal ízesített pirított bagett hagymával és paradicsommal.', '1 adag',3000, '1', 5, 1),
 (3, 'Tepertős pogácsa', 'Omlós, kerek sült tészta töpörtyűvel.', '1 adag',3000, '1', 66, 1),
