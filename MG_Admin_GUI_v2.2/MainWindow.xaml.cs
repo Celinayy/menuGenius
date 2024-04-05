@@ -1,6 +1,8 @@
 ﻿using MG_Admin_GUI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MG_Admin_GUI
 {
@@ -22,6 +25,7 @@ namespace MG_Admin_GUI
         menugeniusContext dbContext = new menugeniusContext();
 
         product selectedProduct = new product();
+        image selectedImage = new image();
         purchase selectedPurchase = new purchase();
         reservation selectedReservation = new reservation();
         category selectedCategory = new category();
@@ -32,7 +36,8 @@ namespace MG_Admin_GUI
         event_log selectedEventLog = new event_log();
 
         private user loggedInUser;
-
+        string imagePath = string.Empty;
+        List<ingredient> productIngredients;
 
         public MainWindow()
         {
@@ -282,7 +287,43 @@ namespace MG_Admin_GUI
 
         private void btnProductSave_Click(object sender, RoutedEventArgs e)
         {
+            var image = new image()
+            {
+                img_name = tbImageName.Text,
+                img_data = selectedImage.img_data
+            };
 
+            var product = new product()
+            {
+                name = tbProductName.Text,
+                description = tbProductDescription.Text,
+                category_id = ulong.Parse(cobProductCategory.SelectedValuePath),
+                packing = tbProductPacking.Text,
+                price = int.Parse(tbProductPrice.Text),
+                is_food = chkProductIsFood.IsChecked.HasValue && chkProductIsFood.IsChecked.Value,
+                image_id = image.id,
+            };
+            dbContext.products.Add(product);
+            dbContext.SaveChanges();
+
+            foreach (ListViewItem item in lvProductIngredients.Items)
+            {
+                ingredient ingredient = item.Tag as ingredient;
+                if (ingredient != null)
+                {
+                    product_ingredient productIngredient = new product_ingredient
+                    {
+                        product_id = product.id,
+                        ingredient_id = ingredient.id
+                    };
+                    dbContext.product_ingredients.Add(productIngredient);
+                }
+            }
+
+            dgProducts.SelectedItem = null;
+            selectedProduct = null;
+            //lvProductIngredients.Items.Clear();
+            tabProduct.DataContext = selectedProduct;
         }
 
         private void btnProductUpdate_Click(object sender, RoutedEventArgs e)
@@ -303,19 +344,58 @@ namespace MG_Admin_GUI
             tabProduct.DataContext = selectedProduct;
         }
 
+        private void btnProductAddIngredient_Click(object sender, RoutedEventArgs e)
+        {
+            lvProductIngredients.Items.Add(cobProductIngredients.SelectedItem);
+        }
+
+        private void btnProductRemoveIngredient_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvProductIngredients.SelectedItem != null)
+            {
+                lvProductIngredients.Items.Remove(lvProductIngredients.SelectedItems[0]);
+            }
+        }
+
         private void btnNewImage_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Képfájlok|*.jpg;*.png;*.bmp|Mindennemű fájl|*.*";
+            openFileDialog.Multiselect = false;
 
+            if (openFileDialog.ShowDialog() == true)
+            {
+                imagePath = openFileDialog.FileName;
+                string fileName = System.IO.Path.GetFileName(imagePath);
+                selectedImage = new image();
+
+                BitmapImage bitmapImage = new BitmapImage(new Uri(imagePath));
+                byte[] imageData = ConvertBitmapToByteArray(bitmapImage);
+                selectedImage.img_name = fileName;
+                selectedImage.img_data = imageData;
+
+                imgImage.Source = bitmapImage;
+                tbImageName.Text = fileName;
+            }
+        }
+
+        private byte[] ConvertBitmapToByteArray(BitmapImage bitmapImage)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                encoder.Save(stream);
+
+                return stream.ToArray();
+            }
         }
 
         private void btnDeleteImage_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btnProductAddIngredient_Click(object sender, RoutedEventArgs e)
-        {
-
+            tbImageName.Text = string.Empty;
+            imgImage.Source = null;
+            selectedImage = null;
         }
 
         #endregion
@@ -378,12 +458,34 @@ namespace MG_Admin_GUI
             dgIngredients.SelectedItem = null;
             selectedIngredient = null;
             spIngredient.DataContext = selectedIngredient;
-
         }
 
         private void btnIngredientSave_Click(object sender, RoutedEventArgs e)
         {
+            var ingredient = new ingredient()
+            {
+                name = tbListsIngredientName.Text,
+            };
+            dbContext.ingredients.Add(ingredient);
+            dbContext.SaveChanges();
 
+            foreach (ListViewItem item in lvIngredientAllergens.Items)
+            {
+                allergen allergen = item.Tag as allergen;
+                if (allergen != null)
+                {
+                    ingredient_allergen ingredientAllergen = new ingredient_allergen
+                    {
+                        ingredient_id = ingredient.id,
+                        allergen_id = allergen.id
+                    };
+                    dbContext.ingredient_allergens.Add(ingredientAllergen);
+                }
+            }
+            dbContext.SaveChanges();
+            dgIngredients.SelectedItem = null;
+            selectedIngredient = null;
+            spIngredient.DataContext = selectedIngredient;
         }
 
         private void btnIngredientUpdate_Click(object sender, RoutedEventArgs e)
@@ -406,12 +508,15 @@ namespace MG_Admin_GUI
 
         private void btnIngredientAllergenAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            lvIngredientAllergens.Items.Add(cobIngredientAllergens.SelectedItem);
         }
 
         private void btnIngredientAllergenDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (lvIngredientAllergens.SelectedItem != null)
+            {
+                lvIngredientAllergens.Items.Remove(lvIngredientAllergens.SelectedItems[0]);
+            }
         }
 
         private void dgAllergens_SelectionChanged(object sender, SelectionChangedEventArgs e)
