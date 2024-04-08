@@ -28,9 +28,11 @@ class DatabaseSeeder extends Seeder
         DB::table('ingredient_allergen')->truncate();
         DB::table('ingredients')->truncate();
         DB::table('allergens')->truncate();
+        DB::table('images')->truncate();
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
+        $this->call(ImageSeeder::class);
         $this->call(AllergenSeeder::class);
         $this->call(IngredientSeeder::class);
         $this->call(IngredientAllergenSeeder::class);
