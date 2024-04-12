@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace MG_Admin_GUI.Models;
 
 public partial class image

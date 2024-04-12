@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
+﻿
 namespace MG_Admin_GUI.Models;
 
 public partial class ingredient

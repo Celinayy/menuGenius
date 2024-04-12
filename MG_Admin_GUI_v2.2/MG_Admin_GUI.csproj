@@ -8,6 +8,7 @@
     <UseWPF>true</UseWPF>
     <PackageIcon>menu_genius_icon.png</PackageIcon>
     <ApplicationIcon>Logos\menu_genius_icon.ico</ApplicationIcon>
+    <PublishSingleFile>true</PublishSingleFile>
   </PropertyGroup>
 
   <ItemGroup>
